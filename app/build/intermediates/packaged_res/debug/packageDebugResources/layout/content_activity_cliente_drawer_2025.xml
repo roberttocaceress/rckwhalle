@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cliente"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/branco"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout_editor_absoluteY="25dp"
+    tools:showIn="@layout/app_bar_activity_cliente_drawer">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        android:theme="@style/Theme.Toolbar"
+        app:title="Pesquisar cliente(s)"
+        tools:context=".activity.ActivityClienteDrawer">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/buscaCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:queryHint="Nome/código"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="48dp"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="4dp"
+            app:showAsAction="always"
+            android:imeOptions="flagNoExtractUi"/>
+
+        <ImageView
+            android:id="@+id/helpCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@drawable/ic_help_new"
+            android:layout_marginRight="4dp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/edtTotalClientes"
+        android:layout_below="@+id/tb_cliente"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
+        android:clipToPadding="false" />
+
+    <Button
+        android:id="@+id/btnInserirCliente"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/style_button_2025"
+        android:elevation="48dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="+"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/edtTotalClientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:textColor="@color/preto"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:text="total"
+        android:textSize="15sp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/branco"/>
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+
+
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_principal_logoff"
+            android:icon="@drawable/nav_principal_logoff_white"
+            android:iconTint="@color/branco"
+            android:title="Logoff"
+            />
+
+        <item
+            android:id="@+id/nav_principal_configuracao"
+            android:icon="@drawable/nav_principal_configuracao_white"
+            android:title="Configuração"
+            />
+
+        <item
+            android:id="@+id/nav_principal_preferencia"
+
+            android:icon="@drawable/nav_principal_preferencia_white"
+            android:title="Preferencia"
+            />
+
+
+    </group>
+
+    <item android:title="Suporte técnico"   >
+        <menu >
+            <item
+                android:id="@+id/nav_principal_whats"
+                android:icon="@drawable/nav_principal_whats"
+                android:iconTint="@color/branco"
+                android:title="WhatssAPP" />
+            <item
+                android:id="@+id/nav_principal_telefone"
+                android:icon="@drawable/nav_principal_telefone_white"
+                android:title="Telefone" />
+
+            <item
+                android:id="@+id/nav_principal_email"
+                android:icon="@drawable/nav_principal_email_white"
+                android:title="e-mail" />
+        </menu>
+    </item>
+
+</menu>

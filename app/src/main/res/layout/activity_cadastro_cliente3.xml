@@ -1,0 +1,327 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.CadastroClienteMain">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <EditText
+                android:id="@+id/edtLimiteCredito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLimiteCredito"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="Limite de Credito"
+                android:inputType="numberDecimal"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/txtLimiteCredito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="Limite de Credito"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtContatoFinanceiro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtContatoFinanceiro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3dp"
+                android:background="@drawable/borda_edittext"
+                android:hint="Contato Financeiro"
+                android:inputType="textCapCharacters"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"/>
+
+            <TextView
+                android:id="@+id/txtContatoFinanceiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtLimiteCredito"
+                android:layout_marginTop="12dp"
+                android:text="Contato Financeiro"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtEmailFinanceiro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtEmailFinanceiro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3dp"
+                android:layout_toEndOf="@+id/txtEmailFinanceiro"
+                android:layout_toRightOf="@+id/txtEmailFinanceiro"
+                android:background="@drawable/borda_edittext"
+                android:hint="E-mail Financeiro"
+                android:inputType="textEmailAddress"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <Button
+                android:id="@+id/btnHistoricoFinanceiro"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/edtEmailFinanceiro"
+                android:layout_marginTop="15dp"
+                android:background="@mipmap/ic_financeiro" />
+
+            <TextView
+                android:id="@+id/txtHistoricoFinanceiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btnHistoricoFinanceiro"
+                android:layout_alignBottom="@+id/btnHistoricoFinanceiro"
+                android:layout_toEndOf="@+id/btnHistoricoFinanceiro"
+                android:layout_toRightOf="@+id/btnHistoricoFinanceiro"
+                android:gravity="center_vertical"
+                android:text="Historico Financeiro"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEmailFinanceiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtContatoFinanceiro"
+                android:layout_marginTop="12dp"
+                android:text="E-mail Financeiro"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/View"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txtEnderecoCobrancaMarca"
+                android:background="#dfdfdf" />
+
+            <TextView
+                android:id="@+id/txtEnderecoCobrancaMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnHistoricoFinanceiro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="33dp"
+                android:text="Endereço de Cobrança"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtEnderecoCobranca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtEnderecoCobranca"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3dp"
+                android:layout_toEndOf="@+id/txtEnderecoCobranca"
+                android:layout_toRightOf="@+id/txtEnderecoCobranca"
+                android:background="@drawable/borda_edittext"
+                android:hint="Endereço"
+                android:inputType="textCapCharacters"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"/>
+
+            <TextView
+                android:id="@+id/txtEnderecoCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/View"
+                android:layout_marginTop="20dp"
+                android:text="Endereço"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtNumeroCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtEnderecoCobranca"
+                android:layout_marginTop="12dp"
+                android:text="Numero"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtNumeroCobranca"
+                android:layout_alignStart="@+id/txtCepCobranca"
+                android:layout_alignLeft="@+id/txtCepCobranca"
+                android:layout_margin="3dp"
+                android:layout_toEndOf="@+id/txtNumeroCobranca"
+                android:layout_toRightOf="@+id/txtNumeroCobranca"
+                android:background="@drawable/borda_edittext"
+                android:hint="Numero"
+                android:inputType="number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/txtBairroCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtNumero"
+                android:layout_marginTop="12dp"
+                android:text="Bairro"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtBairroCobranca"
+                android:layout_alignStart="@+id/txtNumeroCobranca"
+                android:layout_alignLeft="@+id/txtNumeroCobranca"
+                android:layout_margin="3dp"
+                android:layout_toEndOf="@+id/txtNumeroCobranca"
+                android:layout_toRightOf="@+id/txtNumeroCobranca"
+                android:background="@drawable/borda_edittext"
+                android:hint="Bairro"
+                android:inputType="textCapCharacters"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"/>
+
+            <TextView
+                android:id="@+id/txtComplementoCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtCepCobranca"
+                android:layout_marginTop="12dp"
+                android:text="Complemento"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtComplemento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtComplementoCobranca"
+                android:background="@drawable/borda_edittext"
+                android:hint="Complemento"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"/>
+
+            <TextView
+                android:id="@+id/txtPaisCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtBairro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="12dp"
+                android:maxLength="20"
+                android:text="País"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/edtPaisCobranca"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPaisCobranca" />
+
+            <TextView
+                android:id="@+id/txtUfCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtBairro"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/edtPaisCobranca"
+                android:layout_toRightOf="@+id/edtPaisCobranca"
+                android:text="UF"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/edtUfCobranca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtUfCobranca"
+                android:layout_alignStart="@id/txtUfCobranca"
+                android:layout_alignLeft="@id/txtUfCobranca" />
+
+            <TextView
+                android:id="@+id/txtMunicipioCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtPaisCobranca"
+                android:layout_marginTop="12dp"
+                android:text="Municipio"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/edtMunicipioCobranca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtMunicipioCobranca" />
+
+            <TextView
+                android:id="@+id/txtCepCobranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edtMunicipioCobranca"
+                android:layout_marginTop="12dp"
+                android:text="CEP"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtCepCobranca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCepCobranca"
+                android:layout_alignStart="@+id/txtCepCobranca"
+                android:layout_alignLeft="@+id/txtCepCobranca"
+                android:background="@drawable/borda_edittext"
+                android:hint="CEP"
+                android:inputType="textFilter|number"
+                android:maxLength="8"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <Button
+                android:id="@+id/btnContinuar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/edtComplemento"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/borda_botao_continuar"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/branco"
+                android:text="Continuar 3/9"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:layout_marginLeft="10dp"
+    android:background="@drawable/borda_layout_cobranca_background"
+    style="@style/AppTheme.NoActionBar">
+
+    <LinearLayout
+        android:id="@+id/itemView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0.1dp"
+        android:layout_marginTop="0.1dp"
+        android:layout_marginRight="0.1dp"
+        android:layout_marginBottom="0.1dp"
+        android:background="@drawable/borda_layout_cobranca"
+
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin_2"
+        android:paddingTop="@dimen/activity_vertical_margin_2"
+        android:paddingRight="@dimen/activity_horizontal_margin_2"
+        android:paddingBottom="@dimen/activity_vertical_margin_2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/lyDadosCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgStatusCliente"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/ic_cliente_bloqueado" />
+
+                <TextView
+                    android:id="@+id/txtRazaoSocial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_toStartOf="@+id/imgStatusCliente"
+                    android:layout_toLeftOf="@+id/imgStatusCliente"
+                    android:gravity="center_vertical"
+                    android:text="Nome do Cliente"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/poppins_black"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lyChamada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivChamada"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="-23dp"
+                    android:background="@mipmap/ic_telefone" />
+
+                <TextView
+                    android:id="@+id/descricaoTelefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:text="Telefone"
+                    android:fontFamily="@font/poppins"/>
+
+                <TextView
+                    android:id="@+id/txtTelefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:layout_marginRight="24dp"
+
+                    android:layout_marginBottom="2dp"
+                    android:layout_toStartOf="@+id/ivChamada"
+                    android:layout_toLeftOf="@+id/ivChamada"
+                    android:ellipsize="end"
+                    android:text="(67) 99324-5775"
+                    android:fontFamily="@font/poppins"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lyGps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivGps"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="-23dp"
+                    android:background="@mipmap/ic_localizacao" />
+
+                <TextView
+                    android:id="@+id/descricaoBairro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:text="Bairro"
+                    android:fontFamily="@font/poppins"/>
+
+                <TextView
+                    android:id="@+id/txtBairro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/descricaoBairro"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:layout_marginRight="24dp"
+
+                    android:layout_marginBottom="2dp"
+                    android:layout_toStartOf="@+id/ivGps"
+                    android:layout_toLeftOf="@+id/ivGps"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:text="Nome do bairro" />
+
+                <TextView
+                    android:id="@+id/descricaoEndereco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtBairro"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="2dp"
+                    android:text="Endereço"
+                    android:fontFamily="@font/poppins"/>
+
+                <TextView
+                    android:id="@+id/txtEndereco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/descricaoEndereco"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:layout_marginRight="24dp"
+
+                    android:layout_marginBottom="2dp"
+                    android:layout_toStartOf="@+id/ivGps"
+                    android:layout_toLeftOf="@+id/ivGps"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:text="Rua Zeferino Vicente Almeida, 108, Vila Ieda CEP 79100-000 Campo Grande MS" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyDadosCobranca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/lyDatas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/poppins"
+                        android:layout_weight="1"
+                        android:text="Vencimento" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reagendado"
+                        android:fontFamily="@font/poppins"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pagamento"
+                        android:fontFamily="@font/poppins"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtVencimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_weight="1"
+                        android:text="00/00/00"
+                        android:textColor="@color/vermelho"
+                        android:fontFamily="@font/poppins"/>
+
+                    <TextView
+                        android:id="@+id/txvReagendamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="00/00/00"
+                        android:textColor="@color/vermelho"
+                        android:fontFamily="@font/poppins"/>
+
+                    <TextView
+                        android:id="@+id/txvPagamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="00/00/00"
+                        android:textColor="@color/preto"
+                        android:fontFamily="@font/poppins"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lyValores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txvDebito"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_weight="1"
+                        android:text="Débito"
+                        android:fontFamily="@font/poppins"/>
+
+
+                    <TextView
+                        android:id="@+id/txvPago"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentLeft="false"
+                        android:layout_marginLeft="0dp"
+
+                        android:layout_toStartOf="@id/txvSaldo"
+                        android:layout_toEndOf="@+id/txvDebito"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="Pago" />
+
+                    <TextView
+                        android:id="@+id/txvSaldo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentRight="false"
+                        android:layout_marginLeft="0dp"
+                        android:fontFamily="@font/poppins"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:text="Saldo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txvValorDebito"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="R$ 0,00"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/vermelho"
+                        android:fontFamily="@font/poppins"/>
+
+                    <TextView
+                        android:id="@+id/txvValorRecebido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="R$ 0,00"
+                        android:textAlignment="textStart"
+                        android:fontFamily="@font/poppins"/>
+
+                    <TextView
+                        android:id="@+id/txvValorSaldo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:text="R$ 0,00"
+                        android:textAlignment="textStart"
+                        android:fontFamily="@font/poppins_black"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lyUltimaCompra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txvUltimaCompra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="0dp"
+                    android:text="Ultima compra 00/00/00 | Total compra 0"
+                    android:fontFamily="@font/poppins"/>
+                </LinearLayout>
+                <!--
+                <ImageView
+                    android:id="@+id/ivStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/ic_cliente_atencao" />
+
+                <ImageView
+                    android:id="@+id/ivCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginEnd="299dp"
+
+                    android:background="@drawable/ic_check" />
+              !-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imgStatus"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/ic_cliente_atencao">
+
+                    </ImageView>
+
+
+                    <ImageView
+                        android:id="@+id/imgCheck"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_toLeftOf="@+id/imgStatus"
+                        android:background="@drawable/ic_check_2" />
+
+                    <ImageView
+                        android:id="@+id/imgReagendado"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_toLeftOf="@+id/imgCheck"
+                        android:background="@drawable/ic_baseline_calendar_today_24" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rltNovoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:visibility="invisible">
+
+            <Button
+                android:id="@+id/btnNovoPedido"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/style_button"
+                android:elevation="48dp"
+                android:gravity="center_horizontal"
+                android:text="+"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:id="@+id/lytNovoPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btnNovoPedido"
+                android:layout_alignBottom="@+id/btnNovoPedido"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="-20dp"
+                android:layout_marginRight="-20dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toStartOf="@+id/btnNovoPedido"
+                android:layout_toLeftOf="@+id/btnNovoPedido"
+                android:background="@drawable/borda_edittext_preto_cinza"
+                android:gravity="center"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/txtNovoPedido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Novo pedido"
+                    android:textStyle="bold"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

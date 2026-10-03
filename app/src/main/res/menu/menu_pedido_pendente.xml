@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoPendente">
+
+    <item
+        android:id="@+id/busca_pedido_pendente"
+        android:icon="@drawable/ic_search"
+        android:title="Habilita busca de Pedidos"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
+
+    <item
+        android:id="@+id/menu_pedido_pendente"
+        android:icon="@mipmap/ic_enviar_pedidos"
+        android:orderInCategory="1"
+        android:title="Enviar pedidos!"
+        app:showAsAction="always" />
+
+
+</menu>

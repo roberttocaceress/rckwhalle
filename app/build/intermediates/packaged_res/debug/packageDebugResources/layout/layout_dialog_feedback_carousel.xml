@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="← Deslize para ver mais →"
+        android:textColor="@color/branco"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnFecharFeedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/borda_botao_text"
+        android:backgroundTint="@color/branco"
+        android:text="FECHAR"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+</LinearLayout>

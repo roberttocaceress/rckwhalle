@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoPendente">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPedidoPendente"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/Theme.Toolbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaPedidosPendentes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/edtNumeroPedidoPendente"
+        android:layout_below="@+id/toolbarPedidoPendente"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:clipToPadding="false"
+        android:paddingBottom="70dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@color/branco"/>
+
+    <EditText
+        android:id="@+id/edtNumeroPedidoPendente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+
+        android:text="0: Pedidos Pendentes"
+        android:textColor="@color/branco"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnNovoPedido"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/style_button"
+        android:elevation="48dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="+"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp" />
+
+</RelativeLayout>

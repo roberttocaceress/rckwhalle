@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_produto_pedido"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoPedido">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_produto_pedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/Theme.Toolbar"
+        tools:context=".activity.ActivityProdutoPedido" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdPromocao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="#fdbe01"
+        tools:context=".activity.ActivityProdutoPedido">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtPromocao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Produto em promoção"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <RelativeLayout
+        android:id="@+id/lytProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="0.1dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btnBuscaProduto"
+            android:layout_alignBottom="@+id/btnBuscaProduto"
+            android:layout_toStartOf="@+id/btnBuscaProduto"
+            android:layout_toLeftOf="@+id/btnBuscaProduto"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/edtNomeProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/btnBuscaProduto"
+                android:layout_marginLeft="10dp"
+                android:layout_toStartOf="@+id/btnBuscaProduto"
+                android:layout_toLeftOf="@+id/btnBuscaProduto"
+                android:focusable="false"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/branco"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBuscaProduto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/ic_busca_padrao_new" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lymainCampanha"
+        android:orientation="vertical"
+        android:layout_marginTop="0.1dp"
+
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="CAMPANHA(S) ATIVA(S)"
+            android:textAlignment="center"
+            android:textColor="@color/campanha"
+            android:textSize="10sp">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/lyCampanha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lymainCampanha"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:paddingRight="16dp">
+
+            <Button
+                android:id="@+id/btnInfoCampanha"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="12dp"
+
+
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/edtNomeCampanha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_weight="1"
+
+                android:focusable="false"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/branco"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnBuscaCampanha"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/ic_busca_padrao_new"
+                android:scaleType="centerCrop" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lymainSku"
+        android:orientation="vertical"
+        android:layout_marginTop="0.1dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="CONDIÇÃO DE VENDA(SKU)"
+            android:textAlignment="center"
+            android:textColor="@color/branco"
+            android:textSize="10sp"></TextView>
+        <LinearLayout
+            android:id="@+id/lySku"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lymainSku"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            style="@style/spinner_sku"
+            android:orientation="horizontal"
+            >
+            <Spinner
+                android:id="@+id/spnSku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:paddingEnd="0dp"
+                android:paddingRight="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="2dp"
+                android:spinnerMode="dropdown"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_produto_pedido"
+        android:layout_weight="0.99">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_pager_produto_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center" />
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/circle_view_produto_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="20dp"
+                    app:ci_drawable="@drawable/circle_indicator_select"
+
+                    app:ci_drawable_unselected="@drawable/circle_indicator_unselect"
+
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Valor unitário"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtTabelaPreco"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="0.00"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="Valor produtos"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtValorProdutos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:focusable="false"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/porcentagem"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="Desconto %"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtDesconto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="00.00"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lydsctoReais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/real"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+
+                            android:text="Desconto R$"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtDescontoReais"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="0.00"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/lydsctoVerba"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/verba"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="Desc. Verba %"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtDescontoVerba"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="0.00"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lyvalorIcmsST"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/valorIcmsST"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="V ICMS ST"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtvalorIcmsST"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:focusable="false"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:text="0.00"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:text="Valor total"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtTotal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/borda_edittext"
+                            android:focusable="false"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSubtraiQuantidade"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+
+                            android:background="@mipmap/ic_subtrai_quantidade"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/edtQuantidade"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="12dp"
+                            android:paddingRight="12dp"
+                            android:textSize="16sp"
+                            android:imeOptions="flagNoExtractUi"
+                            android:windowSoftInputMode="adjustPan"/>
+
+                        <Button
+                            android:id="@+id/btnSomaQuantidade"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_marginRight="4dp"
+
+                            android:background="@mipmap/ic_soma_quantidade"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_cancelar"
+            android:text="Cancelar"
+            android:textColor="@color/branco" />
+        <Button
+            android:id="@+id/btnConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:drawableTop="@drawable/ic_check_circle"
+            android:text="Confirmar"
+            android:textColor="@color/branco" />
+    </LinearLayout>
+</LinearLayout>

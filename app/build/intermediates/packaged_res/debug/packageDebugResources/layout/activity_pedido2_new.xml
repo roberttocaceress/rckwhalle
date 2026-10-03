@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/activity_cadastro_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <LinearLayout
+                    android:id="@+id/lySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtPagamento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CONDIÇÃO DE PAGAMENTO"
+                            android:textColor="@color/colorAccent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/borda_edittext">
+
+                            <Spinner
+                                android:id="@+id/spPagamento"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtOperacao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OPERAÇÃO"
+                            android:textColor="@color/colorAccent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/borda_edittext">
+
+                            <Spinner
+                                android:id="@+id/spOperacao"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lytMoeda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtMoeda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MOEDA DE PAGAMENTO"
+                            android:textColor="@color/colorAccent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/borda_edittext">
+
+                            <Spinner
+                                android:id="@+id/spMoeda"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lyDatas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lySpinner"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/rlDataEmissao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDaDataDeEmissao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="DATA DE EMISSAO"
+                            android:textColor="@color/colorAccent" />
+
+                        <TextView
+                            android:id="@+id/txtDataEmissao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtDaDataDeEmissao"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="center"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:text="13/12/2017"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+                        <EditText
+                            android:id="@+id/edtSaldoDevedor"
+                            android:layout_width="80dp"
+                            android:layout_height="0dp"
+                            android:layout_below="@+id/txtDaDataDeEmissao"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="0.00"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rlDtaEntrega"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtDataEntrega"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="10dp"
+                            android:text="DATA DE FATURAMENTO"
+                            android:textColor="@color/colorAccent" />
+
+                        <EditText
+                            android:id="@+id/edtDataEntrega"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtDataEntrega"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/borda_edittext"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:text="  /  /    "
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+                        <EditText
+                            android:id="@+id/edtValorRecibo"
+                            android:layout_width="80dp"
+                            android:layout_height="0dp"
+                            android:layout_below="@+id/txtDataEntrega"
+                            android:background="@drawable/borda_edittext"
+                            android:gravity="end|center"
+                            android:inputType="numberDecimal"
+                            android:paddingEnd="6dp"
+                            android:paddingRight="6dp"
+                            android:selectAllOnFocus="true"
+                            android:text="0.00"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edtObservacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_below="@+id/lyDatas"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/borda_edittext"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"
+                    android:gravity="top"
+                    android:hint="OBSERVAÇÕES DO PEDIDO!"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="400"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtObservacao"
+                    android:layout_alignStart="@+id/edtObservacao"
+                    android:layout_alignLeft="@+id/edtObservacao"
+                    android:layout_alignEnd="@+id/edtObservacao"
+                    android:layout_alignRight="@+id/edtObservacao"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnSalvarPedido"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_below="@+id/edtData"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/borda_botao_continuar"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="Salvar Pedido"
+                        android:textColor="@color/branco" />
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnInserirProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#dddfdd"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_cadastro_cliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_registro" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#dddfdd"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnInserirProduto"
+        app:layout_constraintEnd_toEndOf="@+id/btnInserirProduto"
+        app:layout_constraintStart_toStartOf="@+id/btnInserirProduto"
+        app:srcCompat="@drawable/ic_voltar"
+        tools:layout_editor_absoluteY="566dp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="Adicionar produto"
+        android:textColor="@color/colorPrimaryTransparente70"
+        app:layout_constraintBottom_toBottomOf="@+id/btnInserirProduto"
+        app:layout_constraintEnd_toStartOf="@+id/btnInserirProduto"
+        app:layout_constraintTop_toTopOf="@+id/btnInserirProduto" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="Voltar"
+        android:textColor="@color/colorPrimaryTransparente70"
+        app:layout_constraintBottom_toTopOf="@+id/btnInserirProduto"
+        app:layout_constraintEnd_toStartOf="@+id/btnVoltar"
+        app:layout_constraintTop_toTopOf="@+id/btnVoltar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

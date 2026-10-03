@@ -1,0 +1,149 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'kotlin-android'
+//Na versao 2.7.3 fiz a trava p nao enviar pedido com produto que esta inativo
+android {
+    compileSdk 36
+    defaultConfig {
+        //ndkVersion "27.0.12077973"  //Ajuste feito dia 18-05-2026 para resolver o erro: "NDK not configured. Download the NDK and set it up in the SDK manager."
+        ndkVersion "25.2.9519653"
+        applicationId "com.example.rcksuporte05.rcksistemas"
+        minSdkVersion 26  //Android 8 Oreo 
+        targetSdkVersion 36
+        versionCode 2
+        versionName '2.7.3-G 3 DB V27 28/09/2026 AM DESENVOLVIDO POR RCK SISTEMAS ESPECIFICOS';
+        multiDexEnabled true
+        namespace "com.example.rcksuporte05.rcksistemas"
+    }
+    //externalNativeBuild {
+    //    cmake {
+   //         version "3.30.3" // Ajuste feito dia 18-05-2026 para resolver o erro: "NDK not configured. Download the NDK and set it up in the SDK manager."
+   //     }
+   // }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    productFlavors {
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    tasks.withType(JavaCompile).configureEach {
+        options.fork = true
+        options.forkOptions.jvmArgs += [
+                '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED',
+                '--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED',
+        ]
+    }
+
+}
+
+dependencies {
+    implementation 'androidx.activity:activity-ktx:1.13.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    //implementation 'com.android.support:design:28.0.0'
+    //implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation project(path: ':YouTubeAndroidPlayerApi')
+    implementation 'com.google.firebase:firebase-firestore:22.1.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
+    implementation 'androidx.activity:activity:1.10.1'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    //implementation 'com.google.android.gms:play-services-ads:17.1.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation group: 'com.google.android.gms', name: 'play-services-location', version: '16.0.0'
+
+    //Trabalhar com firebase cloud notifications/firestore
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-messaging'
+
+    implementation group: 'androidx.legacy', name: 'legacy-support-v4', version: '1.0.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation group: 'androidx.cardview', name: 'cardview', version: '1.0.0'
+    implementation group: 'androidx.appcompat', name: 'appcompat', version: '1.0.0'
+    implementation group: 'androidx.mediarouter', name: 'mediarouter', version: '1.0.0'
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation 'androidx.navigation:navigation-runtime:2.0.0-rc02'
+    //Comunicação com API
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.4.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.4.0'
+
+
+    implementation group: 'com.jakewharton', name: 'butterknife', version: '10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
+    //implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+
+    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.6.1'
+    testImplementation 'junit:junit:4.12'
+
+    ///implementation 'com.thoughtbot:expandablerecyclerview:1.5'
+    //implementation 'com.android.support:recyclerview-v7:28.0.0-alpha3'
+    //implementation 'com.android.support:cardview-v7:28.0.0-alpha3'
+
+    // https://mvnrepository.com/artifact/com.google.android.gms/play-services-location
+    //implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+
+
+    //trabalhar com PDF
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
+
+    //trabalhar com imagem
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+
+    //mascaras
+    //implementation 'com.azimolabs.maskformatter:maskformatter:0.2'
+
+    //Biometria
+    implementation 'androidx.biometric:biometric:1.0.1'
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //implementation 'com.teaanddogdog:mpandroidchartutil:1.0.3'
+
+    //Cryptografia
+    implementation 'org.jasypt:jasypt:1.9.3'
+
+    // Exportar Excel (Versão 4.1.2 é a mais estável para Android API 23+)
+    implementation 'org.apache.poi:poi:4.1.2'
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
+    implementation 'com.fasterxml:aalto-xml:1.3.2'
+    implementation 'stax:stax-api:1.0.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+}

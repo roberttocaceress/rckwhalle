@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:mContext="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoDrawer"
+    >
+
+    <item
+        android:id="@+id/action_continua_pedido"
+        android:icon="@drawable/ic_produto_pedido"
+        android:orderInCategory="2"
+        android:title="Continuar o pedido"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_produto_imagem"
+        android:icon="@drawable/ic_cloud_download_white_36dp"
+        android:orderInCategory="1"
+        android:title="Sincronizar/Download da(s) imagem(s) do produto selecionado."
+        app:showAsAction="always"
+        tools:icon="@drawable/ic_cloud_download_white_36dp" />
+</menu>

@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     android:theme="?attr/actionBarTheme"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanca">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbl_resumo_financeiro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        android:theme="@style/Theme.Toolbar"
+        app:title="Resumo Receita/Despesa" />
+
+
+    <!--
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="30dp"
+         android:layout_marginTop="6dp"
+         android:layout_marginRight="30dp"
+         android:orientation="horizontal">
+
+         <ImageView
+             android:id="@+id/img_view_anterior"
+             android:layout_width="30dp"
+             android:layout_height="40dp"
+             android:layout_gravity="center_vertical"
+             android:layout_weight="1"
+             android:alpha="0.5"
+             app:srcCompat="@drawable/ic_action_up_arrow_back" />
+
+         <ImageView
+             android:id="@+id/img_view_proximo"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:layout_gravity="center_vertical"
+             android:layout_weight="1"
+             android:alpha="0.5"
+             app:srcCompat="@drawable/ic_action_up_arrow_forward" />
+     </LinearLayout>
+     !-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="TOQUE PARA DETALHAR"
+        android:textSize="8sp"
+        android:layout_marginTop="4dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_financa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1" />
+
+    <ProgressBar
+        android:id="@+id/progress_splash"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/progress_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center"
+        android:text="Aguarde enquanto pesquisamos os dados..."
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        tools:text="Aguarde enquanto pesquisamos os dados..." />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="Selecione o(s) tipo(s) de filtro(s) "
+                android:textColor="@color/preto"
+                android:textAlignment="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:text="Periodo"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/preto" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/id_opcao_emissao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Emissão"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/id_opcao_competencia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Competencia"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/id_opcao_vencimento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Vencimento"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/id_opcao_quitacao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Quitação"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:text="Situação"
+                        android:textColor="@color/preto"
+                        android:textAlignment="textStart"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/id_opcao_pendentes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Pendentes"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/id_opcao_quitadas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Quitadas"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+
+                        <CheckBox
+                            android:id="@+id/id_opcao_vencidas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="Vencidas"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/id_opcao_avencer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="A vencer"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp"
+                            android:theme="@style/Switch" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/edt_nome_favorecido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:hint="Nome/Razão social"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColor="@color/preto"
+                    android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edt_numero_documento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:hint="Documento"
+                        android:text=""
+                        android:textAlignment="textStart"
+                        android:textColor="@color/preto"
+                        android:textSize="16sp" />
+                    <EditText
+                        android:id="@+id/edt_numero_cheque"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:hint="Nº Cheque"
+                        android:text=""
+                        android:textAlignment="textStart"
+                        android:textColor="@color/preto"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    >
+                    <TextView
+                        android:id="@+id/txv_conta_bancaria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/preto"
+                        android:text="Conta bancaria"/>
+                    <Spinner
+                        android:id="@+id/sp_conta_bancaria"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/txv_especie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/preto"
+                        android:text="Espécie"/>
+                    <Spinner
+                        android:id="@+id/sp_especie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <Switch
+                        android:id="@+id/id_opcao_mes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Relatório mensal  "
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:theme="@style/Switch" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <Switch
+                        android:id="@+id/id_opcao_semana"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Relatório semanal"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:theme="@style/Switch" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1">
+
+                    <Switch
+                        android:id="@+id/id_opcao_periodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Relatório periodo "
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"
+                        android:theme="@style/Switch" />
+
+                </LinearLayout>
+            </LinearLayout>
+            !-->
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/img_view_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="4dp"
+            app:srcCompat="@drawable/ic_action_arrow_up_white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Informe a data inicial/final"
+                android:textAlignment="center"
+                android:textColor="@color/branco"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edt_data_inicial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/borda_edittext"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="  /  /    "
+                    android:textColor="@color/branco"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="4dp"
+                    android:text=" A "
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/edt_data_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/borda_edittext"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:text="  / /    "
+                    android:textColor="@color/branco"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/img_view_avancar"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="8dp"
+                    app:srcCompat="@drawable/ic_action_arrow_forward_white" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

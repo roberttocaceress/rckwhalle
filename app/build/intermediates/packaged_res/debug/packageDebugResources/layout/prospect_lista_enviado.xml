@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlItemListaProspectEnviado"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtIdProspectEnviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:text="00"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="10dp" />
+
+    <ImageView
+        android:id="@+id/imFisicaJuridica"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/txtIdProspectEnviado"
+        android:layout_toEndOf="@id/txtIdProspectEnviado"
+        android:layout_toRightOf="@id/txtIdProspectEnviado" />
+
+    <TextView
+        android:id="@+id/nomeProspectEnviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imFisicaJuridica"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="12dp"
+        android:layout_toEndOf="@+id/txtIdProspectEnviado"
+        android:layout_toRightOf="@+id/txtIdProspectEnviado"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:text="Texto"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/txtVisitarEm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imFisicaJuridica"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@id/txtDataRetornoEnviado"
+        android:layout_toLeftOf="@id/txtDataRetornoEnviado"
+        android:text="Visitar em: "
+        android:theme="@style/txtStyle" />
+
+    <TextView
+        android:id="@+id/txtDataRetornoEnviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtVisitarEm"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="Texto" />
+
+</RelativeLayout>

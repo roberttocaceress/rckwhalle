@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiro">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbFinanceiro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Theme.Toolbar"
+        app:title="Financeiro" />
+
+    <LinearLayout
+        android:id="@+id/layout_vencido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="2dp"
+
+        android:background="@drawable/borda_layout_produto"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnVisualizaVencido"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_visualiza_dados_white" />
+
+        <TextView
+            android:id="@+id/txvVisualizaVencida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:text="Visualizar titulo(s) vencido(s)"
+            android:textColor="@color/preto"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaVencido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/branco" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_vencer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="2dp"
+
+        android:background="@drawable/borda_layout_produto"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnVisualizaVencer"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_visualiza_dados_white" />
+
+        <TextView
+            android:id="@+id/txvVisualizaVencer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+
+            android:text="Visualizar titulo(s) a vencer"
+            android:textColor="@color/preto"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaVencer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/branco" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_quitado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="2dp"
+
+        android:background="@drawable/borda_layout_produto"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnVisualizaQuitado"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_visualiza_dados_white" />
+
+        <TextView
+            android:id="@+id/txvVisualizaQuitado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+
+            android:text="Visualizar titulo(s) pago(s)"
+            android:textColor="@color/preto"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaQuitado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/branco" />
+    </LinearLayout>
+
+</LinearLayout>

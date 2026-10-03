@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityContato">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/lyNomeCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imFisicaJuridica"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="10dp" />
+
+                        <TextView
+                            android:id="@+id/txtRazaoSocial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/imFisicaJuridica"
+                            android:layout_toLeftOf="@+id/imFisicaJuridica"
+                            android:gravity="center_vertical"
+                            android:text="Nome do Cliente"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:id="@+id/txtNomeFantasia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtRazaoSocial"
+                            android:layout_alignStart="@+id/txtRazaoSocial"
+                            android:layout_alignLeft="@+id/txtRazaoSocial"
+                            android:gravity="center_vertical"
+                            android:text="Nome Fantasia" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/txtNomeFantasia"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/lyCodigo"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/codigoCliente"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:text="Código" />
+
+                                <TextView
+                                    android:id="@+id/txtCodigoCliente"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/codigoCliente"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:gravity="center_vertical"
+                                    android:text="00000" />
+
+                            </RelativeLayout>
+                            <View
+                                android:layout_width="0.2dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="12dp"
+                                android:background="#999999" />
+                            <RelativeLayout
+                                android:id="@+id/lyDataCadastro"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/dataCadastro"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_weight="1"
+                                    android:text="Data de cadastro" />
+
+
+                                <TextView
+                                    android:id="@+id/edtDataCadastro"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/dataCadastro"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical"
+                                    android:text="01/01/2018" />
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_weight="1"
+                       android:orientation="horizontal">
+                       <RelativeLayout
+                        android:id="@+id/lyChamada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/ivChamada"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@mipmap/ic_telefone" />
+
+                        <TextView
+                            android:id="@+id/descricaoTelefone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Telefone" />
+
+                        <TextView
+                            android:id="@+id/txtTelefone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/ivChamada"
+                            android:layout_toLeftOf="@+id/ivChamada"
+                            android:text="(67) 99324-5775" />
+
+                    </RelativeLayout>
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#999999" />
+                        <RelativeLayout
+                            android:id="@+id/lyCpfCnpj"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/cpfCnpj"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="CNPJ/CPF" />
+
+                            <TextView
+                                android:id="@+id/txtCpfCnpj"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/cpfCnpj"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <RelativeLayout
+                        android:id="@+id/lyGps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivGps"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@mipmap/ic_localizacao" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Endereço" />
+
+                        <TextView
+                            android:id="@+id/txtEndereco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_toStartOf="@+id/ivGps"
+                            android:layout_toLeftOf="@+id/ivGps"
+                            android:gravity="center_vertical"
+                            android:ellipsize="end"
+                            android:inputType="textMultiLine"
+                            android:text="Rua Zeferino Vicente Almeida, 108, Vila Ieda CEP 79100-000 Campo Grande MS" />
+
+                    </RelativeLayout>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <RelativeLayout
+                        android:id="@+id/lyEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivEmail"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@mipmap/ic_mail" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Email" />
+
+                        <TextView
+                            android:id="@+id/txtEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/ivEmail"
+                            android:layout_toLeftOf="@+id/ivEmail"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="fernando@rcksistemas.com.br" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:id="@+id/lyCategoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/descricaoCategoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Categoria" />
+
+                        <TextView
+                            android:id="@+id/txtCategoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/descricaoCategoria"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:gravity="center_vertical"
+                            android:text="Não informada" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+                    <RelativeLayout
+                        android:id="@+id/lySegmento"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/descricaoSegmento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Segmento/Setor" />
+
+                        <TextView
+                            android:id="@+id/txtSegmento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/descricaoSegmento"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:gravity="center_vertical"
+                            android:text="Não informado" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteCredito"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteCredito"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Limite de crédito" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteCredito"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteCredito"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#999999" />
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteUsado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteUsado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Limite utilizado" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteUtilizado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteUsado"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#999999" />
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteDisponivel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteDisponivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Limite disponivel" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteDisponivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteDisponivel"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/pedidoPendente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Pedido(s) pendente(s)" />
+
+                            <TextView
+                                android:id="@+id/txtPedidoPendente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/pedidoPendente"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="(-) R$ 0.00" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#999999" />
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/pedidoAnalise"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+
+                                android:gravity="center_vertical"
+                                android:text="Pedido(s) em analise" />
+
+                            <TextView
+                                android:id="@+id/txtPedidoAnalise"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/pedidoAnalise"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+
+                                android:gravity="center_vertical"
+                                android:text="(-) R$ 0.00" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/lyFinanceiro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/pendenciaFinanceira"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Pendencia financeira" />
+
+                        <ImageView
+                            android:id="@+id/ivFinanceiro"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@mipmap/ic_financeiro" />
+
+                        <TextView
+                            android:id="@+id/txtPendenciaFinanceira"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pendenciaFinanceira"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Não informado" />
+
+                        <TextView
+                            android:id="@+id/txtClientePesquisaFinanceiro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtPendenciaFinanceira"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:background="@drawable/bg_badge_status_amarelo"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="PESQUISAR"
+                            android:textColor="#B91C1C"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                        />
+
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="0.2dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+                    <RelativeLayout
+                        android:id="@+id/lyNomeVendedor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivNomeVendedor"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/ic_homem_negocios" />
+
+                        <TextView
+                            android:id="@+id/descricaoNomeVendedor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/ivNomeVendedor"
+                            android:layout_toLeftOf="@+id/ivNomeVendedor"
+                            android:gravity="center_vertical"
+                            android:text="Vendedor(a)" />
+
+                        <TextView
+                            android:id="@+id/txtNomeVendedor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/descricaoNomeVendedor"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/ivNomeVendedor"
+                            android:layout_toLeftOf="@+id/ivNomeVendedor"
+                            android:gravity="center_vertical"
+
+                            android:text="Joselinton" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyPromocaoCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/promocaoCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Promoção do cliente" />
+
+                            <TextView
+                                android:id="@+id/txtPromocaoCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/promocaoCliente"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:maxLines="2"
+                                android:text="(0.00%-) Não informado" />
+
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#999999" />
+                        <RelativeLayout
+                            android:id="@+id/lyDetalhes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/ivDetalhes"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@mipmap/ic_detalhes" />
+
+                            <TextView
+                                android:id="@+id/txvDetalhes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_toStartOf="@id/ivDetalhes"
+                                android:layout_toLeftOf="@id/ivDetalhes"
+                                android:gravity="center_vertical"
+                                android:text="Cadastro\ncompleto" />
+                            <TextView
+                                android:id="@+id/txtDetalhes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/txvDetalhes"
+                                android:layout_alignStart="@id/txvDetalhes"
+                                android:layout_alignLeft="@id/txvDetalhes"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="center"
+                                android:gravity="center_vertical"
+                                android:background="@drawable/bg_badge_status_amarelo"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="2dp"
+                                android:text="PESQUISAR"
+                                android:textColor="#B91C1C"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyObservacaoCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/observacoesFaturamento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Observação faturamento" />
+
+                            <TextView
+                                android:id="@+id/txtobservacoesFaturamento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/observacoesFaturamento"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:maxLines="2"
+                                android:text="" />
+
+
+                        </RelativeLayout>
+
+
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyObservacaoFinanceiro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/observacoesFinanceiro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Observação financeiro" />
+
+                            <TextView
+                                android:id="@+id/txtobservacoesFinanceiro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/observacoesFinanceiro"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:maxLines="2"
+                                android:text="" />
+
+
+                        </RelativeLayout>
+
+
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#999999" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/novoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btnNovoPedido"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/style_button_2025"
+            android:elevation="48dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="+"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/txtNovoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btnNovoPedido"
+            android:layout_marginEnd="-30dp"
+            android:layout_marginRight="-30dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toStartOf="@+id/btnNovoPedido"
+            android:layout_toLeftOf="@+id/btnNovoPedido"
+            android:background="@drawable/borda_edittext_preto_transparente"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Novo pedido "
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" /> />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

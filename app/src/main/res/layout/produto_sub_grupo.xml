@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cdv_produto_sub_grupo"
+    android:layout_width="140dp"
+    android:layout_height="90dp"
+    android:layout_margin="1dp"
+    android:layout_marginLeft="10dp"
+    android:background="@color/colorPrimaryDark">
+    <!--
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    !-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0.6dp"
+        android:layout_marginTop="1.4dp"
+        android:layout_marginRight="0.6dp"
+        android:layout_marginBottom="1.4dp"
+        android:background="@drawable/borda_layout"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/branco"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_produto_sub_grupo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="left"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_produto_sub_grupo"
+                tools:srcCompat="@drawable/ic_produto_sub_grupo"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="grupo"
+                android:textColor="@color/preto"
+                android:textSize="9sp"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyt_produto_sub_grupo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="0dp"
+            android:background="@color/branco"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/txv_id_sub_grupo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center|center_horizontal"
+                android:layout_marginRight="4dp"
+                android:padding="1dp"
+                android:text="idSubGrupo"
+                android:textColor="@color/preto"
+                android:textSize="6sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/txt_nome_sub_grupo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:padding="1dp"
+                android:text="Grupo"
+                android:textAlignment="center"
+
+
+                android:textColor="@color/preto"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txt_total_produto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:padding="1dp"
+                android:text="0 produto(s)"
+                android:textAlignment="center"
+
+
+                android:textColor="@color/preto"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

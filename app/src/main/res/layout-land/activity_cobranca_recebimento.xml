@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    tools:context=".activity.ActivityCobrancaRecebimento"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Voltar"
+        android:fontFamily="@font/poppins"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txvRazaoSocial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Razão social"
+            android:textAlignment="center"
+            android:textColor="@color/vermelho"
+            android:textSize="18dp"
+            android:fontFamily="@font/poppins_black"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txvTotalPendente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Saldo devedor"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+
+                <EditText
+                    android:id="@+id/edtTotalPendente"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/borda_edittext_erro"
+                    android:text="R$ 0.00"
+                    android:textAlignment="center"
+                    android:textColor="@color/preto"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/poppins"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txvTotalRecebido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Recebimento"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+                <EditText
+                    android:id="@+id/edtTotalRecebido"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/borda_edittext_preto_2025"
+                    android:inputType="numberDecimal"
+                    android:paddingEnd="6dp"
+                    android:paddingRight="6dp"
+                    android:selectAllOnFocus="true"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/preto"
+                    android:textSize="16dp"
+                    android:imeOptions="flagNoExtractUi"
+                    android:fontFamily="@font/poppins"/>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txvDataReagendamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Reagendamento"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins"/>
+
+                <EditText
+                    android:id="@+id/edtDataReagendamento"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/borda_edittext_preto_2025"
+                    android:paddingRight="6dp"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:text="  /  /    "
+                    android:textColor="@color/preto"
+                    android:textSize="16dp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:imeOptions="flagNoExtractUi"
+                    android:fontFamily="@font/poppins"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/edtObservacao"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/borda_edittext_preto_2025"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"
+            android:gravity="top"
+            android:hint="OBSERVAÇÕES!\n"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="300"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/ic_cancelar"
+                android:text="Cancelar"
+                android:textColor="@color/branco"
+                android:fontFamily="@font/poppins"/>
+
+            <Button
+                android:id="@+id/btnConfirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:drawableTop="@drawable/ic_check_circle"
+                android:text="Confirmar"
+                android:textColor="@color/branco"
+                android:fontFamily="@font/poppins"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

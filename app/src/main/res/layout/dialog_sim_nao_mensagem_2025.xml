@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/imgMensagem"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_confirma_mensagem" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/txvMensagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atenção!"
+            android:textAlignment="center"
+            android:textColor="@color/preto"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <TextView
+            android:id="@+id/txvMensagemOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Atenção!!"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:padding="8dp">
+            <Button
+                android:id="@+id/btnMensagemNao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                android:layout_weight="2"
+                android:background="@drawable/borda_botao_mensagem_2025"
+                android:text="NÃO"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginRight="6dp"/>
+            <Button
+                android:id="@+id/btnMensagemSim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="2"
+                android:background="@drawable/borda_botao_mensagem_2025"
+                android:text="SIM"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

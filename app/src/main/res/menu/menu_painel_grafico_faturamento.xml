@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_demo_submenu"
+        android:title="Demonstração Guiada"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/action_demo_cards"
+                android:title="Demonstração dos Cards KPI" />
+            <item
+                android:id="@+id/action_demo_semanal"
+                android:title="Demonstração do Gráfico Semanal" />
+            <item
+                android:id="@+id/action_demo_mensal"
+                android:title="Demonstração do Gráfico Mensal" />
+            <item
+                android:id="@+id/action_demo_grupo"
+                android:title="Demonstração do Gráfico de Grupos" />
+            <item
+                android:id="@+id/action_demo_analise_grupo"
+                android:title="Análise de Evolução por Grupo" />
+            <item
+                android:id="@+id/action_demo_ranking"
+                android:title="Demonstração do Ranking de Clientes" />
+            <item
+                android:id="@+id/action_demo_analise_ranking"
+                android:title="Análise de Evolução por Cliente" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_compartlihar_color_white_24_24"
+        android:title="Compartilhar"
+        app:showAsAction="always" />
+</menu>

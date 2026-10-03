@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/branco">
+
+    <TextView
+        android:id="@+id/tvTituloResumo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resumo das Vendas no Período"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+    <View
+        android:layout_width="80dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PEDIDOS ATIVOS"
+                android:textSize="10sp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvResumoAtivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:textSize="16sp"
+                android:textColor="#2E7D32"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="#E2E8F0" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CANCELADOS/BLOQ."
+                android:textSize="10sp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvResumoCancelado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:textSize="16sp"
+                android:textColor="#C62828"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#F1F5F9"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL GERAL"
+            android:textSize="11sp"
+            android:textColor="@color/colorText" />
+        <TextView
+            android:id="@+id/tvResumoGeral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 0,00"
+            android:textColor="@color/preto"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#FFF4E5"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_alerta_mensagem"
+            app:tint="#663C00"
+            android:contentDescription="@null" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Nota: Estes valores podem divergir do total faturado pela empresa devido a cortes de itens, substituições ou outros fatores de processamento interno."
+            android:textColor="#663C00"
+            android:textSize="11sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <!-- Botão com cor primária e largura fixa, centralizado pelo layout_gravity -->
+    <Button
+        android:id="@+id/btnEntendidoResumo"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+
+        android:backgroundTint="@color/colorPrimary"
+        android:text="ENTENDIDO"
+        android:textColor="@color/branco"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

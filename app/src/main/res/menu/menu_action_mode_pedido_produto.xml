@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/PopupProdutoMenu"
+    android:tint="@color/colorPrimary"
+    android:itemBackground="@color/colorPrimary"
+
+    tools:mContext="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain">
+
+
+            <item
+                android:id="@+id/action_1"
+                android:icon="@drawable/ic_menu_produto_pedido_ordem_"
+                android:orderInCategory="1"
+                android:title="Ordenar itens por ordem de inserção."
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_2"
+                android:icon="@drawable/ic_menu_produto_pedido_ordem_"
+                android:orderInCategory="2"
+                android:title="Ordenar itens por ordem alfabética."
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_3"
+                android:icon="@drawable/ic_menu_produto_pedido_ordem_"
+                android:orderInCategory="3"
+                android:title="Ordenar itens por ordem de grupo."
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/action_4"
+                android:icon="@drawable/ic_menu_produto_pedido_ordem_"
+                android:orderInCategory="4"
+                android:title="Ordenar itens por ordem de sub-grupo."
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_5"
+                android:icon="@drawable/ic_menu_produto_pedido_analise_estoque"
+                android:orderInCategory="5"
+                android:title="Efetuar análise de estoque."
+                app:showAsAction="always" />
+
+
+</menu>

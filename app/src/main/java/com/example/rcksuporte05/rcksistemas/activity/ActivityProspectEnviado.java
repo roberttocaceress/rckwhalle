@@ -1,0 +1,214 @@
+package com.example.rcksuporte05.rcksistemas.activity;
+
+import android.content.Intent;
+import android.database.CursorIndexOutOfBoundsException;
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import android.widget.Toast;
+
+import com.example.rcksuporte05.rcksistemas.DAO.DBHelper;
+import com.example.rcksuporte05.rcksistemas.DAO.ProspectDAO;
+import com.example.rcksuporte05.rcksistemas.Helper.VisitaHelper;
+import com.example.rcksuporte05.rcksistemas.R;
+import com.example.rcksuporte05.rcksistemas.adapters.ListaProspectEnviadoAdapter;
+import com.example.rcksuporte05.rcksistemas.model.Prospect;
+import com.example.rcksuporte05.rcksistemas.util.DividerItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by RCK 03 on 20/02/2018.
+ */
+
+public class ActivityProspectEnviado extends AppCompatActivity implements ListaProspectEnviadoAdapter.ProspectEnviadoListener {
+
+    @BindView(R.id.recyclerProspectsEnviado)
+    RecyclerView recyclerProspectsEnviado;
+
+    @BindView(R.id.toolbarProspectEnviado)
+    Toolbar toolbarProspectEnviado;
+
+    @BindView(R.id.edtTotalProspectEnviado)
+    EditText edtTotalProspectEnviado;
+
+    ListaProspectEnviadoAdapter listaProspectEnviadoAdapter;
+    private List<Prospect> listaProspect;
+    private ProspectDAO prospectDAO;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lista_prospect_enviado);
+        ButterKnife.bind(this);
+
+        recyclerProspectsEnviado.setLayoutManager(new LinearLayoutManager(this));
+        recyclerProspectsEnviado.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+
+        try {
+            DBHelper db = new DBHelper(this);
+            prospectDAO = new ProspectDAO(db);
+            listaProspect = prospectDAO.getLista(Prospect.PROSPECT_ENVIADO);
+            preencheLista(listaProspect);
+            if (listaProspectEnviadoAdapter.getItemCount() > 0)
+                edtTotalProspectEnviado.setText(listaProspectEnviadoAdapter.getItemCount() + " : Prospects Enviados");
+            else
+                edtTotalProspectEnviado.setText("Nenhum Prospect Sincronizado");
+        } catch (CursorIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            edtTotalProspectEnviado.setText("Nenhum Prospect Sincronizado");
+            recyclerProspectsEnviado.setVisibility(View.INVISIBLE);
+        }
+
+        setSupportActionBar(toolbarProspectEnviado);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_cliente, menu);
+
+        SearchView searchView;
+        final MenuItem item = menu.findItem(R.id.buscaCliente);
+        searchView = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ? (SearchView) item.getActionView() : (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                try {
+                    if (query.trim().equals("")) {
+                        if (listaProspect.size() > 0) {
+                            preencheLista(listaProspect);
+                            edtTotalProspectEnviado.setText(listaProspect.size() + " : Prospects Enviados");
+                        }
+                    } else {
+                        preencheLista(buscaProspect(listaProspect, query));
+                        if (listaProspectEnviadoAdapter.getItemCount() > 0)
+                            edtTotalProspectEnviado.setText(listaProspectEnviadoAdapter.getItemCount() + " : Prospects Encontrados");
+                        else
+                            edtTotalProspectEnviado.setText("Nenhum Prospect Encontrado");
+                    }
+                } catch (NullPointerException e) {
+                    Toast.makeText(ActivityProspectEnviado.this, "Nenhum Prospect vinculado ao vendedor. Sincronizar pode resolver", Toast.LENGTH_LONG).show();
+                }
+                return false;
+            }
+        });
+        searchView.setQueryHint("Nome cadastro/nome fantasia/CPF-CNPJ/codigo prospect");
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        try {
+            DBHelper db = new DBHelper(this);
+            prospectDAO = new ProspectDAO(db);
+            //listaProspect = db.listaProspect(Prospect.PROSPECT_ENVIADO);
+            listaProspect = prospectDAO.getLista(Prospect.PROSPECT_ENVIADO);
+            preencheLista(listaProspect);
+        } catch (CursorIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        super.onResume();
+    }
+
+    private void preencheLista(List<Prospect> listaProspect) {
+        listaProspectEnviadoAdapter = new ListaProspectEnviadoAdapter(listaProspect, this);
+        recyclerProspectsEnviado.setAdapter(listaProspectEnviadoAdapter);
+        recyclerProspectsEnviado.setVisibility(View.VISIBLE);
+        listaProspectEnviadoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(int position) {
+        VisitaHelper.setProspect(listaProspectEnviadoAdapter.getItem(position));
+        startActivity(new Intent(this, ActivityHistoricoVisitaProspect.class));
+    }
+
+    public List<Prospect> buscaProspect(List<Prospect> listaProspect, String query) {
+        final String upperCaseQuery = query.toUpperCase();
+        final List<Prospect> lista = new ArrayList<>();
+        for (Prospect prospect : listaProspect) {
+            boolean entrou = false;
+
+            try {
+                final String idProspect = prospect.getId_prospect().toUpperCase();
+                if (idProspect.equals(upperCaseQuery) && !entrou) {
+                    lista.add(prospect);
+                    entrou = true;
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            try {
+                final String idProspectServidor = prospect.getId_prospect_servidor().toUpperCase();
+                if (idProspectServidor.equals(upperCaseQuery) && !entrou) {
+                    lista.add(prospect);
+                    entrou = true;
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            try {
+                final String nomeCadastro = prospect.getNome_cadastro().toUpperCase();
+                if (nomeCadastro.contains(upperCaseQuery) && !entrou) {
+                    lista.add(prospect);
+                    entrou = true;
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            try {
+                final String nomeFantasia = prospect.getNome_fantasia().toUpperCase();
+                if (nomeFantasia.contains(upperCaseQuery) && !entrou) {
+                    lista.add(prospect);
+                    entrou = true;
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            try {
+                final String cpfCnpj = prospect.getCpf_cnpj().toUpperCase();
+                if (cpfCnpj.contains(upperCaseQuery) && !entrou)
+                    lista.add(prospect);
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
+        return lista;
+    }
+}

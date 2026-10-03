@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_produto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityProduto"
+    tools:showIn="com.example.rcksuporte05.rcksistemas.ActivityProduto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        android:theme="@style/Theme.Toolbar"
+        app:title="Lista de Produtos"
+        tools:context=".activity.ActivityProduto">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/buscaProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:queryHint="Nome Produto" />
+        <Button
+            android:id="@+id/buscaGrupo"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/ic_produto_sub_grupo_white"
+            android:layout_marginEnd="10dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--
+    <LinearLayout
+        android:id="@+id/listaSubGrupoLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_view_anterior"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:alpha="0.5"
+
+            app:srcCompat="@drawable/ic_action_up_arrow_back">
+        </ImageView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaSubGrupoRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/branco"/>
+        <ImageView
+            android:id="@+id/img_view_proximo"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical"
+            android:alpha="1.0"
+            app:srcCompat="@drawable/ic_action_up_arrow_forward">
+        </ImageView>
+
+
+    </LinearLayout>
+   !-->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/edtTotalProdutos"
+        android:layout_below="@+id/tb_produto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaProdutoRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/branco"
+            android:clipToPadding="false" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/btnNovoPedido"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/style_button"
+        android:elevation="48dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="+"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="25sp" />
+    <LinearLayout
+        android:id="@+id/lytNovoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNovoPedido"
+        android:layout_marginEnd="-30dp"
+        android:layout_marginRight="-30dp"
+        android:layout_marginBottom="6dp"
+        android:layout_toStartOf="@+id/btnNovoPedido"
+        android:layout_toLeftOf="@+id/btnNovoPedido"
+        android:background="@drawable/borda_edittext_preto_cinza"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:text="Pré-pedido"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtTotalProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:text="total"
+        android:textSize="15sp"
+        android:textColor="@color/branco"/>
+
+</RelativeLayout>
+
+
+    <!--
+    <LinearLayout
+        android:id="@+id/visualizaSubGrupoLinear"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="2dp"
+        android:visibility="invisible"
+        android:background="@drawable/borda_botao_visualiza_grupo">
+
+        <ImageButton
+            android:id="@+id/btnVisualizaSubGrupo"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/ic_visualiza_dados_white"
+            android:scaleType="centerInside"/>
+
+        <TextView
+            android:id="@+id/txvVisualizaSubGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:visibility="invisible"
+            android:text="Visualizar grupo(s)"
+            android:textColor="@color/preto"
+            android:textSize="14dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    !-->
+
+

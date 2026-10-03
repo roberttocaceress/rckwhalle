@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_produto_imagem"
+        android:title="Sincronizar dados com o servidor"
+        android:icon="@mipmap/ic_sincroniza_main"
+        />
+
+</menu>

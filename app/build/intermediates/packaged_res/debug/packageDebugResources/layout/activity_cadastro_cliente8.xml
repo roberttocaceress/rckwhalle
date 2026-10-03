@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.CadastroClienteMain">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddAnexCam"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="172dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:backgroundTint="@color/corBotao"
+        app:elevation="3dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAnexo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnContinuar"
+        android:layout_marginBottom="-717dp"
+        android:clipToPadding="false"
+        android:paddingBottom="65dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddAnexos"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="110dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:backgroundTint="@color/corBotao"
+        app:elevation="3dp" />
+
+    <EditText
+        android:id="@+id/edtTotalAnexos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:background="#dddfdd"
+        android:focusable="false"
+        android:gravity="end"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
+        android:text="Nenhum anexo registrado"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_above="@+id/edtTotalAnexos"
+        android:layout_below="@+id/edtEmail5"
+        android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/borda_botao_continuar"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/branco"
+        android:text="CONTINUAR 4/5"
+        android:visibility="gone" />
+
+</RelativeLayout>

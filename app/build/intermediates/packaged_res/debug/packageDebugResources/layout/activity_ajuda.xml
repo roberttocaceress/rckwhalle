@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    app:theme="@style/Theme.Toolbar"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityAjuda">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/ajuda_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Ajuda"
+        app:titleTextColor="@color/branco"
+        tools:context=".activity.MainActivity"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/progress_ajuda"
+        app:layout_constraintTop_toBottomOf="@+id/ajuda_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ajuda_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_rck_new" />
+            <!--android:src="@drawable/logo_djh_new" />!-->
+            <!--android:src=@drawable/logo_bertola_new"@drawable/logo_rck_new@drawable/@drawable/logo_djh_new"/!-->
+            <!--android:src=@drawable/logo_bertola_new"@drawable/logo_rck_new@drawable/@drawable/logo_djh_new"/!-->
+            <TextView
+                android:id="@+id/txv_ajuda_configuracao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="PARÂMETROS"
+                android:textColor="@color/branco"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_configuracao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_configuracao_new"
+                android:gravity="fill_vertical"
+                android:text="  Configuração"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+            <!--
+                        <Button
+                            android:id="@+id/btn_ajuda_tecnico"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/colorPrimary"
+                            android:drawableLeft="@drawable/nav_principal_tecnico_white"
+                            android:gravity="fill_vertical"
+                            android:text="  Ferramenta(s) tecnica"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/branco"
+                            android:textSize="16sp" />
+            !-->
+            <Button
+                android:id="@+id/btn_ajuda_preferencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_preferencia_new"
+                android:gravity="fill_vertical"
+                android:text="  Preferencia(s)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_lista_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_update_usuario_new"
+                android:gravity="fill_vertical"
+                android:text="  Atualizar lista de usuário(s)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_atualiza_url_api"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_update_usuario_new"
+                android:gravity="fill_vertical"
+                android:text="  Atualizar URL API "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txv_ajuda_suporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="SUPORTE TÉCNICO"
+                android:textColor="@color/branco"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_suporte_whats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_whats_48"
+                android:drawablePadding="4dp"
+                android:gravity="fill_vertical"
+                android:text="(67) 99323-5558"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_suporte_telefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_suporte_telefone_new"
+                android:gravity="fill_vertical"
+                android:text="  (67) 3305-7494"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_suporte_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_email_new"
+                android:gravity="fill_vertical"
+                android:text="  contato@rcksistemas.com.br"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txv_ajuda_informacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="VERSÃO DO APP"
+                android:textColor="@color/branco"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_ajuda_sobre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:drawableLeft="@drawable/ic_ajuda_informacoes_new"
+                android:gravity="fill_vertical"
+                android:text="  Sobre"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/branco"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+                <ProgressBar
+                    android:id="@+id/progress_ajuda"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/progress_title"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <TextView
+                    android:id="@+id/progress_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Aguarde! Atualizando lista de usúario(s) ..."
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+

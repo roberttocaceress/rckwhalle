@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_produto_drawner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@color/branco"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout_editor_absoluteY="25dp"
+    tools:showIn="@layout/app_bar_activity_produto_drawer">
+
+
+    <RelativeLayout
+        android:layout_width="221dp"
+        android:layout_height="90dp"
+        android:elevation="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTotalProdutos"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btnNovoPedido"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/style_button"
+            android:elevation="48dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="+"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/lytNovoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btnNovoPedido"
+            android:layout_marginEnd="-30dp"
+            android:layout_marginRight="-30dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toStartOf="@+id/btnNovoPedido"
+            android:layout_toLeftOf="@+id/btnNovoPedido"
+            android:background="@drawable/borda_edittext_preto_cinza"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Pré-pedido"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edtTotalProdutos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:text="total"
+        android:textColor="@color/branco"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!--
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaGrupoRecycler"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/cor_item_selecionado"
+        app:fastScrollEnabled="true"
+        app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+        app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+        app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+        app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_produto" />
+   !-->
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="71dp">
+
+
+    </FrameLayout>
+
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_produto"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        android:theme="@style/Theme.Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Pesquisar produto(s)"
+        tools:context=".activity.ActivityProdutoDrawer"
+        tools:layout_conversion_absoluteHeight="56dp"
+        tools:layout_conversion_absoluteWidth="411dp">
+
+        <ImageView
+            android:id="@+id/imgBuscaPorVoz"
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+
+            tools:layout_conversion_absoluteHeight="18dp"
+            tools:layout_conversion_absoluteWidth="72dp"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="4dp" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/buscaProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:queryHint="Nome/código"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="48dp"
+            tools:layout_editor_absoluteX="177dp"
+            tools:layout_editor_absoluteY="4dp"
+            app:showAsAction="always"/>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTotalProdutos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_produto">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaProdutoRecycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

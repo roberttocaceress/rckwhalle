@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/logoffApp"
+        android:title="Sair"
+        android:icon="@drawable/nav_principal_logoff_white"
+        />
+    <item
+        android:id="@+id/suporteApp"
+        android:title="Ajuda"
+        android:icon="@drawable/nav_principal_whats"
+        />
+    <item
+        android:id="@+id/acessibilidaApp"
+        android:title="Tamanho fonte(P)"
+        android:icon="@drawable/outline_format_size_24_app"
+        />
+
+</menu>

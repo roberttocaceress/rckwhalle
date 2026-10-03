@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:layout_marginLeft="10dp"
+    android:background="@color/branco" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="0.1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1.4dp"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/itemView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0.6dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0.6dp"
+            android:layout_marginBottom="1.4dp" >
+
+            <ImageView
+                android:id="@+id/imageAnexo"
+                android:layout_width="101dp"
+                android:layout_height="113dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_image_gallery_newww" />
+
+            <TextView
+                android:id="@+id/txtCodigoBarra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/idProduto"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/idProduto"
+                android:layout_toRightOf="@+id/idProduto"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+
+            <ImageView
+                android:id="@+id/imageCarrinhoAzul"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toLeftOf="@+id/imagePromocaoVerde"
+                android:src="@drawable/ic_carrinho_azul"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/imagePromocaoVerde"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toLeftOf="@+id/imageCampanhaVerde"
+                android:src="@drawable/ic_produto_promocao"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/imageCampanhaVerde"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toLeftOf="@+id/imageCarrinhoVerde"
+                android:src="@drawable/ic_campanha_verde"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/imageCarrinhoVerde"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="2dp"
+                android:src="@drawable/ic_carrinho_verde"
+                android:visibility="invisible" />
+
+
+            <TextView
+                android:id="@+id/nomeListaProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/idProduto"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="104dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:text="nomeListaProduto"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/precoProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nomeListaProduto"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="precoProduto"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/precoICMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/precoProduto"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="13sp" />
+            <!--
+            <ImageView
+                android:id="@+id/imagePrecoVerde"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@+id/precoProduto"
+                android:layout_alignEnd="@+id/precoProduto"
+                android:src="@drawable/ic_promocao_verde"
+                android:visibility="invisible"/>
+            !-->
+            <TextView
+                android:id="@+id/txtSaldoEstoque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/nomeListaProduto"
+                android:layout_alignLeft="@+id/nomeListaProduto"
+                android:layout_alignBottom="@+id/precoProduto"
+                android:gravity="center"
+                android:text="Estoque: 00,00"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txtUnidadeListaProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/txtSaldoEstoque"
+                android:layout_toStartOf="@+id/precoProduto"
+                android:layout_toLeftOf="@+id/precoProduto"
+                android:layout_toEndOf="@+id/txtSaldoEstoque"
+                android:layout_toRightOf="@+id/txtSaldoEstoque"
+                android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:text="UN"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/txtNomeGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtSaldoEstoque"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="104dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Grupo:"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txtNomeSubGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtNomeGrupo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="104dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Sub-Grupo:"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/nomeTabelaPreco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtSaldoEstoque"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/idProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="104dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:text="0000"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#999999" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pedido_0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain">
+
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvAvisoRolar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:gravity="center"
+                        android:text="Deslize para baixo para ver mais informações ▼"
+                        android:textColor="#777777"
+                        android:textSize="11sp"
+                        android:textStyle="italic" />
+
+                    <RelativeLayout
+                        android:id="@+id/lyNomeCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imFisicaJuridica"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="10dp" />
+
+                        <TextView
+                            android:id="@+id/txtRazaoSocial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toStartOf="@+id/imFisicaJuridica"
+                            android:layout_toLeftOf="@+id/imFisicaJuridica"
+                            android:gravity="center_vertical"
+                            android:text="Razão social"
+                            android:textSize="14sp"
+                            android:textColor="@color/preto"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                        <TextView
+                            android:id="@+id/txtNomeFantasia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtRazaoSocial"
+                            android:layout_alignStart="@+id/txtRazaoSocial"
+                            android:layout_alignLeft="@+id/txtRazaoSocial"
+                            android:gravity="center_vertical"
+                            android:text="Não informado"
+                            android:textSize="14sp"/>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="4dp"
+                        android:background="#70999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyChamada"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/descricaoTelefone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:text="Telefone"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txtTelefone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="12dp"
+                                android:text="(00) 00000-0000"
+                                android:textSize="14sp"/>
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="6dp"
+                            android:background="#70999999" />
+
+                        <RelativeLayout
+                            android:id="@+id/lyCpfCnpj"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/cpfCnpj"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="CPF/CNPJ"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txtCpfCnpj"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/cpfCnpj"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:text="000.000.000-00"
+                                android:textSize="14sp"/>
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="4dp"
+                        android:background="#30999999" />
+
+                    <RelativeLayout
+                        android:id="@+id/lyGps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:text="Endereço" />
+
+                        <TextView
+                            android:id="@+id/txtEndereco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="12dp"
+
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:inputType="textMultiLine"
+                            android:text="Rua Zeferino Vicente Almeida, 108, Vila Ieda CEP 79100-000 Campo Grande MS" />
+
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#30999999" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteCredito"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteCredito"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Limite de crédito" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteCredito"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteCredito"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#70999999" />
+
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteUsado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteUsado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Limite utilizado" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteUtilizado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteUsado"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#70999999" />
+
+                        <RelativeLayout
+                            android:id="@+id/lyLimiteDisponivel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/descricaoLimiteDisponivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Limite disponivel" />
+
+                            <TextView
+                                android:id="@+id/txtLimiteDisponivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/descricaoLimiteDisponivel"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:textSize="14sp"
+                                android:text="Não informado" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#30999999" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyFinanceiro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/pendenciaFinanceira"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:text="Pendencia financeira"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txtPendenciaFinanceira"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/pendenciaFinanceira"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:text="Não informado" />
+                            <TextView
+                                android:id="@+id/txtClientePesquisaFinanceiro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txtPendenciaFinanceira"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:background="@drawable/bg_badge_status_amarelo"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="2dp"
+                                android:text="PESQUISAR"
+                                android:textColor="#B91C1C"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                 />
+
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#70999999" />
+
+                        <RelativeLayout
+                            android:id="@+id/lyPromocaoCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/promocaoCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="false"
+                                android:layout_alignParentLeft="false"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:text="Promoção do cliente" />
+
+                            <TextView
+                                android:id="@+id/txtPromocaoCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/promocaoCliente"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="false"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:textSize="14sp"
+                                android:text="(0.00%-) Não informado" />
+
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/dividerTabelaPreco"
+                            android:layout_width="0.2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:background="#70999999"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:id="@+id/lyTabelaPrecoCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/lblTabelaPreco"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:text="Tabela de preço" />
+
+                            <TextView
+                                android:id="@+id/txtTabelaPrecoCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/lblTabelaPreco"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:text="Não informada" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#30999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyObservacaoCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/observacoesFaturamento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:text="Observação faturamento" />
+
+                            <TextView
+                                android:id="@+id/txtobservacoesFaturamento"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/observacoesFaturamento"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:textSize="14sp"
+                                android:text="" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#30999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyObservacaoFinanceiro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/observacoesFinanceiro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="14sp"
+                                android:text="Observação financeiro" />
+
+                            <TextView
+                                android:id="@+id/txtobservacoesFinanceiro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/observacoesFinanceiro"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:textSize="14sp"
+                                android:text="" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#30999999" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/lyEmpresaPedido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/lblEmpresaPedido"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:textSize="13sp"
+                                android:text="Empresa" />
+
+                            <TextView
+                                android:id="@+id/txtEmpresaPedido"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/lblEmpresaPedido"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginLeft="12dp"
+                                android:gravity="center_vertical"
+                                android:maxLines="2"
+                                android:textSize="13sp"
+                                android:text="Não informado"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/btnAlterarEmpresa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/lblEmpresaPedido"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:background="@drawable/bg_badge_status_primary"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="2dp"
+                                android:text="   ALTERAR   "
+                                android:textColor="@color/branco"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="INFORMAR/ALTERAR CLIENTE"
+                        android:textColor="@color/branco" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.0dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#50999999" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

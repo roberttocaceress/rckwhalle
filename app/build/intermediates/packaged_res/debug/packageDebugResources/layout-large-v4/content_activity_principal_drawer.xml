@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/branco"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:shimmer_duration="900">
+
+                <LinearLayout
+                    android:id="@+id/activity_principal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end">
+                        <ImageView
+                            android:id="@+id/ivInternet"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@mipmap/ic_sem_internet"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <!-- LINHA 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnPedido"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_pedidos" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnSincroniza"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_sincroniza_servidor" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- LINHA 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnPedidoPendente"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_pedido_pendente" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnPedidoFinalizado"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_pedido_finalizado" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- LINHA 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnCliente"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_clientes" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnProduto"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_produtos" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- LINHA 4 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <Button
+                                android:id="@+id/btnProspectNovo"
+                                android:layout_width="112dp"
+                                android:layout_height="112dp"
+                                android:background="@mipmap/ic_conta_receber" />
+                            <TextView
+                                android:id="@+id/txvProspectNovo"
+                                android:layout_width="112dp"
+                                android:layout_height="2dp"
+                                android:background="@color/colorAccentDark" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lytCampanhas"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="0dp"
+                                app:cardElevation="0dp">
+                                <Button
+                                    android:id="@+id/btnCampanha"
+                                    android:layout_width="112dp"
+                                    android:layout_height="112dp"
+                                    android:background="@mipmap/ic_campanhas" />
+                            </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:layout_width="112dp"
+                                android:layout_height="2dp"
+                                android:background="@color/colorAccentDark" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/txvAguarde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aguarde..."
+                android:textAlignment="center"
+                android:textColor="@color/preto"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:id="@+id/tvUltimaAtualizacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Atualizado: --/-- --:--"
+                        android:textColor="@color/colorText"
+                        android:textSize="9sp"
+                        android:textStyle="italic" />
+                    <ImageButton
+                        android:id="@+id/btnOcultarBI"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_action_visibility_white"
+                        app:tint="@color/colorText" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lytConteudoBI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="320dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="2dp">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/tvTituloMetaSemana"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:text="VENDA/META DA SEMANA"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="11sp"
+                                            android:textStyle="bold" />
+                                        <TextView
+                                            android:id="@+id/tvPorcentagemSemana"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="0%"
+                                            android:textColor="#E67E22"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/tvValoresSemana"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:text="R$ 0,00"
+                                        android:textColor="@color/preto"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                    <ProgressBar
+                                        android:id="@+id/progressSemana"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="8dp"
+                                        android:layout_marginTop="8dp"
+                                        android:progress="0"
+                                        android:progressTint="#E67E22" />
+                                    <TextView
+                                        android:id="@+id/tvRankingSemana"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Ranking: --"
+                                        android:textColor="@color/preto"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="320dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="2dp">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/tvTituloMetaMes"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:text="VENDA/META DO MÊS"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="11sp"
+                                            android:textStyle="bold" />
+                                        <TextView
+                                            android:id="@+id/tvPorcentagemMes"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="0%"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/tvValoresMes"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:text="R$ 0,00"
+                                        android:textColor="@color/preto"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                    <ProgressBar
+                                        android:id="@+id/progressMes"
+                                        style="@android:style/Widget.ProgressBar.Horizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="8dp"
+                                        android:layout_marginTop="8dp"
+                                        android:progress="0"
+                                        android:progressTint="@color/colorPrimary" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/tvRankingMes"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:text="Ranking: --"
+                                            android:textColor="@color/preto"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                        <TextView
+                                            android:id="@+id/tvFaltaMes"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Faltam R$ --"
+                                            android:textColor="#2E7D32"
+                                            android:textSize="10sp" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="320dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="2dp">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="OPERACIONAL"
+                                        android:textColor="@color/colorPrimary"
+                                        android:textSize="11sp"
+                                        android:textStyle="bold" />
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal"
+                                        android:weightSum="4">
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="FATURADOS"
+                                                android:textSize="9sp"
+                                                android:textStyle="bold" />
+                                            <TextView
+                                                android:id="@+id/tvPedidosFaturados"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="42"
+                                                android:textColor="#2E7D32"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="DEVOLVIDOS"
+                                                android:textSize="9sp"
+                                                android:textStyle="bold" />
+                                            <TextView
+                                                android:id="@+id/tvPedidosDevolvidos"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="0"
+                                                android:textColor="#E91E63"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="CANCELADOS"
+                                                android:textSize="9sp"
+                                                android:textStyle="bold" />
+                                            <TextView
+                                                android:id="@+id/tvPedidosCancelados"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="03"
+                                                android:textColor="#C62828"
+                                                android:textSize="14sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="CLIENTES NOVOS"
+                                                android:textSize="9sp"
+                                                android:textStyle="bold" />
+                                            <TextView
+                                                android:id="@+id/tvNovosClientes"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="05"
+                                                android:textColor="@color/colorAccent"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:id="@+id/tvPositivacao"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1.2"
+                                            android:text="Positivação: --%"
+                                            android:textColor="@color/colorText"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                        <TextView
+                                            android:id="@+id/tvTicketMedio"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="0.8"
+                                            android:text="Tkt Méd: R$ --"
+                                            android:textColor="@color/colorText"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            android:gravity="end" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/tvPedidosATransmitir"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:text="PENDENTE: R$ 0,00"
+                                        android:textColor="#991B1B"
+                                        android:gravity="center"
+                                        android:textSize="11sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <Button
+                        android:id="@+id/btnOutrosIndicadores"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/borda_botao_mensagem"
+                        android:backgroundTint="#F8FAFC"
+                        android:text="INDICADORES"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

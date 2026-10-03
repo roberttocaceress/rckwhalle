@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:mContext="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoEnviado">
+
+    <item
+        android:id="@+id/action_duplica_pedido"
+        android:icon="@drawable/ic_duplica_pedido"
+        android:orderInCategory="1"
+        android:title="Duplica o pedido selecionado, para poder fatura-lo novamente"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_pdf_pedido"
+        android:icon="@drawable/ic_pdf_pedido"
+        android:orderInCategory="2"
+        android:title="Gerar PDF do pedido selecionado"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_pdf_pedido_email"
+        android:icon="@drawable/ic_pdf_pedido_email"
+        android:orderInCategory="3"
+        android:title="Envia um espelho dos pedidos selecionados ao email do cliente"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/imgMensagem"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_alerta_mensagem" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/txvMensagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atenção!"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+        <TextView
+            android:id="@+id/txvMensagemOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Ação executada com sucesso!"
+            android:textAlignment="center"
+
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <Button
+            android:id="@+id/btnMensagemOK"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/borda_botao_mensagem"
+            android:text="OK"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</LinearLayout>

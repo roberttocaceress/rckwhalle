@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8FAFC">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:subtitle="Indicadores Financeiros" />
+
+        <TextView
+            android:id="@+id/tvDataPesquisa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Processado em: --/--/---- --:--"
+            android:textColor="@color/colorText"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/tvAvisoRolar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="4dp"
+            android:text="Deslize para baixo para ver mais informações ▼"
+            android:textColor="#777777"
+            android:textSize="11sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDataPesquisa" />
+
+        <ScrollView
+            android:id="@+id/scrollViewDashboard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAvisoRolar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- NOVO: FILTRO GLOBAL DE PERÍODO (30, 60, 90 DIAS) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardFiltroGlobal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="@color/branco"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E2E8F0"
+                    app:strokeWidth="1dp">
+
+                    <RelativeLayout
+                        android:id="@+id/btnSelecionarPeriodoFinanceiro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <ImageView
+                            android:id="@+id/icCalendarGlobal"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_resumo_calendario"
+                            app:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/icCalendarGlobal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PERÍODO DE ANÁLISE"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvPeriodoReferencia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ciclo ± 30 dias (Vencidos/A Vencer)"
+                                android:textColor="@color/preto"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_action_arrow_forward_white"
+                            app:tint="@color/colorText" />
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 4 KPI CARDS EM GRADE 2x2 OU LINHA ÚNICA (LAND) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="VENCIDOS (Rec.)" android:textSize="8sp" android:textStyle="bold" android:textColor="@color/colorText" />
+                            <TextView android:id="@+id/tvKpiVencidos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="#E91E63" android:textSize="12sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="A VENCER" android:textSize="8sp" android:textStyle="bold" android:textColor="@color/colorText" />
+                            <TextView android:id="@+id/tvKpiAVencer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="#FF9800" android:textSize="12sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="RECEBIDOS (Mês)" android:textSize="8sp" android:textStyle="bold" android:textColor="@color/colorText" />
+                            <TextView android:id="@+id/tvKpiRecebidos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="#009688" android:textSize="12sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:gravity="center">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOTAL CARTEIRA" android:textSize="8sp" android:textStyle="bold" android:textColor="@color/colorText" />
+                            <TextView android:id="@+id/tvKpiTotalCarteira" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="R$ 0,00" android:textColor="#2196F3" android:textSize="12sp" android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- GRÁFICOS LADO A LADO (LAND) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
+
+                    <!-- CARD 1: Fluxo de Caixa -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardGrafico1"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:strokeColor="#E2E8F0"
+                        app:strokeWidth="1dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                                <ImageView android:id="@+id/iconFluxo" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/baseline_analytics_24" app:tint="#2196F3" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_toEndOf="@id/iconFluxo" android:layout_toStartOf="@+id/btnAnaliseFluxo" android:text="A Vencer" android:textColor="@color/preto" android:textSize="13sp" android:textStyle="bold" />
+                                <ImageView android:id="@+id/btnAnaliseFluxo" android:layout_width="20dp" android:layout_height="20dp" android:layout_toStartOf="@+id/btnRefreshFluxo" android:layout_marginEnd="8dp" android:src="@drawable/ic_lista_todos_drawner" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                                <ImageView android:id="@+id/btnRefreshFluxo" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentEnd="true" android:src="@drawable/ic_sincroniza_hora" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                            </RelativeLayout>
+                            <com.github.mikephil.charting.charts.BarChart android:id="@+id/chartFluxo" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="4dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- CARD 2: Recebimentos -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardGrafico2"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:strokeColor="#E2E8F0"
+                        app:strokeWidth="1dp">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                                <ImageView android:id="@+id/iconReceber" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/outline_show_chart_24" app:tint="#009688" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_toEndOf="@id/iconReceber" android:layout_toStartOf="@+id/btnAnaliseReceber" android:text="Vencidos" android:textColor="@color/preto" android:textSize="13sp" android:textStyle="bold" />
+                                <ImageView android:id="@+id/btnAnaliseReceber" android:layout_width="20dp" android:layout_height="20dp" android:layout_toStartOf="@+id/btnRefreshReceber" android:layout_marginEnd="8dp" android:src="@drawable/ic_lista_todos_drawner" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                                <ImageView android:id="@+id/btnRefreshReceber" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentEnd="true" android:src="@drawable/ic_sincroniza_hora" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                            </RelativeLayout>
+                            <com.github.mikephil.charting.charts.BarChart android:id="@+id/chartReceber" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="4dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- CARD 3: Ranking -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGrafico3"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="#E2E8F0"
+                    app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+                        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+                            <ImageView android:id="@+id/iconInad" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_lista_usuario" app:tint="#FF9800" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_toEndOf="@id/iconInad" android:layout_toStartOf="@+id/btnAnaliseInad" android:text="Ranking de Inadimplência" android:textColor="@color/preto" android:textSize="13sp" android:textStyle="bold" />
+                            <ImageView android:id="@+id/btnAnaliseInad" android:layout_width="20dp" android:layout_height="20dp" android:layout_toStartOf="@+id/btnRefreshInad" android:layout_marginEnd="8dp" android:src="@drawable/ic_lista_todos_drawner" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                            <ImageView android:id="@+id/btnRefreshInad" android:layout_width="20dp" android:layout_height="20dp" android:layout_alignParentEnd="true" android:src="@drawable/ic_sincroniza_hora" android:background="?attr/selectableItemBackgroundBorderless" app:tint="@color/colorText" />
+                        </RelativeLayout>
+                        <com.github.mikephil.charting.charts.HorizontalBarChart android:id="@+id/chartInadimplentes" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/lytGlobalLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:elevation="10dp">
+            <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateTint="@color/branco" />
+            <TextView android:id="@+id/tvGlobalLoadingTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Processando..." android:textColor="@color/branco" android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- DRAWER LATERAL PARA FILTROS DE USUÁRIO -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/branco"
+        app:itemTextColor="@android:color/white" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,185 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_principal_logoff"
+            android:icon="@drawable/nav_principal_logoff_white"
+            android:iconTint="@color/branco"
+            android:title="Sair" />
+        <!--
+         <item
+           android:id="@+id/nav_principal_cobranca"
+           android:icon="@drawable/nav_principal_cobranca"
+           android:title="Cobranças" />
+
+             <item
+                 android:id="@+id/nav_principal_alerta"
+
+                 android:icon="@drawable/nav_principal_alerta_white"
+                 android:title="Alertas"
+                 />
+        !-->
+        <!--
+       <item
+           android:id="@+id/nav_principal_update"
+
+           android:icon="@drawable/nav_principal_update_white"
+           android:title="Atualizar APP" />
+ !-->
+
+
+
+        <!--
+                              <item
+                                  android:id="@+id/nav_principal_tecnico"
+                                  android:icon="@drawable/nav_principal_tecnico_white"
+                                  android:title="Ferramenta(s) tecnica"
+                                  />
+                         !-->
+        <!--
+      <item
+          android:id="@+id/nav_principal_biometria"
+          android:icon="@drawable/nav_principal_biometria_white"
+          android:title="Biometria" />
+!-->
+        <!--
+        <item
+            android:id="@+id/nav_principal_video_aula"
+            android:icon="@drawable/nav_principal_video_white"
+            android:title="Videos" />
+             !-->
+        <!--
+                                 <item
+                                     android:id="@+id/nav_principal_nota_fiscal"
+                                     android:icon="@drawable/nav_principal_movimentacao_white"
+                                     android:title="Resumo Movimentação(venda/compra)"
+                                     />
+                                 !-->
+    </group>
+    <item android:title="Ajustes">
+        <menu android:textColor="@color/branco">
+            <item
+                android:id="@+id/nav_principal_configuracao"
+                android:icon="@drawable/nav_principal_configuracao_white"
+                android:title="Configuração" />
+
+            <item
+                android:id="@+id/nav_principal_preferencia"
+                android:icon="@drawable/nav_principal_preferencia_white"
+                android:title="Preferência" />
+
+            <!--
+            <item
+                android:id="@+id/nav_principal_biometria"
+                android:icon="@drawable/nav_principal_biometria_white"
+                android:title="Biometria" />
+            !-->
+            <item
+                android:id="@+id/nav_principal_update"
+                android:icon="@drawable/nav_principal_update_white"
+                android:title="Atualizar APP" />
+            <item
+                android:id="@+id/nav_principal_update_url"
+                android:icon="@drawable/nav_principal_update_white"
+                android:title="Atualizar URL API" />
+        </menu>
+    </item>
+
+    <item android:title="Consultas">
+        <menu android:textColor="@color/branco">
+            <item
+                android:id="@+id/nav_principal_usuario"
+                android:icon="@drawable/nav_principal_usuario"
+                android:title="Dados do usuário" />
+
+            <!--
+             <item
+                 android:id="@+id/nav_principal_cliente"
+                 android:icon="@drawable/nav_principal_cliente"
+                 android:title="Clientes sem débito" />!-->
+             <item
+                 android:id="@+id/nav_principal_vendas_por_grupo"
+                 android:icon="@drawable/ic_produto_sub_grupo_white"
+                 android:title="Vendas por grupo de produtos" />
+             <item
+                 android:id="@+id/nav_principal_vendas_por_marca"
+                 android:icon="@drawable/ic_produto_sub_grupo_white"
+                 android:title="Vendas por marca de produtos" />
+
+            <!--
+            <item
+                android:id="@+id/nav_principal_vendas_mes_a_mes_valor"
+                android:icon="@drawable/ic_produto_sub_grupo_white"
+                android:title="Comparativo mensal de vendas" />
+
+            <item
+                android:id="@+id/nav_principal_vendas_mes_a_mes_grupo"
+                android:icon="@drawable/ic_produto_sub_grupo_white"
+                android:title="Comparativo mensal de vendas por grupo" />
+
+            <item
+                android:id="@+id/nav_principal_vendas_semana_a_semana_valor"
+                android:icon="@drawable/ic_produto_sub_grupo_white"
+                android:title="Comparativo semana a semana de vendas" />
+
+
+
+          <item
+              android:id="@+id/nav_principal_cobranca"
+              android:icon="@drawable/nav_principal_cobranca"
+              android:title="Cobranças" />
+
+
+            <item
+                android:id="@+id/nav_principal_financeiro"
+                android:icon="@drawable/nav_principal_financeiro"
+                android:title="Financeiro(receita/despesa)" />
+            <item
+                android:id="@+id/nav_principal_estoque"
+                android:icon="@drawable/nav_principal_estoque"
+                android:title="Estoque(saldo)" />
+                !-->
+         </menu>
+     </item>
+     <item android:title="Suporte técnico/video aulas">
+         <menu android:textColor="@color/branco">
+             <item
+                 android:id="@+id/nav_principal_video_aula"
+                 android:icon="@drawable/nav_principal_video_white"
+                 android:title="Videos" />
+             <item
+                 android:id="@+id/nav_principal_whats"
+                 android:icon="@drawable/nav_principal_whats"
+                 android:iconTint="@color/branco"
+                 android:title="WhatsApp" />
+             <item
+                 android:id="@+id/nav_principal_telefone"
+                 android:icon="@drawable/nav_principal_telefone_white"
+                 android:title="Telefone" />
+             <item
+                 android:id="@+id/nav_principal_email"
+                 android:icon="@drawable/nav_principal_email_white"
+                 android:title="Email" />
+             <item
+                 android:id="@+id/nav_principal_tecnico"
+                 android:icon="@drawable/nav_principal_tecnico_white"
+                 android:title="Ferramenta(s) tecnica" />
+         </menu>
+     </item>
+     <item android:title="Avaliação/Versão do app">
+         <menu android:textColor="@color/branco">
+             <item
+                 android:id="@+id/nav_principal_avaliacao"
+                 android:icon="@drawable/ic_avaliacao_positiva"
+                 android:title="Avaliação" />
+             <item
+                 android:id="@+id/nav_principal_sobre"
+                 android:icon="@drawable/nav_principal_sobre"
+                 android:title="Sobre" />
+
+         </menu>
+     </item>
+ </menu>

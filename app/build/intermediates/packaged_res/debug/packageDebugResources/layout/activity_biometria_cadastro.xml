@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activity.ActivityBiometriaCadastro"
+app:theme="@style/Theme.Toolbar"
+android:background="@color/colorPrimary">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/cadastrar_biometria_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:gravity="end"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:layout_constraintTop_toTopOf="parent"
+    app:titleTextColor="@color/branco"
+    app:title="Cadastrar/remover biometria"
+    tools:layout_editor_absoluteX="0dp"
+   />
+
+<ImageView
+    android:id="@+id/imageView2"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/cadastrar_biometria_toolbar"
+    app:srcCompat="@drawable/ic_main_avancar_biometria_foreground"
+    android:background="@color/colorPrimary"/>
+
+<TextView
+    android:id="@+id/textView8"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:text="Para cadastar/remover biometria\n digite/confirme abaixo \nusuario/email e senha"
+    android:textColor="@color/branco"
+    android:textSize="16sp"
+    android:textAlignment="center"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txpLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleTint="@color/branco"
+        android:layout_marginTop="20dp"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+        android:textColorHint="@color/branco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        >
+
+        <EditText
+            android:id="@+id/edtLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Usuário/email"
+
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/branco"
+            android:textColorHint="@color/branco"
+            android:textColorLink="@color/branco"
+            android:textSize="22sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txpSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:counterEnabled="true"
+
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/branco"
+        android:textColorHint="@color/branco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txpLogin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtLogin"
+            android:layout_centerInParent="true"
+            android:textSize="22sp"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:textColorHint="@color/branco"
+            android:textColor="@color/branco"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+    android:id="@+id/btnConfirmar"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Continuar"
+    android:background="@color/colorPrimary"
+    android:drawableTop="@drawable/ic_continuar"
+    android:textColor="@color/branco"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txpSenha" />
+
+<ProgressBar
+    android:id="@+id/progress_main"
+    style="?android:attr/progressBarStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+
+    android:layout_marginTop="24dp"
+    android:visibility="invisible"
+    app:layout_constraintTop_toBottomOf="@+id/btnConfirmar" />
+
+<TextView
+    android:id="@+id/progress_main_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:text="Aguarde enquanto validadamos os dados informádos..."
+    android:textAlignment="center"
+    android:textColor="@color/branco"
+    android:textSize="12sp"
+    android:visibility="invisible"
+    app:layout_constraintTop_toBottomOf="@+id/progress_main" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="8dp"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <!-- Header Moderno -->
+        <View
+            android:id="@+id/headerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtros Avançados"
+            android:textColor="@color/branco"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/headerBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/headerBackground" />
+
+        <!-- Cards de Data (Lado a Lado) -->
+        <LinearLayout
+            android:id="@+id/lytDates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/headerBackground">
+
+            <!-- Data Inicial -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="#F5F5F5"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Início" android:textSize="12sp"/>
+                    <TextView android:id="@+id/txvDiaInicial" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="01" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/colorPrimary"/>
+                    <TextView android:id="@+id/txvMesAnoInicial" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jan, 2024" android:textSize="12sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Data Final -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                app:cardBackgroundColor="#F5F5F5"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fim" android:textSize="12sp"/>
+                    <TextView android:id="@+id/txvDiaFinal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="31" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/colorPrimary"/>
+                    <TextView android:id="@+id/txvMesAnoFinal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jan, 2024" android:textSize="12sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- Chips de Seleção Rápida (Substitui os botões quadrados) -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/lytDates">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btnDiaAtual"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hoje"
+               />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btnSemanaAtual"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esta Semana"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btnMesAtual"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Este Mês"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/btnCalendario"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outro Período"
+                />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Seleção de Colaborador (TextInputLayout é mais moderno que Spinner puro) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilColaborador"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="Colaborador"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup">
+
+            <AutoCompleteTextView
+                android:id="@+id/spnColaborador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botões de Ação Final -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:text="APLICAR FILTRO"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tilColaborador" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="Cancelar"
+            android:textColor="@color/colorText"
+            app:layout_constraintTop_toBottomOf="@id/btnConfirmar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

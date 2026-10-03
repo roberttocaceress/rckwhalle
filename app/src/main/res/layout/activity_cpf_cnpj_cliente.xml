@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ActivityCpfCnpjCliente">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="VALIDAÇÃO DE CADASTRO" />
+
+
+    <TextView
+        android:id="@+id/txtCpfCnpj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Informe o tipo de pessoa."
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout14"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout14"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <EditText
+        android:id="@+id/edtCnpj"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/borda_edittext"
+        android:gravity="center"
+        android:hint="Informe o cnpj."
+        android:inputType="number"
+        android:maxLength="18"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/btnVerificar"
+        app:layout_constraintStart_toStartOf="@+id/btnVerificar"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
+
+    <!-- MODIFICAÇÃO EM 22/05/2024 - NOVO CAMPO PARA CNPJ ALFANUMÉRICO (LETREAS E NÚMEROS) -->
+    <EditText
+        android:id="@+id/edtCnpjL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/borda_edittext"
+        android:gravity="center"
+        android:hint="Informe o cnpj (Letras/Números)."
+        android:inputType="textVisiblePassword|textCapCharacters"
+        android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:maxLength="18"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/btnVerificar"
+        app:layout_constraintStart_toStartOf="@+id/btnVerificar"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
+
+    <EditText
+        android:id="@+id/edtCpf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/borda_edittext"
+        android:gravity="center"
+        android:hint="Informe o cpf."
+        android:inputType="number"
+        android:maxLength="14"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="@+id/btnVerificar"
+        app:layout_constraintStart_toStartOf="@+id/btnVerificar"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
+        android:enabled="false"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btnVerificar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/borda_botao_continuar"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="CADASTRAR"
+        android:textColor="@color/branco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCnpj" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/btnVerificar"
+        app:layout_constraintStart_toStartOf="@+id/btnVerificar"
+        app:layout_constraintTop_toBottomOf="@+id/txtCpfCnpj">
+
+        <CheckBox
+            android:id="@+id/chkCNPJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Jurídica(CNPJ-SOMENTE NUMEROS)" />
+
+        <CheckBox
+            android:id="@+id/chkCNPJL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Jurídica(CNPJ-NUMEROS-LETRAS)" />
+
+        <CheckBox
+            android:id="@+id/chkCPF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Física(CPF)" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

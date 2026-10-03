@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/branco"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:id="@+id/ivIconeAlerta"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_check_alert_red"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/tvTituloAlerta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ALERTA FINANCEIRO"
+        android:textColor="#C62828"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E2E8F0"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- BLOCO VENCIDO -->
+    <LinearLayout
+        android:id="@+id/lyVencido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL JÁ VENCIDO"
+            android:textSize="11sp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvSaldoVencido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 0,00"
+            android:textSize="22sp"
+            android:textColor="#C62828"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- BLOCO A VENCER -->
+    <LinearLayout
+        android:id="@+id/lyVencendo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL A VENCER"
+            android:textSize="11sp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvSaldoVencendo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 0,00"
+            android:textSize="18sp"
+            android:textColor="#E67E22"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMensagemRodape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="O cliente possui pendências financeiras registradas. Deseja prosseguir com o pedido?"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnSimDevedor"
+            android:layout_width="240dp"
+            android:layout_height="42dp"
+            android:background="@drawable/shape_button_red_rounded"
+            android:text="SIM, CONTINUAR"
+            android:textColor="@color/branco"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNaoDevedor"
+            android:layout_width="240dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_button_red_outline"
+            android:text="NÃO, CANCELAR"
+            android:textColor="#C62828"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

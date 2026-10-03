@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="jhdistribuidoraold">#2a2661</color>
+    <color name="jhdistribuidora">#00599B</color>
+    <color name="bertola">#5A134B</color>
+    <color name="rckapp">#31595F</color>
+    <color name="rckappnew">#68ACA1</color>
+    <color name="logoBertola">#31595F</color>
+    <color name="logoJH">#F7F7F7</color>
+    <!--#512DA8!--><!--#E09C85!--><!--#673AB7!-->
+    <color name="colorPrimary">#31595F</color>
+    <color name="colorSplash">#31595F</color>
+    <!--<color name="colorPrimary">#00599B</color>!-->
+    <!--#512DA8!--><!--#DD8F75!-->
+    <color name="colorPrimaryDark">#31595F</color>
+    <color name="colorAccent">#757575</color>
+    <color name="colorAccentDark">#c0c0c0</color>
+    <color name="colorControlNormal">#00796b</color>
+    <color name="colorPrimaryDarkAzul">#01579B</color>
+    <color name="colorPrimaryAzul">#0277BD</color>
+    <color name="colorControlNormalAzul">#0277BD</color>
+    <color name="branco">#ffffff</color>
+    <color name="row_activated">#e0e0e0</color>
+    <color name="bg_action_mode">#31595F</color>
+    <color name="colorPedidoEnviado">#B2DFDB</color>
+    <color name="colorPrimaryCinza">#31595F</color>
+    <color name="colorPrimaryDarkCinza">#31595F</color>
+    <!--#512DA8!--><!--#512DA8!-->
+    <color name="corBotao">#31595F</color>
+    <color name="fundoClaro">#e0e0e0</color>
+    <color name="corFloatButton">#dddfdd</color>
+    <color name="colorText">#747474</color>
+
+    <color name="colorLinhaFundo">#70999999</color>
+
+    <color name="colorSecondary1">#ce7b2c</color>
+    <color name="colorSecondary2">#d08136</color>
+    <color name="colorSecondary3">#e9c4a1</color>
+    <color name="colorSecondary4">#d18239</color>
+
+    <color name="red">#FF6961</color>
+    <color name="green">#B6D3A8</color>
+    <color name="yellow">#EABF96</color>
+    <!--#F6E2DB1-->
+    <color name="colorFundoMain">#31595F</color>
+    <color name="preto">#000000</color>
+    <color name="vermelho">#ff0000</color>
+    <color name="campanha">#fdbe01</color>
+    <color name="teste">#dfdfdf</color>
+    <color name="colorPrimaryTransparente05">#0531595F</color> <!--10%!-->
+    <color name="colorPrimaryTransparente10">#1031595F</color> <!--10%!-->
+    <color name="colorPrimaryTransparente20">#2031595F</color> <!--20%!-->
+    <color name="colorPrimaryTransparente30">#3031595F</color> <!--30%!-->
+    <color name="colorPrimaryTransparente40">#4031595F</color> <!--40%!-->
+    <color name="colorPrimaryTransparente50">#5031595F</color> <!--50%!-->
+    <color name="colorPrimaryTransparente60">#6031595F</color> <!--60%!-->
+    <color name="colorPrimaryTransparente70">#7031595F</color> <!--70%!-->
+    <color name="colorPrimaryTransparente80">#8031595F</color> <!--80%!-->
+    <color name="colorPrimaryTransparente90">#9031595F</color> <!--80%!-->
+
+    <color name="colorTextTransparente10">#10747474</color>
+    <color name="colorTextTransparente20">#20747474</color>
+    <color name="colorTextTransparente30">#30747474</color>
+    <color name="colorTextTransparente40">#40747474</color>
+    <color name="colorTextTransparente50">#50747474</color>
+    <color name="colorTextTransparente60">#60747474</color>
+    <color name="colorTextTransparente70">#70747474</color>
+    <color name="colorTextTransparente80">#80747474</color>
+    <color name="colorTextTransparente90">#90747474</color>
+
+    <color name="colorButton">#EABF96</color>
+    <color name="colorButtonTransparente10">#10EABF96</color>
+    <color name="colorButtonTransparente20">#20EABF96</color>
+    <color name="colorButtonTransparente30">#30EABF96</color>
+    <color name="colorButtonTransparente40">#40EABF96</color>
+    <color name="colorButtonTransparente50">#50EABF96</color>
+    <color name="colorButtonTransparente60">#60EABF96</color>
+    <color name="colorButtonTransparente70">#70EABF96</color>
+    <color name="colorButtonTransparente80">#80EABF96</color>
+    <color name="colorButtonTransparente90">#90EABF96</color>
+
+
+
+
+</resources>

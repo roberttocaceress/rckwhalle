@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Criamos um item que representa a borda preta -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" /> <!-- Cor da borda -->
+            <corners android:radius="0dp" />  <!-- Ajuste conforme seu design -->
+        </shape>
+    </item>
+
+    <!-- Criamos um segundo item (o fundo) que sobrepõe o primeiro -->
+    <!-- O segredo está no "android:right": ele desloca o fundo para cobrir a borda direita -->
+    <item
+        android:left="0dp"
+        android:top="1dp"
+        android:bottom="1dp"
+        android:right="0dp"> <!-- 0dp aqui faz com que a borda direita "suma" -->
+
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" /> <!-- Cor de fundo do EditText (Ex: Branco) -->
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+</layer-list>
