@@ -474,7 +474,30 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="8dp"
                                             android:orientation="horizontal"
-                                            android:weightSum="4">
+                                            android:weightSum="5">
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="VISITAS"
+                                                    android:textSize="9sp"
+                                                    android:textStyle="bold" />
+
+                                                <TextView
+                                                    android:id="@+id/tvQtdeVisitas"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="0"
+                                                    android:textColor="#2E7D32"
+                                                    android:textSize="16sp"
+                                                    android:textStyle="bold" />
+                                            </LinearLayout>
 
                                             <LinearLayout
                                                 android:layout_width="0dp"

@@ -50,6 +50,18 @@ public class GpsLocationHelper {
         return fineLocation == PackageManager.PERMISSION_GRANTED || coarseLocation == PackageManager.PERMISSION_GRANTED;
     }
 
+    public static boolean isInternetConnected(Context context) {
+        if (context == null) return false;
+        try {
+            android.net.ConnectivityManager cm = (android.net.ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm == null) return false;
+            android.net.NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            return netInfo != null && netInfo.isConnected();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static boolean isGpsEnabled(Context context) {
         if (context == null) return false;
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -66,16 +78,28 @@ public class GpsLocationHelper {
             return;
         }
 
-        if (!isGpsEnabled(context)) {
+        boolean gpsAtivo = isGpsEnabled(context);
+        boolean internetAtiva = isInternetConnected(context);
+
+        // REGRA DE SEGURANÇA: Bloqueia se o aparelho não tem GPS ativo e está sem internet
+        if (!gpsAtivo && !internetAtiva) {
+            listener.onError("Sem sinal de GPS e sem conexão com a internet.");
+            return;
+        }
+
+        if (!gpsAtivo) {
             listener.onError("O GPS do aparelho está desativado.");
             return;
         }
 
         FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
-        // Força busca de alta precisão em tempo real se o cache for impreciso (> 20m)
+        // Valida se a localização em cache é recente (máximo 10 minutos) e precisa
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
-            if (location != null && location.hasAccuracy() && location.getAccuracy() <= 20.0f) {
+            long tempoDecorridoMs = location != null ? (System.currentTimeMillis() - location.getTime()) : Long.MAX_VALUE;
+            boolean isRecente = tempoDecorridoMs <= (10 * 60 * 1000); // 10 minutos
+
+            if (location != null && isRecente && location.hasAccuracy() && location.getAccuracy() <= 20.0f) {
                 LocationData data = new LocationData(
                         location.getLatitude(),
                         location.getLongitude(),

@@ -52,6 +52,9 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
     @BindView(R.id.cardGestaoMetas)
     MaterialCardView cardGestaoMetas;
 
+    @BindView(R.id.cardGestaoVisitas)
+    MaterialCardView cardGestaoVisitas;
+
     @BindView(R.id.cardRankingEquipe)
     MaterialCardView cardRankingEquipe;
 
@@ -284,6 +287,7 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
         cardAnalitico.setAlpha(0f);
         cardFinanceiro.setAlpha(0f);
         cardPerformance.setAlpha(0f);
+        cardGestaoVisitas.setAlpha(0f);
         cardExpansao.setAlpha(0f);
         cardRankingEquipe.setAlpha(0f);
         cardGestaoMetas.setAlpha(0f);
@@ -293,6 +297,7 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
         cardAnalitico.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(100).start();
         cardFinanceiro.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(150).start();
         cardPerformance.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(200).start();
+        cardGestaoVisitas.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(250).start();
         cardExpansao.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(300).start();
         cardRankingEquipe.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(400).start();
         cardGestaoMetas.animate().alpha(1f).translationYBy(-20f).setDuration(400).setStartDelay(500).start();
@@ -322,9 +327,11 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
         });
 
         cardExpansao.setOnClickListener(v -> {
-            ////Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show();
-            //return;
             startActivity(new Intent(this, ActivityExpansaoCarteira.class));
+        });
+        cardGestaoVisitas.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show();
+
         });
 
         cardGestaoMetas.setOnClickListener(v -> {

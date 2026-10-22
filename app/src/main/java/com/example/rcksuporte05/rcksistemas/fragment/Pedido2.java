@@ -238,8 +238,9 @@ public class Pedido2 extends Fragment {
                 e.printStackTrace();
             }
             adapterPagamento = new ArrayAdapter<>(getContext(),
-                    tExtraFonte == 0 ?  R.layout.simple_list_item_spinner_p : tExtraFonte == 2 ? R.layout.simple_list_item_spinner_m : R.layout.simple_list_item_spinner_g,
+                    tExtraFonte == 0 ?  R.layout.simple_list_item_spinner_p_compacto : tExtraFonte == 2 ? R.layout.simple_list_item_spinner_m : R.layout.simple_list_item_spinner_g,
                     listaCondicoesPagamentos);
+            adapterPagamento.setDropDownViewResource(R.layout.simple_list_item_spinner_p_compacto);
             WebPedido webPedidox = PedidoHelper.getWebPedido();
             spPagamento.setAdapter(adapterPagamento);
             try {

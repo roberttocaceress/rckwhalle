@@ -3062,6 +3062,7 @@ drawable ic_novidade_show
 drawable ic_novo_cliente
 drawable ic_novo_produto
 drawable ic_novopedido_cliente_2025
+drawable ic_outline_person_pin_circle_24
 drawable ic_pdf_pedido
 drawable ic_pdf_pedido2
 drawable ic_pdf_pedido_email
@@ -3571,6 +3572,7 @@ id cardFinalizarInclusao
 id cardFinanceiro
 id cardFotosEstabelecimento
 id cardGestaoMetas
+id cardGestaoVisitas
 id cardGrafico1
 id cardGrafico2
 id cardGrafico3
@@ -5004,6 +5006,7 @@ id tvPorcentagemSemana
 id tvPosicaoRanking
 id tvPositivacao
 id tvProgressMessage
+id tvQtdeVisitas
 id tvQuantoFalta
 id tvQuantoFaltaMensal
 id tvRankingEvolucao
@@ -5918,6 +5921,7 @@ layout select_dialog_singlechoice_material
 layout simple_list_item_spinner_g
 layout simple_list_item_spinner_m
 layout simple_list_item_spinner_p
+layout simple_list_item_spinner_p_compacto
 layout spinner
 layout spinner_faixa_desconto
 layout support_simple_spinner_dropdown_item

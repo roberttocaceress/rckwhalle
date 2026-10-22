@@ -49,6 +49,7 @@ public class ActivityPrincipal_ViewBinding implements Unbinder {
     target.tvValoresMes = Utils.findRequiredViewAsType(source, R.id.tvValoresMes, "field 'tvValoresMes'", TextView.class);
     target.tvRankingMes = Utils.findRequiredViewAsType(source, R.id.tvRankingMes, "field 'tvRankingMes'", TextView.class);
     target.tvFaltaMes = Utils.findRequiredViewAsType(source, R.id.tvFaltaMes, "field 'tvFaltaMes'", TextView.class);
+    target.tvQtdeVisitas = Utils.findRequiredViewAsType(source, R.id.tvQtdeVisitas, "field 'tvQtdeVisitas'", TextView.class);
     target.tvPedidosFaturados = Utils.findRequiredViewAsType(source, R.id.tvPedidosFaturados, "field 'tvPedidosFaturados'", TextView.class);
     target.tvPedidosDevolvidos = Utils.findRequiredViewAsType(source, R.id.tvPedidosDevolvidos, "field 'tvPedidosDevolvidos'", TextView.class);
     target.tvPedidosCancelados = Utils.findRequiredViewAsType(source, R.id.tvPedidosCancelados, "field 'tvPedidosCancelados'", TextView.class);
@@ -93,6 +94,7 @@ public class ActivityPrincipal_ViewBinding implements Unbinder {
     target.tvValoresMes = null;
     target.tvRankingMes = null;
     target.tvFaltaMes = null;
+    target.tvQtdeVisitas = null;
     target.tvPedidosFaturados = null;
     target.tvPedidosDevolvidos = null;
     target.tvPedidosCancelados = null;

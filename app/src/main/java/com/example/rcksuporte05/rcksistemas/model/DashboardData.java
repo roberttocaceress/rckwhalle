@@ -26,6 +26,7 @@ public class DashboardData implements Serializable {
     private int qtdPositivados = 0;
 
     // OPERACIONAL (DADOS BI - FUTURO)
+    private int qtdVisitas = 0;
     private int qtdFaturados = 0;
     private int qtdCancelados = 0;
     private int qtdDevolucoesMes = 0;
@@ -115,4 +116,12 @@ public class DashboardData implements Serializable {
 
     public int getPorcentagemPositivacao() { return porcentagemPositivacao; }
     public void setPorcentagemPositivacao(int porcentagemPositivacao) { this.porcentagemPositivacao = porcentagemPositivacao; }
+
+    public int getQtdVisitas() {
+        return qtdVisitas;
+    }
+
+    public void setQtdVisitas(int qtdVisitas) {
+        this.qtdVisitas = qtdVisitas;
+    }
 }

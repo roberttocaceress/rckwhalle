@@ -3061,6 +3061,7 @@ int drawable ic_novidade_show 0x7f08027b
 int drawable ic_novo_cliente 0x7f08027c
 int drawable ic_novo_produto 0x7f08027d
 int drawable ic_novopedido_cliente_2025 0x7f08027e
+int drawable ic_outline_person_pin_circle_24 0x7f080334
 int drawable ic_pdf_pedido 0x7f08027f
 int drawable ic_pdf_pedido2 0x7f080280
 int drawable ic_pdf_pedido_email 0x7f080281
@@ -3570,6 +3571,7 @@ int id cardFinalizarInclusao 0x7f0a0139
 int id cardFinanceiro 0x7f0a013a
 int id cardFotosEstabelecimento 0x7f0a013b
 int id cardGestaoMetas 0x7f0a013c
+int id cardGestaoVisitas 0x7f0a0869
 int id cardGrafico1 0x7f0a013d
 int id cardGrafico2 0x7f0a013e
 int id cardGrafico3 0x7f0a013f
@@ -5003,6 +5005,7 @@ int id tvPorcentagemSemana 0x7f0a06c7
 int id tvPosicaoRanking 0x7f0a06c8
 int id tvPositivacao 0x7f0a06c9
 int id tvProgressMessage 0x7f0a06ca
+int id tvQtdeVisitas 0x7f0a0868
 int id tvQuantoFalta 0x7f0a06cb
 int id tvQuantoFaltaMensal 0x7f0a06cc
 int id tvRankingEvolucao 0x7f0a06cd
@@ -5917,6 +5920,7 @@ int layout select_dialog_singlechoice_material 0x7f0d01be
 int layout simple_list_item_spinner_g 0x7f0d01bf
 int layout simple_list_item_spinner_m 0x7f0d01c0
 int layout simple_list_item_spinner_p 0x7f0d01c1
+int layout simple_list_item_spinner_p_compacto 0x7f0d01da
 int layout spinner 0x7f0d01c2
 int layout spinner_faixa_desconto 0x7f0d01c3
 int layout support_simple_spinner_dropdown_item 0x7f0d01c4

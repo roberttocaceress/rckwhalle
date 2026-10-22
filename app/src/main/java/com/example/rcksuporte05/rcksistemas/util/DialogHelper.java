@@ -903,12 +903,16 @@ public class DialogHelper {
         }
     }
 
+    public interface OnCheckInConfirmedListener {
+        void onCheckInConfirmed(GpsLocationHelper.LocationData locationData, byte[] fotoBytes);
+    }
+
     public static void showCheckInClienteDialog(
             Context context,
             String razaoSocial,
             String nomeFantasia,
             String endereco,
-            OnConfirmListener onConfirmCheckIn) {
+            OnCheckInConfirmedListener onConfirmCheckIn) {
 
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_checkin_cliente, null);
 
@@ -937,6 +941,8 @@ public class DialogHelper {
             btnConfirmarCheckIn.setAlpha(0.5f);
         }
 
+        final GpsLocationHelper.LocationData[] currentLoc = new GpsLocationHelper.LocationData[1];
+
         // BINDING DE LOCALIZAÇÃO GPS EM TEMPO REAL
         if (tvLat != null) tvLat.setText("Obtendo...");
         if (tvLng != null) tvLng.setText("Obtendo...");
@@ -945,6 +951,7 @@ public class DialogHelper {
         GpsLocationHelper.obterLocalizacaoAtual(context, new GpsLocationHelper.OnLocationResultListener() {
             @Override
             public void onLocationReceived(GpsLocationHelper.LocationData locationData) {
+                currentLoc[0] = locationData;
                 if (btnConfirmarCheckIn != null) {
                     btnConfirmarCheckIn.setEnabled(true);
                     btnConfirmarCheckIn.setAlpha(1.0f);
@@ -978,11 +985,21 @@ public class DialogHelper {
 
             @Override
             public void onError(String message) {
+                // TRAVA DE SEGURANÇA: Mantém o botão de confirmação BLOQUEADO se não houver coordenadas válidas
                 if (btnConfirmarCheckIn != null) {
-                    btnConfirmarCheckIn.setEnabled(true);
-                    btnConfirmarCheckIn.setAlpha(1.0f);
+                    btnConfirmarCheckIn.setEnabled(false);
+                    btnConfirmarCheckIn.setAlpha(0.4f);
                 }
-                if (tvAltPrec != null) tvAltPrec.setText("GPS: " + message);
+                if (tvLat != null) tvLat.setText("Indisponível");
+                if (tvLng != null) tvLng.setText("Indisponível");
+                if (tvAltPrec != null) {
+                    tvAltPrec.setText(message);
+                    tvAltPrec.setTextColor(context.getColor(R.color.vermelho));
+                }
+                TextView tvTextoPlaceholder = dialogView.findViewById(R.id.tvTextoPlaceholderMapa);
+                if (tvTextoPlaceholder != null) {
+                    tvTextoPlaceholder.setText("Mapa Indisponível (Sem Sinal GPS / Internet)");
+                }
             }
         });
 
@@ -1002,7 +1019,8 @@ public class DialogHelper {
             btnConfirmarCheckIn.setOnClickListener(v -> {
                 dialog.dismiss();
                 if (onConfirmCheckIn != null) {
-                    onConfirmCheckIn.onConfirm(dialogView, dialog);
+                    byte[] fotoBytes = CameraPhotoHelper.getPhotoBytes(75);
+                    onConfirmCheckIn.onCheckInConfirmed(currentLoc[0], fotoBytes);
                 }
             });
         }

@@ -30,7 +30,7 @@
                     android:id="@+id/tvAvisoRolar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="6dp"
                     android:gravity="center"
                     android:text="Deslize para baixo para ver mais informações ▼"
                     android:textColor="#777777"
@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:text="CONDIÇÃO DE PAGAMENTO"
                         android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                         <Spinner
                             android:id="@+id/spPagamento"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="32dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -67,7 +67,7 @@
                     android:id="@+id/lyOperacao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:text="OPERAÇÃO"
                         android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />/>
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                         <Spinner
                             android:id="@+id/spOperacao"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="32dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -94,7 +94,7 @@
                     android:id="@+id/lytMoeda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:text="MOEDA DE PAGAMENTO"
                         android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />/>
+                        android:textSize="14sp" />/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                         <Spinner
                             android:id="@+id/spMoeda"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="32dp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -140,7 +140,7 @@
                         android:layout_marginTop="10dp"
                         android:text="DATA DE EMISSAO"
                         android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />/>
+                        android:textSize="14sp" />/>
 
                     <TextView
                         android:id="@+id/txtDataEmissao"
@@ -187,7 +187,7 @@
                         android:layout_marginTop="10dp"
                         android:text="DATA DE FATURAMENTO"
                         android:textColor="@color/colorAccent"
-                        android:textSize="16sp" />/>
+                        android:textSize="14sp" />/>
 
                     <EditText
                         android:id="@+id/edtDataEntrega"
@@ -224,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lyDatas"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/borda_edittext_preto_2025"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^*()+-/\~.:?= çÇÁáÃãÂâÀàÄäÉéÊêÈèËëÍíÌìÏïÎîÓóÕõÔôÒòÖöÚúÛûÙùÜü"
                 android:gravity="top"
@@ -252,9 +252,9 @@
                     android:layout_below="@+id/edtData"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="12dp"
                     android:background="@drawable/borda_botao_continuar"
                     android:backgroundTint="@color/colorPrimary"
                     android:text="Adicionar/Visualizar anexo"
@@ -264,13 +264,13 @@
                 <Button
                     android:id="@+id/btnSalvarPedido"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="44dp"
                     android:layout_below="@+id/edtData"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@drawable/borda_botao_continuar"
                     android:backgroundTint="@color/colorPrimary"
                     android:text="Salvar Pedido"

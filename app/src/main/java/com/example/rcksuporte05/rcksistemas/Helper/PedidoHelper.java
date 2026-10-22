@@ -770,6 +770,12 @@ public class PedidoHelper {
                         int idPedido = (int) webPedidoDAO.add(webPedido);
                         try {
                             if (idPedido > 0) {
+                                if (webPedido.getId_visita_app() != null && !webPedido.getId_visita_app().isEmpty()) {
+                                    try {
+                                        com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                        visitaDAO.vincularPedidoAVisita(webPedido.getId_visita_app(), idPedido, webPedido.getId_pedido_app());
+                                    } catch (Exception ignored) {}
+                                }
                                 PedidoHelper.setIdPedido(idPedido);
                                 if ( webPedido.getCadastro().getId_cadastro() == 0) {
                                     getActivityPedidoMain().toolbar.setSubtitle("Pré-pedido: " + idPedido + " - " + MascaraUtil.formataData(webPedido.getData_emissao(), "/"));
@@ -978,6 +984,12 @@ public class PedidoHelper {
                                             webPedido.setData_emissao(db.pegaDataAtual());
                                             int idPedido = (int) webPedidoDAO.add(webPedido);
                                             if (idPedido > 0) {
+                                                if (webPedido.getId_visita_app() != null && !webPedido.getId_visita_app().isEmpty()) {
+                                                    try {
+                                                        com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                                        visitaDAO.vincularPedidoAVisita(webPedido.getId_visita_app(), idPedido, webPedido.getId_pedido_app());
+                                                    } catch (Exception ignored) {}
+                                                }
                                                 if (listaWebPedidoItens != null) {
                                                     for (int i = 0; listaWebPedidoItens.size() > i; i++) {
                                                         listaWebPedidoItens.get(i).setId_pedido(String.valueOf(idPedido));

@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, NomeBanco, null, 27);
+        super(context, NomeBanco, null, 28);
     }
 
     @Override
@@ -514,6 +514,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 " QTDE_ITENS VARCHAR(5), " +
                 " COPIA_SEGURA VARCHAR(1), "+
                 " ID_PEDIDO_APP_FDB VARCHAR(38)," +
+                " ID_VISITA_APP VARCHAR(38)," +
                 " ANALISE_ESTOQ_EFETUADA VARCHAR(1)," +
                 " ANALISE_ESTOQ_DATA_HORA TIMESTAMP);" );
         try {
@@ -727,6 +728,29 @@ public class DBHelper extends SQLiteOpenHelper {
                 "ID_CADASTRO INTEGER, " +
                 "TITULO VARCHAR(50));");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
+                "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ID_VISITA_APP VARCHAR(38), " +
+                "ID_VENDEDOR INTEGER, " +
+                "ID_PEDIDO INTEGER, " +
+                "ID_PEDIDO_APP VARCHAR(38), " +
+                "ID_PEDIDO_SERVIDOR INTEGER, " +
+                "ID_CLIENTE_SERVIDOR INTEGER, " +
+                "DATA_HORA_CHECKIN DATETIME, " +
+                "LATITUDE_CHECKIN VARCHAR(60), " +
+                "LONGITUDE_CHECKIN VARCHAR(60), " +
+                "DATA_HORA_CHECKOUT DATETIME, " +
+                "LATITUDE_CHECKOUT VARCHAR(60), " +
+                "LONGITUDE_CHECKOUT VARCHAR(60), " +
+                "FOTO_CHECKIN_1 BLOB, " +
+                "FOTO_CHECKIN_2 BLOB, " +
+                "STATUS_VISITA VARCHAR(1), " +
+                "MOTIVO_NAO_VENDA VARCHAR(50), " +
+                "ID_MOTIVO_NAO_VENDA INTEGER, " +
+                "VERSAO_APP VARCHAR(10), " +
+                "OBSERVACAO TEXT, " +
+                "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS TBL_CADASTRO_FINANCEIRO_RESUMO (ID_CADASTRO INTEGER NOT NULL PRIMARY KEY," +
                 "               LIMITE_CREDITO NUMERIC (18,2)," +
                 "               FINANCEIRO_VENCIDO NUMERIC (18,2)," +
@@ -855,7 +879,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " CNPJ_EMPRESA CHAR(14), MARCA_PRODUTO_JA_COMPRADO CHAR(1), PEDIDO_ENVIADO_ON_LINE_APP CHAR(1), " +
                     " VISUALIZA_GRAFICO_ON_LINE_APP CHAR(1), VISUALIZA_ULTIMO_PRECO_VENDA_APP CHAR(1), " +
                     " VISUALIZA_LEGENDA_CLIENTE CHAR(1), VISUALIZA_LEGENDA_PRODUTO CHAR(1), VISUALIZA_LEGENDA_PEDIDO CHAR(1)," +
-                    " CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1));");
+                        " CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1), TRABALHA_COM_CHECKIN_APP VARCHAR(1));");
                     ///O ULTIMO CAMPO DEFINE UMA FORMA DE LISTAR TODOS OS PEDIDOS EXISTENTES, INCLUSIVE OS Q NAO FORAM FEITOS PELO VENDEDOR EM QSTAO
         } catch (SQLException e) {
             e.printStackTrace();
@@ -895,6 +919,35 @@ public class DBHelper extends SQLiteOpenHelper {
         alerta.setAlerta_emissao_doc("N");
         inserirTBL_ALERTA(alerta);
         */
+        try {
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
+                    "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VENDEDOR INTEGER, " +
+                    "ID_PEDIDO INTEGER, " +
+                    "ID_PEDIDO_APP VARCHAR(38), " +
+                    "ID_PEDIDO_SERVIDOR INTEGER, " +
+                    "ID_CLIENTE_SERVIDOR INTEGER, " +
+                    "DATA_HORA_CHECKIN DATETIME, " +
+                    "LATITUDE_CHECKIN VARCHAR(60), " +
+                    "LONGITUDE_CHECKIN VARCHAR(60), " +
+                    "DATA_HORA_CHECKOUT DATETIME, " +
+                    "LATITUDE_CHECKOUT VARCHAR(60), " +
+                    "LONGITUDE_CHECKOUT VARCHAR(60), " +
+                    "FOTO_CHECKIN_1 BLOB, " +
+                    "FOTO_CHECKIN_2 BLOB, " +
+                    "STATUS_VISITA VARCHAR(1), " +
+                    "MOTIVO_NAO_VENDA VARCHAR(50), " +
+                    "ID_MOTIVO_NAO_VENDA INTEGER, " +
+                    "VERSAO_APP VARCHAR(10), " +
+                    "OBSERVACAO TEXT, " +
+                    "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_PRODUTO_SUB_GRUPO (ID INTEGER PRIMARY KEY, NOME_SUB_GRUPO VARCHAR(50), ATIVO VARCHAR(1));");
         } catch (SQLException e) {
@@ -1106,6 +1159,35 @@ public class DBHelper extends SQLiteOpenHelper {
         //db.execSQL("DELETE FROM TBL_LOGIN");
         //Alteração no codigo tratando excessao
         //Roberto caceres
+        try {
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
+                    "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VENDEDOR INTEGER, " +
+                    "ID_PEDIDO INTEGER, " +
+                    "ID_PEDIDO_APP VARCHAR(38), " +
+                    "ID_PEDIDO_SERVIDOR INTEGER, " +
+                    "ID_CLIENTE_SERVIDOR INTEGER, " +
+                    "DATA_HORA_CHECKIN DATETIME, " +
+                    "LATITUDE_CHECKIN VARCHAR(60), " +
+                    "LONGITUDE_CHECKIN VARCHAR(60), " +
+                    "DATA_HORA_CHECKOUT DATETIME, " +
+                    "LATITUDE_CHECKOUT VARCHAR(60), " +
+                    "LONGITUDE_CHECKOUT VARCHAR(60), " +
+                    "FOTO_CHECKIN_1 BLOB, " +
+                    "FOTO_CHECKIN_2 BLOB, " +
+                    "STATUS_VISITA VARCHAR(1), " +
+                    "MOTIVO_NAO_VENDA VARCHAR(50), " +
+                    "ID_MOTIVO_NAO_VENDA INTEGER, " +
+                    "VERSAO_APP VARCHAR(10), " +
+                    "OBSERVACAO TEXT, " +
+                    "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_ACESSIBILIDADE(ID INTEGER PRIMARY KEY AUTOINCREMENT ,  " +
                     "TAMANHO_EXTRA_FONTE INT DEFAULT 0);");
@@ -1436,8 +1518,12 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             if (!isExiste(db, "TBL_WEB_PEDIDO", "ID_PEDIDO_APP_FDB")) {
                 db.execSQL("ALTER TABLE TBL_WEB_PEDIDO ADD COLUMN ID_PEDIDO_APP_FDB VARCHAR(38) ;");
-                //db.execSQL("UPDATE TBL_WEB_PEDIDO SET COPIA_SEGURA = 'N'");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            verificarEAdicionarCampoVisitaPedido(db);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1463,7 +1549,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         //CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO   12-08-2026 Usado qdo altera o prazo de pagamento
         //VISUALIZA_ULTIMO_PRECO_VENDA_APP
-
+        try {
+            if (!isExiste(db, "TBL_CONFIGURACAO", "TRABALHA_COM_CHECKIN_APP")) {
+                db.execSQL("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN TRABALHA_COM_CHECKIN_APP VARCHAR(1);");
+                db.execSQL("UPDATE TBL_CONFIGURACAO SET TRABALHA_COM_CHECKIN_APP = 'N'");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
         try {
             if (!isExiste(db, "TBL_CONFIGURACAO", "CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO")) {
                 db.execSQL("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1);");
@@ -2312,6 +2407,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public void verificarEAdicionarCampoVisitaPedido(SQLiteDatabase db) {
+        try {
+            if (!isExiste(db, "TBL_WEB_PEDIDO", "ID_VISITA_APP")) {
+                db.execSQL("ALTER TABLE TBL_WEB_PEDIDO ADD COLUMN ID_VISITA_APP VARCHAR(38);");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean onDropTable( String nomeTabela) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
@@ -2366,6 +2471,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("DROP INDEX IF EXISTS IDX_TPI_ID_PRODUTO");
             db.execSQL("DROP INDEX IF EXISTS IDX_TPI_PROD_TABELA");
             db.execSQL("DROP INDEX IF EXISTS IDX_WEB_PEDIDO_ITENS_COMPOSTO");
+            db.execSQL("DROP INDEX IF EXISTS IDX_VISITA_ID_APP");
+            db.execSQL("DROP INDEX IF EXISTS IDX_VISITA_CLIENTE_SRV");
+            db.execSQL("DROP INDEX IF EXISTS IDX_VISITA_VENDEDOR");
+            db.execSQL("DROP INDEX IF EXISTS IDX_VISITA_PEDIDO");
+            db.execSQL("DROP INDEX IF EXISTS IDX_VISITA_STATUS");
         } catch ( SQLException e) {
             e.printStackTrace();
         }
@@ -2435,6 +2545,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_TPI_ID_PRODUTO ON TBL_TABELA_PRECO_ITENS(ID_PRODUTO)");
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_TPI_PROD_TABELA ON TBL_TABELA_PRECO_ITENS(ID_PRODUTO, ID_TABELA)");
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_WEB_PEDIDO_ITENS_COMPOSTO ON TBL_WEB_PEDIDO_ITENS (ID_PEDIDO, ID_PRODUTO)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_ID_APP ON TBL_WEB_VISITA(ID_VISITA_APP)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_CLIENTE_SRV ON TBL_WEB_VISITA(ID_CLIENTE_SERVIDOR)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_VENDEDOR ON TBL_WEB_VISITA(ID_VENDEDOR)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_PEDIDO ON TBL_WEB_VISITA(ID_PEDIDO)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_STATUS ON TBL_WEB_VISITA(STATUS_VISITA)");
         } catch ( SQLException e) {
             e.printStackTrace();
         }

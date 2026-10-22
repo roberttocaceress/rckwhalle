@@ -187,8 +187,12 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
     @BindView(R.id.tvFaltaMes)
     TextView tvFaltaMes;
 
+    @BindView(R.id.tvQtdeVisitas)
+    TextView tvQtdeVisitas;
     @BindView(R.id.tvPedidosFaturados)
     TextView tvPedidosFaturados;
+
+
 
     @BindView(R.id.tvPedidosDevolvidos)
     TextView tvPedidosDevolvidos;
@@ -2434,6 +2438,8 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
                 tvRankingMes.setTextColor(Color.RED);
                 tvFaltaMes.setText("Faltam R$ *****");
 
+
+                tvQtdeVisitas.setText("**");
                 tvPedidosFaturados.setText("**");
                 tvPedidosDevolvidos.setText("**");
                 tvPedidosCancelados.setText("**");
@@ -2459,7 +2465,8 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
             tvRankingMes.setTextColor(Color.RED);
             
             tvFaltaMes.setText("Faltam R$ *****");
-            
+
+            tvQtdeVisitas.setText("**");
             tvPedidosFaturados.setText("**");
             tvPedidosDevolvidos.setText("**");
             tvPedidosCancelados.setText("**");
@@ -2493,6 +2500,7 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
             else tvFaltaMes.setText("Meta atingida! Parabéns!");
 
             // OPERACIONAL
+            tvQtdeVisitas.setText(String.valueOf(currentDashboardData.getQtdVisitas()));
             tvPedidosFaturados.setText(String.valueOf(currentDashboardData.getQtdFaturados()));
             tvPedidosDevolvidos.setText(String.valueOf(currentDashboardData.getQtdDevolucoesMes()));
             tvPedidosCancelados.setText(String.valueOf(currentDashboardData.getQtdCancelados()));

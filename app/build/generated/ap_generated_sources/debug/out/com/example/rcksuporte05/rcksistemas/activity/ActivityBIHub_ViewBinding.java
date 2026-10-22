@@ -30,6 +30,7 @@ public class ActivityBIHub_ViewBinding implements Unbinder {
     target.cardFinanceiro = Utils.findRequiredViewAsType(source, R.id.cardFinanceiro, "field 'cardFinanceiro'", MaterialCardView.class);
     target.cardPerformance = Utils.findRequiredViewAsType(source, R.id.cardPerformance, "field 'cardPerformance'", MaterialCardView.class);
     target.cardGestaoMetas = Utils.findRequiredViewAsType(source, R.id.cardGestaoMetas, "field 'cardGestaoMetas'", MaterialCardView.class);
+    target.cardGestaoVisitas = Utils.findRequiredViewAsType(source, R.id.cardGestaoVisitas, "field 'cardGestaoVisitas'", MaterialCardView.class);
     target.cardRankingEquipe = Utils.findRequiredViewAsType(source, R.id.cardRankingEquipe, "field 'cardRankingEquipe'", MaterialCardView.class);
     target.cardExpansao = Utils.findRequiredViewAsType(source, R.id.cardExpansao, "field 'cardExpansao'", MaterialCardView.class);
     target.tvSaudacao = Utils.findRequiredViewAsType(source, R.id.tvSaudacao, "field 'tvSaudacao'", TextView.class);
@@ -50,6 +51,7 @@ public class ActivityBIHub_ViewBinding implements Unbinder {
     target.cardFinanceiro = null;
     target.cardPerformance = null;
     target.cardGestaoMetas = null;
+    target.cardGestaoVisitas = null;
     target.cardRankingEquipe = null;
     target.cardExpansao = null;
     target.tvSaudacao = null;

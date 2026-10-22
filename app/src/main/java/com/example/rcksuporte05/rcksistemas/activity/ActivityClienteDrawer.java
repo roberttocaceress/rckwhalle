@@ -2186,24 +2186,72 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         String razao = cliente != null ? cliente.getNome_cadastro() : "";
         String fantasia = cliente != null ? cliente.getNome_fantasia() : "";
         String end = cliente != null ? (cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf()) : "";
+        if ( configuracao.getTrab_com_checkin_app().equalsIgnoreCase("N")) {
+            new PedidoHelper().limparDados();
+            if (cliente != null) {
+                ClienteHelper.setCliente(cliente);
+            }
+            Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
+            intent.putExtra("id_empresa", idEmpresa);
+            intent.putExtra("id_visita_app", 0);
+            startActivity(intent);
+            return;
+        }
+
+        // GERA UUID ÚNICO DO CHECK-IN PARA VINCULAR AO PEDIDO OU À NÃO-VENDA
+        String idVisitaApp = java.util.UUID.randomUUID().toString();
 
         DialogHelper.showCheckInClienteDialog(
                 this,
                 razao,
                 fantasia,
                 end,
-                (dialogView, dialog) -> {
+                (locationData, fotoBytes) -> {
                     // Após confirmar Check-In, abre o diálogo de intenção de atendimento
                     DialogHelper.showOpcoesPosCheckInDialog(
                             this,
                             () -> {
-                                // Opção 1: CONTINUAR PARA O PEDIDO
+                                // Opção 1: CONTINUAR PARA O PEDIDO (Grava a visita inicial e vincula id_visita_app)
+                                try {
+                                    com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                                    visita.setIdVisitaApp(idVisitaApp);
+                                    if (com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario() != null && com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                        try {
+                                            visita.setIdVendedor(Integer.parseInt(com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario().getId_quando_vendedor()));
+                                        } catch (Exception ignored) {}
+                                    }
+                                    if (cliente != null) {
+                                        visita.setIdClienteServidor(cliente.getId_cadastro_servidor());
+                                    }
+                                    visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+
+                                    if (locationData != null && locationData.hasLocation) {
+                                        visita.setLatitudeCheckin(String.valueOf(locationData.latitude));
+                                        visita.setLongitudeCheckin(String.valueOf(locationData.longitude));
+                                        visita.setAltitudeCheckin(String.valueOf(locationData.altitude));
+                                        visita.setPrecisaoCheckin(String.valueOf(locationData.accuracy));
+                                    }
+
+                                    if (fotoBytes != null && fotoBytes.length > 0) {
+                                        visita.setFotoCheckin1(fotoBytes);
+                                    }
+
+                                    visita.setStatusVisita("A"); // 'A' = Atendimento em andamento
+                                    visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+                                    com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                    visitaDAO.salvarVisita(visita);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
                                 new PedidoHelper().limparDados();
                                 if (cliente != null) {
                                     ClienteHelper.setCliente(cliente);
                                 }
                                 Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
                                 intent.putExtra("id_empresa", idEmpresa);
+                                intent.putExtra("id_visita_app", idVisitaApp);
                                 startActivity(intent);
                             },
                             () -> {
@@ -2223,6 +2271,44 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                                 }
                                             } else {
                                                 sbMotivos.append("Nenhum motivo marcado");
+                                            }
+
+                                            // GRAVAÇÃO COMPLETA DA NÃO VENDA NA TABELA TBL_WEB_VISITA
+                                            try {
+                                                com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                                                visita.setIdVisitaApp(idVisitaApp);
+                                                if (com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario() != null && com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                                    try {
+                                                        visita.setIdVendedor(Integer.parseInt(com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario().getId_quando_vendedor()));
+                                                    } catch (Exception ignored) {}
+                                                }
+                                                if (cliente != null) {
+                                                    visita.setIdClienteServidor(cliente.getId_cadastro_servidor());
+                                                }
+                                                visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+
+                                                // GRAVA COORDENADAS GPS DO CHECK-IN
+                                                if (locationData != null && locationData.hasLocation) {
+                                                    visita.setLatitudeCheckin(String.valueOf(locationData.latitude));
+                                                    visita.setLongitudeCheckin(String.valueOf(locationData.longitude));
+                                                    visita.setAltitudeCheckin(String.valueOf(locationData.altitude));
+                                                    visita.setPrecisaoCheckin(String.valueOf(locationData.accuracy));
+                                                }
+
+                                                // GRAVA FOTO CAPTURADA DO CHECK-IN (SE HOUVER)
+                                                if (fotoBytes != null && fotoBytes.length > 0) {
+                                                    visita.setFotoCheckin1(fotoBytes);
+                                                }
+
+                                                visita.setStatusVisita("N"); // 'N' = Não Venda
+                                                visita.setMotivoNaoVenda(sbMotivos.toString());
+                                                visita.setObservacao(observacao);
+                                                visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+                                                com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                                visitaDAO.salvarVisita(visita);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
                                             }
 
                                             String msgFeedback = "Check-in e Não Venda registrados com sucesso!\n\n" +

@@ -140,6 +140,7 @@ public class WebPedidoDAO {
             content.put("QTDE_ITENS", webPedido.getQtde_itens());
             content.put("ANALISE_ESTOQ_EFETUADA", webPedido.getAnalise_estoq_efetuada() == null ? "N" : webPedido.getAnalise_estoq_efetuada());
             content.put("ANALISE_ESTOQ_DATA_HORA", webPedido.getAnalise_estoque_data_hora());
+            content.put("ID_VISITA_APP", webPedido.getId_visita_app());
 
             //System.gc();
             return db.addDados("TBL_WEB_PEDIDO", content);

@@ -521,6 +521,12 @@ public class ActivityPedidoMain extends AppCompatActivity {
                         webPedido.setId_empresa(idEmpresa);
                     }
                 }
+                if (getIntent().hasExtra("id_visita_app")) {
+                    String idVisitaApp = getIntent().getStringExtra("id_visita_app");
+                    if (idVisitaApp != null && !idVisitaApp.isEmpty()) {
+                        webPedido.setId_visita_app(idVisitaApp);
+                    }
+                }
                 webPedido.setId_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
                 webPedido.setUsuario_lancamento_id(UsuarioHelper.getUsuario().getId_usuario());
                 webPedido.setUsuario_lancamento_nome(UsuarioHelper.getUsuario().getNome_usuario());

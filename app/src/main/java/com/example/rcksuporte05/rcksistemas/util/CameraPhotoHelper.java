@@ -128,6 +128,36 @@ public class CameraPhotoHelper {
     }
 
     /**
+     * Retorna a foto capturada convertida em byte[] comprimido.
+     */
+    public static byte[] getPhotoBytes(int quality) {
+        if (currentPhotoFile != null && currentPhotoFile.exists()) {
+            try {
+                Bitmap bitmap = getOptimizedAndRotatedBitmap(currentPhotoFile.getAbsolutePath(), 800, 800);
+                if (bitmap != null) {
+                    java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
+                    return baos.toByteArray();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Retorna a foto capturada convertida em String Base64.
+     */
+    public static String getPhotoBase64(int quality) {
+        byte[] bytes = getPhotoBytes(quality);
+        if (bytes != null && bytes.length > 0) {
+            return android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP);
+        }
+        return "";
+    }
+
+    /**
      * Redimensiona e ajusta a rotação EXIF da foto capturada.
      */
     private static Bitmap getOptimizedAndRotatedBitmap(String photoPath, int reqWidth, int reqHeight) throws IOException {

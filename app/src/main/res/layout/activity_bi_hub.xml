@@ -369,6 +369,66 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+
+            <!-- CARD 6: GESTÃO DE VISITAS (ADMIN/GERENTE) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGestaoVisitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="3dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp"
+                app:rippleColor="@color/colorPrimaryTransparente20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/ic_outline_person_pin_circle_24"
+                        app:tint="@color/colorPrimary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gestão de visitas"
+                            android:textColor="@color/preto"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Visitas realizadas, positivadas ou não."
+                            android:textColor="@color/colorText"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_action_arrow_forward_white"
+                        app:tint="@color/colorAccentDark" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- NOVO CARD: EXPANSÃO DE CARTEIRA (NOVOS CLIENTES) -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardExpansao"

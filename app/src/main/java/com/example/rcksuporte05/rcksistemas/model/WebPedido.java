@@ -48,6 +48,7 @@ public class WebPedido {
     private List<WebPedidoItens> webPedidoItens;
     private String pedido_enviado;
     private String finalizado;
+    private String id_visita_app;
 
     private String web_importado_data;
     private String analise_credito;
@@ -772,5 +773,13 @@ public class WebPedido {
 
     public void setListaErro(List<Generico> listaErro) {
         this.listaErro = listaErro;
+    }
+
+    public String getId_visita_app() {
+        return id_visita_app;
+    }
+
+    public void setId_visita_app(String id_visita_app) {
+        this.id_visita_app = id_visita_app;
     }
 }

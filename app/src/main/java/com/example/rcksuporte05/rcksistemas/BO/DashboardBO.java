@@ -89,7 +89,7 @@ public class DashboardBO {
             String where = " WHERE PEDIDO_ENVIADO = 'N' AND EXCLUIDO <> 'S' AND FINALIZADO = 'S' AND USUARIO_LANCAMENTO_ID = " + idUsuario;
             data.setQtdPendentes(db.contagem("SELECT COUNT(*) FROM TBL_WEB_PEDIDO" + where));
             data.setValorPendentes(db.soma("SELECT SUM(VALOR_TOTAL) FROM TBL_WEB_PEDIDO" + where));
-            
+            data.setQtdVisitas(db.contagem("SELECT COUNT(*) FROM TBL_WEB_VISITA WHERE STRFTIME('%Y-%m', DATA_HORA_CHECKIN) = STRFTIME('%Y-%m', 'now');"));
             // Qtd Clientes Ativos
             data.setQtdClientesAtivos(db.contagem("SELECT COUNT(*) FROM TBL_CADASTRO WHERE ATIVO = 'S' AND F_CLIENTE = 'S'"));
         } catch (Exception e) {
