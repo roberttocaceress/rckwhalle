@@ -1040,6 +1040,13 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
                 db.update("UPDATE TBL_LOGIN SET DATA_SINCRONIA_IMAGEN = '" + db.pegaDataHoraAtual() + "';");
             db.update("UPDATE TBL_LOGIN SET DATA_SINCRONIA = '" + db.pegaDataHoraAtual() + "';");
             
+            // OTIMIZAÇÃO DE PERFORMANCE: RECONSTRÓI E REINDEXA TODOS OS ÍNDICES APÓS SINCRONIA
+            try {
+                db.reconstruirTodosIndices();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             try {
                 dismissProgressDialogCustom();
                 boolean finalNovoApp = novoApp;

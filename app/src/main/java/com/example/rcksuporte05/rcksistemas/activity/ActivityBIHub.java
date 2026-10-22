@@ -312,9 +312,9 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
         });
 
         cardFinanceiro.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show();
-            return;
-            //startActivity(new Intent(this, ActivityPainelFinanceiro.class));
+            //Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show();
+            //return;
+            startActivity(new Intent(this, ActivityPainelFinanceiro.class));
         });
 
         cardPerformance.setOnClickListener(v -> {

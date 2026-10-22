@@ -1,4 +1,4 @@
-#Fri Oct 02 15:39:01 AMT 2026
+#Wed Oct 21 20:51:19 AMT 2026
 base.0=C\:\\ProjetoAndroid\\ProjetoRCK\\RCKSISTEMAS-APP\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\ProjetoAndroid\\ProjetoRCK\\RCKSISTEMAS-APP\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.10=C\:\\ProjetoAndroid\\ProjetoRCK\\RCKSISTEMAS-APP\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex

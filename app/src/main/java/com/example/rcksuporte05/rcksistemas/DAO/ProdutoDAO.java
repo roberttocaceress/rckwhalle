@@ -240,6 +240,125 @@ public class ProdutoDAO {
         return lista;
     }
 
+    public List<Produto> getLista(String SQL, String idCliente, Configuracao configuracao) {
+        List<Produto> lista = new ArrayList<>();
+        Cursor cursorAnx = null;
+        Cursor cursor = db.listaDados(SQL);
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return lista;
+        }
+        cursor.moveToFirst();
+        Produto produto;
+        do {
+            produto = new Produto();
+            try {
+                produto.setId_produto(cursor.getString(cursor.getColumnIndex("ID_PRODUTO")));
+                produto.setIdLinhaColecao(cursor.getInt(cursor.getColumnIndex("ID_LINHA_COLECAO")));
+                produto.setNome_produto(cursor.getString(cursor.getColumnIndex("NOME_PRODUTO")));
+                produto.setDescricao(cursor.getString(cursor.getColumnIndex("DESCRICAO")));
+                produto.setUnidade(cursor.getString(cursor.getColumnIndex("UNIDADE")));
+                produto.setVenda_preco(cursor.getString(cursor.getColumnIndex("VENDA_PRECO")));
+                produto.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
+                produto.setCodigo_em_barras(cursor.getString(cursor.getColumnIndex("CODIGO_EM_BARRAS")));
+                produto.setNome_sub_grupo(cursor.getString(cursor.getColumnIndex("NOME_SUB_GRUPO")));
+                produto.setNome_grupo(cursor.getString(cursor.getColumnIndex("NOME_GRUPO")));
+                produto.setId_sub_grupo(cursor.getString(cursor.getColumnIndex("ID_SUB_GRUPO")));
+                produto.setId_grupo(cursor.getString(cursor.getColumnIndex("ID_GRUPO")));
+                produto.setProduto_tercerizacao(cursor.getString(cursor.getColumnIndex("PRODUTO_TERCERIZACAO")));
+                produto.setProduto_materia_prima(cursor.getString(cursor.getColumnIndex("PRODUTO_MATERIA_PRIMA")));
+                produto.setSaldo_estoque(cursor.getFloat(cursor.getColumnIndex("SALDO_ESTOQUE")));
+                produto.setTravar_fat_sem_estoque(cursor.getString(cursor.getColumnIndex("TRAVAR_FAT_SEM_ESTOQUE")));
+                produto.setUtiliza_tabela_preco(cursor.getString(cursor.getColumnIndex("UTILIZA_TABELA_PRECO")));
+                produto.setProduto_edita_valor(cursor.getString(cursor.getColumnIndex("PRODUTO_EDITA_PRECO_APP")));
+                produto.setProduto_st_aliquota(cursor.getFloat(cursor.getColumnIndex("PRODUTO_ST_ALIQUOTA")));
+                produto.setProduto_suj_icms_st(cursor.getString(cursor.getColumnIndex("PRODUTO_SUJ_ICMS_ST")));
+                produto.setUltima_compra_cliente("");
+                try {
+                    produto.setUltima_compra_cliente( cursor.getString(cursor.getColumnIndex("OUTRAS_COMPRAS")) != null ? cursor.getString(cursor.getColumnIndex("OUTRAS_COMPRAS")) : "");
+                } catch (NullPointerException|SQLException e) {
+                } catch (Exception e) {
+                }
+                try {
+                    produto.setW_id_produto( cursor.getString(cursor.getColumnIndex("W_ID_PRODUTO")) );
+                    produto.setId_campanha_produto(cursor.getString(cursor.getColumnIndex("ID_CAMPANHA")));
+                    produto.setId_campanha_cliente(cursor.getString(cursor.getColumnIndex("ID_CAMPANHA_C")));
+                } catch ( NullPointerException e) {
+                    produto.setW_id_produto("-");
+                } catch ( Exception e) {
+                    produto.setW_id_produto("-");
+                }
+                if (produto.getUtiliza_tabela_preco().equalsIgnoreCase("S")) {
+                    try {
+                        if (Float.parseFloat(cursor.getString(cursor.getColumnIndex("PRECO_TABELA_CLIENTE"))) > 0.0f) {
+                            produto.setVenda_preco(cursor.getString(cursor.getColumnIndex("PRECO_TABELA_CLIENTE")));
+                            produto.setNome_tabela_preco(cursor.getString(cursor.getColumnIndex("NOME_TABELA")));
+                        }
+                    } catch (NullPointerException e) {
+                    } catch (Exception e) {
+                    }
+                }
+                produto.setAnexo_1("");
+                if ( !configuracao.getLayout_venda_erp().equalsIgnoreCase("1")) {
+                    try {
+                        SQL = "SELECT FOTO_MINIATURA, FOTO_ARQUIVO FROM TBL_PRODUTO_FOTO WHERE ID_PRODUTO = '" +
+                                cursor.getString(cursor.getColumnIndex("ID_PRODUTO")).trim()
+                                + "' AND ATIVO = 'S' AND FOTO_PRINCIPAL = 'S'";
+                        cursorAnx = db.listaFotos(SQL);
+                        if (cursor.getCount() > 0) {
+                            if (cursorAnx.moveToNext()) {
+                                produto.setAnexo_1(cursorAnx.getString(cursorAnx.getColumnIndex("FOTO_ARQUIVO")));
+                            }
+                        }
+                        cursorAnx.close();
+                    } catch (NullPointerException e) {
+                    }
+                }
+                //produto.setAnexo_1("");
+                try{
+                    boolean produtoPromocao = false;
+                    produto.setId_promocao("0");
+                    int id_promocao = 0;
+                    while ( produtoPromocao == false ) {
+                        id_promocao = getPromocao1(produto, idCliente);
+                        if (id_promocao > 0) {
+                            produtoPromocao = true;
+                            produto.setId_promocao(String.valueOf(id_promocao));
+                            break;
+                        }
+                        id_promocao = getPromocao2(produto);
+                        if (id_promocao > 0) {
+                            produtoPromocao = true;
+                            produto.setId_promocao(String.valueOf(id_promocao));
+                            break;
+                        }
+                        id_promocao = getPromocao3(produto);
+                        if (id_promocao > 0) {
+                            produtoPromocao = true;
+                            produto.setId_promocao(String.valueOf(id_promocao));
+                            break;
+                        }
+                        id_promocao = getPromocao4(produto);
+                        if (id_promocao > 0) {
+                            produtoPromocao = true;
+                            produto.setId_promocao(String.valueOf(id_promocao));
+                            break;
+                        }
+                        produtoPromocao = true;
+                    }
+                } catch ( Exception e) {
+                    e.printStackTrace();
+                }
+                lista.add(produto);
+            } catch (CursorIndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+            //System.gc();
+        } while (cursor.moveToNext());
+        cursor.close();
+        //System.gc();
+        return lista;
+    }
     private int getPromocao1(Produto produto, String idCliente) {
         String SQL = "SELECT PC.*, PP.* FROM TBL_PROMOCAO_CAB AS PC " +
                 "INNER JOIN TBL_PROMOCAO_PRODUTO AS PP  ON ( PP.ID_PROMOCAO = PC.ID_PROMOCAO AND PP.ID_PRODUTO = '" + produto.getId_produto() + "') " +
@@ -787,7 +906,7 @@ public class ProdutoDAO {
     private void bindDouble(SQLiteStatement stmt, int i, Object val) {
         if (val == null) stmt.bindNull(i); else stmt.bindDouble(i, Double.parseDouble(val.toString()));
     }
-    private static final String SQL_INSERT_PRODUTO = "INSERT INTO TBL_PRODUTO (" +
+    private static final String SQL_INSERT_PRODUTO = "INSERT OR REPLACE INTO TBL_PRODUTO (" +
             "ATIVO, ID_PRODUTO, ID_LINHA_COLECAO, NOME_PRODUTO, UNIDADE, TIPO_CADASTRO, ID_ENTIDADE, NCM, ID_GRUPO, ID_SUB_GRUPO, " + // 1-10
             "PESO_BRUTO, PESO_LIQUIDO, CODIGO_EM_BARRAS, MOVIMENTA_ESTOQUE, NOME_DA_MARCA, ID_EMPRESA, ID_ORIGEM, CUSTO_PRODUTO, CUSTO_PER_IPI, CUSTO_IPI, " + // 11-20
             "CUSTO_PER_FRETE, CUSTO_FRETE, CUSTO_PER_ICMS, CUSTO_ICMS, CUSTO_PER_FIN, CUSTO_FIN, CUSTO_PER_SUBST, CUSTO_SUBT, CUSTO_PER_OUTROS, CUSTO_OUTROS, " + // 21-30
@@ -798,7 +917,7 @@ public class ProdutoDAO {
             ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
-    private static final String SQL_INSERT_FOTO = "INSERT INTO TBL_PRODUTO_FOTO (" +
+    private static final String SQL_INSERT_FOTO = "INSERT OR REPLACE INTO TBL_PRODUTO_FOTO (" +
             "ATIVO, ID_PRODUTO, ID_FOTO, USUARIO_DATA, FOTO_ARQUIVO, " +
             "FOTO_MINIATURA, FOTO_PRINCIPAL" +
             ") VALUES (?, ?, ?, ?, ?, ?, ?)";

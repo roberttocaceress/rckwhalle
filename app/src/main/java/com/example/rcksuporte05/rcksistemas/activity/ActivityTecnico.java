@@ -150,9 +150,11 @@ public class ActivityTecnico extends AppCompatActivity {
         //    return;
         //}
         DBHelper db = new DBHelper(context);
-        db.onDeleteIndex(db.getWritableDatabase());
-        db.onCreateIndex(db.getWritableDatabase());
-        Toast.makeText(context, "Indice(s) recriado(s)!!", Toast.LENGTH_LONG).show();
+        if (db.reconstruirTodosIndices()) {
+            Toast.makeText(context, "Índices recriados e otimizados com sucesso!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Falha ao recriar os índices do banco.", Toast.LENGTH_LONG).show();
+        }
     }
 
     @OnClick(R.id.btn_tecnico_lista_usuario_app)

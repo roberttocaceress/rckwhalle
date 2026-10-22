@@ -17,7 +17,7 @@ import java.lang.Override;
 public class ActivityAnexoCadastro_ViewBinding implements Unbinder {
   private ActivityAnexoCadastro target;
 
-  private View view7f0a02fb;
+  private View view7f0a0301;
 
   @UiThread
   public ActivityAnexoCadastro_ViewBinding(ActivityAnexoCadastro target) {
@@ -33,7 +33,7 @@ public class ActivityAnexoCadastro_ViewBinding implements Unbinder {
     target.edtAnexo = Utils.findRequiredViewAsType(source, R.id.edtAnexo, "field 'edtAnexo'", EditText.class);
     view = Utils.findRequiredView(source, R.id.imAnexo, "field 'imgAnexo' and method 'showGaleria'");
     target.imgAnexo = Utils.castView(view, R.id.imAnexo, "field 'imgAnexo'", ImageView.class);
-    view7f0a02fb = view;
+    view7f0a0301 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +53,7 @@ public class ActivityAnexoCadastro_ViewBinding implements Unbinder {
     target.edtAnexo = null;
     target.imgAnexo = null;
 
-    view7f0a02fb.setOnClickListener(null);
-    view7f0a02fb = null;
+    view7f0a0301.setOnClickListener(null);
+    view7f0a0301 = null;
   }
 }

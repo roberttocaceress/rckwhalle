@@ -289,28 +289,40 @@ public class ListaAdapterProdutoPedido extends RecyclerView.Adapter<ProdutoPedid
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onRowClicked(holder.getAdapterPosition());
-                view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+                int pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener.onRowClicked(pos);
+                    view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+                }
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                listener.onLongRowClicked(holder.getAdapterPosition());
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                int pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener.onLongRowClicked(pos);
+                    view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                }
                 return false;
             }
         });
         holder.btnExcluirProduto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onButtonExcClicked(holder.getAdapterPosition());
+                int pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener.onButtonExcClicked(pos);
+                }
             }
         });
         holder.btnAnaliseEstoque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onButtonAnlClicked(holder.getAdapterPosition());
+                int pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    listener.onButtonAnlClicked(pos);
+                }
             }
         });
     }

@@ -2695,10 +2695,14 @@ public class ActivityProdutoPedido extends AppCompatActivity {
             } catch (Exception nullPointer) {
                 //if (ClienteHelper.getCliente().getTipo_tabela_preco().equalsIgnoreCase("2")) {
                 if (configuracao.getTrabalha_com_desc_auto_app().equalsIgnoreCase("N")) {
-                    if ( webPedidoItem.getValor_desconto_per() == null || webPedidoItem.getValor_desconto_per().isEmpty()) {
+                    try {
+                        if (webPedidoItem.getValor_desconto_per() == null || webPedidoItem.getValor_desconto_per().isEmpty()) {
+                            edtDesconto.setText("0.00");
+                        } else {
+                            edtDesconto.setText(String.valueOf(webPedidoItem.getValor_desconto_per()));
+                        }
+                    } catch (NullPointerException ex) {
                         edtDesconto.setText("0.00");
-                    } else {
-                        edtDesconto.setText(String.valueOf(webPedidoItem.getValor_desconto_per()));
                     }
                 } else {
                     edtDesconto.setText(String.valueOf(desconto_perc));

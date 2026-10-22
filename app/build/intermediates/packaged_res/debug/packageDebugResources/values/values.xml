@@ -11452,6 +11452,7 @@
     <string name="google_api_key" translatable="false">AIzaSyCXwjLX-opH8TLJcmU2bw_TWD93vLarNrc</string>
     <string name="google_app_id" translatable="false">1:151546156545:android:f296a28dad2094392e9200</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCXwjLX-opH8TLJcmU2bw_TWD93vLarNrc</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyATLB7h2anOZofvV4KCfrhqMuZ9-1hr4HM</string>
     <string name="google_storage_bucket" translatable="false">rckwhalle.firebasestorage.app</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">

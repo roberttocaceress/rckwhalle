@@ -1,5 +1,7 @@
 package com.example.rcksuporte05.rcksistemas.adapters;
 
+import static android.view.View.GONE;
+
 import android.app.Activity;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -298,10 +300,10 @@ public class ListaProdutoAdapter extends RecyclerView.Adapter<ProdutoViewHolder>
                 lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 holder.lytTabelaPrecoICMS.setLayoutParams(lp);
             } else {
-                holder.lytTabelaPrecoICMS.setVisibility(View.GONE);
+                holder.lytTabelaPrecoICMS.setVisibility(GONE);
             }
         } catch (Exception e) {
-            holder.lytTabelaPrecoICMS.setVisibility(View.GONE);
+            holder.lytTabelaPrecoICMS.setVisibility(GONE);
         }
         try {
             if (Float.parseFloat(lista.get(position).getVenda_preco()) > 999.99f) {
@@ -322,6 +324,9 @@ public class ListaProdutoAdapter extends RecyclerView.Adapter<ProdutoViewHolder>
             if (lista.get(position).getUltima_compra_cliente() != null && !lista.get(position).getUltima_compra_cliente().isEmpty()) {
                 holder.imageCarrinhoAzul.setVisibility(View.VISIBLE);
             }
+        }
+        if ( configuracao.getLayout_venda_erp().equalsIgnoreCase("1")) {
+            holder.txtSaldoEstoque.setVisibility(GONE);
         }
         applyCLickEnvents(holder, position);
         //System.gc();

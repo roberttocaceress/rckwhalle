@@ -373,6 +373,9 @@ public class Pedido1 extends Fragment implements ListaAdapterProdutoPedido.Produ
 
     @Override
     public void onRowClicked(int position) {
+        if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
+            return;
+        }
         if (adapter.getSelectedItemCount() > 0) {
             toggleSelection(position);
         } else {
@@ -386,11 +389,17 @@ public class Pedido1 extends Fragment implements ListaAdapterProdutoPedido.Produ
 
     @Override
     public void onLongRowClicked(int position) {
+        if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
+            return;
+        }
         PedidoHelper.getActivityPedidoMain().enableActionMode(position);
     }
 
     @Override
     public void onButtonExcClicked(final int position) {
+        if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
+            return;
+        }
         if (adapter.getSelectedItemCount() <= 0) {
             final WebPedidoItens item = listaProdutoPedido.get(position);
 

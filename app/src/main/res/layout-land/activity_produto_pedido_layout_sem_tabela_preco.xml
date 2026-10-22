@@ -224,6 +224,24 @@
 
                     />
 
+                <TextView
+                    android:id="@+id/txtPesquisaProduto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_badge_status_amarelo"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="TOQUE NA IMAGEM P/ VISUALIZAR"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
             </LinearLayout>
 
             <LinearLayout

@@ -1656,6 +1656,10 @@
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\fragment_slideshow.xml"
     },
     {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\layout_dialog_checkin_cliente.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\dialog_checkin_cliente.xml"
+    },
+    {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\drawable-xxhdpi_ic_splash.png.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\drawable-xxhdpi\\ic_splash.png"
     },
@@ -4336,10 +4340,6 @@
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-anydpi-v26\\ic_download_cliente_new.xml"
     },
     {
-        "merged": "com.example.rcksuporte05.rcksistemas.app-debug-5:/layout_activity_pedido_main_2025.xml.flat",
-        "source": "com.example.rcksuporte05.rcksistemas.app-main-7:/layout/activity_pedido_main_2025.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-xxhdpi_ic_acompanhaneto_propect.png.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-xxhdpi\\ic_acompanhaneto_propect.png"
     },
@@ -4710,6 +4710,10 @@
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-xxxhdpi_ic_ajuda_preferencia_new_2.png.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-xxxhdpi\\ic_ajuda_preferencia_new_2.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\layout_dialog_opcao_atendimento_venda.xml.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\dialog_opcao_atendimento_venda.xml"
     },
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-xxhdpi_ic_sincroniza_servidor.png.flat",
@@ -6486,6 +6490,10 @@
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-xhdpi_ic_action_up_arrow_forwar.png.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-xhdpi\\ic_action_up_arrow_forwar.png"
+    },
+    {
+        "merged": "com.example.rcksuporte05.rcksistemas.app-debug-5:/layout_dialog_registro_nao_venda.xml.flat",
+        "source": "com.example.rcksuporte05.rcksistemas.app-main-7:/layout/dialog_registro_nao_venda.xml"
     },
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-mdpi_logo_carrinho_azul.png.flat",

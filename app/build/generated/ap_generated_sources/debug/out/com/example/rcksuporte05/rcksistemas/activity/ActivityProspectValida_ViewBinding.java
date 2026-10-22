@@ -17,9 +17,9 @@ import java.lang.Override;
 public class ActivityProspectValida_ViewBinding implements Unbinder {
   private ActivityProspectValida target;
 
-  private View view7f0a00e3;
+  private View view7f0a00e4;
 
-  private View view7f0a0110;
+  private View view7f0a0111;
 
   @UiThread
   public ActivityProspectValida_ViewBinding(ActivityProspectValida target) {
@@ -36,7 +36,7 @@ public class ActivityProspectValida_ViewBinding implements Unbinder {
     target.edtCpfCnpj = Utils.findRequiredViewAsType(source, R.id.edtCpfCnpj, "field 'edtCpfCnpj'", EditText.class);
     target.edtTelefone = Utils.findRequiredViewAsType(source, R.id.edtTelefone, "field 'edtTelefone'", EditText.class);
     view = Utils.findRequiredView(source, R.id.btnLocaliza, "method 'localiza'");
-    view7f0a00e3 = view;
+    view7f0a00e4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,7 +44,7 @@ public class ActivityProspectValida_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btnVerificar, "method 'verificar'");
-    view7f0a0110 = view;
+    view7f0a0111 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,9 +65,9 @@ public class ActivityProspectValida_ViewBinding implements Unbinder {
     target.edtCpfCnpj = null;
     target.edtTelefone = null;
 
-    view7f0a00e3.setOnClickListener(null);
-    view7f0a00e3 = null;
-    view7f0a0110.setOnClickListener(null);
-    view7f0a0110 = null;
+    view7f0a00e4.setOnClickListener(null);
+    view7f0a00e4 = null;
+    view7f0a0111.setOnClickListener(null);
+    view7f0a0111 = null;
   }
 }

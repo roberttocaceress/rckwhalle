@@ -353,7 +353,11 @@ public class PedidoHelper {
         // NOVO: Cache da configuração de fonte para evitar leitura física do banco de dados em cada refresh de tela
         if (cacheExtraFonte == -1) {
             try {
-                cacheExtraFonte = new DBHelper(activity.getApplicationContext()).pegaTamanhoExtraFonte();
+                if (activity != null) {
+                    cacheExtraFonte = new DBHelper(activity).pegaTamanhoExtraFonte();
+                } else {
+                    cacheExtraFonte = 0;
+                }
             } catch (Exception e) {
                 cacheExtraFonte = 0;
             }
@@ -1077,9 +1081,12 @@ public class PedidoHelper {
         pedido2 = null;
         webPedido = null;
         idPedido = 0;
-        buscaProduto = null;
-        condicoesPagamento = null;
-        listaProdutos = null;
+        try {
+            buscaProduto = null;
+            condicoesPagamento = null;
+            listaProdutos = null;
+        } catch (NullPointerException ignored) {
+        }
         Log.i("PedidoHelper", "Memoria limpa com sucesso");
         //Toast.makeText(, "Memoria limpa com sucesso!", Toast.LENGTH_SHORT).show();
         //System.gc();

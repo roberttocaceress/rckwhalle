@@ -6,6 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -111,6 +114,16 @@ public class ActivityPedidoAnexo extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido_anexo_2025);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.linearLayout11), (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            //v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            View toolbar = findViewById(R.id.tb_anexo);
+            toolbar.setPadding(0, insets.top, 0, 0);
+            View rodape = findViewById(R.id.btnFinalizarInclusao);
+            rodape.setPadding(0, 0, 0, insets.bottom);
+
+            return WindowInsetsCompat.CONSUMED;
+        });
         ButterKnife.bind(this);
 
         context = this;
@@ -513,22 +526,6 @@ public class ActivityPedidoAnexo extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.menu_salvar_produto:
                 Toast.makeText(context, "Opção em desenvolvimento", Toast.LENGTH_LONG).show();
-                //pedidoAnexo.setIdAnexo(1);
-                /*
-                try {
-                    pedidoAnexo.setIdAnexo(PedidoHelper.getListaPedidoAnexo().size() + 1);
-                } catch ( NullPointerException e) {
-                    pedidoAnexo.setIdAnexo(1);
-                }
-                 */
-                /*
-                if (fotoAnexo == null && fotoMiniatura == null) {
-                    Toast.makeText(this, "Falha ao obter imagem!!", Toast.LENGTH_LONG).show();
-                    finish();
-                    break;
-                }
-                salvarAnexo();
-                 */
                 break;
         }
         return super.onOptionsItemSelected(item);

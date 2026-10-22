@@ -2,6 +2,7 @@ package com.example.rcksuporte05.rcksistemas.util;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -835,5 +837,321 @@ public class DialogHelper {
                 break;
             }
         }
+    }
+
+    public static void showRaioXClienteDialog(
+            Context context,
+            String nomeCliente,
+            double totalFaturado,
+            int totalPedidos,
+            double ticketMedio,
+            String dataUltimaCompra,
+            String frequenciaMedia,
+            String topProdutosTexto,
+            Runnable onIniciarPedido) {
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog_Rounded);
+        View headerView = LayoutInflater.from(context).inflate(R.layout.dialog_header_centralizado_positive_button, null);
+        ImageView imgIcon = headerView.findViewById(R.id.dialog_icon);
+        if (imgIcon != null) {
+            imgIcon.setImageResource(R.drawable.baseline_analytics_24);
+        }
+
+        String mensagem = nomeCliente + "\n\n" +
+                "• Faturamento Acumulado: " + MascaraUtil.mascaraRealSimboloD(totalFaturado) + "\n" +
+                "• Histórico: " + totalPedidos + " pedido(s) realizado(s)\n" +
+                "• Ticket Médio: " + MascaraUtil.mascaraRealSimboloD(ticketMedio) + "\n" +
+                "• Última Compra: " + dataUltimaCompra + "\n" +
+                "• Frequência Média: " + frequenciaMedia + "\n\n" +
+                "TOP 5 PRODUTOS MAIS COMPRADOS (CURVA A):\n" + topProdutosTexto;
+
+        builder.setCustomTitle(headerView);
+        builder.setTitle("RAIO-X DE COMPRAS DO CLIENTE");
+        builder.setMessage(mensagem);
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("INICIAR PEDIDO", (dialog, which) -> {
+            if (onIniciarPedido != null) onIniciarPedido.run();
+        });
+
+        builder.setNegativeButton("CANCELAR", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        if (btnPos != null && btnNeg != null) {
+            LinearLayout parent = (LinearLayout) btnPos.getParent();
+            android.view.ViewGroup.LayoutParams lp = parent.getLayoutParams();
+            lp.width = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+            parent.setLayoutParams(lp);
+            parent.setGravity(Gravity.CENTER);
+            parent.setPadding(0, 0, 0, 0);
+
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                View child = parent.getChildAt(i);
+                if (child instanceof android.widget.Space)
+                    child.setVisibility(View.GONE);
+            }
+
+            int corPositiva = context.getColor(R.color.colorPrimary);
+            int corNegativa = context.getColor(R.color.colorButton);
+            styleActionButton(context, btnPos, corPositiva);
+            styleActionButton(context, btnNeg, corNegativa);
+            parent.requestLayout();
+        }
+    }
+
+    public static void showCheckInClienteDialog(
+            Context context,
+            String razaoSocial,
+            String nomeFantasia,
+            String endereco,
+            OnConfirmListener onConfirmCheckIn) {
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_checkin_cliente, null);
+
+        TextView tvRazao = dialogView.findViewById(R.id.tvCheckInRazaoSocial);
+        TextView tvFantasia = dialogView.findViewById(R.id.tvCheckInNomeFantasia);
+        TextView tvEnd = dialogView.findViewById(R.id.tvCheckInEndereco);
+
+        TextView tvLat = dialogView.findViewById(R.id.tvCheckInLatitude);
+        TextView tvLng = dialogView.findViewById(R.id.tvCheckInLongitude);
+        TextView tvAltPrec = dialogView.findViewById(R.id.tvCheckInAltitudePrecisao);
+        ImageView ivMap = dialogView.findViewById(R.id.ivPlaceholderMapa);
+
+        if (tvRazao != null && razaoSocial != null && !razaoSocial.isEmpty()) {
+            tvRazao.setText(razaoSocial);
+        }
+        if (tvFantasia != null && nomeFantasia != null && !nomeFantasia.isEmpty()) {
+            tvFantasia.setText(nomeFantasia);
+        }
+        if (tvEnd != null && endereco != null && !endereco.isEmpty()) {
+            tvEnd.setText(endereco);
+        }
+
+        Button btnConfirmarCheckIn = dialogView.findViewById(R.id.btnConfirmarCheckIn);
+        if (btnConfirmarCheckIn != null) {
+            btnConfirmarCheckIn.setEnabled(false);
+            btnConfirmarCheckIn.setAlpha(0.5f);
+        }
+
+        // BINDING DE LOCALIZAÇÃO GPS EM TEMPO REAL
+        if (tvLat != null) tvLat.setText("Obtendo...");
+        if (tvLng != null) tvLng.setText("Obtendo...");
+        if (tvAltPrec != null) tvAltPrec.setText("Buscando GPS...");
+
+        GpsLocationHelper.obterLocalizacaoAtual(context, new GpsLocationHelper.OnLocationResultListener() {
+            @Override
+            public void onLocationReceived(GpsLocationHelper.LocationData locationData) {
+                if (btnConfirmarCheckIn != null) {
+                    btnConfirmarCheckIn.setEnabled(true);
+                    btnConfirmarCheckIn.setAlpha(1.0f);
+                }
+                if (locationData != null && locationData.hasLocation) {
+                    if (tvLat != null) tvLat.setText(String.format(java.util.Locale.US, "%.5f", locationData.latitude));
+                    if (tvLng != null) tvLng.setText(String.format(java.util.Locale.US, "%.5f", locationData.longitude));
+                    if (tvAltPrec != null) tvAltPrec.setText(String.format(java.util.Locale.US, "%.0fm / %.1fm", locationData.altitude, locationData.accuracy));
+
+                    // CARREGA IMAGEM ESTÁTICA DO MAPA COM GLIDE E FALLBACK AUTOMÁTICO
+                    if (ivMap != null) {
+                        try {
+                            ivMap.setColorFilter(null);
+                            TextView tvTextoPlaceholder = dialogView.findViewById(R.id.tvTextoPlaceholderMapa);
+                            if (tvTextoPlaceholder != null) {
+                                tvTextoPlaceholder.setVisibility(View.GONE);
+                            }
+                            String urlGoogle = GpsLocationHelper.getGoogleStaticMapUrl(context, locationData.latitude, locationData.longitude, 600, 300);
+                            String urlOsm = GpsLocationHelper.getOsmStaticMapUrl(locationData.latitude, locationData.longitude, 600, 300);
+
+                            com.bumptech.glide.Glide.with(context)
+                                    .load(urlGoogle)
+                                    .error(com.bumptech.glide.Glide.with(context).load(urlOsm))
+                                    .into(ivMap);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                if (btnConfirmarCheckIn != null) {
+                    btnConfirmarCheckIn.setEnabled(true);
+                    btnConfirmarCheckIn.setAlpha(1.0f);
+                }
+                if (tvAltPrec != null) tvAltPrec.setText("GPS: " + message);
+            }
+        });
+
+        ImageView ivCapturarFoto = dialogView.findViewById(R.id.ivCapturarFoto);
+        if (ivCapturarFoto != null && context instanceof Activity) {
+            ivCapturarFoto.setOnClickListener(v -> {
+                CameraPhotoHelper.dispatchTakePictureIntent((Activity) context, ivCapturarFoto);
+            });
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        if (btnConfirmarCheckIn != null) {
+            btnConfirmarCheckIn.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (onConfirmCheckIn != null) {
+                    onConfirmCheckIn.onConfirm(dialogView, dialog);
+                }
+            });
+        }
+
+        Button btnCancelarCheckIn = dialogView.findViewById(R.id.btnCancelarCheckIn);
+        if (btnCancelarCheckIn != null) {
+            btnCancelarCheckIn.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
+    }
+
+    public interface OnMotivoSelectedListener {
+        void onMotivoSelected(String idMotivo, String descricaoMotivo);
+    }
+
+    public static void showOpcoesPosCheckInDialog(
+            Context context,
+            Runnable onContinuarPedido,
+            Runnable onNaoVenda) {
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_opcao_atendimento_venda, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        View cardPedido = dialogView.findViewById(R.id.cardOpcaoPedido);
+        if (cardPedido != null) {
+            cardPedido.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (onContinuarPedido != null) onContinuarPedido.run();
+            });
+        }
+
+        View cardNaoVenda = dialogView.findViewById(R.id.cardOpcaoNaoVenda);
+        if (cardNaoVenda != null) {
+            cardNaoVenda.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (onNaoVenda != null) onNaoVenda.run();
+            });
+        }
+
+        Button btnVoltar = dialogView.findViewById(R.id.btnVoltarAtendimento);
+        if (btnVoltar != null) {
+            btnVoltar.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
+    }
+
+    public interface OnNaoVendaConfirmedListener {
+        void onNaoVendaConfirmed(List<String> motivosSelecionados, String observacao);
+    }
+
+    public static void showRegistroNaoVendaDialog(
+            Context context,
+            com.example.rcksuporte05.rcksistemas.DAO.DBHelper db,
+            String razaoSocial,
+            String nomeFantasia,
+            String endereco,
+            OnNaoVendaConfirmedListener listener) {
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_registro_nao_venda, null);
+
+        TextView tvRazao = dialogView.findViewById(R.id.tvNaoVendaRazaoSocial);
+        TextView tvFantasia = dialogView.findViewById(R.id.tvNaoVendaNomeFantasia);
+        TextView tvEnd = dialogView.findViewById(R.id.tvNaoVendaEndereco);
+
+        if (tvRazao != null && razaoSocial != null && !razaoSocial.isEmpty()) {
+            tvRazao.setText(razaoSocial);
+        }
+        if (tvFantasia != null && nomeFantasia != null && !nomeFantasia.isEmpty()) {
+            tvFantasia.setText(nomeFantasia);
+        }
+        if (tvEnd != null && endereco != null && !endereco.isEmpty()) {
+            tvEnd.setText(endereco);
+        }
+
+        // CARREGA MOTIVOS E CRIA CHECKBOXES DINÂMICOS
+        LinearLayout containerCheckboxes = dialogView.findViewById(R.id.containerCheckboxesMotivos);
+        List<android.widget.CheckBox> checkBoxesList = new java.util.ArrayList<>();
+
+        com.example.rcksuporte05.rcksistemas.DAO.CadastroMotivoDAO motivoDAO = new com.example.rcksuporte05.rcksistemas.DAO.CadastroMotivoDAO(db);
+        List<com.example.rcksuporte05.rcksistemas.model.MotivoNaoCadastramento> listaMotivos = motivoDAO.getLista();
+
+        List<String> titulosMotivos = new java.util.ArrayList<>();
+        if (listaMotivos != null && !listaMotivos.isEmpty()) {
+            for (com.example.rcksuporte05.rcksistemas.model.MotivoNaoCadastramento m : listaMotivos) {
+                titulosMotivos.add(m.getMotivo());
+            }
+        } else {
+            titulosMotivos.add("Estoque cheio / Sem necessidade no momento");
+            titulosMotivos.add("Preço da concorrência mais atraente");
+            titulosMotivos.add("Cliente ausente / Estabelecimento fechado");
+            titulosMotivos.add("Cliente com pendência / problema financeiro");
+            titulosMotivos.add("Comprador em reunião / não pôde atender");
+            titulosMotivos.add("Outros motivos");
+        }
+
+        if (containerCheckboxes != null) {
+            for (String itemMotivo : titulosMotivos) {
+                android.widget.CheckBox cb = new android.widget.CheckBox(context);
+                cb.setText(itemMotivo);
+                cb.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 12);
+                cb.setTextColor(context.getColor(R.color.preto));
+                cb.setPadding(8, 4, 8, 4);
+                containerCheckboxes.addView(cb);
+                checkBoxesList.add(cb);
+            }
+        }
+
+        EditText edtObservacao = dialogView.findViewById(R.id.edtObservacaoNaoVenda);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        Button btnConfirmar = dialogView.findViewById(R.id.btnConfirmarNaoVenda);
+        if (btnConfirmar != null) {
+            btnConfirmar.setOnClickListener(v -> {
+                List<String> motivosSelecionados = new java.util.ArrayList<>();
+                for (android.widget.CheckBox cb : checkBoxesList) {
+                    if (cb.isChecked()) {
+                        motivosSelecionados.add(cb.getText().toString());
+                    }
+                }
+
+                String obs = edtObservacao != null ? edtObservacao.getText().toString().trim() : "";
+
+                if (motivosSelecionados.isEmpty() && obs.isEmpty()) {
+                    Toast.makeText(context, "Selecione ao menos um motivo ou digite uma observação!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                dialog.dismiss();
+                if (listener != null) {
+                    listener.onNaoVendaConfirmed(motivosSelecionados, obs);
+                }
+            });
+        }
+
+        Button btnCancelar = dialogView.findViewById(R.id.btnCancelarNaoVenda);
+        if (btnCancelar != null) {
+            btnCancelar.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
     }
 }

@@ -15,17 +15,17 @@ import java.lang.Override;
 public class ActivityTecnico_ViewBinding implements Unbinder {
   private ActivityTecnico target;
 
+  private View view7f0a0126;
+
   private View view7f0a0125;
 
   private View view7f0a0124;
 
+  private View view7f0a0122;
+
   private View view7f0a0123;
 
   private View view7f0a0121;
-
-  private View view7f0a0122;
-
-  private View view7f0a0120;
 
   @UiThread
   public ActivityTecnico_ViewBinding(ActivityTecnico target) {
@@ -39,7 +39,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_tabela_rck, "field 'btn_tecnico_update_tabela_rck' and method 'updateTabelasRck'");
     target.btn_tecnico_update_tabela_rck = Utils.castView(view, R.id.btn_tecnico_update_tabela_rck, "field 'btn_tecnico_update_tabela_rck'", Button.class);
-    view7f0a0125 = view;
+    view7f0a0126 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -48,7 +48,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_tabela_app, "field 'btn_tecnico_update_tabela_app' and method 'updateTabelasApp'");
     target.btn_tecnico_update_tabela_app = Utils.castView(view, R.id.btn_tecnico_update_tabela_app, "field 'btn_tecnico_update_tabela_app'", Button.class);
-    view7f0a0124 = view;
+    view7f0a0125 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_indice_app, "field 'btn_tecnico_update_indice_app' and method 'updateIndiceApp'");
     target.btn_tecnico_update_indice_app = Utils.castView(view, R.id.btn_tecnico_update_indice_app, "field 'btn_tecnico_update_indice_app'", Button.class);
-    view7f0a0123 = view;
+    view7f0a0124 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,7 +65,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_tabela_app, "method 'listaTabelasApp'");
-    view7f0a0121 = view;
+    view7f0a0122 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_usuario_app, "method 'listaUsuarioApp'");
-    view7f0a0122 = view;
+    view7f0a0123 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_pedido_app, "method 'listaPedidoApp'");
-    view7f0a0120 = view;
+    view7f0a0121 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -101,17 +101,17 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     target.btn_tecnico_update_tabela_app = null;
     target.btn_tecnico_update_indice_app = null;
 
+    view7f0a0126.setOnClickListener(null);
+    view7f0a0126 = null;
     view7f0a0125.setOnClickListener(null);
     view7f0a0125 = null;
     view7f0a0124.setOnClickListener(null);
     view7f0a0124 = null;
+    view7f0a0122.setOnClickListener(null);
+    view7f0a0122 = null;
     view7f0a0123.setOnClickListener(null);
     view7f0a0123 = null;
     view7f0a0121.setOnClickListener(null);
     view7f0a0121 = null;
-    view7f0a0122.setOnClickListener(null);
-    view7f0a0122 = null;
-    view7f0a0120.setOnClickListener(null);
-    view7f0a0120 = null;
   }
 }

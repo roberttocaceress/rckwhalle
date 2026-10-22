@@ -279,6 +279,25 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
         buscaProduto.setOnQueryTextListener(new QueryTextListener());
         buscaProduto.setIconifiedByDefault(true);
 
+        // BLOQUEIO DE ASPAS SIMPLES (') NO SEARCHVIEW PARA EVITAR CONFLITOS DE SINTAXE E SQL
+        try {
+            EditText searchEditText = buscaProduto.findViewById(androidx.appcompat.R.id.search_src_text);
+            if (searchEditText != null) {
+                searchEditText.setFilters(new android.text.InputFilter[]{
+                    (source, start, end, dest, dstart, dend) -> {
+                        for (int i = start; i < end; i++) {
+                            if (source.charAt(i) == '\'') {
+                                return ""; // Bloqueia a digitação ou colagem de aspas simples (')
+                            }
+                        }
+                        return null; // Permite os demais caracteres
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             SQL = "SELECT COUNT(*) AS TOTALREG FROM TBL_PRODUTO AS P WHERE P.ATIVO = 'S' AND P.EXCLUIDO <> 'S'";
             totalReg = produtoDAO.getTotalReg(SQL);
@@ -797,80 +816,6 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
                 }
         );
     }
-    public void showUltimoPrecoOldOld(Produto produto, int idCliente, Intent intent, int position) {
-        // 1. Validação inicial (Mantida sua lógica)
-        if (String.valueOf(idCliente) == null) {
-            PedidoHelper.setProduto(produto);
-            startActivityForResult(intent, position);
-            return;
-        }
-
-        String SQL = "SELECT MAX(ITENS.ID_WEB_ITEM_SERVIDOR), PEDIDO.DATA_EMISSAO, ITENS.ID_PEDIDO, " +
-                "ITENS.NOME_PRODUTO, ITENS.VALOR_UNITARIO, ITENS.VALOR_DESCONTO_PER, ITENS.QUANTIDADE FROM TBL_WEB_PEDIDO_ITENS AS ITENS INNER JOIN " +
-                "TBL_WEB_PEDIDO AS PEDIDO ON (PEDIDO.ID_CADASTRO = " + idCliente + " AND PEDIDO.ID_WEB_PEDIDO = ITENS.ID_PEDIDO) " +
-                "WHERE ITENS.ID_PRODUTO = '" + produto.getId_produto() + "'";
-
-        Generico generico = db.pegaUltimoPreco(SQL);
-
-        if (generico == null || generico.getId().equalsIgnoreCase("0")) {
-            PedidoHelper.setProduto(produto);
-            startActivityForResult(intent, position);
-            return;
-        }
-
-        // --- INÍCIO DA CONSTRUÇÃO DO DIÁLOGO ESTILO DIALOGHELPER ---
-
-        // 2. Inflar o Layout Customizado (Ajustado para não dar erro de parent)
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_alert_ultimo_preco, null);
-
-        // Configurar campos do seu layout customizado
-        EditText edtDataCompra = dialogView.findViewById(R.id.edtDataCompra);
-        EditText edtQtdeCompra = dialogView.findViewById(R.id.edtQtdeCompra);
-        EditText edtUltimoPreco = dialogView.findViewById(R.id.edtUltimoPreco);
-
-        edtDataCompra.setText(MascaraUtil.formataData(generico.getDatae(), "/", 8));
-        edtQtdeCompra.setText(generico.getQtde_produto());
-
-        // Cálculo do desconto (Sua lógica)
-        if (generico.getPerc_desconto() != null && Float.parseFloat(generico.getPerc_desconto()) > 0.00f) {
-            float valorOriginal = Float.parseFloat(generico.getValor());
-            float percDesconto = Float.parseFloat(generico.getPerc_desconto());
-            generico.setValor(String.valueOf(valorOriginal - (percDesconto / 100 * valorOriginal)));
-        }
-        edtUltimoPreco.setText(MascaraUtil.mascaraRealSimbolo(generico.getValor()));
-
-        // 3. Criar o MaterialAlertDialogBuilder (Usando o estilo de bordas arredondadas)
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_Rounded);
-
-        // 4. Configurar o Cabeçalho Centralizado (Igual ao DialogHelper)
-        View headerView = LayoutInflater.from(this).inflate(R.layout.dialog_header_centralizado, null);
-        //TextView tvTitulo = headerView.findViewById(R.id.dialog_title);
-        ImageView ivIcone = headerView.findViewById(R.id.dialog_icon);
-
-        //tvTitulo.setText("Última Compra");
-        //ivIcone.setImageResource(R.drawable.ic_historico); // Use um ícone adequado aqui
-
-        builder.setCustomTitle(headerView);
-        builder.setMessage(produto.getNome_produto());
-        builder.setView(dialogView);
-
-        // 5. Configurar Botões
-        builder.setPositiveButton("Continuar", (dialog, which) -> {
-            PedidoHelper.setProduto(produto);
-            startActivityForResult(intent, position);
-        });
-        // O botão SÓ APARECE se você definir um texto e um listener (pode ser null)
-        builder.setNegativeButton("Cancelar", (dialog, which) -> {
-            dialog.dismiss();
-        });
-
-        // 6. Mostrar o Diálogo
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // 7. APLICAR O AJUSTE VERTICAL E ESTILO (PADRÃO ANDROID 15 / TABLET)
-        formatarBotoesDialogo(dialog);
-    }
 
     /**
      * Método auxiliar para aplicar a mesma estética do DialogHelper
@@ -931,55 +876,6 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
             btnPos.setTextColor(getColor(R.color.colorButton));
             btnNeg.setTextColor(Color.GRAY);
         }
-    }
-    public void showUltimoPrecoOld(Produto produto, int idCliente, Intent intent, int position) {
-        if ( String.valueOf(idCliente) == null) {
-            PedidoHelper.setProduto(produto);
-            startActivityForResult(intent, position);
-            return;
-        }
-        String SQL = "SELECT MAX(ITENS.ID_WEB_ITEM_SERVIDOR), PEDIDO.DATA_EMISSAO, ITENS.ID_PEDIDO, " +
-                "ITENS.NOME_PRODUTO, ITENS.VALOR_UNITARIO, ITENS.VALOR_DESCONTO_PER, ITENS.QUANTIDADE FROM TBL_WEB_PEDIDO_ITENS AS ITENS INNER JOIN " +
-                "TBL_WEB_PEDIDO AS PEDIDO ON (PEDIDO.ID_CADASTRO = " +  idCliente + " AND PEDIDO.ID_WEB_PEDIDO = ITENS.ID_PEDIDO) " +
-                "WHERE ITENS.ID_PRODUTO = '" + produto.getId_produto()+ "'";
-        Generico generico = db.pegaUltimoPreco(SQL);
-        if ( generico == null  || generico.getId().equalsIgnoreCase("0") ) {
-            PedidoHelper.setProduto(produto);
-            startActivityForResult(intent, position);
-            return;
-        }
-        ViewGroup viewGroup = ((Activity) context).findViewById(R.id.rootx);
-        View dialogView = LayoutInflater.from(context.getApplicationContext()).inflate(R.layout.dialog_alert_ultimo_preco, viewGroup, true);
-        EditText edtDataCompra = dialogView.findViewById(R.id.edtDataCompra);
-        edtDataCompra.setText(MascaraUtil.formataData(generico.getDatae(), "/", 8));
-
-        EditText edtQtdeCompra = dialogView.findViewById(R.id.edtQtdeCompra);
-        edtQtdeCompra.setText(generico.getQtde_produto());
-
-
-        EditText edtUltimoPreco = dialogView.findViewById(R.id.edtUltimoPreco);
-        if ( generico.getPerc_desconto() != null || Float.parseFloat(generico.getPerc_desconto()) > 0.00f) {
-            generico.setValor( String.valueOf(Float.parseFloat(generico.getValor()) -  (Float.parseFloat(generico.getPerc_desconto()) / 100) * Float.parseFloat(generico.getValor())) );
-        }
-        edtUltimoPreco.setText(MascaraUtil.mascaraRealSimbolo(generico.getValor()));
-
-        new AlertDialog.Builder(ActivityProdutoDrawer.this)
-                .setTitle("Ultima compra")
-                .setMessage(produto.getNome_produto())
-                .setView(dialogView)
-                .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        PedidoHelper.setProduto(produto);
-                        startActivityForResult(intent, position);
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //Toast.makeText(context, "Ação cancelada!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .show();
-        //edtCodigoAcesso.requestFocus();
     }
 
     private void showResultActivityProdutoImagem(int position) {
@@ -1202,9 +1098,9 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
                     else
                         SQL = "SELECT P.* , '' AS PRECO_TABELA_CLIENTE, '' AS NOME_TABELA, '' AS W_ID_PRODUTO, '' AS ID_CAMPANHA, '' AS ID_CAMPANHA_C FROM TBL_PRODUTO AS P WHERE P.ATIVO = 'S' AND P.EXCLUIDO <> 'S' ORDER BY P.NOME_PRODUTO ";
                     if (configuracao.getTrabalha_com_paginacao_dados().equalsIgnoreCase("S"))
-                        listaProduto = produtoDAO.getLista(SQL + "LIMIT " + limitReg + " OFFSET " + offSet,(acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "");
+                        listaProduto = produtoDAO.getLista(SQL + "LIMIT " + limitReg + " OFFSET " + offSet,(acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "", configuracao);
                     else
-                        listaProduto = produtoDAO.getLista(SQL,(acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "");
+                        listaProduto = produtoDAO.getLista(SQL,(acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "", configuracao);
                     setRecyclerView(listaProduto, 1);
                 } else {
                     if (runnable != null) {
@@ -1269,7 +1165,7 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
                 totalReg = produtoDAO.getTotalReg(SQL);
                 offSet = 0;
                 if ((acao == 1 || acao == 2) && ClienteHelper.getCliente() != null) {
-                    Cliente webCliente = ClienteHelper.getCliente();
+                    //Cliente webCliente = ClienteHelper.getCliente();
                     if (configuracao.getMarca_produto_ja_comprado() == null || configuracao.getMarca_produto_ja_comprado().isEmpty() || configuracao.getMarca_produto_ja_comprado().equalsIgnoreCase("N")) {
                         SQL = "SELECT P.*,  TI.VALOR_UNITARIO AS PRECO_TABELA_CLIENTE, TC.NOME_TABELA AS NOME_TABELA, WP.ID_PRODUTO AS W_ID_PRODUTO," +
                                 " CP.ID_CAMPANHA AS ID_CAMPANHA, CC.ID_CAMPANHA AS ID_CAMPANHA_C, '' AS OUTRAS_COMPRAS" +
@@ -1298,9 +1194,9 @@ public class ActivityProdutoDrawer extends AppCompatActivity implements Navigati
                 }else {
                     SQL = "SELECT P.*, '' AS PRECO_TABELA_CLIENTE, '' AS NOME_TABELA, '' AS W_ID_PRODUTO, '' AS ID_CAMPANHA, '' AS ID_CAMPANHA_C FROM TBL_PRODUTO AS P WHERE (P.NOME_PRODUTO LIKE '%" + query + "%' OR P.ID_PRODUTO LIKE '%" + query + "%' OR P.CODIGO_EM_BARRAS LIKE '%" + query + "%') AND ( P.ATIVO = 'S' AND P.EXCLUIDO <> 'S' ) ORDER BY P.ATIVO DESC, P.NOME_PRODUTO ";
                 }if (configuracao.getTrabalha_com_paginacao_dados().equalsIgnoreCase("S")) {
-                    listaProduto = produtoDAO.getLista(SQL + "LIMIT " + limitReg + " OFFSET " + offSet, (acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "");
+                    listaProduto = produtoDAO.getLista(SQL + "LIMIT " + limitReg + " OFFSET " + offSet, (acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "", configuracao);
                 }else {
-                    listaProduto = produtoDAO.getLista(SQL, (acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "");
+                    listaProduto = produtoDAO.getLista(SQL, (acao == 1 || acao == 2) && ClienteHelper.getCliente() != null ? String.valueOf(ClienteHelper.getCliente().getId_cadastro_servidor()) : "", configuracao);
                 }
                 setRecyclerView(listaProduto, 1);
             } catch (CursorIndexOutOfBoundsException | NullPointerException e) {

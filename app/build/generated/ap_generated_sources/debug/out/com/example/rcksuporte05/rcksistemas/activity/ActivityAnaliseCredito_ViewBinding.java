@@ -16,7 +16,7 @@ import java.lang.Override;
 public class ActivityAnaliseCredito_ViewBinding implements Unbinder {
   private ActivityAnaliseCredito target;
 
-  private View view7f0a00ef;
+  private View view7f0a00f0;
 
   @UiThread
   public ActivityAnaliseCredito_ViewBinding(ActivityAnaliseCredito target) {
@@ -37,7 +37,7 @@ public class ActivityAnaliseCredito_ViewBinding implements Unbinder {
     target.txtLimiteUtilizado = Utils.findRequiredViewAsType(source, R.id.txtLimiteUtilizado, "field 'txtLimiteUtilizado'", TextView.class);
     target.txtSaldoRestante = Utils.findRequiredViewAsType(source, R.id.txtSaldoRestante, "field 'txtSaldoRestante'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnOk, "method 'onClick'");
-    view7f0a00ef = view;
+    view7f0a00f0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +62,7 @@ public class ActivityAnaliseCredito_ViewBinding implements Unbinder {
     target.txtLimiteUtilizado = null;
     target.txtSaldoRestante = null;
 
-    view7f0a00ef.setOnClickListener(null);
-    view7f0a00ef = null;
+    view7f0a00f0.setOnClickListener(null);
+    view7f0a00f0 = null;
   }
 }

@@ -27,6 +27,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.Color;
 import android.net.Uri;
@@ -49,6 +50,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +58,7 @@ import com.example.rcksuporte05.rcksistemas.BO.CadastroAnexoBO;
 import com.example.rcksuporte05.rcksistemas.BO.UsuarioBO;
 import com.example.rcksuporte05.rcksistemas.BuildConfig;
 import com.example.rcksuporte05.rcksistemas.DAO.BairroDAO;
+import com.example.rcksuporte05.rcksistemas.util.CameraPhotoHelper;
 import com.example.rcksuporte05.rcksistemas.DAO.CadastroAnexoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.CategoriaDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.ClienteDAO;
@@ -319,6 +322,25 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         recyclerView.addOnScrollListener(new ActivityClienteDrawer.ScrollListener());
         buscaCliente.setOnQueryTextListener(new QueryTextListener());
         buscaCliente.setIconifiedByDefault(true);
+
+        // BLOQUEIO DE ASPAS SIMPLES (') NO SEARCHVIEW PARA EVITAR CONFLITOS DE SINTAXE E SQL
+        try {
+            EditText searchEditText = buscaCliente.findViewById(androidx.appcompat.R.id.search_src_text);
+            if (searchEditText != null) {
+                searchEditText.setFilters(new android.text.InputFilter[]{
+                    (source, start, end, dest, dstart, dend) -> {
+                        for (int i = start; i < end; i++) {
+                            if (source.charAt(i) == '\'') {
+                                return ""; // Bloqueia a digitação ou colagem de aspas simples (')
+                            }
+                        }
+                        return null; // Permite os demais caracteres
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setListenerCliente();
         setRecyclerView(getListaClientes(0, "", "", "", "", ""), 2);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -2008,8 +2030,102 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
         continuarParaPedido(idEmpresa);
+        //exibirDialogRaioXCliente(cliente, () -> continuarParaPedido(idEmpresa));
+    }
+
+    /**
+     * PROTÓTIPO TEMPORÁRIO DE TESTE: Diálogo Raio-X de Compras do Cliente (Pré-Análise)
+     */
+    private void exibirDialogRaioXCliente(Cliente cliente, Runnable onContinuar) {
+        if (cliente == null) {
+            onContinuar.run();
+            return;
+        }
+
+        int idCad = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+
+        // 1. Consulta Indicadores do Cliente no SQLite local
+        int totalPedidos = db.contagem("SELECT COUNT(*) FROM TBL_WEB_PEDIDO WHERE (ID_CADASTRO = " + idCad + " OR ID_CADASTRO = " + cliente.getId_cadastro() + ") AND EXCLUIDO = 'N'");
+        double totalFaturado = db.soma("SELECT SUM(VALOR_TOTAL) FROM TBL_WEB_PEDIDO WHERE (ID_CADASTRO = " + idCad + " OR ID_CADASTRO = " + cliente.getId_cadastro() + ") AND EXCLUIDO = 'N'");
+        double ticketMedio = totalPedidos > 0 ? (totalFaturado / totalPedidos) : 0;
+
+        String dataUltimaStr = db.consultaDados("SELECT MAX(DATA_EMISSAO) FROM TBL_WEB_PEDIDO WHERE (ID_CADASTRO = " + idCad + " OR ID_CADASTRO = " + cliente.getId_cadastro() + ") AND EXCLUIDO = 'N'", "MAX(DATA_EMISSAO)");
+        String dataPrimeiraStr = db.consultaDados("SELECT MIN(DATA_EMISSAO) FROM TBL_WEB_PEDIDO WHERE (ID_CADASTRO = " + idCad + " OR ID_CADASTRO = " + cliente.getId_cadastro() + ") AND EXCLUIDO = 'N'", "MIN(DATA_EMISSAO)");
+
+        String dataUltimaFormatada = "Não informada";
+        String freqMediaStr = "Sem histórico suficiente";
+        long diasSemComprar = -1;
+
+        SimpleDateFormat sdfSql = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US);
+        SimpleDateFormat sdfBr = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.US);
+
+        try {
+            if (dataUltimaStr != null && !dataUltimaStr.trim().isEmpty()) {
+                java.util.Date dUltima = sdfSql.parse(dataUltimaStr.substring(0, 10));
+                dataUltimaFormatada = sdfBr.format(dUltima);
+
+                long diffMs = new java.util.Date().getTime() - dUltima.getTime();
+                diasSemComprar = java.util.concurrent.TimeUnit.MILLISECONDS.toDays(diffMs);
+                if (diasSemComprar >= 0) {
+                    dataUltimaFormatada += " (há " + diasSemComprar + " dias)";
+                }
+
+                if (totalPedidos >= 2 && dataPrimeiraStr != null && !dataPrimeiraStr.trim().isEmpty()) {
+                    java.util.Date dPrimeira = sdfSql.parse(dataPrimeiraStr.substring(0, 10));
+                    long diffTotalMs = dUltima.getTime() - dPrimeira.getTime();
+                    long totalDiasPeriodo = java.util.concurrent.TimeUnit.MILLISECONDS.toDays(diffTotalMs);
+                    long mediaDias = totalDiasPeriodo / (totalPedidos - 1);
+                    if (mediaDias > 0) {
+                        freqMediaStr = "A cada " + mediaDias + " dia(s)";
+                    } else {
+                        freqMediaStr = "Recorrente / Diária";
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 2. Consulta Top 5 Produtos Comprados (Curva A Financeira)
+        StringBuilder sbTopProdutos = new StringBuilder();
+        String sqlTop = "SELECT I.NOME_PRODUTO, SUM(I.QUANTIDADE) AS QTD, SUM(I.VALOR_TOTAL) AS VALOR " +
+                "FROM TBL_WEB_PEDIDO_ITENS AS I INNER JOIN TBL_WEB_PEDIDO AS P ON (P.ID_WEB_PEDIDO = I.ID_PEDIDO OR P.ID_PEDIDO = I.ID_PEDIDO) " +
+                "WHERE (P.ID_CADASTRO = " + idCad + " OR P.ID_CADASTRO = " + cliente.getId_cadastro() + ") AND P.EXCLUIDO = 'N' " +
+                "GROUP BY I.ID_PRODUTO, I.NOME_PRODUTO ORDER BY VALOR DESC LIMIT 5";
+
+        Cursor cursor = db.listaDados(sqlTop);
+        int rank = 1;
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String nomeProd = cursor.getString(cursor.getColumnIndex("NOME_PRODUTO"));
+                @SuppressLint("Range") double qtd = cursor.getDouble(cursor.getColumnIndex("QTD"));
+                @SuppressLint("Range") double valor = cursor.getDouble(cursor.getColumnIndex("VALOR"));
+
+                sbTopProdutos.append(rank).append(". ").append(nomeProd).append("\n")
+                        .append("   • Volume: ").append(String.format(java.util.Locale.US, "%.0f", qtd)).append(" un | ")
+                        .append("Total: ").append(MascaraUtil.mascaraRealSimboloD(valor)).append("\n\n");
+                rank++;
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        if (sbTopProdutos.length() == 0) {
+            sbTopProdutos.append("Nenhum histórico de produtos faturados para este cliente.");
+        }
+
+        // 3. Exibe usando o padrão padronizado do DialogHelper
+        DialogHelper.showRaioXClienteDialog(
+                this,
+                cliente.getNome_cadastro(),
+                totalFaturado,
+                totalPedidos,
+                ticketMedio,
+                dataUltimaFormatada,
+                freqMediaStr,
+                sbTopProdutos.toString().trim(),
+                onContinuar
+        );
     }
 
     /**
@@ -2066,25 +2182,77 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
     }
 
     private void continuarParaPedido(String idEmpresa) {
-        /*
-        ActivityPedidoMain activityPedidoMain = new ActivityPedidoMain();
-        Pedido2 pedido2 = new Pedido2();
-        activityPedidoMain.pegaCliente(ClienteHelper.getCliente());
-        pedido2.pegaCliente(ClienteHelper.getCliente());
-        startActivity(new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class).putExtra("id_empresa", idEmpresa));
-         */
-        new PedidoHelper().limparDados();
-
-        // 2. Garante que o cliente selecionado esteja ativo no Helper
         Cliente cliente = ClienteHelper.getCliente();
-        if (cliente != null) {
-            ClienteHelper.setCliente(cliente);
-        }
+        String razao = cliente != null ? cliente.getNome_cadastro() : "";
+        String fantasia = cliente != null ? cliente.getNome_fantasia() : "";
+        String end = cliente != null ? (cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf()) : "";
 
-        // 3. Abre a tela principal do pedido limpa
-        Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
-        intent.putExtra("id_empresa", idEmpresa);
-        startActivity(intent);
+        DialogHelper.showCheckInClienteDialog(
+                this,
+                razao,
+                fantasia,
+                end,
+                (dialogView, dialog) -> {
+                    // Após confirmar Check-In, abre o diálogo de intenção de atendimento
+                    DialogHelper.showOpcoesPosCheckInDialog(
+                            this,
+                            () -> {
+                                // Opção 1: CONTINUAR PARA O PEDIDO
+                                new PedidoHelper().limparDados();
+                                if (cliente != null) {
+                                    ClienteHelper.setCliente(cliente);
+                                }
+                                Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
+                                intent.putExtra("id_empresa", idEmpresa);
+                                startActivity(intent);
+                            },
+                            () -> {
+                                // Opção 2: REGISTRAR NÃO VENDA
+                                DialogHelper.showRegistroNaoVendaDialog(
+                                        this,
+                                        db,
+                                        razao,
+                                        fantasia,
+                                        end,
+                                        (motivosSelecionados, observacao) -> {
+                                            StringBuilder sbMotivos = new StringBuilder();
+                                            if (motivosSelecionados != null && !motivosSelecionados.isEmpty()) {
+                                                for (int i = 0; i < motivosSelecionados.size(); i++) {
+                                                    if (i > 0) sbMotivos.append(", ");
+                                                    sbMotivos.append(motivosSelecionados.get(i));
+                                                }
+                                            } else {
+                                                sbMotivos.append("Nenhum motivo marcado");
+                                            }
+
+                                            String msgFeedback = "Check-in e Não Venda registrados com sucesso!\n\n" +
+                                                    "• Cliente: " + razao + "\n" +
+                                                    "• Motivo(s): " + sbMotivos.toString() +
+                                                    (!observacao.isEmpty() ? "\n• Obs: " + observacao : "");
+
+                                            DialogHelper.showFeedbackDialog(
+                                                    this,
+                                                    "VISITA REGISTRADA",
+                                                    msgFeedback,
+                                                    true,
+                                                    R.drawable.ic_baseline_check_circle_outline_24_color_primary,
+                                                    null,
+                                                    null
+                                            );
+                                        }
+                                );
+                            }
+                    );
+                }
+        );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CameraPhotoHelper.REQUEST_CAMERA_CODE) {
+            CameraPhotoHelper.handleActivityResult(requestCode, resultCode);
+        }
     }
 
     private void delClienteFirebase(String cnpj, Cliente webCliente) {

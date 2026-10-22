@@ -22,6 +22,22 @@
             android:padding="12dp">
 
             <!-- Informações Adaptadas para Tablet (Sem Imagem) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="top"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="0dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageAnexo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="0dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_image_gallery_newww" />
+            </androidx.cardview.widget.CardView>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

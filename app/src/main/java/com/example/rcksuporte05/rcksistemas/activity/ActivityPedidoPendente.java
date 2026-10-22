@@ -1814,76 +1814,97 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
         toggleSelection(position);
     }
 
+    private void reiniciarActivityPorErro() {
+        Toast.makeText(this, "A seleção de pedidos apresentou uma inconsistência. A tela foi reiniciada.", Toast.LENGTH_LONG).show();
+        if (actionMode != null) {
+            try { actionMode.finish(); } catch (Exception ignored) {}
+        }
+        if (listaPedidoAdapter != null) {
+            try { listaPedidoAdapter.clearSelections(); } catch (Exception ignored) {}
+        }
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
     private void toggleSelection(int position) {
-        listaPedidoAdapter.toggleSelection(position);
-        //int count = listaPedidoAdapter.getSelectedItemCount();
-        if (listaPedidoAdapter.getSelectedItemCount() == 0) {
-            actionMode.finish();
-        } else {
-            if (geraPDF != null)
-                if (listaPedidoAdapter.getSelectedItemCount() > 1)
-                    geraPDF.setVisible(false);
-                else
-                    geraPDF.setVisible(true);
-           // if (emailPDF != null)
-           //     if (listaPedidoAdapter.getSelectedItemCount() > 1)
-           //         emailPDF.setVisible(false);
-           //     else
-           //         emailPDF.setVisible(false);
-            if (duplicaPedido != null)
-                if (listaPedidoAdapter.getSelectedItemCount() > 1)
-                    duplicaPedido.setVisible(false);
-                else
-                    duplicaPedido.setVisible(true);
-            if (analisePedido != null)
-                if (listaPedidoAdapter.getSelectedItemCount() > 1)
-                    analisePedido.setVisible(false);
-                else
-                    analisePedido.setVisible(true);
-            boolean finalizado = false;
-            boolean pre_pedido = false;
-            boolean descto_indevido = false;
-            if (enviaPedido != null) {
-                for (WebPedido webPedido : listaPedidoAdapter.getItensSelecionados()) {
-                    if (webPedido.getFinalizado().equals("N"))
-                        finalizado = true;
-                    if (webPedido.getCadastro().getId_cadastro() == 0)
-                        pre_pedido = true;
-                    if ( webPedido.getDescontoIndevido().equalsIgnoreCase("S"))
-                        descto_indevido = true;
-                }
-                for ( int i = 0; i < listaPedidoAdapter.getItensSelecionados().size(); i++) {
-                    listaPedidoAdapter.getItensSelecionados().get(i).setTipo_envio("2");
-                    try {
-                        listaPedidoAdapter.getItensSelecionados().get(i).setId_android(Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID));
-                    } catch (Exception e) {
-                        listaPedidoAdapter.getItensSelecionados().get(i).setId_android("EXCEPTION");
+        try {
+            listaPedidoAdapter.toggleSelection(position);
+            //int count = listaPedidoAdapter.getSelectedItemCount();
+            if (listaPedidoAdapter.getSelectedItemCount() == 0) {
+                actionMode.finish();
+            } else {
+                if (geraPDF != null)
+                    if (listaPedidoAdapter.getSelectedItemCount() > 1)
+                        geraPDF.setVisible(false);
+                    else
+                        geraPDF.setVisible(true);
+               // if (emailPDF != null)
+               //     if (listaPedidoAdapter.getSelectedItemCount() > 1)
+               //         emailPDF.setVisible(false);
+               //     else
+               //         emailPDF.setVisible(false);
+                if (duplicaPedido != null)
+                    if (listaPedidoAdapter.getSelectedItemCount() > 1)
+                        duplicaPedido.setVisible(false);
+                    else
+                        duplicaPedido.setVisible(true);
+                if (analisePedido != null)
+                    if (listaPedidoAdapter.getSelectedItemCount() > 1)
+                        analisePedido.setVisible(false);
+                    else
+                        analisePedido.setVisible(true);
+                boolean finalizado = false;
+                boolean pre_pedido = false;
+                boolean descto_indevido = false;
+                if (enviaPedido != null) {
+                    for (WebPedido webPedido : listaPedidoAdapter.getItensSelecionados()) {
+                        if (webPedido.getFinalizado().equals("N"))
+                            finalizado = true;
+                        if (webPedido.getCadastro().getId_cadastro() == 0)
+                            pre_pedido = true;
+                        if ( webPedido.getDescontoIndevido().equalsIgnoreCase("S"))
+                            descto_indevido = true;
                     }
+                    for ( int i = 0; i < listaPedidoAdapter.getItensSelecionados().size(); i++) {
+                        listaPedidoAdapter.getItensSelecionados().get(i).setTipo_envio("2");
+                        try {
+                            listaPedidoAdapter.getItensSelecionados().get(i).setId_android(Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID));
+                        } catch (Exception e) {
+                            listaPedidoAdapter.getItensSelecionados().get(i).setId_android("EXCEPTION");
+                        }
+                    }
+                    if (finalizado) {
+                        enviaPedido.setVisible(false);
+                        geraPDF.setVisible(false);
+                        //emailPDF.setVisible(false);
+                        duplicaPedido.setVisible(false);
+                        selecionarTodos.setVisible(false);
+                        analisePedido.setVisible(false);
+                    } else {
+                        enviaPedido.setVisible(true);
+                        geraPDF.setVisible(true);
+                       // emailPDF.setVisible(false);
+                        duplicaPedido.setVisible(true);
+                        selecionarTodos.setVisible(true);
+                        analisePedido.setVisible(true);
+                    }
+                    if ( pre_pedido){
+                        enviaPedido.setVisible(false);
+                        duplicaPedido.setVisible(false);
+                    }
+                    if ( descto_indevido)
+                        duplicaPedido.setVisible(false);
                 }
-                if (finalizado) {
-                    enviaPedido.setVisible(false);
-                    geraPDF.setVisible(false);
-                    //emailPDF.setVisible(false);
-                    duplicaPedido.setVisible(false);
-                    selecionarTodos.setVisible(false);
-                    analisePedido.setVisible(false);
-                } else {
-                    enviaPedido.setVisible(true);
-                    geraPDF.setVisible(true);
-                   // emailPDF.setVisible(false);
-                    duplicaPedido.setVisible(true);
-                    selecionarTodos.setVisible(true);
-                    analisePedido.setVisible(true);
-                }
-                if ( pre_pedido){
-                    enviaPedido.setVisible(false);
-                    duplicaPedido.setVisible(false);
-                }
-                if ( descto_indevido)
-                    duplicaPedido.setVisible(false);
+                actionMode.setTitle(String.valueOf(listaPedidoAdapter.getSelectedItemCount()));
+                actionMode.invalidate();
             }
-            actionMode.setTitle(String.valueOf(listaPedidoAdapter.getSelectedItemCount()));
-            actionMode.invalidate();
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            reiniciarActivityPorErro();
+        } catch (Exception e) {
+            e.printStackTrace();
+            reiniciarActivityPorErro();
         }
     }
 
