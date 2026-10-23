@@ -1,0 +1,148 @@
+package com.example.rcksuporte05.rcksistemas.adapters;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.rcksuporte05.rcksistemas.R;
+import com.example.rcksuporte05.rcksistemas.model.WebVisita;
+import com.example.rcksuporte05.rcksistemas.util.MascaraUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisitaAdapter.VisitaViewHolder> {
+
+    public interface OnVisitaClickListener {
+        void onVisitaClick(WebVisita visita);
+    }
+
+    private Context context;
+    private List<WebVisita> listaVisitas;
+    private OnVisitaClickListener listener;
+
+    public RelatorioVisitaAdapter(Context context, List<WebVisita> listaVisitas, OnVisitaClickListener listener) {
+        this.context = context;
+        this.listaVisitas = listaVisitas;
+        this.listener = listener;
+    }
+
+    @NonNull
+    @Override
+    public VisitaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_relatorio_visita, parent, false);
+        return new VisitaViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull VisitaViewHolder holder, int position) {
+        WebVisita visita = listaVisitas.get(position);
+        if (visita == null) return;
+
+        String razao = visita.getRazaoSocial() != null && !visita.getRazaoSocial().isEmpty()
+                ? visita.getRazaoSocial() : "Cliente #" + visita.getIdClienteServidor();
+        holder.tvRazaoSocial.setText(razao);
+
+        if (visita.getNomeFantasia() != null && !visita.getNomeFantasia().isEmpty()) {
+            holder.tvNomeFantasia.setVisibility(View.VISIBLE);
+            holder.tvNomeFantasia.setText(visita.getNomeFantasia());
+        } else {
+            holder.tvNomeFantasia.setVisibility(View.GONE);
+        }
+
+        holder.tvDataHora.setText("Check-in: " + formatarDataHora(visita.getDataHoraCheckin()));
+
+        boolean isVenda = "V".equalsIgnoreCase(visita.getStatusVisita());
+
+        if (isVenda) {
+            holder.vStatusCirculo.setBackgroundResource(R.drawable.bg_circulo_verde);
+            holder.lyDetalhesNaoVenda.setVisibility(View.GONE);
+            holder.lyDetalhesVenda.setVisibility(View.VISIBLE);
+
+            String numPed = visita.getIdPedido() > 0 ? "" +  visita.getIdPedido() : (visita.getIdPedidoApp() != null ? visita.getIdPedidoApp() : "-");
+            holder.tvPedidoVisita.setText("• Pedido: " + numPed);
+            holder.tvValorPedidoVisita.setText("• Valor: " + MascaraUtil.mascaraRealSimboloD(visita.getValorPedido()));
+        } else {
+            holder.vStatusCirculo.setBackgroundResource(R.drawable.bg_circulo_vermelho);
+            holder.lyDetalhesNaoVenda.setVisibility(View.VISIBLE);
+            holder.lyDetalhesVenda.setVisibility(View.GONE);
+
+            String motivo = visita.getMotivoNaoVenda() != null && !visita.getMotivoNaoVenda().isEmpty()
+                    ? visita.getMotivoNaoVenda() : "Motivo não informado";
+            holder.tvMotivos.setText("• Motivo(s): " + motivo);
+
+            String obs = visita.getObservacao() != null && !visita.getObservacao().isEmpty()
+                    ? visita.getObservacao() : "Sem observação";
+            holder.tvObservacao.setText("• Obs: " + obs);
+        }
+
+        String gpsStr = "GPS: " + (visita.getLatitudeCheckin() != null ? visita.getLatitudeCheckin() : "-") +
+                ", " + (visita.getLongitudeCheckin() != null ? visita.getLongitudeCheckin() : "-") +
+                (visita.getPrecisaoCheckin() != null ? " (Precisão: " + visita.getPrecisaoCheckin() + ")" : "");
+        holder.tvCoordenadas.setText(gpsStr);
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onVisitaClick(visita);
+            }
+        });
+    }
+
+    private String formatarDataHora(String dataHoraRaw) {
+        if (dataHoraRaw == null || dataHoraRaw.trim().isEmpty()) {
+            return "--/--/----";
+        }
+        try {
+            SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+            Date date = sdfIn.parse(dataHoraRaw);
+            if (date != null) {
+                SimpleDateFormat sdfOut = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.US);
+                return sdfOut.format(date);
+            }
+        } catch (Exception e1) {
+            try {
+                SimpleDateFormat sdfIn2 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date date2 = sdfIn2.parse(dataHoraRaw);
+                if (date2 != null) {
+                    SimpleDateFormat sdfOut2 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+                    return sdfOut2.format(date2);
+                }
+            } catch (Exception ignored) {}
+        }
+        return dataHoraRaw;
+    }
+
+    @Override
+    public int getItemCount() {
+        return listaVisitas != null ? listaVisitas.size() : 0;
+    }
+
+    public static class VisitaViewHolder extends RecyclerView.ViewHolder {
+        TextView tvRazaoSocial, tvNomeFantasia, tvDataHora, tvPedidoVisita, tvValorPedidoVisita, tvMotivos, tvObservacao, tvCoordenadas;
+        View vStatusCirculo;
+        LinearLayout lyDetalhesVenda, lyDetalhesNaoVenda;
+
+        public VisitaViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvRazaoSocial = itemView.findViewById(R.id.tvRazaoSocialVisita);
+            tvNomeFantasia = itemView.findViewById(R.id.tvNomeFantasiaVisita);
+            tvDataHora = itemView.findViewById(R.id.tvDataHoraVisita);
+            vStatusCirculo = itemView.findViewById(R.id.vStatusCirculoVisita);
+            tvPedidoVisita = itemView.findViewById(R.id.tvPedidoVisita);
+            tvValorPedidoVisita = itemView.findViewById(R.id.tvValorPedidoVisita);
+            tvMotivos = itemView.findViewById(R.id.tvMotivosVisita);
+            tvObservacao = itemView.findViewById(R.id.tvObservacaoVisita);
+            tvCoordenadas = itemView.findViewById(R.id.tvCoordenadasVisita);
+            lyDetalhesVenda = itemView.findViewById(R.id.lyDetalhesVenda);
+            lyDetalhesNaoVenda = itemView.findViewById(R.id.lyDetalhesNaoVenda);
+        }
+    }
+}

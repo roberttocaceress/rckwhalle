@@ -923,6 +923,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
                     "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VISITA_SERVIDOR INTEGER, " +
                     "ID_VENDEDOR INTEGER, " +
                     "ID_PEDIDO INTEGER, " +
                     "ID_PEDIDO_APP VARCHAR(38), " +
@@ -1163,6 +1164,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
                     "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VISITA_SERVIDOR INTEGER, " +
                     "ID_VENDEDOR INTEGER, " +
                     "ID_PEDIDO INTEGER, " +
                     "ID_PEDIDO_APP VARCHAR(38), " +

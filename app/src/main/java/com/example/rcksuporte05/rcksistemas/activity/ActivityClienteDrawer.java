@@ -2436,9 +2436,12 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
     }
 
     private void limpaListaSelecionados() {
-        adapter.clearSelection();
-        actionMode.finish();
-        actionMode = null;
+        try {
+            adapter.clearSelection();
+            actionMode.finish();
+            actionMode = null;
+        } catch (NullPointerException ignored) {
+        }
     }
 
     private void showHideProgressDialog(boolean visivel) {

@@ -204,6 +204,8 @@ drawable bg_badge_status_primary
 drawable bg_badge_status_verde
 drawable bg_badge_status_vermelho
 drawable bg_badge_status_vermelho_forte
+drawable bg_circulo_verde
+drawable bg_circulo_vermelho
 drawable bg_list_row
 drawable bg_list_row_chamar_atencao
 drawable bg_radio_pessoa_2026
@@ -648,6 +650,9 @@ id btnExportar
 id btnFecharFeedback
 id btnFiltrar
 id btnFiltrar2
+id btnFiltroNaoVenda
+id btnFiltroPositivadas
+id btnFiltroTodasVisitas
 id btnFinalizarInclusao
 id btnFinanceiro
 id btnFlipCard
@@ -697,6 +702,7 @@ id btnSalvarAnexo
 id btnSalvarPedido
 id btnSalvarVisita
 id btnSelecionarMesAnoGlobal
+id btnSelecionarMesAnoRelatorio
 id btnSelecionarPeriodoFinanceiro
 id btnSemanaAnterior
 id btnSemanaAtual
@@ -756,6 +762,7 @@ id cardGrafico4
 id cardInfoEmpresa
 id cardInfoEmpresaNaoVenda
 id cardKpiGrupos
+id cardKpiVisitas
 id cardMapaLocalizacao
 id cardMotivosNaoVenda
 id cardObservacaoNaoVenda
@@ -859,6 +866,7 @@ id dialog_sincronia
 id divider
 id dividerTabelaPreco
 id drawerLayout
+id drawerLayoutRelatorio
 id drawer_layout
 id edtAbr
 id edtAgenciaProspect
@@ -1200,6 +1208,7 @@ id ivGps
 id ivIconeAlerta
 id ivIconeEmpresa
 id ivIconeEmpresaNaoVenda
+id ivIconeVisita
 id ivInternet
 id ivMenuClienteIcon
 id ivMenuPedidoIcon
@@ -1285,6 +1294,8 @@ id lyDadosCobranca
 id lyDataCadastro
 id lyDatas
 id lyDetalhes
+id lyDetalhesNaoVenda
+id lyDetalhesVenda
 id lyDownload
 id lyEmail
 id lyEmissao
@@ -1411,6 +1422,7 @@ id menu_salvar_pedido
 id menu_salvar_produto
 id menu_sincroniza
 id navView
+id navViewRelatorio
 id nav_gallery
 id nav_home
 id nav_principal_avaliacao
@@ -1457,6 +1469,7 @@ id pbKpi2
 id pbKpi3
 id pbKpiDevolucao
 id pbKpiExpansao
+id pbKpiVisitas
 id pbMeta
 id pbMetaMensal
 id pbShareCliente
@@ -1543,6 +1556,7 @@ id rly_cliente_parent
 id rootx
 id rvEvolucaoDialog
 id rvExpansaoLista
+id rvRelatorioVisitas
 id rvUsuariosDrawer
 id scrollView
 id scrollView2
@@ -1731,6 +1745,8 @@ id tvCheckInLatitude
 id tvCheckInLongitude
 id tvCheckInNomeFantasia
 id tvCheckInRazaoSocial
+id tvCoordenadasVisita
+id tvDataHoraVisita
 id tvDataPesquisa
 id tvDetalheProdutoExclusao
 id tvFaltaMes
@@ -1774,19 +1790,27 @@ id tvKpiTituloDevolucao
 id tvKpiTotalCarteira
 id tvKpiTotalNovos
 id tvKpiVencidos
+id tvKpiVisitasPerc
+id tvKpiVisitasSubtexto
+id tvKpiVisitasTotal
 id tvLabelTotal
 id tvMensagemRodape
 id tvMesAnoReferencia
+id tvMesAnoReferenciaRelatorio
 id tvMetaTotal
 id tvMetaTotalMensal
+id tvMotivosVisita
 id tvNaoVendaEndereco
 id tvNaoVendaNomeFantasia
 id tvNaoVendaRazaoSocial
 id tvNomeClienteShare
+id tvNomeFantasiaVisita
 id tvNomeProdutoExclusao
 id tvNomeUsuario
 id tvNovosClientes
 id tvNovosClientesHub
+id tvObservacaoVisita
+id tvPedidoVisita
 id tvPedidosATransmitir
 id tvPedidosCancelados
 id tvPedidosDevolvidos
@@ -1807,6 +1831,7 @@ id tvRankingEvolucao
 id tvRankingMes
 id tvRankingSemana
 id tvRankingSubtexto
+id tvRazaoSocialVisita
 id tvResumoAtivo
 id tvResumoCancelado
 id tvResumoCliente
@@ -1818,10 +1843,13 @@ id tvResumoDebito
 id tvResumoEmpresa
 id tvResumoGeral
 id tvResumoItens
+id tvResumoNaoVenda
 id tvResumoOperacao
 id tvResumoPedidoNum
+id tvResumoPositivadas
 id tvResumoPrazo
 id tvResumoTotal
+id tvResumoTotalVisitas
 id tvResumoVendedor
 id tvSaldoVencendo
 id tvSaldoVencido
@@ -1848,6 +1876,7 @@ id tvUltimaAtualizacao
 id tvValorAtual
 id tvValorAtualMensal
 id tvValorMesHub
+id tvValorPedidoVisita
 id tvValorTotalCliente
 id tvValoresMes
 id tvValoresSemana
@@ -2152,6 +2181,7 @@ id txv_versao__app
 id txv_video_descricao
 id uf
 id uploadFoto
+id vStatusCirculoVisita
 id valorIcmsST
 id valorJuros
 id valorPago
@@ -2311,6 +2341,7 @@ layout activity_produto_pedido_layout_sem_tabela_preco
 layout activity_produto_pedido_layout_tabela_preco
 layout activity_produto_pedido_layout_tabela_preco_2025
 layout activity_recupera_senha
+layout activity_relatorio_visitas
 layout activity_saldo_estoque
 layout activity_scrolling
 layout activity_sem_cobranca
@@ -2423,6 +2454,7 @@ layout item_motivo
 layout item_prospect_visita
 layout item_referencia_bancaria
 layout item_referencia_comercial
+layout item_relatorio_visita
 layout item_segmento
 layout item_usuario_checkbox
 layout item_usuario_drawer

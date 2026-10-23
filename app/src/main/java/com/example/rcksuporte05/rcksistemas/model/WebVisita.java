@@ -3,6 +3,7 @@ package com.example.rcksuporte05.rcksistemas.model;
 public class WebVisita {
     private int idVisita;
     private String idVisitaApp;
+    private String idVisitaServidor;
     private int idVendedor;
     private int idPedido;
     private String idPedidoApp;
@@ -24,6 +25,9 @@ public class WebVisita {
     private String versaoApp;
     private String observacao;
     private String excluido;
+    private String razaoSocial;
+    private String nomeFantasia;
+    private double valorPedido;
 
     public WebVisita() {
         this.excluido = "N";
@@ -44,6 +48,14 @@ public class WebVisita {
 
     public void setIdVisitaApp(String idVisitaApp) {
         this.idVisitaApp = idVisitaApp;
+    }
+
+    public String getIdVisitaServidor() {
+        return idVisitaServidor;
+    }
+
+    public void setIdVisitaServidor(String idVisitaServidor) {
+        this.idVisitaServidor = idVisitaServidor;
     }
 
     public int getIdVendedor() {
@@ -212,5 +224,29 @@ public class WebVisita {
 
     public void setExcluido(String excluido) {
         this.excluido = excluido;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public double getValorPedido() {
+        return valorPedido;
+    }
+
+    public void setValorPedido(double valorPedido) {
+        this.valorPedido = valorPedido;
     }
 }

@@ -83,6 +83,8 @@ public class Sincronia {
 
     private List<WebPedidoAnalise> listaParaAnalise;
 
+    private List<WebVisita> listaVisita = new ArrayList<>();
+
     public Sincronia(boolean cliente,
                      boolean produto,
                      boolean pedidosFinalizados,
@@ -610,5 +612,13 @@ public class Sincronia {
 
     public void setListaParaAnalise(List<WebPedidoAnalise> listaParaAnalise) {
         this.listaParaAnalise = listaParaAnalise;
+    }
+
+    public List<WebVisita> getListaVisita() {
+        return listaVisita;
+    }
+
+    public void setListaVisita(List<WebVisita> listaVisita) {
+        this.listaVisita = listaVisita;
     }
 }

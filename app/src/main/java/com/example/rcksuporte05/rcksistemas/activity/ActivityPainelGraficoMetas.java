@@ -306,6 +306,8 @@ public class ActivityPainelGraficoMetas extends AppCompatActivity implements Nav
 
         configurarDrawerFiltro();
 
+        carregarKpiVisitas();
+
         flipCard(context, lyt2, lyt1, progressBar1, 1);
         flipCard(context, lyt4, lyt3, progressBar2, 1);
         flipCard(context, lyt6, lyt5, progressBar3, 1);
@@ -318,6 +320,35 @@ public class ActivityPainelGraficoMetas extends AppCompatActivity implements Nav
         }
         atualizarTextoReferencia();
         animarEntrada();
+    }
+
+    private void carregarKpiVisitas() {
+        try {
+            com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+            int totalVisitas = visitaDAO.getCountVisitas(null);
+            int positivadas = visitaDAO.getCountVisitas("V");
+            int naoVenda = visitaDAO.getCountVisitas("N");
+            int percPosit = totalVisitas > 0 ? (positivadas * 100 / totalVisitas) : 0;
+
+            TextView tvTotal = findViewById(R.id.tvKpiVisitasTotal);
+            TextView tvSub = findViewById(R.id.tvKpiVisitasSubtexto);
+            TextView tvPerc = findViewById(R.id.tvKpiVisitasPerc);
+            ProgressBar pb = findViewById(R.id.pbKpiVisitas);
+            View cardVisitas = findViewById(R.id.cardKpiVisitas);
+
+            if (tvTotal != null) tvTotal.setText(totalVisitas + " Visita(s)");
+            if (tvSub != null) tvSub.setText(positivadas + " Positivadas | " + naoVenda + " Não Venda");
+            if (tvPerc != null) tvPerc.setText(percPosit + "% Positivação >");
+            if (pb != null) pb.setProgress(Math.min(percPosit, 100));
+
+            if (cardVisitas != null) {
+                cardVisitas.setOnClickListener(v -> {
+                    startActivity(new Intent(ActivityPainelGraficoMetas.this, ActivityRelatorioVisitas.class));
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void atualizarTextoReferencia() {

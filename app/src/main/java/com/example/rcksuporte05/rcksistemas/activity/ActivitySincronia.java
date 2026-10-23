@@ -82,6 +82,7 @@ import com.example.rcksuporte05.rcksistemas.DAO.VendedorBonusResumoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.VisitaProspectDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoItensDAO;
+import com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO;
 import com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper;
 import com.example.rcksuporte05.rcksistemas.R;
 import com.example.rcksuporte05.rcksistemas.api.Api;
@@ -129,6 +130,7 @@ import com.example.rcksuporte05.rcksistemas.model.VendedorBonusResumo;
 import com.example.rcksuporte05.rcksistemas.model.VisitaProspect;
 import com.example.rcksuporte05.rcksistemas.model.WebPedido;
 import com.example.rcksuporte05.rcksistemas.model.WebPedidoItens;
+import com.example.rcksuporte05.rcksistemas.model.WebVisita;
 import com.example.rcksuporte05.rcksistemas.util.DialogHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -140,6 +142,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -266,6 +269,8 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
     private VendedorBonusResumoDAO vendedorBonusResumoDAO = new VendedorBonusResumoDAO(db);
     private ReceberDAO webReceberCabDAO = new ReceberDAO(db);
     private CobrancaStatusDAO cobrancaStatusDAO = new CobrancaStatusDAO(db);
+
+    private WebVisitaDAO webVisitaDAO = new WebVisitaDAO(db);
     Rotas apiRotas;
     ProgressDialog progress;
     
@@ -312,8 +317,9 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
           showHideLAyoutEncerrar(true, true, false, "");
           btnRepetir.setText("CONFIRMAR SINCRONIA");
           txvMensagem.setText("");
+
           id_opcao_pedidos_pendentes.setOnCheckedChangeListener(this);
-           id_opcao_pedidos_pendentes.setEnabled(false);
+          id_opcao_pedidos_pendentes.setEnabled(false);
           id_opcao_restaurar_pendentes.setChecked(false);
           id_opcao_restaurar_pendentes.setOnCheckedChangeListener(this);
           id_opcao_restaurar_clientes.setChecked(false);
@@ -324,6 +330,7 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
           id_opcao_cobrancas.setOnCheckedChangeListener(this);
           id_opcao_pedidos.setOnCheckedChangeListener(this);
 
+          id_opcao_fazer_checkin.setChecked(false);
           ///id_opcao_pedidos_pendentes.setEnabled(false);
 
 
@@ -348,6 +355,7 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
           id_opcao_fazer_checkin.setVisibility(View.GONE);
           id_opcao_prospect.setVisibility(View.GONE);
           id_opcao_prospect_enviados.setVisibility(View.GONE);
+          /*
           try {
               if (empresaParametro != null && empresaParametro.getConfirma_sincronia_checkin_app() != null && 
                   empresaParametro.getConfirma_sincronia_checkin_app().equalsIgnoreCase("S")) {
@@ -359,6 +367,8 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
               id_opcao_fazer_checkin.setChecked(false);
               e.printStackTrace();
           }
+
+           */
 
           int tExtraFonte = 0;
           try {
@@ -383,6 +393,8 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
               public void onClick(View v) {
                   if (isSincronizando)
                       return;
+
+
                   if (id_opcao_restaurar_pendentes.isChecked()) {
                       isSincronizando = !isSincronizando;
                       progress = new ProgressDialog(context);
@@ -474,6 +486,7 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
                           id_opcao_visitas_pendentes.isChecked(),
                           id_opcao_imagem_produto.isChecked(),
                           id_opcao_cobrancas.isChecked());
+                  sincronia.setListaVisita(webVisitaDAO.getListaVisitas());
                   sincronizaApi(sincronia, versaoApp, "-", "-");
               }
           });

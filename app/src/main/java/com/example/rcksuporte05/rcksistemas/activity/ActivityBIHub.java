@@ -330,8 +330,7 @@ public class ActivityBIHub extends AppCompatActivity implements DashboardBO.OnDa
             startActivity(new Intent(this, ActivityExpansaoCarteira.class));
         });
         cardGestaoVisitas.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Em desenvolvimento", Toast.LENGTH_SHORT).show();
-
+            startActivity(new Intent(this, ActivityRelatorioVisitas.class));
         });
 
         cardGestaoMetas.setOnClickListener(v -> {

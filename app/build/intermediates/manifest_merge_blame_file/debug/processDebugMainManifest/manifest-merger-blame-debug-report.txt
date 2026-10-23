@@ -120,7 +120,7 @@
 55-->[androidx.core:core:1.18.0] C:\Users\User\.gradle\caches\8.13\transforms\d83e869eaced68e9b3bbb2eba83e19de\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
 56
 57    <application
-57-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:42:5-493:19
+57-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:42:5-498:19
 58        android:allowBackup="true"
 58-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:43:9-35
 59        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -283,711 +283,711 @@
 139            android:screenOrientation="portrait" />
 139-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:120:13-49
 140        <activity
-140-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:121:9-124:52
-141            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoFinanceiroTKS"
-141-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:122:13-68
+140-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:121:9-125:54
+141            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityRelatorioVisitas"
+141-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:122:13-62
 142            android:exported="false"
 142-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:123:13-37
-143            android:screenOrientation="portrait" />
+143            android:screenOrientation="portrait"
 143-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:124:13-49
-144        <activity
-144-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:125:9-128:52
-145            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCnpjCodigoAtivacao"
-145-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:126:13-64
-146            android:exported="false"
-146-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:127:13-37
-147            android:screenOrientation="portrait" />
-147-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:128:13-49
-148        <activity
-148-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:129:9-132:52
-149            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDataFiltroCobranca"
-149-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:130:13-64
-150            android:exported="false"
-150-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:131:13-37
-151            android:screenOrientation="portrait" />
-151-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:132:13-49
-152        <activity
-152-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:133:9-136:52
-153            android:name="com.example.rcksuporte05.rcksistemas.activity.CalendarioActivity"
-153-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:134:13-56
-154            android:exported="false"
-154-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:135:13-37
-155            android:screenOrientation="portrait" />
-155-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:136:13-49
-156        <activity
-156-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:137:9-139:40
-157            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroCobranca"
-157-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:138:13-64
-158            android:exported="false" />
-158-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:139:13-37
-159        <activity
-159-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:140:9-142:40
-160            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDataFiltroFinanceiro"
-160-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:141:13-66
-161            android:exported="false" />
-161-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:142:13-37
-162        <activity
-162-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:143:9-145:40
-163            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySobreApp"
-163-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:144:13-54
-164            android:exported="false" />
-164-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:145:13-37
-165        <activity
-165-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:146:9-148:40
-166            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySobre"
-166-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:147:13-51
-167            android:exported="false" />
-167-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:148:13-37
-168        <activity
-168-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:149:9-154:59
-169            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySemCobranca"
-169-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:150:13-57
-170            android:exported="false"
-170-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:151:13-37
-171            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
-171-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:152:13-69
-172            android:screenOrientation="portrait"
-172-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:153:13-49
-173            android:theme="@style/AppTheme.NoActionBar" />
-173-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:154:13-56
-174        <activity
-174-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:155:9-158:52
-175            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobrancaContato"
-175-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:156:13-61
-176            android:exported="false"
-176-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:157:13-37
-177            android:screenOrientation="portrait" />
+144            android:theme="@style/Theme.Dashboard" />
+144-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:125:13-51
+145        <activity
+145-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:126:9-129:52
+146            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoFinanceiroTKS"
+146-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:127:13-68
+147            android:exported="false"
+147-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:128:13-37
+148            android:screenOrientation="portrait" />
+148-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:129:13-49
+149        <activity
+149-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:130:9-133:52
+150            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCnpjCodigoAtivacao"
+150-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:131:13-64
+151            android:exported="false"
+151-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:132:13-37
+152            android:screenOrientation="portrait" />
+152-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:133:13-49
+153        <activity
+153-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:134:9-137:52
+154            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDataFiltroCobranca"
+154-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:135:13-64
+155            android:exported="false"
+155-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:136:13-37
+156            android:screenOrientation="portrait" />
+156-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:137:13-49
+157        <activity
+157-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:138:9-141:52
+158            android:name="com.example.rcksuporte05.rcksistemas.activity.CalendarioActivity"
+158-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:139:13-56
+159            android:exported="false"
+159-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:140:13-37
+160            android:screenOrientation="portrait" />
+160-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:141:13-49
+161        <activity
+161-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:142:9-144:40
+162            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroCobranca"
+162-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:143:13-64
+163            android:exported="false" />
+163-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:144:13-37
+164        <activity
+164-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:145:9-147:40
+165            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDataFiltroFinanceiro"
+165-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:146:13-66
+166            android:exported="false" />
+166-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:147:13-37
+167        <activity
+167-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:148:9-150:40
+168            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySobreApp"
+168-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:149:13-54
+169            android:exported="false" />
+169-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:150:13-37
+170        <activity
+170-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:151:9-153:40
+171            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySobre"
+171-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:152:13-51
+172            android:exported="false" />
+172-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:153:13-37
+173        <activity
+173-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:154:9-159:59
+174            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySemCobranca"
+174-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:155:13-57
+175            android:exported="false"
+175-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:156:13-37
+176            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
+176-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:157:13-69
+177            android:screenOrientation="portrait"
 177-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:158:13-49
-178        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobrancaRecebimento" />
-178-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:159:9-74
-178-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:159:19-71
-179        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityBairro" />
-179-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:160:9-61
-179-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:160:19-58
-180        <activity
-180-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:161:9-165:59
-181            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobranca"
-181-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:162:13-54
-182            android:exported="false"
-182-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:163:13-37
-183            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
-183-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:164:13-69
-184            android:theme="@style/AppTheme.NoActionBar" />
-184-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:165:13-56
+178            android:theme="@style/AppTheme.NoActionBar" />
+178-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:159:13-56
+179        <activity
+179-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:160:9-163:52
+180            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobrancaContato"
+180-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:161:13-61
+181            android:exported="false"
+181-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:162:13-37
+182            android:screenOrientation="portrait" />
+182-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:163:13-49
+183        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobrancaRecebimento" />
+183-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:164:9-74
+183-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:164:19-71
+184        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityBairro" />
+184-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:165:9-61
+184-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:165:19-58
 185        <activity
-185-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:166:9-169:56
-186            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogEstoqueSaldo"
-186-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:167:13-64
+185-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:166:9-170:59
+186            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCobranca"
+186-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:167:13-54
 187            android:exported="false"
 187-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:168:13-37
-188            android:theme="@style/Theme.CriarDialog" />
-188-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:169:13-53
-189        <activity
-189-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:170:9-173:52
-190            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityVideoAula"
-190-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:171:13-55
-191            android:exported="false"
-191-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:172:13-37
-192            android:screenOrientation="portrait" />
-192-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:173:13-49
-193        <activity
-193-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:174:9-177:56
-194            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogCliente"
-194-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:175:13-59
-195            android:exported="false"
-195-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:176:13-37
-196            android:theme="@style/Theme.CriarDialog" />
-196-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:177:13-53
-197        <activity
-197-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:178:9-181:56
-198            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogProduto"
-198-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:179:13-59
-199            android:exported="false"
-199-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:180:13-37
-200            android:theme="@style/Theme.CriarDialog" />
-200-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:181:13-53
-201        <activity
-201-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:182:9-188:59
-202            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidadeVideo"
-202-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:183:13-59
-203            android:exported="false"
-203-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:184:13-37
-204            android:launchMode="singleTop"
-204-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:185:13-43
-205            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidade"
-205-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:186:13-68
-206            android:screenOrientation="portrait"
-206-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:187:13-49
-207            android:theme="@style/AppTheme.NoActionBar" />
-207-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:188:13-56
-208        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityTabelasApp" />
-208-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:189:9-65
-208-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:189:19-62
-209        <activity
-209-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:190:9-202:20
-210            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityClienteDrawer"
-210-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:191:13-59
-211            android:exported="false"
-211-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:192:13-37
-212            android:launchMode="singleTop"
-212-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:193:13-43
-213            android:theme="@style/AppTheme.NoActionBar" >
-213-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:194:13-56
-214            <intent-filter>
-214-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:195:13-197:29
-215                <action android:name="android.intent.action.SEARCH" />
-215-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:17-71
-215-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:25-68
-216            </intent-filter>
-217
-218            <meta-data
-218-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:199:13-201:54
-219                android:name="android.app.searchable"
-219-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:17-54
-220                android:resource="@xml/searchable" />
-220-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-51
-221        </activity>
-222        <activity
-222-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:203:9-208:59
-223            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidade"
-223-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:204:13-54
-224            android:exported="false"
-224-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:205:13-37
-225            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
-225-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:206:13-69
-226            android:screenOrientation="portrait"
-226-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:207:13-49
-227            android:theme="@style/AppTheme.NoActionBar" />
-227-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:208:13-56
-228        <activity
-228-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:209:9-211:40
-229            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoItensExportado"
-229-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:210:13-66
-230            android:exported="false" />
-230-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:211:13-37
-231        <activity
-231-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:212:9-214:40
-232            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoExportado"
-232-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:213:13-61
-233            android:exported="false" />
-233-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:214:13-37
-234        <activity
-234-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:215:9-217:40
-235            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEmpresaCliente"
-235-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:216:13-60
-236            android:exported="false" />
-236-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:217:13-37
-237        <activity
-237-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:218:9-220:40
-238            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityUsuario"
-238-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:219:13-53
-239            android:exported="false" />
-239-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:220:13-37
-240        <activity
-240-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:221:9-233:20
-241            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoDrawer"
-241-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:222:13-59
-242            android:exported="false"
-242-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:223:13-37
-243            android:launchMode="singleTop"
-243-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:224:13-43
-244            android:theme="@style/AppTheme.NoActionBar" >
-244-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:225:13-56
-245            <intent-filter>
-245-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:195:13-197:29
-246                <action android:name="android.intent.action.SEARCH" />
-246-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:17-71
-246-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:25-68
-247            </intent-filter>
-248
-249            <meta-data
-249-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:199:13-201:54
-250                android:name="android.app.searchable"
-250-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:17-54
-251                android:resource="@xml/searchable" />
-251-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-51
-252        </activity>
-253        <activity
-253-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:234:9-239:59
-254            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityBiometriaCadastro"
-254-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:235:13-63
-255            android:exported="false"
-255-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:236:13-37
-256            android:launchMode="singleTop"
-256-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:237:13-43
-257            android:screenOrientation="portrait"
-257-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:238:13-49
-258            android:theme="@style/AppTheme.NoActionBar" />
-258-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:239:13-56
-259        <activity
-259-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:240:9-243:72
-260            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEstoqueSaldo"
-260-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:241:13-58
-261            android:exported="false"
-261-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:242:13-37
-262            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
-262-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:243:13-69
-263        <activity
-263-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:244:9-246:40
-264            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityTecnico"
-264-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:245:13-53
-265            android:exported="false" />
-265-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:246:13-37
-266        <activity
-266-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:247:9-249:40
-267            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityExportaImagem"
-267-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:248:13-59
-268            android:exported="false" />
-268-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:249:13-37
-269        <activity
-269-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:250:9-252:40
-270            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanhaDetalhe"
-270-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:251:13-61
-271            android:exported="false" />
-271-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:252:13-37
-272        <activity
-272-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:253:9-255:40
-273            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityItemLinhaProduto"
-273-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:254:13-62
-274            android:exported="false" />
-274-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:255:13-37
-275        <activity
-275-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:256:9-258:40
-276            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanhaItem"
-276-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:257:13-58
-277            android:exported="false" />
-277-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:258:13-37
-278        <activity
-278-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:259:9-261:40
-279            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanha"
-279-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:260:13-54
-280            android:exported="false" />
-280-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:261:13-37
-281        <activity
-281-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:262:9-265:72
-282            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNotaFiscal"
-282-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:263:13-56
-283            android:exported="false"
-283-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:264:13-37
-284            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
-284-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:265:13-69
-285        <activity
-285-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:266:9-269:72
-286            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanca"
-286-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:267:13-53
-287            android:exported="false"
-287-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:268:13-37
-288            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
-288-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:269:13-69
-289        <activity
-289-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:270:9-272:40
-290            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoFinanceiro"
-290-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:271:13-65
-291            android:exported="false" />
-291-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:272:13-37
-292        <activity
-292-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:273:9-275:40
-293            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiro"
-293-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:274:13-56
-294            android:exported="false" />
-294-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:275:13-37
-295        <activity
-295-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:276:9-278:40
-296            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNotificacao"
-296-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:277:13-57
-297            android:exported="false" />
-297-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:278:13-37
-298        <!--
-299         [START firebase_service]
-300        <service
-301            android:name=".java.MyFirebaseMessagingService"
-302            android:exported="false">
-303            <intent-filter>
-304                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-305            </intent-filter>
-306        </service>
-307        [END firebase_service]
-308        -->
-309        <activity
-309-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:290:9-292:40
-310            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAlerta"
-310-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:291:13-52
-311            android:exported="false" />
-311-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:292:13-37
-312        <activity
-312-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:293:9-295:40
-313            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
-313-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:294:13-55
-314            android:exported="false" />
-314-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:295:13-37
-315        <activity
-315-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:296:9-300:52
-316            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityRecuperaSenha"
-316-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:297:13-59
-317            android:exported="false"
-317-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:298:13-37
-318            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.MainActivity"
-318-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:299:13-64
-319            android:screenOrientation="portrait" />
-319-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:300:13-49
+188            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
+188-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:169:13-69
+189            android:theme="@style/AppTheme.NoActionBar" />
+189-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:170:13-56
+190        <activity
+190-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:171:9-174:56
+191            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogEstoqueSaldo"
+191-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:172:13-64
+192            android:exported="false"
+192-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:173:13-37
+193            android:theme="@style/Theme.CriarDialog" />
+193-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:174:13-53
+194        <activity
+194-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:175:9-178:52
+195            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityVideoAula"
+195-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:176:13-55
+196            android:exported="false"
+196-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:177:13-37
+197            android:screenOrientation="portrait" />
+197-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:178:13-49
+198        <activity
+198-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:179:9-182:56
+199            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogCliente"
+199-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:180:13-59
+200            android:exported="false"
+200-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:181:13-37
+201            android:theme="@style/Theme.CriarDialog" />
+201-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:182:13-53
+202        <activity
+202-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:183:9-186:56
+203            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogProduto"
+203-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:184:13-59
+204            android:exported="false"
+204-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:185:13-37
+205            android:theme="@style/Theme.CriarDialog" />
+205-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:186:13-53
+206        <activity
+206-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:187:9-193:59
+207            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidadeVideo"
+207-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:188:13-59
+208            android:exported="false"
+208-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:189:13-37
+209            android:launchMode="singleTop"
+209-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:190:13-43
+210            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidade"
+210-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:191:13-68
+211            android:screenOrientation="portrait"
+211-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:192:13-49
+212            android:theme="@style/AppTheme.NoActionBar" />
+212-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:193:13-56
+213        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityTabelasApp" />
+213-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:194:9-65
+213-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:194:19-62
+214        <activity
+214-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:195:9-207:20
+215            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityClienteDrawer"
+215-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:13-59
+216            android:exported="false"
+216-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:197:13-37
+217            android:launchMode="singleTop"
+217-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:198:13-43
+218            android:theme="@style/AppTheme.NoActionBar" >
+218-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:199:13-56
+219            <intent-filter>
+219-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:13-202:29
+220                <action android:name="android.intent.action.SEARCH" />
+220-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-71
+220-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:25-68
+221            </intent-filter>
+222
+223            <meta-data
+223-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:204:13-206:54
+224                android:name="android.app.searchable"
+224-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:205:17-54
+225                android:resource="@xml/searchable" />
+225-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:206:17-51
+226        </activity>
+227        <activity
+227-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:208:9-213:59
+228            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNovidade"
+228-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:209:13-54
+229            android:exported="false"
+229-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:210:13-37
+230            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
+230-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:211:13-69
+231            android:screenOrientation="portrait"
+231-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:212:13-49
+232            android:theme="@style/AppTheme.NoActionBar" />
+232-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:213:13-56
+233        <activity
+233-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:214:9-216:40
+234            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoItensExportado"
+234-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:215:13-66
+235            android:exported="false" />
+235-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:216:13-37
+236        <activity
+236-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:217:9-219:40
+237            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoExportado"
+237-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:218:13-61
+238            android:exported="false" />
+238-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:219:13-37
+239        <activity
+239-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:220:9-222:40
+240            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEmpresaCliente"
+240-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:221:13-60
+241            android:exported="false" />
+241-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:222:13-37
+242        <activity
+242-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:223:9-225:40
+243            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityUsuario"
+243-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:224:13-53
+244            android:exported="false" />
+244-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:225:13-37
+245        <activity
+245-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:226:9-238:20
+246            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoDrawer"
+246-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:227:13-59
+247            android:exported="false"
+247-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:228:13-37
+248            android:launchMode="singleTop"
+248-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:229:13-43
+249            android:theme="@style/AppTheme.NoActionBar" >
+249-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:230:13-56
+250            <intent-filter>
+250-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:13-202:29
+251                <action android:name="android.intent.action.SEARCH" />
+251-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-71
+251-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:25-68
+252            </intent-filter>
+253
+254            <meta-data
+254-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:204:13-206:54
+255                android:name="android.app.searchable"
+255-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:205:17-54
+256                android:resource="@xml/searchable" />
+256-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:206:17-51
+257        </activity>
+258        <activity
+258-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:239:9-244:59
+259            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityBiometriaCadastro"
+259-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:240:13-63
+260            android:exported="false"
+260-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:241:13-37
+261            android:launchMode="singleTop"
+261-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:242:13-43
+262            android:screenOrientation="portrait"
+262-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:243:13-49
+263            android:theme="@style/AppTheme.NoActionBar" />
+263-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:244:13-56
+264        <activity
+264-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:245:9-248:72
+265            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEstoqueSaldo"
+265-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:246:13-58
+266            android:exported="false"
+266-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:247:13-37
+267            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
+267-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:248:13-69
+268        <activity
+268-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:249:9-251:40
+269            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityTecnico"
+269-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:250:13-53
+270            android:exported="false" />
+270-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:251:13-37
+271        <activity
+271-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:252:9-254:40
+272            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityExportaImagem"
+272-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:253:13-59
+273            android:exported="false" />
+273-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:254:13-37
+274        <activity
+274-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:255:9-257:40
+275            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanhaDetalhe"
+275-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:256:13-61
+276            android:exported="false" />
+276-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:257:13-37
+277        <activity
+277-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:258:9-260:40
+278            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityItemLinhaProduto"
+278-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:259:13-62
+279            android:exported="false" />
+279-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:260:13-37
+280        <activity
+280-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:261:9-263:40
+281            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanhaItem"
+281-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:262:13-58
+282            android:exported="false" />
+282-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:263:13-37
+283        <activity
+283-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:264:9-266:40
+284            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCampanha"
+284-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:265:13-54
+285            android:exported="false" />
+285-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:266:13-37
+286        <activity
+286-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:267:9-270:72
+287            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNotaFiscal"
+287-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:268:13-56
+288            android:exported="false"
+288-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:269:13-37
+289            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
+289-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:270:13-69
+290        <activity
+290-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:271:9-274:72
+291            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanca"
+291-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:272:13-53
+292            android:exported="false"
+292-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:273:13-37
+293            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal" />
+293-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:274:13-69
+294        <activity
+294-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:275:9-277:40
+295            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoFinanceiro"
+295-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:276:13-65
+296            android:exported="false" />
+296-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:277:13-37
+297        <activity
+297-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:278:9-280:40
+298            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiro"
+298-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:279:13-56
+299            android:exported="false" />
+299-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:280:13-37
+300        <activity
+300-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:281:9-283:40
+301            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityNotificacao"
+301-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:282:13-57
+302            android:exported="false" />
+302-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:283:13-37
+303        <!--
+304         [START firebase_service]
+305        <service
+306            android:name=".java.MyFirebaseMessagingService"
+307            android:exported="false">
+308            <intent-filter>
+309                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+310            </intent-filter>
+311        </service>
+312        [END firebase_service]
+313        -->
+314        <activity
+314-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:295:9-297:40
+315            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAlerta"
+315-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:296:13-52
+316            android:exported="false" />
+316-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:297:13-37
+317        <activity
+317-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:298:9-300:40
+318            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipal"
+318-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:299:13-55
+319            android:exported="false" />
+319-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:300:13-37
 320        <activity
-320-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:301:9-303:40
-321            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPreferencia"
-321-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:302:13-57
-322            android:exported="false" />
+320-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:301:9-305:52
+321            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityRecuperaSenha"
+321-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:302:13-59
+322            android:exported="false"
 322-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:303:13-37
-323        <activity
-323-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:304:9-306:40
-324            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityConfiguracao"
-324-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:305:13-58
-325            android:exported="false" />
-325-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:306:13-37
-326        <activity
-326-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:307:9-310:67
-327            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAjuda"
-327-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:308:13-51
-328            android:exported="false"
-328-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:309:13-37
-329            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.MainActivity" />
-329-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:310:13-64
-330        <activity
-330-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:311:9-313:40
-331            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnalisePedido"
-331-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:312:13-59
-332            android:exported="false" />
-332-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:313:13-37
-333        <activity
-333-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:314:9-317:76
-334            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagemZoom"
-334-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:315:13-63
-335            android:exported="false"
-335-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:316:13-37
-336            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagem" />
-336-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:317:13-73
-337        <activity
-337-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:318:9-321:70
-338            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagem"
-338-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:319:13-59
-339            android:exported="false"
-339-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:320:13-37
-340            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityProduto" />
-340-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:321:13-67
-341        <!--
-342        Activity(s) não existe(m)
-343        <activity
-344            android:name=".fragment.ActivityProdutoImage"
-345            android:parentActivityName=".activity.ActivityProduto" />
-346        <activity android:name=".ActivityAddFotoAnexo" />
-347
-348        !
-349        -->
-350        <activity
-350-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:331:9-334:49
-351            android:name="com.example.rcksuporte05.rcksistemas.activity.MainActivity"
-351-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:332:13-50
-352            android:exported="false"
-352-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:333:13-37
-353            android:theme="@style/Theme.Main" />
-353-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:334:13-46
-354        <activity
-354-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:335:9-338:52
-355            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipalOld"
-355-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:336:13-58
-356            android:exported="false"
-356-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:337:13-37
-357            android:screenOrientation="portrait" />
-357-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:338:13-49
-358        <activity
-358-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:339:9-351:20
-359            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCliente"
-359-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:340:13-53
-360            android:exported="false"
-360-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:341:13-37
-361            android:launchMode="singleTop"
-361-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:342:13-43
-362            android:theme="@style/AppTheme.NoActionBar" >
-362-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:343:13-56
-363            <intent-filter>
-363-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:195:13-197:29
-364                <action android:name="android.intent.action.SEARCH" />
-364-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:17-71
-364-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:25-68
-365            </intent-filter>
-366
-367            <meta-data
-367-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:199:13-201:54
-368                android:name="android.app.searchable"
-368-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:17-54
-369                android:resource="@xml/searchable" />
-369-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-51
-370        </activity>
-371        <activity
-371-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:352:9-365:20
-372            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProduto"
-372-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:353:13-53
-373            android:exported="false"
-373-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:354:13-37
-374            android:launchMode="singleTop"
-374-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:355:13-43
-375            android:screenOrientation="portrait"
-375-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:356:13-49
-376            android:theme="@style/AppTheme.NoActionBar" >
-376-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:357:13-56
-377            <intent-filter>
-377-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:195:13-197:29
-378                <action android:name="android.intent.action.SEARCH" />
-378-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:17-71
-378-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:196:25-68
-379            </intent-filter>
-380
-381            <meta-data
-381-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:199:13-201:54
-382                android:name="android.app.searchable"
-382-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:17-54
-383                android:resource="@xml/searchable" />
-383-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-51
-384        </activity>
-385        <activity
-385-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:366:9-375:20
-386            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySplash"
-386-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:367:13-52
-387            android:exported="true"
-387-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:368:13-36
-388            android:screenOrientation="portrait" >
-388-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:369:13-49
-389            <intent-filter>
-389-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:370:13-374:29
-390                <action android:name="android.intent.action.MAIN" />
-390-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:371:17-69
-390-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:371:25-66
-391
-392                <category android:name="android.intent.category.LAUNCHER" />
-392-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:373:17-77
-392-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:373:27-74
-393            </intent-filter>
-394        </activity>
-395        <activity
-395-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:376:9-379:55
-396            android:name="com.example.rcksuporte05.rcksistemas.activity.CadastroClienteMain"
-396-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:377:13-57
-397            android:exported="false"
-397-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:378:13-37
-398            android:theme="@style/Theme.Wizard2026" />
-398-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:379:13-52
-399        <activity
-399-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:380:9-384:59
-400            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain"
-400-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:381:13-56
-401            android:exported="false"
-401-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:382:13-37
-402            android:theme="@style/AppTheme.NoActionBar"
-402-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:384:13-56
-403            android:windowSoftInputMode="adjustResize" />
-403-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:383:13-55
+323            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.MainActivity"
+323-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:304:13-64
+324            android:screenOrientation="portrait" />
+324-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:305:13-49
+325        <activity
+325-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:306:9-308:40
+326            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPreferencia"
+326-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:307:13-57
+327            android:exported="false" />
+327-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:308:13-37
+328        <activity
+328-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:309:9-311:40
+329            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityConfiguracao"
+329-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:310:13-58
+330            android:exported="false" />
+330-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:311:13-37
+331        <activity
+331-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:312:9-315:67
+332            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAjuda"
+332-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:313:13-51
+333            android:exported="false"
+333-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:314:13-37
+334            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.MainActivity" />
+334-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:315:13-64
+335        <activity
+335-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:316:9-318:40
+336            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnalisePedido"
+336-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:317:13-59
+337            android:exported="false" />
+337-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:318:13-37
+338        <activity
+338-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:319:9-322:76
+339            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagemZoom"
+339-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:320:13-63
+340            android:exported="false"
+340-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:321:13-37
+341            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagem" />
+341-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:322:13-73
+342        <activity
+342-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:323:9-326:70
+343            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoImagem"
+343-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:324:13-59
+344            android:exported="false"
+344-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:325:13-37
+345            android:parentActivityName="com.example.rcksuporte05.rcksistemas.activity.ActivityProduto" />
+345-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:326:13-67
+346        <!--
+347        Activity(s) não existe(m)
+348        <activity
+349            android:name=".fragment.ActivityProdutoImage"
+350            android:parentActivityName=".activity.ActivityProduto" />
+351        <activity android:name=".ActivityAddFotoAnexo" />
+352
+353        !
+354        -->
+355        <activity
+355-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:336:9-339:49
+356            android:name="com.example.rcksuporte05.rcksistemas.activity.MainActivity"
+356-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:337:13-50
+357            android:exported="false"
+357-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:338:13-37
+358            android:theme="@style/Theme.Main" />
+358-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:339:13-46
+359        <activity
+359-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:340:9-343:52
+360            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPrincipalOld"
+360-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:341:13-58
+361            android:exported="false"
+361-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:342:13-37
+362            android:screenOrientation="portrait" />
+362-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:343:13-49
+363        <activity
+363-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:344:9-356:20
+364            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCliente"
+364-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:345:13-53
+365            android:exported="false"
+365-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:346:13-37
+366            android:launchMode="singleTop"
+366-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:347:13-43
+367            android:theme="@style/AppTheme.NoActionBar" >
+367-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:348:13-56
+368            <intent-filter>
+368-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:13-202:29
+369                <action android:name="android.intent.action.SEARCH" />
+369-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-71
+369-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:25-68
+370            </intent-filter>
+371
+372            <meta-data
+372-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:204:13-206:54
+373                android:name="android.app.searchable"
+373-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:205:17-54
+374                android:resource="@xml/searchable" />
+374-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:206:17-51
+375        </activity>
+376        <activity
+376-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:357:9-370:20
+377            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProduto"
+377-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:358:13-53
+378            android:exported="false"
+378-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:359:13-37
+379            android:launchMode="singleTop"
+379-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:360:13-43
+380            android:screenOrientation="portrait"
+380-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:361:13-49
+381            android:theme="@style/AppTheme.NoActionBar" >
+381-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:362:13-56
+382            <intent-filter>
+382-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:200:13-202:29
+383                <action android:name="android.intent.action.SEARCH" />
+383-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:17-71
+383-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:201:25-68
+384            </intent-filter>
+385
+386            <meta-data
+386-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:204:13-206:54
+387                android:name="android.app.searchable"
+387-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:205:17-54
+388                android:resource="@xml/searchable" />
+388-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:206:17-51
+389        </activity>
+390        <activity
+390-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:371:9-380:20
+391            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivitySplash"
+391-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:372:13-52
+392            android:exported="true"
+392-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:373:13-36
+393            android:screenOrientation="portrait" >
+393-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:374:13-49
+394            <intent-filter>
+394-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:375:13-379:29
+395                <action android:name="android.intent.action.MAIN" />
+395-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:376:17-69
+395-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:376:25-66
+396
+397                <category android:name="android.intent.category.LAUNCHER" />
+397-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:378:17-77
+397-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:378:27-74
+398            </intent-filter>
+399        </activity>
+400        <activity
+400-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:381:9-384:55
+401            android:name="com.example.rcksuporte05.rcksistemas.activity.CadastroClienteMain"
+401-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:382:13-57
+402            android:exported="false"
+402-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:383:13-37
+403            android:theme="@style/Theme.Wizard2026" />
+403-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:384:13-52
 404        <activity
-404-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:385:9-387:40
-405            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoPedido"
-405-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:386:13-59
-406            android:exported="false" />
+404-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:385:9-389:59
+405            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain"
+405-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:386:13-56
+406            android:exported="false"
 406-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:387:13-37
-407        <activity
-407-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:388:9-391:59
-408            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoPendente"
-408-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:389:13-60
-409            android:exported="false"
-409-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:390:13-37
-410            android:theme="@style/AppTheme.NoActionBar" />
-410-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:391:13-56
-411        <activity
-411-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:392:9-395:59
-412            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoEnviado"
-412-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:393:13-59
-413            android:exported="false"
-413-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:394:13-37
-414            android:theme="@style/AppTheme.NoActionBar" />
-414-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:395:13-56
-415        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityContato" />
-415-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:396:9-62
-415-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:396:19-59
+407            android:theme="@style/AppTheme.NoActionBar"
+407-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:389:13-56
+408            android:windowSoftInputMode="adjustResize" />
+408-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:388:13-55
+409        <activity
+409-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:390:9-392:40
+410            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProdutoPedido"
+410-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:391:13-59
+411            android:exported="false" />
+411-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:392:13-37
+412        <activity
+412-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:393:9-396:59
+413            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoPendente"
+413-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:394:13-60
+414            android:exported="false"
+414-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:395:13-37
+415            android:theme="@style/AppTheme.NoActionBar" />
+415-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:396:13-56
 416        <activity
-416-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:397:9-400:56
-417            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogSincronia"
-417-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:398:13-61
+416-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:397:9-400:59
+417            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoEnviado"
+417-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:398:13-59
 418            android:exported="false"
 418-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:399:13-37
-419            android:theme="@style/Theme.CriarDialog" />
-419-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:400:13-53
-420        <activity
-420-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:401:9-404:52
-421            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroResumo"
-421-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:402:13-62
-422            android:exported="false"
-422-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:403:13-37
-423            android:screenOrientation="portrait" />
-423-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:404:13-49
-424        <activity
-424-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:405:9-408:52
-425            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectCadastro"
-425-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:406:13-62
-426            android:exported="false"
-426-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:407:13-37
-427            android:screenOrientation="portrait" />
-427-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:408:13-49
-428        <activity
-428-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:409:9-411:40
-429            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroDetalhe"
-429-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:410:13-63
-430            android:exported="false" />
-430-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:411:13-37
-431        <activity
-431-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:412:9-414:40
-432            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectEnviado"
-432-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:413:13-61
-433            android:exported="false" />
-433-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:414:13-37
-434        <activity
-434-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:415:9-418:59
-435            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoVisitaProspect"
-435-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:416:13-69
-436            android:exported="false"
-436-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:417:13-37
-437            android:theme="@style/AppTheme.NoActionBar" />
-437-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:418:13-56
-438        <activity
-438-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:419:9-421:40
-439            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityVisita"
-439-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:420:13-52
-440            android:exported="false" />
-440-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:421:13-37
-441        <activity
-441-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:422:9-424:40
-442            android:name="com.example.rcksuporte05.rcksistemas.activity.LocationActivity"
-442-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:423:13-54
-443            android:exported="false" />
-443-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:424:13-37
-444        <activity
-444-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:425:9-427:40
-445            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFoto"
-445-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:426:13-50
-446            android:exported="false" />
-446-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:427:13-37
-447        <activity
-447-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:428:9-431:59
-448            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectPendente"
-448-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:429:13-62
-449            android:exported="false"
-449-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:430:13-37
-450            android:theme="@style/AppTheme.NoActionBar" />
-450-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:431:13-56
-451        <activity
-451-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:432:9-434:40
-452            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnaliseCredito"
-452-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:433:13-60
-453            android:exported="false" />
-453-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:434:13-37
-454        <activity
-454-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:435:9-437:40
-455            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnexoCadastro"
-455-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:436:13-59
-456            android:exported="false" />
-456-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:437:13-37
-457        <activity
-457-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:438:9-440:40
-458            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityContatoVendedor"
-458-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:439:13-61
-459            android:exported="false" />
-459-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:440:13-37
-460        <activity
-460-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:441:9-443:40
-461            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCpfCnpjCliente"
-461-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:442:13-60
-462            android:exported="false" />
-462-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:443:13-37
-463        <activity
-463-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:444:9-446:40
-464            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEstado"
-464-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:445:13-52
-465            android:exported="false" />
-465-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:446:13-37
-466        <activity
-466-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:447:9-449:40
-467            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityMunicipio"
-467-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:448:13-55
-468            android:exported="false" />
-468-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:449:13-37
-469        <activity
-469-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:450:9-452:40
-470            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectValida"
-470-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:451:13-60
-471            android:exported="false" />
-471-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:452:13-37
-472
-473        <meta-data
-473-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:454:9-456:46
-474            android:name="com.google.android.gms.ads.APPLICATION_ID"
-474-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:455:13-69
-475            android:value="[ADMOB_APP_ID]" />
-475-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:456:13-43
-476        <meta-data
-476-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:457:9-459:57
-477            android:name="preloaded_fonts"
-477-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:458:13-43
-478            android:resource="@array/preloaded_fonts" />
-478-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:459:13-54
-479
-480        <provider
-481            android:name="androidx.core.content.FileProvider"
-481-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:462:13-62
-482            android:authorities="com.example.rcksuporte05.rcksistemas.provider"
-482-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:463:13-60
-483            android:exported="false"
-483-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:464:13-37
-484            android:grantUriPermissions="true" >
-484-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:465:13-47
-485            <meta-data
-485-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:466:13-468:58
-486                android:name="android.support.FILE_PROVIDER_PATHS"
-486-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:467:17-67
-487                android:resource="@xml/provider_paths" />
-487-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:468:17-55
-488        </provider>
-489
-490        <activity
-490-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:471:9-475:54
-491            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityExpansaoCarteira"
-491-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:472:13-62
-492            android:exported="false"
-492-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:473:13-37
-493            android:screenOrientation="portrait"
-493-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:474:13-49
-494            android:theme="@style/Theme.Login2026" />
-494-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:475:13-51
+419            android:theme="@style/AppTheme.NoActionBar" />
+419-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:400:13-56
+420        <activity android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityContato" />
+420-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:401:9-62
+420-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:401:19-59
+421        <activity
+421-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:402:9-405:56
+422            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityDialogSincronia"
+422-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:403:13-61
+423            android:exported="false"
+423-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:404:13-37
+424            android:theme="@style/Theme.CriarDialog" />
+424-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:405:13-53
+425        <activity
+425-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:406:9-409:52
+426            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroResumo"
+426-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:407:13-62
+427            android:exported="false"
+427-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:408:13-37
+428            android:screenOrientation="portrait" />
+428-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:409:13-49
+429        <activity
+429-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:410:9-413:52
+430            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectCadastro"
+430-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:411:13-62
+431            android:exported="false"
+431-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:412:13-37
+432            android:screenOrientation="portrait" />
+432-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:413:13-49
+433        <activity
+433-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:414:9-416:40
+434            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFinanceiroDetalhe"
+434-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:415:13-63
+435            android:exported="false" />
+435-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:416:13-37
+436        <activity
+436-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:417:9-419:40
+437            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectEnviado"
+437-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:418:13-61
+438            android:exported="false" />
+438-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:419:13-37
+439        <activity
+439-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:420:9-423:59
+440            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoVisitaProspect"
+440-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:421:13-69
+441            android:exported="false"
+441-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:422:13-37
+442            android:theme="@style/AppTheme.NoActionBar" />
+442-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:423:13-56
+443        <activity
+443-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:424:9-426:40
+444            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityVisita"
+444-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:425:13-52
+445            android:exported="false" />
+445-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:426:13-37
+446        <activity
+446-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:427:9-429:40
+447            android:name="com.example.rcksuporte05.rcksistemas.activity.LocationActivity"
+447-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:428:13-54
+448            android:exported="false" />
+448-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:429:13-37
+449        <activity
+449-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:430:9-432:40
+450            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityFoto"
+450-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:431:13-50
+451            android:exported="false" />
+451-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:432:13-37
+452        <activity
+452-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:433:9-436:59
+453            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectPendente"
+453-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:434:13-62
+454            android:exported="false"
+454-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:435:13-37
+455            android:theme="@style/AppTheme.NoActionBar" />
+455-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:436:13-56
+456        <activity
+456-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:437:9-439:40
+457            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnaliseCredito"
+457-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:438:13-60
+458            android:exported="false" />
+458-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:439:13-37
+459        <activity
+459-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:440:9-442:40
+460            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityAnexoCadastro"
+460-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:441:13-59
+461            android:exported="false" />
+461-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:442:13-37
+462        <activity
+462-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:443:9-445:40
+463            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityContatoVendedor"
+463-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:444:13-61
+464            android:exported="false" />
+464-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:445:13-37
+465        <activity
+465-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:446:9-448:40
+466            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityCpfCnpjCliente"
+466-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:447:13-60
+467            android:exported="false" />
+467-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:448:13-37
+468        <activity
+468-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:449:9-451:40
+469            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityEstado"
+469-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:450:13-52
+470            android:exported="false" />
+470-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:451:13-37
+471        <activity
+471-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:452:9-454:40
+472            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityMunicipio"
+472-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:453:13-55
+473            android:exported="false" />
+473-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:454:13-37
+474        <activity
+474-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:455:9-457:40
+475            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityProspectValida"
+475-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:456:13-60
+476            android:exported="false" />
+476-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:457:13-37
+477
+478        <meta-data
+478-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:459:9-461:46
+479            android:name="com.google.android.gms.ads.APPLICATION_ID"
+479-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:460:13-69
+480            android:value="[ADMOB_APP_ID]" />
+480-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:461:13-43
+481        <meta-data
+481-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:462:9-464:57
+482            android:name="preloaded_fonts"
+482-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:463:13-43
+483            android:resource="@array/preloaded_fonts" />
+483-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:464:13-54
+484
+485        <provider
+486            android:name="androidx.core.content.FileProvider"
+486-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:467:13-62
+487            android:authorities="com.example.rcksuporte05.rcksistemas.provider"
+487-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:468:13-60
+488            android:exported="false"
+488-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:469:13-37
+489            android:grantUriPermissions="true" >
+489-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:470:13-47
+490            <meta-data
+490-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:471:13-473:58
+491                android:name="android.support.FILE_PROVIDER_PATHS"
+491-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:472:17-67
+492                android:resource="@xml/provider_paths" />
+492-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:473:17-55
+493        </provider>
+494
 495        <activity
-495-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:477:9-482:50
-496            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelGraficoMetas"
-496-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:478:13-64
+495-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:476:9-480:54
+496            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityExpansaoCarteira"
+496-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:477:13-62
 497            android:exported="false"
-497-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:479:13-37
-498            android:hardwareAccelerated="true"
-498-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:482:13-47
-499            android:theme="@style/Theme.Dashboard"
-499-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:481:13-51
-500            android:windowSoftInputMode="adjustResize" />
-500-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:480:13-55
-501        <activity
-501-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:483:9-487:50
-502            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelGraficoEquipe"
-502-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:484:13-65
-503            android:exported="false"
-503-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:485:13-37
-504            android:hardwareAccelerated="true"
-504-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:487:13-47
-505            android:theme="@style/Theme.Dashboard" />
-505-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:486:13-51
+497-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:478:13-37
+498            android:screenOrientation="portrait"
+498-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:479:13-49
+499            android:theme="@style/Theme.Login2026" />
+499-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:480:13-51
+500        <activity
+500-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:482:9-487:50
+501            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelGraficoMetas"
+501-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:483:13-64
+502            android:exported="false"
+502-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:484:13-37
+503            android:hardwareAccelerated="true"
+503-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:487:13-47
+504            android:theme="@style/Theme.Dashboard"
+504-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:486:13-51
+505            android:windowSoftInputMode="adjustResize" />
+505-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:485:13-55
 506        <activity
 506-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:488:9-492:50
-507            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelFinanceiro"
-507-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:489:13-62
+507            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelGraficoEquipe"
+507-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:489:13-65
 508            android:exported="false"
 508-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:490:13-37
 509            android:hardwareAccelerated="true"
@@ -995,320 +995,330 @@
 510            android:theme="@style/Theme.Dashboard" />
 510-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:491:13-51
 511        <activity
-511-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:28:9-31:67
-512            android:name="androidx.biometric.DeviceCredentialHandlerActivity"
-512-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:29:13-78
-513            android:exported="true"
-513-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:30:13-36
-514            android:theme="@style/DeviceCredentialHandlerTheme" />
-514-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:31:13-64
-515        <activity
-515-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:23:9-27:75
-516            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-516-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:24:13-93
-517            android:excludeFromRecents="true"
-517-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:25:13-46
-518            android:exported="false"
-518-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:26:13-37
-519            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-519-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:27:13-72
-520        <!--
-521            Service handling Google Sign-In user revocation. For apps that do not integrate with
-522            Google Sign-In, this service will never be started.
-523        -->
-524        <service
-524-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:33:9-36:110
-525            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-525-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:34:13-89
-526            android:exported="true"
-526-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:35:13-36
-527            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
-527-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:36:13-107
-528        <service
-528-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:14:9-23:19
-529            android:name="com.google.firebase.components.ComponentDiscoveryService"
-529-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:15:13-84
-530            android:directBootAware="true"
-530-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
-531            android:exported="false" >
-531-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:16:13-37
-532            <meta-data
-532-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:17:13-19:85
-533                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
-533-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:18:17-122
-534                android:value="com.google.firebase.components.ComponentRegistrar" />
-534-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:19:17-82
-535            <meta-data
-535-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:20:13-22:85
-536                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-536-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:21:17-111
-537                android:value="com.google.firebase.components.ComponentRegistrar" />
-537-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:22:17-82
-538            <meta-data
-538-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:57:13-59:85
-539                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-539-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:58:17-122
-540                android:value="com.google.firebase.components.ComponentRegistrar" />
-540-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:59:17-82
-541            <meta-data
-541-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:60:13-62:85
-542                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-542-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:61:17-119
-543                android:value="com.google.firebase.components.ComponentRegistrar" />
-543-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:62:17-82
-544            <meta-data
-544-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:29:13-31:85
-545                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
-545-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:30:17-120
-546                android:value="com.google.firebase.components.ComponentRegistrar" />
-546-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:31:17-82
-547            <meta-data
-547-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:32:13-34:85
-548                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-548-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:33:17-109
-549                android:value="com.google.firebase.components.ComponentRegistrar" />
-549-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:34:17-82
-550            <meta-data
-550-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:37:13-39:85
-551                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-551-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:38:17-139
-552                android:value="com.google.firebase.components.ComponentRegistrar" />
-552-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:39:17-82
-553            <meta-data
-553-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
-554                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-554-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
-555                android:value="com.google.firebase.components.ComponentRegistrar" />
-555-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
-556            <meta-data
-556-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
-557                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-557-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
-558                android:value="com.google.firebase.components.ComponentRegistrar" />
-558-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
-559            <meta-data
-559-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
-560                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-560-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
-561                android:value="com.google.firebase.components.ComponentRegistrar" />
-561-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
-562            <meta-data
-562-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
-563                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-563-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
-564                android:value="com.google.firebase.components.ComponentRegistrar" />
-564-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
-565            <meta-data
-565-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
-566                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-566-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
-567                android:value="com.google.firebase.components.ComponentRegistrar" />
-567-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
-568        </service>
-569
-570        <receiver
-570-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:29:9-40:20
-571            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-571-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:30:13-78
-572            android:exported="true"
-572-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:31:13-36
-573            android:permission="com.google.android.c2dm.permission.SEND" >
-573-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:32:13-73
-574            <intent-filter>
-574-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:33:13-35:29
-575                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-575-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:34:17-81
-575-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:34:25-78
-576            </intent-filter>
-577
-578            <meta-data
-578-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:37:13-39:40
-579                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-579-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:38:17-92
-580                android:value="true" />
-580-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:39:17-37
-581        </receiver>
-582        <!--
-583             FirebaseMessagingService performs security checks at runtime,
-584             but set to not exported to explicitly avoid allowing another app to call it.
-585        -->
-586        <service
-586-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:46:9-53:19
-587            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-587-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:47:13-82
-588            android:directBootAware="true"
-588-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:48:13-43
-589            android:exported="false" >
-589-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:49:13-37
-590            <intent-filter android:priority="-500" >
-590-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:50:13-52:29
-590-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:50:28-51
-591                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-591-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:51:17-78
-591-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:51:25-75
-592            </intent-filter>
-593        </service>
-594
-595        <receiver
-595-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:29:9-33:20
-596            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-596-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:30:13-85
-597            android:enabled="true"
-597-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:31:13-35
-598            android:exported="false" >
-598-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:32:13-37
-599        </receiver>
-600
-601        <service
-601-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:35:9-38:40
-602            android:name="com.google.android.gms.measurement.AppMeasurementService"
-602-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:36:13-84
-603            android:enabled="true"
-603-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:37:13-35
-604            android:exported="false" />
-604-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:38:13-37
-605        <service
-605-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:39:9-43:72
-606            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-606-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:40:13-87
-607            android:enabled="true"
-607-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:41:13-35
-608            android:exported="false"
-608-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:42:13-37
-609            android:permission="android.permission.BIND_JOB_SERVICE" />
-609-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:43:13-69
-610
-611        <property
-611-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:30:9-32:61
-612            android:name="android.adservices.AD_SERVICES_CONFIG"
-612-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:31:13-65
-613            android:resource="@xml/ga_ad_services_config" />
-613-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:32:13-58
-614
-615        <provider
-615-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
-616            android:name="com.google.firebase.provider.FirebaseInitProvider"
-616-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
-617            android:authorities="com.example.rcksuporte05.rcksistemas.firebaseinitprovider"
-617-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
-618            android:directBootAware="true"
-618-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
-619            android:exported="false"
-619-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
-620            android:initOrder="100" />
-620-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
-621
-622        <activity
-622-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-623            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-623-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+511-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:493:9-497:50
+512            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityPainelFinanceiro"
+512-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:494:13-62
+513            android:exported="false"
+513-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:495:13-37
+514            android:hardwareAccelerated="true"
+514-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:497:13-47
+515            android:theme="@style/Theme.Dashboard" />
+515-->C:\ProjetoAndroid\ProjetoRCK\RCKSISTEMAS-APP\app\src\main\AndroidManifest.xml:496:13-51
+516        <activity
+516-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:28:9-31:67
+517            android:name="androidx.biometric.DeviceCredentialHandlerActivity"
+517-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:29:13-78
+518            android:exported="true"
+518-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:30:13-36
+519            android:theme="@style/DeviceCredentialHandlerTheme" />
+519-->[androidx.biometric:biometric:1.0.1] C:\Users\User\.gradle\caches\8.13\transforms\f0f1ff48ea5effada9e0a247016bfb10\transformed\biometric-1.0.1\AndroidManifest.xml:31:13-64
+520        <activity
+520-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:23:9-27:75
+521            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+521-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:24:13-93
+522            android:excludeFromRecents="true"
+522-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:25:13-46
+523            android:exported="false"
+523-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:26:13-37
+524            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+524-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:27:13-72
+525        <!--
+526            Service handling Google Sign-In user revocation. For apps that do not integrate with
+527            Google Sign-In, this service will never be started.
+528        -->
+529        <service
+529-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:33:9-36:110
+530            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+530-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:34:13-89
+531            android:exported="true"
+531-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:35:13-36
+532            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+532-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\User\.gradle\caches\8.13\transforms\964e823708348c55783b8d25f799d400\transformed\jetified-play-services-auth-16.0.1\AndroidManifest.xml:36:13-107
+533        <service
+533-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:14:9-23:19
+534            android:name="com.google.firebase.components.ComponentDiscoveryService"
+534-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:15:13-84
+535            android:directBootAware="true"
+535-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
+536            android:exported="false" >
+536-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:16:13-37
+537            <meta-data
+537-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:17:13-19:85
+538                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+538-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:18:17-122
+539                android:value="com.google.firebase.components.ComponentRegistrar" />
+539-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:19:17-82
+540            <meta-data
+540-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:20:13-22:85
+541                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+541-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:21:17-111
+542                android:value="com.google.firebase.components.ComponentRegistrar" />
+542-->[com.google.firebase:firebase-firestore:24.10.0] C:\Users\User\.gradle\caches\8.13\transforms\8deb5331c084432df8f5a7a18c0ec59a\transformed\jetified-firebase-firestore-24.10.0\AndroidManifest.xml:22:17-82
+543            <meta-data
+543-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:57:13-59:85
+544                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+544-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:58:17-122
+545                android:value="com.google.firebase.components.ComponentRegistrar" />
+545-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:59:17-82
+546            <meta-data
+546-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:60:13-62:85
+547                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+547-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:61:17-119
+548                android:value="com.google.firebase.components.ComponentRegistrar" />
+548-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:62:17-82
+549            <meta-data
+549-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:29:13-31:85
+550                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
+550-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:30:17-120
+551                android:value="com.google.firebase.components.ComponentRegistrar" />
+551-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:31:17-82
+552            <meta-data
+552-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:32:13-34:85
+553                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+553-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:33:17-109
+554                android:value="com.google.firebase.components.ComponentRegistrar" />
+554-->[com.google.firebase:firebase-database:20.3.0] C:\Users\User\.gradle\caches\8.13\transforms\24e87fe165c321bd030f6443daec43f9\transformed\jetified-firebase-database-20.3.0\AndroidManifest.xml:34:17-82
+555            <meta-data
+555-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:37:13-39:85
+556                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+556-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:38:17-139
+557                android:value="com.google.firebase.components.ComponentRegistrar" />
+557-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:39:17-82
+558            <meta-data
+558-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:15:13-17:85
+559                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+559-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:16:17-130
+560                android:value="com.google.firebase.components.ComponentRegistrar" />
+560-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:17:17-82
+561            <meta-data
+561-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:18:13-20:85
+562                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+562-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:19:17-127
+563                android:value="com.google.firebase.components.ComponentRegistrar" />
+563-->[com.google.firebase:firebase-installations:17.2.0] C:\Users\User\.gradle\caches\8.13\transforms\074c4a29aa90dcb798d8a15d25cb476b\transformed\jetified-firebase-installations-17.2.0\AndroidManifest.xml:20:17-82
+564            <meta-data
+564-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
+565                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+565-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
+566                android:value="com.google.firebase.components.ComponentRegistrar" />
+566-->[com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\0714fcbdb562d9dcd4936268981f05f4\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
+567            <meta-data
+567-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
+568                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+568-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
+569                android:value="com.google.firebase.components.ComponentRegistrar" />
+569-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
+570            <meta-data
+570-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:27:13-29:85
+571                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+571-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:28:17-115
+572                android:value="com.google.firebase.components.ComponentRegistrar" />
+572-->[com.google.firebase:firebase-datatransport:18.1.7] C:\Users\User\.gradle\caches\8.13\transforms\7140cb8fabf7809b82d766b7a6a61568\transformed\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:29:17-82
+573        </service>
+574
+575        <receiver
+575-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:29:9-40:20
+576            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+576-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:30:13-78
+577            android:exported="true"
+577-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:31:13-36
+578            android:permission="com.google.android.c2dm.permission.SEND" >
+578-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:32:13-73
+579            <intent-filter>
+579-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:33:13-35:29
+580                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+580-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:34:17-81
+580-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:34:25-78
+581            </intent-filter>
+582
+583            <meta-data
+583-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:37:13-39:40
+584                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+584-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:38:17-92
+585                android:value="true" />
+585-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:39:17-37
+586        </receiver>
+587        <!--
+588             FirebaseMessagingService performs security checks at runtime,
+589             but set to not exported to explicitly avoid allowing another app to call it.
+590        -->
+591        <service
+591-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:46:9-53:19
+592            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+592-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:47:13-82
+593            android:directBootAware="true"
+593-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:48:13-43
+594            android:exported="false" >
+594-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:49:13-37
+595            <intent-filter android:priority="-500" >
+595-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:50:13-52:29
+595-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:50:28-51
+596                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+596-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:51:17-78
+596-->[com.google.firebase:firebase-messaging:23.4.0] C:\Users\User\.gradle\caches\8.13\transforms\e8b1526427bbdbf4bd340de4f719253e\transformed\jetified-firebase-messaging-23.4.0\AndroidManifest.xml:51:25-75
+597            </intent-filter>
+598        </service>
+599
+600        <receiver
+600-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:29:9-33:20
+601            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+601-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:30:13-85
+602            android:enabled="true"
+602-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:31:13-35
+603            android:exported="false" >
+603-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:32:13-37
+604        </receiver>
+605
+606        <service
+606-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:35:9-38:40
+607            android:name="com.google.android.gms.measurement.AppMeasurementService"
+607-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:36:13-84
+608            android:enabled="true"
+608-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:37:13-35
+609            android:exported="false" />
+609-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:38:13-37
+610        <service
+610-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:39:9-43:72
+611            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+611-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:40:13-87
+612            android:enabled="true"
+612-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:41:13-35
+613            android:exported="false"
+613-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:42:13-37
+614            android:permission="android.permission.BIND_JOB_SERVICE" />
+614-->[com.google.android.gms:play-services-measurement:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\9c827f0d2a1389911987b309e7a66a7a\transformed\jetified-play-services-measurement-21.5.0\AndroidManifest.xml:43:13-69
+615
+616        <property
+616-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:30:9-32:61
+617            android:name="android.adservices.AD_SERVICES_CONFIG"
+617-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:31:13-65
+618            android:resource="@xml/ga_ad_services_config" />
+618-->[com.google.android.gms:play-services-measurement-api:21.5.0] C:\Users\User\.gradle\caches\8.13\transforms\a210326f314fc5632a33c481e14e4a11\transformed\jetified-play-services-measurement-api-21.5.0\AndroidManifest.xml:32:13-58
+619
+620        <provider
+620-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
+621            android:name="com.google.firebase.provider.FirebaseInitProvider"
+621-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
+622            android:authorities="com.example.rcksuporte05.rcksistemas.firebaseinitprovider"
+622-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
+623            android:directBootAware="true"
+623-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
 624            android:exported="false"
-624-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-625            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-625-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+624-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
+625            android:initOrder="100" />
+625-->[com.google.firebase:firebase-common:20.4.2] C:\Users\User\.gradle\caches\8.13\transforms\63dd73ab85a135a202bcad62b6b99d24\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
 626
-627        <uses-library
-627-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:23:9-25:40
-628            android:name="android.ext.adservices"
-628-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:24:13-50
-629            android:required="false" />
-629-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:25:13-37
-630
-631        <provider
-631-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
-632            android:name="androidx.startup.InitializationProvider"
-632-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:25:13-67
-633            android:authorities="com.example.rcksuporte05.rcksistemas.androidx-startup"
-633-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:26:13-68
-634            android:exported="false" >
-634-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:27:13-37
-635            <meta-data
-635-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-636                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-636-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
-637                android:value="androidx.startup" />
-637-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
-638            <meta-data
-638-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-639                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-639-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-640                android:value="androidx.startup" />
-640-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-641        </provider>
-642
-643        <meta-data
-643-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-644            android:name="com.google.android.gms.version"
-644-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-645            android:value="@integer/google_play_services_version" />
-645-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
-646
-647        <service
-647-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
-648            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-648-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
-649            android:exported="false" >
-649-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
-650            <meta-data
-650-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
-651                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-651-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
-652                android:value="cct" />
-652-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
-653        </service>
-654        <service
-654-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
-655            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-655-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
-656            android:exported="false"
-656-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
-657            android:permission="android.permission.BIND_JOB_SERVICE" >
-657-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
+627        <activity
+627-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+628            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+628-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+629            android:exported="false"
+629-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+630            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+630-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\d86f6ce0183927242ea5ed7ae6d3795f\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+631
+632        <uses-library
+632-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:23:9-25:40
+633            android:name="android.ext.adservices"
+633-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:24:13-50
+634            android:required="false" />
+634-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] C:\Users\User\.gradle\caches\8.13\transforms\7d5bd9fc1059d0d5ec27f413b98e0703\transformed\jetified-ads-adservices-1.0.0-beta05\AndroidManifest.xml:25:13-37
+635
+636        <provider
+636-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:24:9-32:20
+637            android:name="androidx.startup.InitializationProvider"
+637-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:25:13-67
+638            android:authorities="com.example.rcksuporte05.rcksistemas.androidx-startup"
+638-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:26:13-68
+639            android:exported="false" >
+639-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:27:13-37
+640            <meta-data
+640-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+641                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+641-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+642                android:value="androidx.startup" />
+642-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\User\.gradle\caches\8.13\transforms\b0b3f092711e7c35c71111026e4c3664\transformed\jetified-lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+643            <meta-data
+643-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+644                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+644-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+645                android:value="androidx.startup" />
+645-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+646        </provider>
+647
+648        <meta-data
+648-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+649            android:name="com.google.android.gms.version"
+649-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+650            android:value="@integer/google_play_services_version" />
+650-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\User\.gradle\caches\8.13\transforms\053bd5343dee6c52054cde662f0e56c9\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+651
+652        <service
+652-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:28:9-34:19
+653            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+653-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:29:13-103
+654            android:exported="false" >
+654-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:30:13-37
+655            <meta-data
+655-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:31:13-33:39
+656                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+656-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:32:17-94
+657                android:value="cct" />
+657-->[com.google.android.datatransport:transport-backend-cct:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\82d32eb077d5ece0d46cce57f283e31f\transformed\jetified-transport-backend-cct-3.1.8\AndroidManifest.xml:33:17-36
 658        </service>
-659
-660        <receiver
-660-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
-661            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-661-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
-662            android:exported="false" />
-662-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
-663        <receiver
-663-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-664            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-664-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-665            android:directBootAware="false"
-665-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-666            android:enabled="true"
-666-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-667            android:exported="true"
-667-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-668            android:permission="android.permission.DUMP" >
-668-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-669            <intent-filter>
-669-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-670                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-670-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-670-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-671            </intent-filter>
-672            <intent-filter>
-672-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-673                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-673-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-673-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-674            </intent-filter>
-675            <intent-filter>
-675-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-676                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-676-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-676-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-677            </intent-filter>
-678            <intent-filter>
-678-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-679                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-679-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-679-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-680            </intent-filter>
-681        </receiver>
-682    </application>
-683
-684</manifest>
+659        <service
+659-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:26:9-30:19
+660            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+660-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:27:13-117
+661            android:exported="false"
+661-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:28:13-37
+662            android:permission="android.permission.BIND_JOB_SERVICE" >
+662-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:29:13-69
+663        </service>
+664
+665        <receiver
+665-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:32:9-34:40
+666            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+666-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:33:13-132
+667            android:exported="false" />
+667-->[com.google.android.datatransport:transport-runtime:3.1.8] C:\Users\User\.gradle\caches\8.13\transforms\cce6ad341912c1d9381e9af1901532fa\transformed\jetified-transport-runtime-3.1.8\AndroidManifest.xml:34:13-37
+668        <receiver
+668-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+669            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+669-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+670            android:directBootAware="false"
+670-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+671            android:enabled="true"
+671-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+672            android:exported="true"
+672-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+673            android:permission="android.permission.DUMP" >
+673-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+674            <intent-filter>
+674-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+675                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+675-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+675-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+676            </intent-filter>
+677            <intent-filter>
+677-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+678                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+678-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+678-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+679            </intent-filter>
+680            <intent-filter>
+680-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+681                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+681-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+681-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+682            </intent-filter>
+683            <intent-filter>
+683-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+684                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+684-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+684-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\User\.gradle\caches\8.13\transforms\89a4022d7c71e563a0e219f97f0230d2\transformed\jetified-profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+685            </intent-filter>
+686        </receiver>
+687    </application>
+688
+689</manifest>

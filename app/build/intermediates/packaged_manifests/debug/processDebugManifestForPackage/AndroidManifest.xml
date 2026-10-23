@@ -138,6 +138,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityRelatorioVisitas"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Dashboard" />
+        <activity
             android:name="com.example.rcksuporte05.rcksistemas.activity.ActivityHistoricoFinanceiroTKS"
             android:exported="false"
             android:screenOrientation="portrait" />

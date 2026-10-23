@@ -2638,6 +2638,8 @@ int drawable bg_badge_status_primary 0x7f0800d4
 int drawable bg_badge_status_verde 0x7f0800d5
 int drawable bg_badge_status_vermelho 0x7f0800d6
 int drawable bg_badge_status_vermelho_forte 0x7f0800d7
+int drawable bg_circulo_verde 0x7f080335
+int drawable bg_circulo_vermelho 0x7f080336
 int drawable bg_list_row 0x7f0800d8
 int drawable bg_list_row_chamar_atencao 0x7f0800d9
 int drawable bg_radio_pessoa_2026 0x7f0800da
@@ -3468,6 +3470,9 @@ int id btnExportar 0x7f0a00d3
 int id btnFecharFeedback 0x7f0a00d4
 int id btnFiltrar 0x7f0a00d5
 int id btnFiltrar2 0x7f0a00d6
+int id btnFiltroNaoVenda 0x7f0a086a
+int id btnFiltroPositivadas 0x7f0a086b
+int id btnFiltroTodasVisitas 0x7f0a086c
 int id btnFinalizarInclusao 0x7f0a00d7
 int id btnFinanceiro 0x7f0a00d8
 int id btnFlipCard 0x7f0a00d9
@@ -3517,6 +3522,7 @@ int id btnSalvarAnexo 0x7f0a0104
 int id btnSalvarPedido 0x7f0a0105
 int id btnSalvarVisita 0x7f0a0106
 int id btnSelecionarMesAnoGlobal 0x7f0a0107
+int id btnSelecionarMesAnoRelatorio 0x7f0a0884
 int id btnSelecionarPeriodoFinanceiro 0x7f0a0108
 int id btnSemanaAnterior 0x7f0a0109
 int id btnSemanaAtual 0x7f0a010a
@@ -3579,6 +3585,7 @@ int id cardGrafico4 0x7f0a0140
 int id cardInfoEmpresa 0x7f0a0141
 int id cardInfoEmpresaNaoVenda 0x7f0a085f
 int id cardKpiGrupos 0x7f0a0142
+int id cardKpiVisitas 0x7f0a086d
 int id cardMapaLocalizacao 0x7f0a0143
 int id cardMotivosNaoVenda 0x7f0a0860
 int id cardObservacaoNaoVenda 0x7f0a0861
@@ -3737,6 +3744,7 @@ int id dragRight 0x7f0a01d8
 int id dragStart 0x7f0a01d9
 int id dragUp 0x7f0a01da
 int id drawerLayout 0x7f0a01db
+int id drawerLayoutRelatorio 0x7f0a0885
 int id drawer_layout 0x7f0a01dc
 int id dropdown_menu 0x7f0a01dd
 int id easeIn 0x7f0a01de
@@ -4134,6 +4142,7 @@ int id ivGps 0x7f0a0364
 int id ivIconeAlerta 0x7f0a0365
 int id ivIconeEmpresa 0x7f0a0366
 int id ivIconeEmpresaNaoVenda 0x7f0a0864
+int id ivIconeVisita 0x7f0a086e
 int id ivInternet 0x7f0a0367
 int id ivMenuClienteIcon 0x7f0a0368
 int id ivMenuPedidoIcon 0x7f0a0369
@@ -4232,6 +4241,8 @@ int id lyDadosCobranca 0x7f0a03c5
 int id lyDataCadastro 0x7f0a03c6
 int id lyDatas 0x7f0a03c7
 int id lyDetalhes 0x7f0a03c8
+int id lyDetalhesNaoVenda 0x7f0a086f
+int id lyDetalhesVenda 0x7f0a087f
 int id lyDownload 0x7f0a03c9
 int id lyEmail 0x7f0a03ca
 int id lyEmissao 0x7f0a03cb
@@ -4459,6 +4470,7 @@ int id mtrl_picker_title_text 0x7f0a04a8
 int id mtrl_view_tag_bottom_padding 0x7f0a04a9
 int id multiply 0x7f0a04aa
 int id navView 0x7f0a04ab
+int id navViewRelatorio 0x7f0a0886
 int id nav_controller_view_tag 0x7f0a04ac
 int id nav_gallery 0x7f0a04ad
 int id nav_home 0x7f0a04ae
@@ -4533,6 +4545,7 @@ int id pbKpi2 0x7f0a04f2
 int id pbKpi3 0x7f0a04f3
 int id pbKpiDevolucao 0x7f0a04f4
 int id pbKpiExpansao 0x7f0a04f5
+int id pbKpiVisitas 0x7f0a0870
 int id pbMeta 0x7f0a04f6
 int id pbMetaMensal 0x7f0a04f7
 int id pbShareCliente 0x7f0a04f8
@@ -4641,6 +4654,7 @@ int id rounded 0x7f0a055e
 int id row_index_key 0x7f0a055f
 int id rvEvolucaoDialog 0x7f0a0560
 int id rvExpansaoLista 0x7f0a0561
+int id rvRelatorioVisitas 0x7f0a0871
 int id rvUsuariosDrawer 0x7f0a0562
 int id save_non_transition_alpha 0x7f0a0563
 int id save_overlay_view 0x7f0a0564
@@ -4936,6 +4950,8 @@ int id tvCheckInLatitude 0x7f0a0685
 int id tvCheckInLongitude 0x7f0a0686
 int id tvCheckInNomeFantasia 0x7f0a0687
 int id tvCheckInRazaoSocial 0x7f0a0688
+int id tvCoordenadasVisita 0x7f0a0874
+int id tvDataHoraVisita 0x7f0a0875
 int id tvDataPesquisa 0x7f0a0689
 int id tvDetalheProdutoExclusao 0x7f0a068a
 int id tvFaltaMes 0x7f0a068b
@@ -4979,19 +4995,27 @@ int id tvKpiTituloDevolucao 0x7f0a06b0
 int id tvKpiTotalCarteira 0x7f0a06b1
 int id tvKpiTotalNovos 0x7f0a06b2
 int id tvKpiVencidos 0x7f0a06b3
+int id tvKpiVisitasPerc 0x7f0a0876
+int id tvKpiVisitasSubtexto 0x7f0a0877
+int id tvKpiVisitasTotal 0x7f0a0878
 int id tvLabelTotal 0x7f0a06b4
 int id tvMensagemRodape 0x7f0a06b5
 int id tvMesAnoReferencia 0x7f0a06b6
+int id tvMesAnoReferenciaRelatorio 0x7f0a0887
 int id tvMetaTotal 0x7f0a06b7
 int id tvMetaTotalMensal 0x7f0a06b8
+int id tvMotivosVisita 0x7f0a0879
 int id tvNaoVendaEndereco 0x7f0a0865
 int id tvNaoVendaNomeFantasia 0x7f0a0866
 int id tvNaoVendaRazaoSocial 0x7f0a0867
 int id tvNomeClienteShare 0x7f0a06b9
+int id tvNomeFantasiaVisita 0x7f0a0880
 int id tvNomeProdutoExclusao 0x7f0a06ba
 int id tvNomeUsuario 0x7f0a06bb
 int id tvNovosClientes 0x7f0a06bc
 int id tvNovosClientesHub 0x7f0a06bd
+int id tvObservacaoVisita 0x7f0a087a
+int id tvPedidoVisita 0x7f0a0881
 int id tvPedidosATransmitir 0x7f0a06be
 int id tvPedidosCancelados 0x7f0a06bf
 int id tvPedidosDevolvidos 0x7f0a06c0
@@ -5012,6 +5036,7 @@ int id tvRankingEvolucao 0x7f0a06cd
 int id tvRankingMes 0x7f0a06ce
 int id tvRankingSemana 0x7f0a06cf
 int id tvRankingSubtexto 0x7f0a06d0
+int id tvRazaoSocialVisita 0x7f0a087b
 int id tvResumoAtivo 0x7f0a06d1
 int id tvResumoCancelado 0x7f0a06d2
 int id tvResumoCliente 0x7f0a06d3
@@ -5023,10 +5048,13 @@ int id tvResumoDebito 0x7f0a06d8
 int id tvResumoEmpresa 0x7f0a06d9
 int id tvResumoGeral 0x7f0a06da
 int id tvResumoItens 0x7f0a06db
+int id tvResumoNaoVenda 0x7f0a087c
 int id tvResumoOperacao 0x7f0a06dc
 int id tvResumoPedidoNum 0x7f0a06dd
+int id tvResumoPositivadas 0x7f0a087d
 int id tvResumoPrazo 0x7f0a06de
 int id tvResumoTotal 0x7f0a06df
+int id tvResumoTotalVisitas 0x7f0a087e
 int id tvResumoVendedor 0x7f0a06e0
 int id tvSaldoVencendo 0x7f0a06e1
 int id tvSaldoVencido 0x7f0a06e2
@@ -5053,6 +5081,7 @@ int id tvUltimaAtualizacao 0x7f0a06f5
 int id tvValorAtual 0x7f0a06f6
 int id tvValorAtualMensal 0x7f0a06f7
 int id tvValorMesHub 0x7f0a06f8
+int id tvValorPedidoVisita 0x7f0a0882
 int id tvValorTotalCliente 0x7f0a06f9
 int id tvValoresMes 0x7f0a06fa
 int id tvValoresSemana 0x7f0a06fb
@@ -5362,6 +5391,7 @@ int id unlabeled 0x7f0a082a
 int id up 0x7f0a082b
 int id uploadFoto 0x7f0a082c
 int id useLogo 0x7f0a082d
+int id vStatusCirculoVisita 0x7f0a0883
 int id valorIcmsST 0x7f0a082e
 int id valorJuros 0x7f0a082f
 int id valorPago 0x7f0a0830
@@ -5629,6 +5659,7 @@ int layout activity_produto_pedido_layout_sem_tabela_preco 0x7f0d009d
 int layout activity_produto_pedido_layout_tabela_preco 0x7f0d009e
 int layout activity_produto_pedido_layout_tabela_preco_2025 0x7f0d009f
 int layout activity_recupera_senha 0x7f0d00a0
+int layout activity_relatorio_visitas 0x7f0d01db
 int layout activity_saldo_estoque 0x7f0d00a1
 int layout activity_scrolling 0x7f0d00a2
 int layout activity_sem_cobranca 0x7f0d00a3
@@ -5761,6 +5792,7 @@ int layout item_motivo 0x7f0d011f
 int layout item_prospect_visita 0x7f0d0120
 int layout item_referencia_bancaria 0x7f0d0121
 int layout item_referencia_comercial 0x7f0d0122
+int layout item_relatorio_visita 0x7f0d01dc
 int layout item_segmento 0x7f0d0123
 int layout item_usuario_checkbox 0x7f0d0124
 int layout item_usuario_drawer 0x7f0d0125

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/branco"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- CABEÇALHO: ÍCONE + CLIENTE + BADGE DE STATUS -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivIconeVisita"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/border_shadow_2025"
+                android:padding="6dp"
+                android:src="@drawable/img_avatar_empresa"
+                app:tint="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/ivIconeVisita"
+                android:layout_toStartOf="@id/vStatusCirculoVisita"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvRazaoSocialVisita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Razão Social do Cliente"
+                    android:textColor="@color/colorText"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNomeFantasiaVisita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Nome Fantasia"
+                    android:textColor="@color/colorText"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDataHoraVisita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="Check-in: --/--/---- --:--"
+                    android:textColor="@color/colorText"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- CIRCULO PEQUENO DE STATUS (VERDE = POSITIVADO / VERMELHO = NÃO VENDA) -->
+            <View
+                android:id="@+id/vStatusCirculoVisita"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_circulo_verde" />
+        </RelativeLayout>
+
+        <!-- DIVISOR SUTIL -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginVertical="8dp"
+            android:background="#E2E8F0" />
+
+        <!-- DETALHES DA VENDA / PEDIDO (VISÍVEL APENAS EM POSITIVADAS) -->
+        <LinearLayout
+            android:id="@+id/lyDetalhesVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvPedidoVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Pedido: #0000"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvValorPedidoVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="• Valor: R$ 0,00"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- DETALHES DE MOTIVOS E OBSERVAÇÕES (VISÍVEL APENAS EM NÃO VENDA) -->
+        <LinearLayout
+            android:id="@+id/lyDetalhesNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMotivosVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Motivo(s): Estoque cheio / Sem necessidade"
+                android:textColor="@color/colorText"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvObservacaoVisita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="• Obs: Comprador em reunião, retornar dia 15."
+                android:textColor="@color/colorText"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <!-- DADOS GPS DA VISITA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/ic_menu_gps_2025_black_24_24"
+                app:tint="@color/colorText" />
+
+            <TextView
+                android:id="@+id/tvCoordenadasVisita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GPS: -20.4697, -54.6201 (Precisão: 5m)"
+                android:textColor="@color/colorText"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

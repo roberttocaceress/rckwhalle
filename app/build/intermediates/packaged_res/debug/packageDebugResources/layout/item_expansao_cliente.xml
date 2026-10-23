@@ -2,53 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/branco"
-    android:orientation="vertical">
-
-    <LinearLayout
+    android:orientation="vertical"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvItemExpansaoData"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="01/01"
-            android:textColor="#64748B"
-            android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/ivIconeVisita"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_shadow_2025"
+            android:padding="6dp"
+            android:src="@drawable/img_avatar_empresa"
+            app:tint="@color/colorPrimary" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ivIconeVisita"
+            android:layout_toStartOf="@id/vStatusCirculoVisita"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvItemExpansaoRazao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RAZÃO SOCIAL DO CLIENTE"
-                android:textColor="@color/preto"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Razão Social do Cliente"
+                android:textColor="@color/colorText"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvItemExpansaoFantasia"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="Nome Fantasia"
-                android:textColor="#64748B"
-                android:textSize="11sp" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textColor="@color/colorText"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="#33999999" />
+            <TextView
+                android:id="@+id/tvItemExpansaoData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="--/--/---- --:--"
+                android:textColor="@color/colorText"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- CIRCULO PEQUENO DE STATUS (VERDE = POSITIVADO / VERMELHO = NÃO VENDA) -->
+
+    </RelativeLayout>
+
+
+
 </LinearLayout>
