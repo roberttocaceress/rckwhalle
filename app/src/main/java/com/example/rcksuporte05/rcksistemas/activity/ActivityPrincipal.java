@@ -1832,30 +1832,80 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
     }
 
     protected void checkPermission() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                + ContextCompat.checkSelfPermission(
-                context,  Manifest.permission.CAMERA)
-                + ContextCompat.checkSelfPermission(
-                context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+        List<String> permissionsNeeded = new ArrayList<>();
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionsNeeded.add(Manifest.permission.CAMERA);
+        }
+
+        getConfiguracao();
+        boolean usaCheckin = configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S");
+
+        if (usaCheckin) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+        }
+
+        if (!permissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(
                     ActivityPrincipal.this,
-                    new String[]{
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    },
+                    permissionsNeeded.toArray(new String[0]),
                     MY_PERMISSIONS_REQUEST_CODE
             );
-
+        } else if (usaCheckin) {
+            verificarGpsAtivo();
         }
+    }
+
+    private boolean verificarGpsAtivo() {
+        try {
+            getConfiguracao();
+            if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("N")) {
+                return true;
+            }
+
+            android.location.LocationManager locationManager = (android.location.LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            boolean gpsEnabled = locationManager != null && (locationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER)
+                    || locationManager.isProviderEnabled(android.location.LocationManager.NETWORK_PROVIDER));
+
+            if (!gpsEnabled) {
+                new AlertDialog.Builder(this)
+                        .setTitle("GPS Desativado")
+                        .setMessage("O serviço de localização (GPS) do aparelho está desligado. É necessário ativá-lo para registrar o Check-In das visitas nos clientes.")
+                        .setPositiveButton("ATIVAR GPS", (dialog, which) -> {
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        })
+                        .setNegativeButton("DEPOIS", null)
+                        .show();
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-        }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_CODE) {
+            getConfiguracao();
+            if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S")) {
+                verificarGpsAtivo();
+            }
+        }
     }
 
     private void getEvolucaoVendas() {
