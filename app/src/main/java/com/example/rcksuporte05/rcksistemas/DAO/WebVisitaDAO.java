@@ -81,7 +81,7 @@ public class WebVisitaDAO {
             content.put("STATUS_VISITA", visita.getStatusVisita());
             content.put("MOTIVO_NAO_VENDA", visita.getMotivoNaoVenda());
             content.put("ID_MOTIVO_NAO_VENDA", visita.getIdMotivoNaoVenda());
-            content.put("VERSAO_APP", visita.getVersaoApp());
+            content.put("VERSAO_APP", visita.getVersaoApp().substring(0,7));
             content.put("OBSERVACAO", visita.getObservacao());
             content.put("EXCLUIDO", visita.getExcluido() == null ? "N" : visita.getExcluido());
 
@@ -102,6 +102,32 @@ public class WebVisitaDAO {
         content.put("STATUS_VISITA", "V"); // 'V' = Venda Efetuada
         try {
             return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int atualiarVisitaAPI(String idVisitaApp, String idVisitaServidor, int idPedidoServidor ) {
+        ContentValues content = new ContentValues();
+        content.put("ID_VISITA_SERVIDOR", idVisitaServidor);
+        content.put("ID_PEDIDO_SERVIDOR", idPedidoServidor);
+        try {
+            return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public int atualizarExcluidoPorPedido(int idPedido, String idPedidoApp, String statusExcluido) {
+        ContentValues content = new ContentValues();
+        content.put("EXCLUIDO", statusExcluido == null ? "N" : statusExcluido);
+        try {
+            String where = "ID_PEDIDO = " + idPedido;
+            if (idPedidoApp != null && !idPedidoApp.trim().isEmpty()) {
+                where += " OR ID_PEDIDO_APP = '" + idPedidoApp + "'";
+            }
+            return db.updateDados("TBL_WEB_VISITA", content, where);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,6 +196,36 @@ public class WebVisitaDAO {
         return lista;
     }
 
+    public WebVisita getWebVisita(String idPedido, int idCliente) {
+        WebVisita webVisita = new WebVisita();
+        if ( UsuarioHelper.getUsuario() ==null) {
+            UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
+        }
+        String sql = "";
+        if ( idCliente > 0)
+        sql = "SELECT V.* " +
+                "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'V' AND V.EXCLUIDO = 'N' " +
+                "AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
+                "AND V.ID_PEDIDO = '" + idPedido + "' AND ID_CLIENTE_SERVIDOR = " + idCliente;
+        else
+            sql = "SELECT V.* " +
+                    "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'V' AND V.EXCLUIDO = 'N' " +
+                    "AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
+                    "AND V.ID_PEDIDO = '" + idPedido + "'";
+
+        android.database.Cursor cursor = db.listaDados(sql);
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
+        }
+
+        if (cursor.moveToFirst()) {
+            do {
+                return setVisita(cursor);
+            } while (cursor.moveToNext());
+        }
+        return null;
+    }
+
     private WebVisita setVisita(Cursor cursor) {
         WebVisita webVisita = new WebVisita();
         try {
@@ -187,6 +243,14 @@ public class WebVisitaDAO {
 
             int idxPedApp = cursor.getColumnIndex("ID_PEDIDO_APP");
             if (idxPedApp != -1) webVisita.setIdPedidoApp(cursor.getString(idxPedApp));
+
+            int idxPedSrv = cursor.getColumnIndex("ID_PEDIDO_SERVIDOR");
+            try {
+                if (idxPedSrv != -1)
+                    webVisita.setIdPedidoServidor(Integer.parseInt(cursor.getString(idxPedSrv)));
+            } catch (NumberFormatException | NullPointerException e) {
+                webVisita.setIdPedidoServidor(0);
+            }
 
             int idxCli = cursor.getColumnIndex("ID_CLIENTE_SERVIDOR");
             if (idxCli != -1) webVisita.setIdClienteServidor(cursor.getInt(idxCli));
@@ -236,6 +300,13 @@ public class WebVisitaDAO {
             if (idxValIdVisitaServidor != -1 && cursor.getString(idxValIdVisitaServidor) != null) {
                 try {
                     webVisita.setValorPedido(Double.parseDouble(cursor.getString(idxValIdVisitaServidor)));
+                } catch (Exception ignored) {
+                }
+            }
+            int idxVersaoApp = cursor.getColumnIndex("VERSAO_APP");
+            if (idxVersaoApp != -1 && cursor.getString(idxVersaoApp) != null) {
+                try {
+                    webVisita.setVersaoApp(cursor.getString(idxVersaoApp));
                 } catch (Exception ignored) {
                 }
             }

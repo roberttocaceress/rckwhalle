@@ -350,10 +350,11 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="6dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="#94A3B8"
             android:text="CANCELAR"
             android:textColor="@color/branco"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:cornerRadius="6dp" />
 
     </LinearLayout>

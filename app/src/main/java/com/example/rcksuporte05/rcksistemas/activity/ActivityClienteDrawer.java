@@ -2198,8 +2198,23 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
             return;
         }
 
-        // GERA UUID ÚNICO DO CHECK-IN PARA VINCULAR AO PEDIDO OU À NÃO-VENDA
-        String idVisitaApp = java.util.UUID.randomUUID().toString();
+        // GERA ID ESTRUTURADO DA VISITA SEGUINDO A LÓGICA PADRÃO DO SISTEMA (VENDEDOR + PREFIXO + CLIENTE + DATA/HORA)
+        String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+        int idVendedorNum = 0;
+        int idEmpresaNum = 0;
+        try {
+            if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
+            }
+        } catch (Exception ignored) {}
+
+        int idClienteNum = 0;
+        if (cliente != null) {
+            idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+        }
+
+        String idVisitaApp = String.format("%03d", idVendedorNum) + "90000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
 
         DialogHelper.showCheckInClienteDialog(
                 this,
@@ -2237,7 +2252,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                     }
 
                                     visita.setStatusVisita("A"); // 'A' = Atendimento em andamento
-                                    visita.setVersaoApp(BuildConfig.VERSION_NAME);
+                                    visita.setVersaoApp(BuildConfig.VERSION_NAME.substring(0,7).trim());
 
                                     com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                     visitaDAO.salvarVisita(visita);

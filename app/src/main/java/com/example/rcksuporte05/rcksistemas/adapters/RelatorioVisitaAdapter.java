@@ -1,5 +1,6 @@
 package com.example.rcksuporte05.rcksistemas.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
         return new VisitaViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull VisitaViewHolder holder, int position) {
         WebVisita visita = listaVisitas.get(position);
@@ -68,7 +70,8 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
             holder.lyDetalhesVenda.setVisibility(View.VISIBLE);
 
             String numPed = visita.getIdPedido() > 0 ? "" +  visita.getIdPedido() : (visita.getIdPedidoApp() != null ? visita.getIdPedidoApp() : "-");
-            holder.tvPedidoVisita.setText("• Pedido: " + numPed);
+            String numSrv = visita.getIdPedidoServidor() > 0 ? "" +  visita.getIdPedidoServidor() :  "";
+            holder.tvPedidoVisita.setText("• Pedido: " + numPed + " -- " + numSrv);
             holder.tvValorPedidoVisita.setText("• Valor: " + MascaraUtil.mascaraRealSimboloD(visita.getValorPedido()));
         } else {
             holder.vStatusCirculo.setBackgroundResource(R.drawable.bg_circulo_vermelho);
@@ -104,7 +107,7 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
             SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
             Date date = sdfIn.parse(dataHoraRaw);
             if (date != null) {
-                SimpleDateFormat sdfOut = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.US);
+                SimpleDateFormat sdfOut = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.US);
                 return sdfOut.format(date);
             }
         } catch (Exception e1) {
@@ -112,7 +115,7 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
                 SimpleDateFormat sdfIn2 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 Date date2 = sdfIn2.parse(dataHoraRaw);
                 if (date2 != null) {
-                    SimpleDateFormat sdfOut2 = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+                    SimpleDateFormat sdfOut2 = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
                     return sdfOut2.format(date2);
                 }
             } catch (Exception ignored) {}

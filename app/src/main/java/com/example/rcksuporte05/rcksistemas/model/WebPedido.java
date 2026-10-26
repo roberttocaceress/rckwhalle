@@ -46,6 +46,7 @@ public class WebPedido {
     private String id_web_pedido_servidor;
     private String data_prev_entrega;
     private List<WebPedidoItens> webPedidoItens;
+    private WebVisita webVisita;
     private String pedido_enviado;
     private String finalizado;
     private String id_visita_app;
@@ -781,5 +782,13 @@ public class WebPedido {
 
     public void setId_visita_app(String id_visita_app) {
         this.id_visita_app = id_visita_app;
+    }
+
+    public WebVisita getWebVisita() {
+        return webVisita;
+    }
+
+    public void setWebVisita(WebVisita webVisita) {
+        this.webVisita = webVisita;
     }
 }

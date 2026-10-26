@@ -21,9 +21,9 @@ import java.lang.Override;
 public class ActivityProduto_ViewBinding implements Unbinder {
   private ActivityProduto target;
 
-  private View view7f0a00ee;
+  private View view7f0a00f4;
 
-  private View view7f0a0425;
+  private View view7f0a043b;
 
   @UiThread
   public ActivityProduto_ViewBinding(ActivityProduto target) {
@@ -42,7 +42,7 @@ public class ActivityProduto_ViewBinding implements Unbinder {
     target.buscaGrupo = Utils.findRequiredViewAsType(source, R.id.buscaGrupo, "field 'buscaGrupo'", Button.class);
     view = Utils.findRequiredView(source, R.id.btnNovoPedido, "field 'btnNovoPedido' and method 'btnNovoPedido'");
     target.btnNovoPedido = Utils.castView(view, R.id.btnNovoPedido, "field 'btnNovoPedido'", Button.class);
-    view7f0a00ee = view;
+    view7f0a00f4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -51,7 +51,7 @@ public class ActivityProduto_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.lytNovoPedido, "field 'lytNovoPedido' and method 'novoPedido'");
     target.lytNovoPedido = Utils.castView(view, R.id.lytNovoPedido, "field 'lytNovoPedido'", LinearLayout.class);
-    view7f0a0425 = view;
+    view7f0a043b = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -77,9 +77,9 @@ public class ActivityProduto_ViewBinding implements Unbinder {
     target.lytNovoPedido = null;
     target.mSwipeRefreshLayout = null;
 
-    view7f0a00ee.setOnClickListener(null);
-    view7f0a00ee = null;
-    view7f0a0425.setOnClickListener(null);
-    view7f0a0425 = null;
+    view7f0a00f4.setOnClickListener(null);
+    view7f0a00f4 = null;
+    view7f0a043b.setOnClickListener(null);
+    view7f0a043b = null;
   }
 }

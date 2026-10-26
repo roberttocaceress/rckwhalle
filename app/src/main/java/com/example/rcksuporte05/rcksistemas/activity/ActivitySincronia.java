@@ -801,6 +801,12 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
                 addCobrancas(sincronia);
                 System.gc();
             }
+            if (sincronia.getListaVisita() != null || !sincronia.getListaVisita().isEmpty()) {
+                updateProgressMessage("Analisando arquivos recebidos da base de dados!\nVisitas em analise...");
+                for (WebVisita webVisita : sincronia.getListaVisita())
+                    webVisitaDAO.atualiarVisitaAPI(webVisita.getIdVisitaApp(), webVisita.getIdVisitaServidor(), webVisita.getIdPedidoServidor());
+                System.gc();
+            }
             updateProgressMessage("Analisando arquivos recebidos da base de dados!\nCadastro(s) de configurações em analise...");
             addUsuarios(sincronia);
             updateParametros(sincronia);

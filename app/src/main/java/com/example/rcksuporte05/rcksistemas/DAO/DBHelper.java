@@ -727,7 +727,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "ID_VISITA_SERVIDOR INTEGER, " +
                 "ID_CADASTRO INTEGER, " +
                 "TITULO VARCHAR(50));");
-
+        /*
         db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
                 "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "ID_VISITA_APP VARCHAR(38), " +
@@ -750,6 +750,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "VERSAO_APP VARCHAR(10), " +
                 "OBSERVACAO TEXT, " +
                 "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+
+         */
 
         db.execSQL("CREATE TABLE IF NOT EXISTS TBL_CADASTRO_FINANCEIRO_RESUMO (ID_CADASTRO INTEGER NOT NULL PRIMARY KEY," +
                 "               LIMITE_CREDITO NUMERIC (18,2)," +

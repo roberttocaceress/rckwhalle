@@ -2,7 +2,7 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.example.rcksuporte05.rcksistemas"
 4    android:versionCode="2"
-5    android:versionName="2.7.3-G 3 DB V27 20/10/2026 PM DESENVOLVIDO POR RCK SISTEMAS ESPECIFICOS" >
+5    android:versionName="2.7.3-H 0 DB V28 26/10/2026 AM DESENVOLVIDO POR RCK SISTEMAS ESPECIFICOS" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"

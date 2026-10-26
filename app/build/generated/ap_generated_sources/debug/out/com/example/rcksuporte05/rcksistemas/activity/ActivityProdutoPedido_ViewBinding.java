@@ -25,15 +25,15 @@ import me.relex.circleindicator.CircleIndicator;
 public class ActivityProdutoPedido_ViewBinding implements Unbinder {
   private ActivityProdutoPedido target;
 
-  private View view7f0a010f;
+  private View view7f0a0116;
 
-  private View view7f0a010e;
+  private View view7f0a0115;
 
   private View view7f0a00ba;
 
-  private View view7f0a00c1;
+  private View view7f0a00c3;
 
-  private View view7f0a00dc;
+  private View view7f0a00e2;
 
   @UiThread
   public ActivityProdutoPedido_ViewBinding(ActivityProdutoPedido target) {
@@ -65,7 +65,7 @@ public class ActivityProdutoPedido_ViewBinding implements Unbinder {
     target.txtPromocao = Utils.findRequiredViewAsType(source, R.id.txtPromocao, "field 'txtPromocao'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnSubtraiQuantidade, "field 'btnSubtraiQuantidade' and method 'subtraiQuantidade'");
     target.btnSubtraiQuantidade = Utils.castView(view, R.id.btnSubtraiQuantidade, "field 'btnSubtraiQuantidade'", Button.class);
-    view7f0a010f = view;
+    view7f0a0116 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -74,7 +74,7 @@ public class ActivityProdutoPedido_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnSomaQuantidade, "field 'btnSomaQuantidade' and method 'somaQuantidade'");
     target.btnSomaQuantidade = Utils.castView(view, R.id.btnSomaQuantidade, "field 'btnSomaQuantidade'", Button.class);
-    view7f0a010e = view;
+    view7f0a0115 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -92,7 +92,7 @@ public class ActivityProdutoPedido_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnConfirmar, "field 'btnConfirmar' and method 'confirmar'");
     target.btnConfirmar = Utils.castView(view, R.id.btnConfirmar, "field 'btnConfirmar'", Button.class);
-    view7f0a00c1 = view;
+    view7f0a00c3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -108,7 +108,7 @@ public class ActivityProdutoPedido_ViewBinding implements Unbinder {
     target.btnBuscaCampanha = Utils.findRequiredViewAsType(source, R.id.btnBuscaCampanha, "field 'btnBuscaCampanha'", Button.class);
     view = Utils.findRequiredView(source, R.id.btnInfoCampanha, "field 'btnInfoCampanha' and method 'infoCampanha'");
     target.btnInfoCampanha = Utils.castView(view, R.id.btnInfoCampanha, "field 'btnInfoCampanha'", Button.class);
-    view7f0a00dc = view;
+    view7f0a00e2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -167,15 +167,15 @@ public class ActivityProdutoPedido_ViewBinding implements Unbinder {
     target.indicator = null;
     target.txtPesquisaProduto = null;
 
-    view7f0a010f.setOnClickListener(null);
-    view7f0a010f = null;
-    view7f0a010e.setOnClickListener(null);
-    view7f0a010e = null;
+    view7f0a0116.setOnClickListener(null);
+    view7f0a0116 = null;
+    view7f0a0115.setOnClickListener(null);
+    view7f0a0115 = null;
     view7f0a00ba.setOnClickListener(null);
     view7f0a00ba = null;
-    view7f0a00c1.setOnClickListener(null);
-    view7f0a00c1 = null;
-    view7f0a00dc.setOnClickListener(null);
-    view7f0a00dc = null;
+    view7f0a00c3.setOnClickListener(null);
+    view7f0a00c3 = null;
+    view7f0a00e2.setOnClickListener(null);
+    view7f0a00e2 = null;
   }
 }
