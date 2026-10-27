@@ -3319,6 +3319,7 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_compartilhar_visitas
 id action_container
 id action_context_bar
 id action_continua_pedido
@@ -6011,6 +6012,7 @@ menu menu_principal_bottombar
 menu menu_produto
 menu menu_produto_pedido
 menu menu_produto_view_imagem
+menu menu_relatorio_visitas
 menu menu_salvar
 menu menu_scrolling
 menu menu_toobar_image_produto

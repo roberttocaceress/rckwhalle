@@ -534,6 +534,7 @@ id action_2
 id action_3
 id action_4
 id action_5
+id action_compartilhar_visitas
 id action_continua_pedido
 id action_continua_pedido_imagem
 id action_delete
@@ -2578,6 +2579,7 @@ menu menu_principal_bottombar
 menu menu_produto
 menu menu_produto_pedido
 menu menu_produto_view_imagem
+menu menu_relatorio_visitas
 menu menu_salvar
 menu menu_scrolling
 menu menu_toobar_image_produto

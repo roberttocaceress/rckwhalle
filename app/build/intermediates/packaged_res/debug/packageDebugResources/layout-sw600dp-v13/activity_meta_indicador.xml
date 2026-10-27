@@ -481,6 +481,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lytUsuarioFiltro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -497,6 +498,32 @@
 
             <Spinner
                 android:id="@+id/spUsuarios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_spinner_com_seta"
+                android:minHeight="36dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lytEmpresaFiltro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/lblSelecionarEmpresa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empresa"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spEmpresas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

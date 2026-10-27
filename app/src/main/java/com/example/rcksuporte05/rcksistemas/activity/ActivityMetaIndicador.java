@@ -188,15 +188,19 @@ public class ActivityMetaIndicador extends AppCompatActivity {
     @BindView(R.id.spAnos)
     Spinner spAnos;
 
+    @androidx.annotation.Nullable
     @BindView(R.id.spUsuarios)
     Spinner spUsuarios;
 
+    @androidx.annotation.Nullable
     @BindView(R.id.lytUsuarioFiltro)
     View lytUsuarioFiltro;
 
+    @androidx.annotation.Nullable
     @BindView(R.id.lytEmpresaFiltro)
     View lytEmpresaFiltro;
 
+    @androidx.annotation.Nullable
     @BindView(R.id.spEmpresas)
     Spinner spEmpresas;
 

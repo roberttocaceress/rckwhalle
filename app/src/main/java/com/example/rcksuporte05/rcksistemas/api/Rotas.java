@@ -24,6 +24,7 @@ import com.example.rcksuporte05.rcksistemas.model.Usuario;
 import com.example.rcksuporte05.rcksistemas.model.VisitaProspect;
 import com.example.rcksuporte05.rcksistemas.model.WebPedido;
 import com.example.rcksuporte05.rcksistemas.model.WebPedidoAnalise;
+import com.example.rcksuporte05.rcksistemas.model.WebVisita;
 import com.example.rcksuporte05.rcksistemas.util.classesGeocoderUtil.RespostaGeocoder;
 import com.google.gson.JsonObject;
 
@@ -371,6 +372,11 @@ public interface Rotas {
                                                                     @Path("periodoSelecionado") String periodoSelecionado,
                                                                     @Path("qtdePeriodo") String qtdePeriodo,
                                                                     @HeaderMap Map<String, String> chaveDeAcesso);
+
+
+    @GET("visita/web/listar/periodo/{idUsuario}/{periodoSelecionado}")
+    Call<List<WebVisita>> getWebVisitasPeriodo(@Path("idUsuario") int idUsuario, @Path("periodoSelecionado") String periodoSelecionado, @HeaderMap Map<String, String> chaveDeAcesso);
+
 
     @GET("webpedido/analise/{idPedido}/{idOrdem}")
     Call<WebPedidoAnalise> getAnalisePedido(@Path("idPedido") String idPedido, @Path("idOrdem") String idOrdem, @HeaderMap Map<String, String> chaveDeAcesso);

@@ -81,10 +81,10 @@ public class ActivityMetaIndicador_ViewBinding implements Unbinder {
     target.tvHelperNov = Utils.findRequiredViewAsType(source, R.id.tvHelperNov, "field 'tvHelperNov'", TextView.class);
     target.tvHelperDez = Utils.findRequiredViewAsType(source, R.id.tvHelperDez, "field 'tvHelperDez'", TextView.class);
     target.spAnos = Utils.findRequiredViewAsType(source, R.id.spAnos, "field 'spAnos'", Spinner.class);
-    target.spUsuarios = Utils.findRequiredViewAsType(source, R.id.spUsuarios, "field 'spUsuarios'", Spinner.class);
-    target.lytUsuarioFiltro = Utils.findRequiredView(source, R.id.lytUsuarioFiltro, "field 'lytUsuarioFiltro'");
-    target.lytEmpresaFiltro = Utils.findRequiredView(source, R.id.lytEmpresaFiltro, "field 'lytEmpresaFiltro'");
-    target.spEmpresas = Utils.findRequiredViewAsType(source, R.id.spEmpresas, "field 'spEmpresas'", Spinner.class);
+    target.spUsuarios = Utils.findOptionalViewAsType(source, R.id.spUsuarios, "field 'spUsuarios'", Spinner.class);
+    target.lytUsuarioFiltro = source.findViewById(R.id.lytUsuarioFiltro);
+    target.lytEmpresaFiltro = source.findViewById(R.id.lytEmpresaFiltro);
+    target.spEmpresas = Utils.findOptionalViewAsType(source, R.id.spEmpresas, "field 'spEmpresas'", Spinner.class);
     target.lytSubOpcoes = Utils.findRequiredViewAsType(source, R.id.lytSubOpcoes, "field 'lytSubOpcoes'", LinearLayout.class);
     target.lytFiltros = Utils.findRequiredViewAsType(source, R.id.lytFiltros, "field 'lytFiltros'", LinearLayout.class);
     target.scrollViewMeta = Utils.findRequiredViewAsType(source, R.id.scrollViewMeta, "field 'scrollViewMeta'", ScrollView.class);

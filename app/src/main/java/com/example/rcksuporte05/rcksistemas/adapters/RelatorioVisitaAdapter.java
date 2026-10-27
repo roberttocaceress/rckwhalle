@@ -87,16 +87,54 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
             holder.tvObservacao.setText("• Obs: " + obs);
         }
 
-        String gpsStr = "GPS: " + (visita.getLatitudeCheckin() != null ? visita.getLatitudeCheckin() : "-") +
-                ", " + (visita.getLongitudeCheckin() != null ? visita.getLongitudeCheckin() : "-") +
-                (visita.getPrecisaoCheckin() != null ? " (Precisão: " + visita.getPrecisaoCheckin() + ")" : "");
-        holder.tvCoordenadas.setText(gpsStr);
+        if (visita.getLatitudeCheckin() != null && !visita.getLatitudeCheckin().trim().isEmpty() &&
+                visita.getLongitudeCheckin() != null && !visita.getLongitudeCheckin().trim().isEmpty()) {
+
+            String gpsStr = "GPS: " + visita.getLatitudeCheckin().trim() + ", " + visita.getLongitudeCheckin().trim() +
+                    (visita.getPrecisaoCheckin() != null ? " (Precisão: " + visita.getPrecisaoCheckin() + ")" : "") +
+                    "  🗺️ (Toque p/ Mapa)";
+            holder.tvCoordenadas.setText(gpsStr);
+
+            holder.tvCoordenadas.setOnClickListener(v -> abrirGoogleMaps(visita));
+        } else {
+            holder.tvCoordenadas.setText("GPS: Não registrado");
+            holder.tvCoordenadas.setOnClickListener(null);
+        }
 
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onVisitaClick(visita);
             }
         });
+    }
+
+    private void abrirGoogleMaps(WebVisita visita) {
+        if (visita == null || visita.getLatitudeCheckin() == null || visita.getLongitudeCheckin() == null) return;
+        try {
+            String lat = visita.getLatitudeCheckin().trim();
+            String lng = visita.getLongitudeCheckin().trim();
+            String label = visita.getRazaoSocial() != null && !visita.getRazaoSocial().isEmpty()
+                    ? visita.getRazaoSocial() : "Check-in Visita";
+
+            android.net.Uri gmmIntentUri = android.net.Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + android.net.Uri.encode(label) + ")");
+            android.content.Intent mapIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+
+            if (mapIntent.resolveActivity(context.getPackageManager()) != null) {
+                context.startActivity(mapIntent);
+            } else {
+                android.content.Intent genericIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://maps.google.com/?q=" + lat + "," + lng));
+                context.startActivity(genericIntent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                String lat = visita.getLatitudeCheckin().trim();
+                String lng = visita.getLongitudeCheckin().trim();
+                android.content.Intent genericIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse("https://maps.google.com/?q=" + lat + "," + lng));
+                context.startActivity(genericIntent);
+            } catch (Exception ignored) {}
+        }
     }
 
     private String formatarDataHora(String dataHoraRaw) {
