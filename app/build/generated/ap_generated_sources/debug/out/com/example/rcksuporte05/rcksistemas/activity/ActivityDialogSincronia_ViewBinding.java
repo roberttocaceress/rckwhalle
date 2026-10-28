@@ -15,9 +15,9 @@ import java.lang.Override;
 public class ActivityDialogSincronia_ViewBinding implements Unbinder {
   private ActivityDialogSincronia target;
 
-  private View view7f0a00c3;
+  private View view7f0a00c8;
 
-  private View view7f0a00ba;
+  private View view7f0a00bf;
 
   @UiThread
   public ActivityDialogSincronia_ViewBinding(ActivityDialogSincronia target) {
@@ -39,7 +39,7 @@ public class ActivityDialogSincronia_ViewBinding implements Unbinder {
     target.id_opcao_imagem_produto = Utils.findRequiredViewAsType(source, R.id.id_opcao_imagem_produto, "field 'id_opcao_imagem_produto'", Switch.class);
     target.id_opcao_cobrancas = Utils.findRequiredViewAsType(source, R.id.id_opcao_cobrancas, "field 'id_opcao_cobrancas'", Switch.class);
     view = Utils.findRequiredView(source, R.id.btnConfirmar, "method 'btnConfirmar'");
-    view7f0a00c3 = view;
+    view7f0a00c8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -47,7 +47,7 @@ public class ActivityDialogSincronia_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btnCancelar, "method 'btnCancelar'");
-    view7f0a00ba = view;
+    view7f0a00bf = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,9 +73,9 @@ public class ActivityDialogSincronia_ViewBinding implements Unbinder {
     target.id_opcao_imagem_produto = null;
     target.id_opcao_cobrancas = null;
 
-    view7f0a00c3.setOnClickListener(null);
-    view7f0a00c3 = null;
-    view7f0a00ba.setOnClickListener(null);
-    view7f0a00ba = null;
+    view7f0a00c8.setOnClickListener(null);
+    view7f0a00c8 = null;
+    view7f0a00bf.setOnClickListener(null);
+    view7f0a00bf = null;
   }
 }

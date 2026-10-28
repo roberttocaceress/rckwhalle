@@ -45,6 +45,7 @@ public class EmpresaParametro {
     private String atual_lista_ped_exportado;
     private String confirma_sincronia_dados_app;
     private String confirma_sincronia_checkin_app;
+    private String confirma_sincronia_checkout_app;
 
     private String cnpj_cpf;
     private String marca_produto_ja_comprado_app;
@@ -450,5 +451,13 @@ public class EmpresaParametro {
 
     public void setCalcula_dscto_automatico_muda_prazo(String calcula_dscto_automatico_muda_prazo) {
         this.calcula_dscto_automatico_muda_prazo = calcula_dscto_automatico_muda_prazo;
+    }
+
+    public String getConfirma_sincronia_checkout_app() {
+        return confirma_sincronia_checkout_app;
+    }
+
+    public void setConfirma_sincronia_checkout_app(String confirma_sincronia_checkout_app) {
+        this.confirma_sincronia_checkout_app = confirma_sincronia_checkout_app;
     }
 }

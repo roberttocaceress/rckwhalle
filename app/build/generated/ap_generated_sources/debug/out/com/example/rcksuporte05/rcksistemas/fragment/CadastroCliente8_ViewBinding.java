@@ -18,9 +18,9 @@ import java.lang.Override;
 public class CadastroCliente8_ViewBinding implements Unbinder {
   private CadastroCliente8 target;
 
-  private View view7f0a00a1;
+  private View view7f0a00a5;
 
-  private View view7f0a00a0;
+  private View view7f0a00a4;
 
   @UiThread
   public CadastroCliente8_ViewBinding(final CadastroCliente8 target, View source) {
@@ -31,7 +31,7 @@ public class CadastroCliente8_ViewBinding implements Unbinder {
     target.edtTotalAnexos = Utils.findRequiredViewAsType(source, R.id.edtTotalAnexos, "field 'edtTotalAnexos'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnAddAnexos, "field 'btnAddAnexos' and method 'addAnexo'");
     target.btnAddAnexos = Utils.castView(view, R.id.btnAddAnexos, "field 'btnAddAnexos'", FloatingActionButton.class);
-    view7f0a00a1 = view;
+    view7f0a00a5 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -40,7 +40,7 @@ public class CadastroCliente8_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAddAnexCam, "field 'btnAddAnexCam' and method 'addAnexoCam'");
     target.btnAddAnexCam = Utils.castView(view, R.id.btnAddAnexCam, "field 'btnAddAnexCam'", FloatingActionButton.class);
-    view7f0a00a0 = view;
+    view7f0a00a4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -63,9 +63,9 @@ public class CadastroCliente8_ViewBinding implements Unbinder {
     target.btnAddAnexCam = null;
     target.btnContinuar = null;
 
-    view7f0a00a1.setOnClickListener(null);
-    view7f0a00a1 = null;
-    view7f0a00a0.setOnClickListener(null);
-    view7f0a00a0 = null;
+    view7f0a00a5.setOnClickListener(null);
+    view7f0a00a5 = null;
+    view7f0a00a4.setOnClickListener(null);
+    view7f0a00a4 = null;
   }
 }

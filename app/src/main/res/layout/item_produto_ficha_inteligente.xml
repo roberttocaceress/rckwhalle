@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/branco"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- ÍCONE DO PRODUTO -->
+        <ImageView
+            android:id="@+id/ivIconeFichaProduto"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_shadow_2025"
+            android:padding="6dp"
+            android:src="@drawable/ic_carrinho_azul"
+            app:tint="@color/colorPrimary" />
+
+        <!-- DETALHES DO PRODUTO -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- TAG DE DESTAQUE COMERCIAL -->
+            <TextView
+                android:id="@+id/tvTagDestaqueProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FEF3C7"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="🏆 Comprado 48x"
+                android:textColor="#D97706"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvNomeFichaProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="ÓLEO LUBRIFICANTE 20W50 1L"
+                android:textColor="@color/preto"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvValoresFichaProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Último Preço: R$ 28,90 | Estq: 140 un"
+                android:textColor="@color/colorText"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- BOTÃO DE AÇÃO RÁPIDA -->
+        <Button
+            android:id="@+id/btnAdicionarProdutoFicha"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:paddingHorizontal="10dp"
+            android:text="🛒 +1"
+            android:textColor="@color/branco"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:cornerRadius="6dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

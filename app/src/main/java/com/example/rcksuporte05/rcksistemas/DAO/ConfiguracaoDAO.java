@@ -90,6 +90,7 @@ public class ConfiguracaoDAO {
         }
         try {
             //TRABALHA_COM_CHECKIN_APP
+            db.alterar("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN TRABALHA_COM_CHECKOUT_APP CHAR(1)");
             db.alterar("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN TRABALHA_COM_CHECKIN_APP CHAR(1)");
             db.alterar("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1)");
             db.alterar("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN MARCA_PRODUTO_JA_COMPRADO CHAR(1)");
@@ -191,6 +192,7 @@ public class ConfiguracaoDAO {
         content.put("VISUALIZA_LEGENDA_PRODUTO", v_l_produto == null || v_l_produto.isEmpty() ? "S" : v_l_produto );
         content.put("VISUALIZA_LEGENDA_PEDIDO" , v_l_pedido  == null || v_l_pedido.isEmpty()  ? "S" : v_l_pedido );
         content.put("TRABALHA_COM_CHECKIN_APP" , configuracao.getTrab_com_checkin_app()  == null || configuracao.getTrab_com_checkin_app().isEmpty()  ? "N" : configuracao.getTrab_com_checkin_app() );
+        content.put("TRABALHA_COM_CHECKOUT_APP" , configuracao.getTrab_com_checkout_app()  == null || configuracao.getTrab_com_checkout_app().isEmpty()  ? "N" : configuracao.getTrab_com_checkout_app() );
 
         try {
             if ( db.addDados("TBL_CONFIGURACAO",  content) > 0)
@@ -207,7 +209,7 @@ public class ConfiguracaoDAO {
                       String visual_estoque_produto_app, String ordem_lista_cliente, String atual_lista_ped_exportado,
                       String confirma_sincronia_dados, String cnpj_empresa, String marca_produto_ja_comprado_app,
                       String pedido_enviado_on_line_app, String visualiza_grafico_on_line_app, String visualiza_ultimo_preco_venda_app,
-                      String calcula_dscto_automatico_muda_prazo, String trab_com_checkin_app) {
+                      String calcula_dscto_automatico_muda_prazo, String trab_com_checkin_app, String trab_com_checkout_app) {
 
 
 
@@ -262,6 +264,7 @@ public class ConfiguracaoDAO {
             content.put("VISUALIZA_ULTIMO_PRECO_VENDA_APP", visualiza_ultimo_preco_venda_app);
             content.put("CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO", calcula_dscto_automatico_muda_prazo);
             content.put("TRABALHA_COM_CHECKIN_APP", trab_com_checkin_app);
+            content.put("TRABALHA_COM_CHECKOUT_APP", trab_com_checkout_app);
             System.gc();
             return db.updateDados("TBL_CONFIGURACAO", content, null);
         } catch ( NullPointerException|SQLException e){
@@ -583,6 +586,11 @@ public class ConfiguracaoDAO {
                 configuracao.setTrab_com_checkin_app(cursor.getString(cursor.getColumnIndex("TRABALHA_COM_CHECKIN_APP")));
             } catch (NullPointerException |  IllegalStateException e) {
                 configuracao.setTrab_com_checkin_app("N");
+            }
+            try {
+                configuracao.setTrab_com_checkout_app(cursor.getString(cursor.getColumnIndex("TRABALHA_COM_CHECKOUT_APP")));
+            } catch (NullPointerException |  IllegalStateException e) {
+                configuracao.setTrab_com_checkout_app("N");
             }
 
         } else {

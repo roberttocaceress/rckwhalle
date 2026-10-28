@@ -134,6 +134,18 @@ public class WebVisitaDAO {
         return 0;
     }
 
+    public int atualizarClienteVisita(String idVisitaApp, int idNovoClienteServidor) {
+        if (idVisitaApp == null || idVisitaApp.trim().isEmpty()) return 0;
+        ContentValues content = new ContentValues();
+        content.put("ID_CLIENTE_SERVIDOR", idNovoClienteServidor);
+        try {
+            return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<WebVisita> getListaVisitas(String filtroStatus, int idVendedor, int ano, int mes) {
         List<WebVisita> lista = new java.util.ArrayList<>();
         String sql = "SELECT V.*, C.NOME_CADASTRO, C.NOME_FANTASIA, P.VALOR_TOTAL AS VALOR_PEDIDO_FAT " +

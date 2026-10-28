@@ -21,13 +21,13 @@ import java.lang.Override;
 public class ActivityPedidoMain__ViewBinding implements Unbinder {
   private ActivityPedidoMain_ target;
 
-  private View view7f0a00b3;
+  private View view7f0a00b8;
 
-  private View view7f0a030e;
+  private View view7f0a0318;
 
-  private View view7f0a00b4;
+  private View view7f0a00b9;
 
-  private View view7f0a030f;
+  private View view7f0a0319;
 
   @UiThread
   public ActivityPedidoMain__ViewBinding(ActivityPedidoMain_ target) {
@@ -46,7 +46,7 @@ public class ActivityPedidoMain__ViewBinding implements Unbinder {
     target.mViewPager = Utils.findRequiredViewAsType(source, R.id.vp_tabsPedido, "field 'mViewPager'", ViewPager.class);
     view = Utils.findRequiredView(source, R.id.btnBuscaCliente, "field 'btnBuscaCliente' and method 'buscaCliente'");
     target.btnBuscaCliente = Utils.castView(view, R.id.btnBuscaCliente, "field 'btnBuscaCliente'", Button.class);
-    view7f0a00b3 = view;
+    view7f0a00b8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class ActivityPedidoMain__ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.ifCliente, "field 'ifCliente' and method 'nomeCliente'");
     target.ifCliente = Utils.castView(view, R.id.ifCliente, "field 'ifCliente'", LinearLayout.class);
-    view7f0a030e = view;
+    view7f0a0318 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class ActivityPedidoMain__ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnBuscaHistoricoFinanceiro, "field 'btnBuscaHistoricoFinanceiro' and method 'buscaHistoricoFinanceiro'");
     target.btnBuscaHistoricoFinanceiro = Utils.castView(view, R.id.btnBuscaHistoricoFinanceiro, "field 'btnBuscaHistoricoFinanceiro'", Button.class);
-    view7f0a00b4 = view;
+    view7f0a00b9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class ActivityPedidoMain__ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.ifHistoricoFinanceiro, "field 'ifHistoricoFinanceiro' and method 'financeiroCliente'");
     target.ifHistoricoFinanceiro = Utils.castView(view, R.id.ifHistoricoFinanceiro, "field 'ifHistoricoFinanceiro'", LinearLayout.class);
-    view7f0a030f = view;
+    view7f0a0319 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -103,13 +103,13 @@ public class ActivityPedidoMain__ViewBinding implements Unbinder {
     target.lyhistoricoFinanceiro = null;
     target.lyvalorIcmsST = null;
 
-    view7f0a00b3.setOnClickListener(null);
-    view7f0a00b3 = null;
-    view7f0a030e.setOnClickListener(null);
-    view7f0a030e = null;
-    view7f0a00b4.setOnClickListener(null);
-    view7f0a00b4 = null;
-    view7f0a030f.setOnClickListener(null);
-    view7f0a030f = null;
+    view7f0a00b8.setOnClickListener(null);
+    view7f0a00b8 = null;
+    view7f0a0318.setOnClickListener(null);
+    view7f0a0318 = null;
+    view7f0a00b9.setOnClickListener(null);
+    view7f0a00b9 = null;
+    view7f0a0319.setOnClickListener(null);
+    view7f0a0319 = null;
   }
 }

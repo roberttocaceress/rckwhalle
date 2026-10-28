@@ -19,15 +19,15 @@ import java.lang.Override;
 public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
   private ActivityPedidoAnexo target;
 
-  private View view7f0a010a;
+  private View view7f0a0112;
 
-  private View view7f0a00a7;
+  private View view7f0a00ab;
 
-  private View view7f0a00a8;
+  private View view7f0a00ac;
 
-  private View view7f0a00dd;
+  private View view7f0a00e3;
 
-  private View view7f0a0313;
+  private View view7f0a031d;
 
   @UiThread
   public ActivityPedidoAnexo_ViewBinding(ActivityPedidoAnexo target) {
@@ -43,7 +43,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.edtAnexo = Utils.findRequiredViewAsType(source, R.id.edtAnexo, "field 'edtAnexo'", EditText.class);
     view = Utils.findRequiredView(source, R.id.btnSalvarAnexo, "field 'btnSalvarAnexo' and method 'salvarAnexoGaleria'");
     target.btnSalvarAnexo = Utils.castView(view, R.id.btnSalvarAnexo, "field 'btnSalvarAnexo'", Button.class);
-    view7f0a010a = view;
+    view7f0a0112 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAdicionarAnexo, "field 'btnAdicionarAnexo' and method 'addAnexoGaleria'");
     target.btnAdicionarAnexo = Utils.castView(view, R.id.btnAdicionarAnexo, "field 'btnAdicionarAnexo'", Button.class);
-    view7f0a00a7 = view;
+    view7f0a00ab = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +61,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAdicionarFoto, "field 'btnAdicionarFoto' and method 'addAnexoFoto'");
     target.btnAdicionarFoto = Utils.castView(view, R.id.btnAdicionarFoto, "field 'btnAdicionarFoto'", Button.class);
-    view7f0a00a8 = view;
+    view7f0a00ac = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +70,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao' and method 'closeActivity'");
     target.btnFinalizarInclusao = Utils.castView(view, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao'", Button.class);
-    view7f0a00dd = view;
+    view7f0a00e3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -80,7 +80,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.recyclerView = Utils.findRequiredViewAsType(source, R.id.recyclerView, "field 'recyclerView'", RecyclerView.class);
     view = Utils.findRequiredView(source, R.id.imAnexo, "field 'imgAnexo' and method 'removerAnexoFoto'");
     target.imgAnexo = Utils.castView(view, R.id.imAnexo, "field 'imgAnexo'", ImageView.class);
-    view7f0a0313 = view;
+    view7f0a031d = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -105,15 +105,15 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.recyclerView = null;
     target.imgAnexo = null;
 
-    view7f0a010a.setOnClickListener(null);
-    view7f0a010a = null;
-    view7f0a00a7.setOnClickListener(null);
-    view7f0a00a7 = null;
-    view7f0a00a8.setOnClickListener(null);
-    view7f0a00a8 = null;
-    view7f0a00dd.setOnClickListener(null);
-    view7f0a00dd = null;
-    view7f0a0313.setOnClickListener(null);
-    view7f0a0313 = null;
+    view7f0a0112.setOnClickListener(null);
+    view7f0a0112 = null;
+    view7f0a00ab.setOnClickListener(null);
+    view7f0a00ab = null;
+    view7f0a00ac.setOnClickListener(null);
+    view7f0a00ac = null;
+    view7f0a00e3.setOnClickListener(null);
+    view7f0a00e3 = null;
+    view7f0a031d.setOnClickListener(null);
+    view7f0a031d = null;
   }
 }

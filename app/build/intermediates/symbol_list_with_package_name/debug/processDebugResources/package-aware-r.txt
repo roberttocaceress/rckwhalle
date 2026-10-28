@@ -3413,6 +3413,9 @@ id botoes
 id bottom
 id bottom_to_top
 id bounce
+id btnAbaMaisComprados
+id btnAbaOportunidades
+id btnAbaSugeridos
 id btnAbrirCalendario
 id btnAddAnexCam
 id btnAddAnexos
@@ -3423,6 +3426,7 @@ id btnAddReferencia
 id btnAddVisita
 id btnAdicionarAnexo
 id btnAdicionarFoto
+id btnAdicionarProdutoFicha
 id btnAjuda
 id btnAlterarEmpresa
 id btnAnaliseEstoque
@@ -3470,6 +3474,7 @@ id btnExcluir
 id btnExcluirProduto
 id btnExportar
 id btnFecharFeedback
+id btnFecharFichaInteligente
 id btnFiltrar
 id btnFiltrar2
 id btnFiltroNaoVenda
@@ -3482,6 +3487,7 @@ id btnGps
 id btnHistoricoFinanceiro
 id btnInfoCampanha
 id btnInformacoesApp
+id btnIniciarNovoPedidoFicha
 id btnInserirCliente
 id btnInserirProduto
 id btnLigar1
@@ -3519,6 +3525,7 @@ id btnRefreshRanking
 id btnRefreshReceber
 id btnRefreshSemanal
 id btnRepetir
+id btnRepetirUltimoPedido
 id btnSalvar
 id btnSalvarAnexo
 id btnSalvarPedido
@@ -3571,6 +3578,7 @@ id caixa_layout_grafico
 id caixa_layout_resumo
 id cancel_action
 id cancel_button
+id cardAlertaReposicao
 id cardAnalitico
 id cardCoordenadasGPS
 id cardExpansao
@@ -3584,6 +3592,7 @@ id cardGrafico1
 id cardGrafico2
 id cardGrafico3
 id cardGrafico4
+id cardHeaderSaudeFinanceira
 id cardInfoEmpresa
 id cardInfoEmpresaNaoVenda
 id cardKpiGrupos
@@ -4142,8 +4151,10 @@ id ivFinanceiro
 id ivFotoEstabelecimento
 id ivGps
 id ivIconeAlerta
+id ivIconeClienteFicha
 id ivIconeEmpresa
 id ivIconeEmpresaNaoVenda
+id ivIconeFichaProduto
 id ivIconeVisita
 id ivInternet
 id ivMenuClienteIcon
@@ -4656,6 +4667,7 @@ id rounded
 id row_index_key
 id rvEvolucaoDialog
 id rvExpansaoLista
+id rvProdutosFichaInteligente
 id rvRelatorioVisitas
 id rvUsuariosDrawer
 id save_non_transition_alpha
@@ -4957,6 +4969,15 @@ id tvDataHoraVisita
 id tvDataPesquisa
 id tvDetalheProdutoExclusao
 id tvFaltaMes
+id tvFichaAlertaReposicao
+id tvFichaDocCidadeCliente
+id tvFichaLimiteCredito
+id tvFichaLimiteUtilizado
+id tvFichaNomeCliente
+id tvFichaSaldoDevedor
+id tvFichaSaldoDisponivel
+id tvFichaTicketMedio
+id tvFichaUltimaCompra
 id tvGlobalLoadingTitle
 id tvHeaderMesNome
 id tvHeaderMesTotal
@@ -5012,6 +5033,7 @@ id tvNaoVendaNomeFantasia
 id tvNaoVendaRazaoSocial
 id tvNomeClienteShare
 id tvNomeFantasiaVisita
+id tvNomeFichaProduto
 id tvNomeProdutoExclusao
 id tvNomeUsuario
 id tvNovosClientes
@@ -5065,6 +5087,7 @@ id tvScrollMensal
 id tvScrollRanking
 id tvScrollSemanal
 id tvSharePorcentagem
+id tvTagDestaqueProduto
 id tvTextoPlaceholderMapa
 id tvTicketMedio
 id tvTituloAlerta
@@ -5085,6 +5108,7 @@ id tvValorAtualMensal
 id tvValorMesHub
 id tvValorPedidoVisita
 id tvValorTotalCliente
+id tvValoresFichaProduto
 id tvValoresMes
 id tvValoresSemana
 id tvVariacaoPercentual
@@ -5738,6 +5762,7 @@ layout dialog_alerta_mensagem_2
 layout dialog_alerta_mensagem_erro_pedido
 layout dialog_checkin_cliente
 layout dialog_consulta_opcao_cliente
+layout dialog_ficha_cliente_inteligente
 layout dialog_header_centralizado
 layout dialog_header_centralizado_positive_button
 layout dialog_opcao_atendimento_venda
@@ -5791,6 +5816,7 @@ layout item_expansao_cliente
 layout item_expansao_header_mes
 layout item_menu
 layout item_motivo
+layout item_produto_ficha_inteligente
 layout item_prospect_visita
 layout item_referencia_bancaria
 layout item_referencia_comercial

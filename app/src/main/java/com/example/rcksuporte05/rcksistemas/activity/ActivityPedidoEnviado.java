@@ -78,6 +78,7 @@ import com.example.rcksuporte05.rcksistemas.R;
 import com.example.rcksuporte05.rcksistemas.adapters.ListaPedidoAdapter;
 import com.example.rcksuporte05.rcksistemas.api.Api;
 import com.example.rcksuporte05.rcksistemas.api.Rotas;
+import com.example.rcksuporte05.rcksistemas.model.Cliente;
 import com.example.rcksuporte05.rcksistemas.model.Configuracao;
 import com.example.rcksuporte05.rcksistemas.model.EmpresaParametro;
 import com.example.rcksuporte05.rcksistemas.model.Generico;
@@ -1551,6 +1552,7 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
         SQL = "SELECT * FROM TBL_WEB_PEDIDO_ITENS WHERE ID_PEDIDO = " + webPedidoDuplicado.getId_web_pedido() + " ORDER BY ID_WEB_ITEM";
         webPedidoDuplicado.setWebPedidoItens(webPedidoItensDAO.getListaDuplicacao(SQL, configuracao, empresaParametro, saldoVerba, webPedidoDuplicado.getCadastro(), campanhaComercialCabDAO));
         webPedidoDuplicado.setId_web_pedido(null);
+        webPedidoDuplicado.setId_pedido_app(null);
         webPedidoDuplicado.setId_web_pedido_servidor(null);
         webPedidoDuplicado.setPedido_enviado("N");
         webPedidoDuplicado.setFinalizado("N");
@@ -1598,7 +1600,86 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
         }
         PedidoHelper.setWebPedido(webPedidoDuplicado);
         PedidoHelper.setListaWebPedidoItens(webPedidoDuplicado.getWebPedidoItens());
-        //Intent intent = new Intent(ListagemPedidoPendente.this, ActivityPedidoMain.class);
+
+        getConfiguracao();
+        Cliente cliente = webPedidoDuplicado.getCadastro();
+        if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S") && cliente != null) {
+            dismissProgressDialogCustom();
+            cliqueAtivo = true;
+
+            String razao = cliente.getNome_cadastro() != null ? cliente.getNome_cadastro() : "";
+            String fantasia = cliente.getNome_fantasia() != null ? cliente.getNome_fantasia() : "";
+            String end = cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf();
+
+            String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+            int idVendedorNum = 0;
+            try {
+                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                }
+            } catch (Exception ignored) {}
+
+            int idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+            String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+            DialogHelper.showCheckInClienteDialog(
+                    this,
+                    razao,
+                    fantasia,
+                    end,
+                    (locationData, fotoBytes) -> {
+                        try {
+                            com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                            visita.setIdVisitaApp(idVisitaApp);
+                            if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                try {
+                                    visita.setIdVendedor(Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor()));
+                                } catch (Exception ignored) {}
+                            }
+                            visita.setIdClienteServidor(idClienteNum);
+                            visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+
+                            if (locationData != null && locationData.hasLocation) {
+                                visita.setLatitudeCheckin(String.valueOf(locationData.latitude));
+                                visita.setLongitudeCheckin(String.valueOf(locationData.longitude));
+                                visita.setAltitudeCheckin(String.valueOf(locationData.altitude));
+                                visita.setPrecisaoCheckin(String.valueOf(locationData.accuracy));
+                            }
+
+                            if (fotoBytes != null && fotoBytes.length > 0) {
+                                visita.setFotoCheckin1(fotoBytes);
+                            }
+
+                            visita.setStatusVisita("A");
+                            visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+                            com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                            visitaDAO.salvarVisita(visita);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        webPedidoDuplicado.setId_visita_app(idVisitaApp);
+                        PedidoHelper.setWebPedido(webPedidoDuplicado);
+                        PedidoHelper.setListaWebPedidoItens(webPedidoDuplicado.getWebPedidoItens());
+
+                        finish();
+                        Intent intent = new Intent(ActivityPedidoEnviado.this, ActivityPedidoMain.class);
+                        intent.putExtra("id_visita_app", idVisitaApp);
+                        startActivity(intent);
+                        cliqueAtivo = true;
+                    },
+                    () -> {
+                        // Se cancelar o checkin, fecha o progresso e libera cliques
+                        dismissProgressDialogCustom();
+                        cliqueAtivo = true;
+                    }
+            );
+            return;
+        }
+
+        dismissProgressDialogCustom();
+        cliqueAtivo = true;
         finish();
         startActivity(new Intent(ActivityPedidoEnviado.this, ActivityPedidoMain.class));
         cliqueAtivo = true;

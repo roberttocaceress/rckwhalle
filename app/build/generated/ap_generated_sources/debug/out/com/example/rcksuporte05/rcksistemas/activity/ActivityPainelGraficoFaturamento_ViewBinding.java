@@ -26,17 +26,17 @@ import java.lang.Override;
 public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
   private ActivityPainelGraficoFaturamento target;
 
-  private View view7f0a0107;
+  private View view7f0a010e;
 
-  private View view7f0a0104;
+  private View view7f0a010b;
 
-  private View view7f0a0102;
+  private View view7f0a0109;
 
-  private View view7f0a00af;
+  private View view7f0a00b4;
 
-  private View view7f0a0105;
+  private View view7f0a010c;
 
-  private View view7f0a00ae;
+  private View view7f0a00b3;
 
   @UiThread
   public ActivityPainelGraficoFaturamento_ViewBinding(ActivityPainelGraficoFaturamento target) {
@@ -81,7 +81,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     target.tvGlobalLoadingTitle = Utils.findRequiredViewAsType(source, R.id.tvGlobalLoadingTitle, "field 'tvGlobalLoadingTitle'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnRefreshSemanal, "field 'btnRefreshSemanal' and method 'onRefreshClick'");
     target.btnRefreshSemanal = Utils.castView(view, R.id.btnRefreshSemanal, "field 'btnRefreshSemanal'", ImageView.class);
-    view7f0a0107 = view;
+    view7f0a010e = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -90,7 +90,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshMensal, "field 'btnRefreshMensal' and method 'onRefreshClick'");
     target.btnRefreshMensal = Utils.castView(view, R.id.btnRefreshMensal, "field 'btnRefreshMensal'", ImageView.class);
-    view7f0a0104 = view;
+    view7f0a010b = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -99,7 +99,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshGrupo, "field 'btnRefreshGrupo' and method 'onRefreshClick'");
     target.btnRefreshGrupo = Utils.castView(view, R.id.btnRefreshGrupo, "field 'btnRefreshGrupo'", ImageView.class);
-    view7f0a0102 = view;
+    view7f0a0109 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -108,7 +108,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAnaliseRankingGrupo, "field 'btnAnaliseRankingGrupo' and method 'onRefreshClick'");
     target.btnAnaliseRankingGrupo = Utils.castView(view, R.id.btnAnaliseRankingGrupo, "field 'btnAnaliseRankingGrupo'", ImageView.class);
-    view7f0a00af = view;
+    view7f0a00b4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -117,7 +117,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshRanking, "field 'btnRefreshRanking' and method 'onRefreshClick'");
     target.btnRefreshRanking = Utils.castView(view, R.id.btnRefreshRanking, "field 'btnRefreshRanking'", ImageView.class);
-    view7f0a0105 = view;
+    view7f0a010c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -126,7 +126,7 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAnaliseRanking, "field 'btnAnaliseRanking' and method 'onRefreshClick'");
     target.btnAnaliseRanking = Utils.castView(view, R.id.btnAnaliseRanking, "field 'btnAnaliseRanking'", ImageView.class);
-    view7f0a00ae = view;
+    view7f0a00b3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -191,17 +191,17 @@ public class ActivityPainelGraficoFaturamento_ViewBinding implements Unbinder {
     target.tvDataPesquisa = null;
     target.scrollViewFaturamento = null;
 
-    view7f0a0107.setOnClickListener(null);
-    view7f0a0107 = null;
-    view7f0a0104.setOnClickListener(null);
-    view7f0a0104 = null;
-    view7f0a0102.setOnClickListener(null);
-    view7f0a0102 = null;
-    view7f0a00af.setOnClickListener(null);
-    view7f0a00af = null;
-    view7f0a0105.setOnClickListener(null);
-    view7f0a0105 = null;
-    view7f0a00ae.setOnClickListener(null);
-    view7f0a00ae = null;
+    view7f0a010e.setOnClickListener(null);
+    view7f0a010e = null;
+    view7f0a010b.setOnClickListener(null);
+    view7f0a010b = null;
+    view7f0a0109.setOnClickListener(null);
+    view7f0a0109 = null;
+    view7f0a00b4.setOnClickListener(null);
+    view7f0a00b4 = null;
+    view7f0a010c.setOnClickListener(null);
+    view7f0a010c = null;
+    view7f0a00b3.setOnClickListener(null);
+    view7f0a00b3 = null;
   }
 }

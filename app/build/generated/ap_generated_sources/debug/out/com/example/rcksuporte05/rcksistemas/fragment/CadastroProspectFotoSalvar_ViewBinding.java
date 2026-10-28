@@ -19,11 +19,11 @@ import java.lang.Override;
 public class CadastroProspectFotoSalvar_ViewBinding implements Unbinder {
   private CadastroProspectFotoSalvar target;
 
-  private View view7f0a0327;
+  private View view7f0a0331;
 
-  private View view7f0a0328;
+  private View view7f0a0332;
 
-  private View view7f0a00bf;
+  private View view7f0a00c4;
 
   @UiThread
   public CadastroProspectFotoSalvar_ViewBinding(final CadastroProspectFotoSalvar target,
@@ -37,7 +37,7 @@ public class CadastroProspectFotoSalvar_ViewBinding implements Unbinder {
     target.edtDescricaoAcao = Utils.findRequiredViewAsType(source, R.id.edtDescricaoAcao, "field 'edtDescricaoAcao'", EditText.class);
     view = Utils.findRequiredView(source, R.id.imagemProspect1, "field 'imagemProspect1' and method 'chamarGaleria'");
     target.imagemProspect1 = Utils.castView(view, R.id.imagemProspect1, "field 'imagemProspect1'", ImageButton.class);
-    view7f0a0327 = view;
+    view7f0a0331 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class CadastroProspectFotoSalvar_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.imagemProspect2, "field 'imagemProspect2' and method 'chamarGaleria2'");
     target.imagemProspect2 = Utils.castView(view, R.id.imagemProspect2, "field 'imagemProspect2'", ImageButton.class);
-    view7f0a0328 = view;
+    view7f0a0332 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class CadastroProspectFotoSalvar_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnCheckinVisitaProspect, "field 'btnCheckinVisitaProspect' and method 'checkin'");
     target.btnCheckinVisitaProspect = Utils.castView(view, R.id.btnCheckinVisitaProspect, "field 'btnCheckinVisitaProspect'", Button.class);
-    view7f0a00bf = view;
+    view7f0a00c4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -87,11 +87,11 @@ public class CadastroProspectFotoSalvar_ViewBinding implements Unbinder {
     target.txtChekinEnderecoProspect = null;
     target.btnContinuar = null;
 
-    view7f0a0327.setOnClickListener(null);
-    view7f0a0327 = null;
-    view7f0a0328.setOnClickListener(null);
-    view7f0a0328 = null;
-    view7f0a00bf.setOnClickListener(null);
-    view7f0a00bf = null;
+    view7f0a0331.setOnClickListener(null);
+    view7f0a0331 = null;
+    view7f0a0332.setOnClickListener(null);
+    view7f0a0332 = null;
+    view7f0a00c4.setOnClickListener(null);
+    view7f0a00c4 = null;
   }
 }

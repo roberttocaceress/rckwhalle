@@ -18,11 +18,11 @@ import java.lang.Override;
 public class ActivityContato_ViewBinding implements Unbinder {
   private ActivityContato target;
 
-  private View view7f0a03f2;
+  private View view7f0a03fe;
 
-  private View view7f0a04f2;
+  private View view7f0a04fe;
 
-  private View view7f0a00f4;
+  private View view7f0a00fb;
 
   @UiThread
   public ActivityContato_ViewBinding(ActivityContato target) {
@@ -63,7 +63,7 @@ public class ActivityContato_ViewBinding implements Unbinder {
     target.txtobservacoesFaturamento = Utils.findRequiredViewAsType(source, R.id.txtobservacoesFaturamento, "field 'txtobservacoesFaturamento'", TextView.class);
     target.txtobservacoesFinanceiro = Utils.findRequiredViewAsType(source, R.id.txtobservacoesFinanceiro, "field 'txtobservacoesFinanceiro'", TextView.class);
     view = Utils.findRequiredView(source, R.id.lyNomeVendedor, "method 'showActivityContatoVendedor'");
-    view7f0a03f2 = view;
+    view7f0a03fe = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -71,7 +71,7 @@ public class ActivityContato_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.novoPedido, "method 'novoPedido'");
-    view7f0a04f2 = view;
+    view7f0a04fe = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,7 +79,7 @@ public class ActivityContato_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btnNovoPedido, "method 'btnNovoPedido'");
-    view7f0a00f4 = view;
+    view7f0a00fb = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -124,11 +124,11 @@ public class ActivityContato_ViewBinding implements Unbinder {
     target.txtobservacoesFaturamento = null;
     target.txtobservacoesFinanceiro = null;
 
-    view7f0a03f2.setOnClickListener(null);
-    view7f0a03f2 = null;
-    view7f0a04f2.setOnClickListener(null);
-    view7f0a04f2 = null;
-    view7f0a00f4.setOnClickListener(null);
-    view7f0a00f4 = null;
+    view7f0a03fe.setOnClickListener(null);
+    view7f0a03fe = null;
+    view7f0a04fe.setOnClickListener(null);
+    view7f0a04fe = null;
+    view7f0a00fb.setOnClickListener(null);
+    view7f0a00fb = null;
   }
 }

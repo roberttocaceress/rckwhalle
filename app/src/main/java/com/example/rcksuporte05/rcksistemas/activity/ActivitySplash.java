@@ -116,6 +116,16 @@ public class ActivitySplash extends AppCompatActivity {
             e.printStackTrace();
         }
         fdb = FirebaseFirestore.getInstance();
+
+        try {
+            db.onUpgrade(db.getWritableDatabase(), 27, 28);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         /*
         try {
             db.onUpgrade(db.getWritableDatabase(), 27, 27);

@@ -142,18 +142,13 @@ public class ActivityExpansaoCarteira extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<com.example.rcksuporte05.rcksistemas.model.MesAnoMeta>> call, Response<List<com.example.rcksuporte05.rcksistemas.model.MesAnoMeta>> response) {
                 hideLoading();
-                android.util.Log.d("RCK_API_EXP", "Resposta Expansão: Code=" + response.code());
-                  
                 if (response.isSuccessful() && response.body() != null) {
-                    android.util.Log.d("RCK_API_EXP", "Tamanho da lista recebida: " + response.body().size());
                     if (!response.body().isEmpty()) {
                         processarDadosReais(response.body());
                     } else {
-                        android.util.Log.w("RCK_API_EXP", "Corpo da resposta vazio.");
                         Toast.makeText(ActivityExpansaoCarteira.this, "Nenhum dado encontrado para o período.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    android.util.Log.e("RCK_API_EXP", "Erro na resposta: " + response.message());
                     Toast.makeText(ActivityExpansaoCarteira.this, "Falha na comunicação com o servidor.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -161,7 +156,6 @@ public class ActivityExpansaoCarteira extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<com.example.rcksuporte05.rcksistemas.model.MesAnoMeta>> call, Throwable t) {
                 hideLoading();
-                android.util.Log.e("RCK_API_EXP", "Falha crítica: " + t.getMessage(), t);
                 Toast.makeText(ActivityExpansaoCarteira.this, "Erro de conexão.", Toast.LENGTH_SHORT).show();
             }
         });

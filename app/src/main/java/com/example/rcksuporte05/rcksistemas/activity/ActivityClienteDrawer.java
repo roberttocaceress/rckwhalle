@@ -1755,15 +1755,40 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         }
         if (tvCidade != null) tvCidade.setText((cliente.getNome_municipio() != null ? cliente.getNome_municipio().trim() : "") + " - " + (cliente.getEndereco_uf() != null ? cliente.getEndereco_uf() : ""));
 
-        String[] opcoes = {"INICIAR NOVO PEDIDO", "CONSULTAR DADOS DO CADASTRO", "CONSULTAR HISTÓRICO FINANCEIRO", "CONSULTAR HISTÓRICO DE PEDIDOS", "FECHAR"};
+        String[] opcoes = {
+                "• RAIO-X INTELIGENTE DO CLIENTE",
+                "• INICIAR NOVO PEDIDO",
+                "• CONSULTAR DADOS DO CADASTRO",
+                "• CONSULTAR HISTÓRICO FINANCEIRO",
+                "• CONSULTAR HISTÓRICO DE PEDIDOS",
+                "• FECHAR"
+        };
 
         // Uso de androidx.appcompat.app.AlertDialog para evitar problemas de tema com MaterialAlertDialogBuilder
         new androidx.appcompat.app.AlertDialog.Builder(context)
                 .setCustomTitle(headerView)
                 .setItems(opcoes, (dialog, which) -> {
                     switch (which) {
-                        case 0: escolherEmpresaPedido(position); break;
-                        case 1:
+                        case 0:
+                            DialogHelper.showFichaClienteInteligenteDialog(
+                                    ActivityClienteDrawer.this,
+                                    db,
+                                    cliente,
+                                    new DialogHelper.OnFichaClienteAcaoListener() {
+                                        @Override
+                                        public void onIniciarNovoPedido() {
+                                            escolherEmpresaPedido(position);
+                                        }
+
+                                        @Override
+                                        public void onRepetirUltimoPedido() {
+                                            escolherEmpresaPedido(position);
+                                        }
+                                    }
+                            );
+                            break;
+                        case 1: escolherEmpresaPedido(position); break;
+                        case 2:
                             Intent intent;
                             if (cliente.getF_cliente().equals("S")) {
                                 intent = new Intent(ActivityClienteDrawer.this, ActivityContato.class);
@@ -1776,13 +1801,13 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                             }
                             startActivity(intent);
                             break;
-                        case 2: showActivityHistoricoFinanceiro(position); break;
-                        case 3:
+                        case 3: showActivityHistoricoFinanceiro(position); break;
+                        case 4:
                             startActivity(new Intent(context, ActivitySincronia.class).putExtra("autoSincroniza", true)
                                     .putExtra("idcliente", cliente.getId_cadastro_servidor())
                                     .putExtra("pedidosenviados", "S"));
                             break;
-                        case 4: dialog.dismiss(); break;
+                        case 5: dialog.dismiss(); break;
                     }
                 })
                 .show();
@@ -2157,6 +2182,75 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
             Cliente novoCliente = adapter.getItem(position);
 
             if (webPedido.getCadastro() == null) {
+                if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S")) {
+                    String razao = novoCliente.getNome_cadastro() != null ? novoCliente.getNome_cadastro() : "";
+                    String fantasia = novoCliente.getNome_fantasia() != null ? novoCliente.getNome_fantasia() : "";
+                    String end = novoCliente.getEndereco() + ", " + novoCliente.getEndereco_numero() + " - " + novoCliente.getEndereco_bairro() + " - " + novoCliente.getNome_municipio() + "/" + novoCliente.getEndereco_uf();
+
+                    String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+                    int idVendedorNum = 0;
+                    try {
+                        if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                            idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                        }
+                    } catch (Exception ignored) {}
+
+                    int idClienteNum = novoCliente.getId_cadastro_servidor() > 0 ? novoCliente.getId_cadastro_servidor() : novoCliente.getId_cadastro();
+                    String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+                    DialogHelper.showCheckInClienteDialog(
+                            this,
+                            razao,
+                            fantasia,
+                            end,
+                            (locationData, fotoBytes) -> {
+                                try {
+                                    com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                                    visita.setIdVisitaApp(idVisitaApp);
+                                    if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                        try {
+                                            visita.setIdVendedor(Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor()));
+                                        } catch (Exception ignored) {}
+                                    }
+                                    visita.setIdClienteServidor(idClienteNum);
+                                    visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+
+                                    if (locationData != null && locationData.hasLocation) {
+                                        visita.setLatitudeCheckin(String.valueOf(locationData.latitude));
+                                        visita.setLongitudeCheckin(String.valueOf(locationData.longitude));
+                                        visita.setAltitudeCheckin(String.valueOf(locationData.altitude));
+                                        visita.setPrecisaoCheckin(String.valueOf(locationData.accuracy));
+                                    }
+
+                                    if (fotoBytes != null && fotoBytes.length > 0) {
+                                        visita.setFotoCheckin1(fotoBytes);
+                                    }
+
+                                    visita.setStatusVisita("A");
+                                    visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+                                    com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                    visitaDAO.salvarVisita(visita);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (webPedido != null) {
+                                    webPedido.setId_visita_app(idVisitaApp);
+                                }
+
+                                ActivityPedidoMain activityPedidoMain = new ActivityPedidoMain();
+                                activityPedidoMain.pegaCliente(novoCliente);
+                                activityPedidoMain.showProduto(true);
+                                Pedido2 pedido2 = new Pedido2();
+                                pedido2.pegaCliente(novoCliente);
+                                System.gc();
+                                finish();
+                            }
+                    );
+                    return;
+                }
+
                 ActivityPedidoMain activityPedidoMain = new ActivityPedidoMain();
                 activityPedidoMain.pegaCliente(novoCliente);
                 activityPedidoMain.showProduto(true);
@@ -3096,6 +3190,17 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                     @Override
                     public void onNegative() {
                         Cliente novoCliente = adapter.getItem(position);
+
+                        // ATUALIZAÇÃO DO CLIENTE NA VISITA/CHECK-IN EXISTENTE DO PEDIDO
+                        try {
+                            WebPedido pedidoAtual = PedidoHelper.getWebPedido();
+                            if (pedidoAtual != null && pedidoAtual.getId_visita_app() != null && !pedidoAtual.getId_visita_app().trim().isEmpty()) {
+                                int novoIdCliente = novoCliente.getId_cadastro_servidor() > 0 ? novoCliente.getId_cadastro_servidor() : novoCliente.getId_cadastro();
+                                new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarClienteVisita(pedidoAtual.getId_visita_app(), novoIdCliente);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                         // GRAVAÇÃO DO LOG DE ALTERAÇÃO DE CLIENTE NO PEDIDO
                         try {

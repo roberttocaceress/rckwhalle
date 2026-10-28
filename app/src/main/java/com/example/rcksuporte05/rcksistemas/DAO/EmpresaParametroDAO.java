@@ -41,6 +41,7 @@ public class EmpresaParametroDAO {
             content.put("ID_CIDADE", empresa.getId_cidade());
             content.put("UTILIZA_ICMS_ST", empresa.getUtiliza_icms_app());
             content.put("CONFIRMA_SINCRONIA_CHECKIN_APP", empresa.getConfirma_sincronia_checkin_app());
+            content.put("CONFIRMA_SINCRONIA_CHECKOUT_APP", empresa.getConfirma_sincronia_checkout_app());
             if (empresa.getQtde_maior_saldo_ped_app() == null || empresa.getQtde_maior_saldo_ped_app().isEmpty()) {
                 content.put("QTDE_MAIOR_SALDO_PED_APP", "S");
             } else{
@@ -80,6 +81,7 @@ public class EmpresaParametroDAO {
                     empresa.setUtiliza_icms_app(cursor.getString(cursor.getColumnIndex("UTILIZA_ICMS_ST")));
                     empresa.setQtde_maior_saldo_ped_app(cursor.getString(cursor.getColumnIndex("QTDE_MAIOR_SALDO_PED_APP")));
                     empresa.setConfirma_sincronia_checkin_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKIN_APP")));
+                    empresa.setConfirma_sincronia_checkout_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKOUT_APP")));
                     lista.add(empresa);
                     System.gc();
                 } catch (CursorIndexOutOfBoundsException e) {
@@ -114,6 +116,7 @@ public class EmpresaParametroDAO {
                 empresa.setUtiliza_icms_app(cursor.getString(cursor.getColumnIndex("UTILIZA_ICMS_ST")));
                 empresa.setQtde_maior_saldo_ped_app(cursor.getString(cursor.getColumnIndex("QTDE_MAIOR_SALDO_PED_APP")));
                 empresa.setConfirma_sincronia_checkin_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKIN_APP")));
+                empresa.setConfirma_sincronia_checkout_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKOUT_APP")));
                 System.gc();
             } catch (CursorIndexOutOfBoundsException e) {
                 return  null;
@@ -144,6 +147,8 @@ public class EmpresaParametroDAO {
                 empresa.setUtiliza_cobranca_offline(cursor.getString(cursor.getColumnIndex("UTILIZA_COBRANCA_OFFLINE")));
                 empresa.setId_cidade(cursor.getString(cursor.getColumnIndex("ID_CIDADE")));
                 empresa.setUtiliza_icms_app(cursor.getString(cursor.getColumnIndex("UTILIZA_ICMS_ST")));
+                empresa.setConfirma_sincronia_checkin_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKIN_APP")));
+                empresa.setConfirma_sincronia_checkout_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKOUT_APP")));
                 System.gc();
             } catch (CursorIndexOutOfBoundsException e) {
                 return  null;
@@ -178,6 +183,8 @@ public class EmpresaParametroDAO {
             empresa.setUtiliza_cobranca_offline(cursor.getString(cursor.getColumnIndex("UTILIZA_COBRANCA_OFFLINE")));
             empresa.setId_cidade(cursor.getString(cursor.getColumnIndex("ID_CIDADE")));
             empresa.setUtiliza_icms_app(cursor.getString(cursor.getColumnIndex("UTILIZA_ICMS_ST")));
+            empresa.setConfirma_sincronia_checkin_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKIN_APP")));
+            empresa.setConfirma_sincronia_checkout_app(cursor.getString(cursor.getColumnIndex("CONFIRMA_SINCRONIA_CHECKOUT_APP")));
             System.gc();
         } catch (CursorIndexOutOfBoundsException|IllegalStateException e) {
             Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();

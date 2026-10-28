@@ -5,6 +5,7 @@ import static com.example.rcksuporte05.rcksistemas.BO.ActivitySincroniaBO.getAct
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import com.example.rcksuporte05.rcksistemas.BuildConfig;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -207,20 +208,74 @@ public class ActivityContato extends AppCompatActivity {
         continuarParaPedido(idEmpresa);
     }
     private void continuarParaPedido(String idEmpresa) {
-        /*
-        ActivityPedidoMain activityPedidoMain = new ActivityPedidoMain();
-        Pedido2 pedido2 = new Pedido2();
-        activityPedidoMain.pegaCliente(ClienteHelper.getCliente());
-        pedido2.pegaCliente(ClienteHelper.getCliente());
-        startActivity(new Intent(ActivityContato.this, ActivityPedidoMain.class));
-
-         */
         new PedidoHelper().limparDados();
 
-        // 2. Garante que o cliente selecionado esteja ativo no Helper
         Cliente cliente = ClienteHelper.getCliente();
         if (cliente != null) {
             ClienteHelper.setCliente(cliente);
+        }
+
+        getConfiguracao();
+        if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S") && cliente != null) {
+            String razao = cliente.getNome_cadastro() != null ? cliente.getNome_cadastro() : "";
+            String fantasia = cliente.getNome_fantasia() != null ? cliente.getNome_fantasia() : "";
+            String end = cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf();
+
+            String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+            int idVendedorNum = 0;
+            try {
+                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                }
+            } catch (Exception ignored) {}
+
+            int idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+            String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+            DialogHelper.showCheckInClienteDialog(
+                    this,
+                    razao,
+                    fantasia,
+                    end,
+                    (locationData, fotoBytes) -> {
+                        try {
+                            com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                            visita.setIdVisitaApp(idVisitaApp);
+                            if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                try {
+                                    visita.setIdVendedor(Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor()));
+                                } catch (Exception ignored) {}
+                            }
+                            visita.setIdClienteServidor(idClienteNum);
+                            visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+
+                            if (locationData != null && locationData.hasLocation) {
+                                visita.setLatitudeCheckin(String.valueOf(locationData.latitude));
+                                visita.setLongitudeCheckin(String.valueOf(locationData.longitude));
+                                visita.setAltitudeCheckin(String.valueOf(locationData.altitude));
+                                visita.setPrecisaoCheckin(String.valueOf(locationData.accuracy));
+                            }
+
+                            if (fotoBytes != null && fotoBytes.length > 0) {
+                                visita.setFotoCheckin1(fotoBytes);
+                            }
+
+                            visita.setStatusVisita("A");
+                            visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+                            com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                            visitaDAO.salvarVisita(visita);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        Intent intent = new Intent(ActivityContato.this, ActivityPedidoMain.class);
+                        intent.putExtra("id_empresa", idEmpresa);
+                        intent.putExtra("id_visita_app", idVisitaApp);
+                        startActivity(intent);
+                    }
+            );
+            return;
         }
 
         // 3. Abre a tela principal do pedido limpa

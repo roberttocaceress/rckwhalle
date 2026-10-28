@@ -21,11 +21,11 @@ import java.lang.Override;
 public class ActivityProdutoDrawer_ViewBinding implements Unbinder {
   private ActivityProdutoDrawer target;
 
-  private View view7f0a00f4;
+  private View view7f0a00fb;
 
-  private View view7f0a043b;
+  private View view7f0a0447;
 
-  private View view7f0a00dd;
+  private View view7f0a00e3;
 
   @UiThread
   public ActivityProdutoDrawer_ViewBinding(ActivityProdutoDrawer target) {
@@ -45,7 +45,7 @@ public class ActivityProdutoDrawer_ViewBinding implements Unbinder {
     target.helpProduto = Utils.findRequiredViewAsType(source, R.id.helpProduto, "field 'helpProduto'", ImageView.class);
     view = Utils.findRequiredView(source, R.id.btnNovoPedido, "field 'btnNovoPedido' and method 'btnNovoPedido'");
     target.btnNovoPedido = Utils.castView(view, R.id.btnNovoPedido, "field 'btnNovoPedido'", Button.class);
-    view7f0a00f4 = view;
+    view7f0a00fb = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class ActivityProdutoDrawer_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.lytNovoPedido, "field 'lytNovoPedido' and method 'novoPedido'");
     target.lytNovoPedido = Utils.castView(view, R.id.lytNovoPedido, "field 'lytNovoPedido'", LinearLayout.class);
-    view7f0a043b = view;
+    view7f0a0447 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class ActivityProdutoDrawer_ViewBinding implements Unbinder {
     target.cardFinalizarInclusao = Utils.findRequiredViewAsType(source, R.id.cardFinalizarInclusao, "field 'cardFinalizarInclusao'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao' and method 'btnFinalizarInclusao'");
     target.btnFinalizarInclusao = Utils.castView(view, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao'", Button.class);
-    view7f0a00dd = view;
+    view7f0a00e3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -91,11 +91,11 @@ public class ActivityProdutoDrawer_ViewBinding implements Unbinder {
     target.cardFinalizarInclusao = null;
     target.btnFinalizarInclusao = null;
 
-    view7f0a00f4.setOnClickListener(null);
-    view7f0a00f4 = null;
-    view7f0a043b.setOnClickListener(null);
-    view7f0a043b = null;
-    view7f0a00dd.setOnClickListener(null);
-    view7f0a00dd = null;
+    view7f0a00fb.setOnClickListener(null);
+    view7f0a00fb = null;
+    view7f0a0447.setOnClickListener(null);
+    view7f0a0447 = null;
+    view7f0a00e3.setOnClickListener(null);
+    view7f0a00e3 = null;
   }
 }

@@ -1123,13 +1123,17 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
         //if ( sincronia.getListaEmpresa().size() > 0) {
             try {
                 // APAGA A TABELA E CRIA NOVAMENTE PARA ATUALIZAR A ESTRUTURA (ID_CIDADE)
+                /*
                 db.getWritableDatabase().execSQL("DROP TABLE IF EXISTS TBL_EMPRESA_PARAMETRO;");
                 db.getWritableDatabase().execSQL("CREATE TABLE IF NOT EXISTS TBL_EMPRESA_PARAMETRO (ID INTEGER PRIMARY KEY, RAZAO_SOCIAL VARCHAR(50)," +
                         "NOME_FANTASIA VARCHAR(50), EMPRESA_LOGO BLOB, EMPRESA_LOGO_MINI BLOB, EMPRESA_APP_COR VARCHAR(10 )," +
                         "TIPO_TABELA_PRECO VARCHAR(1), UTILIZA_TABELA_PRECO VARCHAR(1), TEMPO_AUTO_SINCRONIA VARCHAR(4)," +
                         "ESTOQUE_AUTO_SINCRONIA VARCHAR(1), UTILIZA_LIMITE_CREDITO VARCHAR(1), ENDERECO_UF VARCHAR(1)," +
                         "PROD_DESCRICAO_PRECO_UM VARCHAR(20), UTILIZA_COBRANCA_OFFLINE VARCHAR(1), " +
-                        "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), ID_CIDADE INTEGER );");
+                        "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), " +
+                        "CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKOUT_APP VARCHAR(1), ID_CIDADE INTEGER );");
+
+                 */
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1208,13 +1212,15 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
                         String visualiza_ultimo_preco_venda_app = empresa.getVisualiza_ultimo_preco_venda_app() == null || empresa.getVisualiza_ultimo_preco_venda_app().isEmpty() ? "N" : empresa.getVisualiza_ultimo_preco_venda_app();
                         String calcula_dscto_automatico_muda_prazo = empresa.getCalcula_dscto_automatico_muda_prazo() == null || empresa.getCalcula_dscto_automatico_muda_prazo().isEmpty() ? "N" : empresa.getCalcula_dscto_automatico_muda_prazo();
                         String trabalha_com_checkin = empresa.getConfirma_sincronia_checkin_app() == null || empresa.getConfirma_sincronia_checkin_app().isEmpty() ? "N" : empresa.getConfirma_sincronia_checkin_app();
+                        String trabalha_com_checkout = empresa.getConfirma_sincronia_checkout_app() == null || empresa.getConfirma_sincronia_checkout_app().isEmpty() ? "N" : empresa.getConfirma_sincronia_checkout_app();
                         configuracaoDAO.update(campanha_no_pedido, dscto_valor_no_pedido, limite_credito, pre_pedido, confirma_prazo, usa_unid_estoque,
                                 "S"/*usa_paginacao*/, layout_venda_erp, id_con_pgto_default_app, usa_cobranca_app,
                                 usa_icms_app, usa_desc_auto_app, sincronia_automatica, usa_verba_pedido_app,
                                 cadastra_cliente_app, visual_hist_fin_pedido_app, visual_prazo_pgto_pedido_app,
                                 visual_estoque_produto_app, ordem_lista_cliente_app, atual_lista_ped_exportado,
                                 confirma_sincronia_dados, cnpj_empresa, marca_produto_ja_comprado,
-                                pedido_enviado_on_line_app, visualiza_grafico_on_line_app, visualiza_ultimo_preco_venda_app, calcula_dscto_automatico_muda_prazo, trabalha_com_checkin);
+                                pedido_enviado_on_line_app, visualiza_grafico_on_line_app,
+                                visualiza_ultimo_preco_venda_app, calcula_dscto_automatico_muda_prazo, trabalha_com_checkin, trabalha_com_checkout);
                     }
                 }
             }

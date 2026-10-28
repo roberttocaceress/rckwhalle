@@ -56,6 +56,7 @@ public class Configuracao {
     private String visualiza_ultimo_preco_venda_app;
     private String calcula_dscto_automatico_muda_prazo;
     private String trab_com_checkin_app;//TRABALHA_COM_CHECKIN_APP
+    private String trab_com_checkout_app;//TRABALHA_COM_CHECKIN_APP
     //PEDIDO_ENVIADO_ON_LINE_APP
 
 
@@ -485,5 +486,13 @@ public class Configuracao {
 
     public void setTrab_com_checkin_app(String trab_com_checkin_app) {
         this.trab_com_checkin_app = trab_com_checkin_app;
+    }
+
+    public String getTrab_com_checkout_app() {
+        return trab_com_checkout_app;
+    }
+
+    public void setTrab_com_checkout_app(String trab_com_checkout_app) {
+        this.trab_com_checkout_app = trab_com_checkout_app;
     }
 }

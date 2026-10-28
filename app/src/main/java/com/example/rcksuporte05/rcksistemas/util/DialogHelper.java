@@ -23,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -913,6 +916,16 @@ public class DialogHelper {
             String nomeFantasia,
             String endereco,
             OnCheckInConfirmedListener onConfirmCheckIn) {
+        showCheckInClienteDialog(context, razaoSocial, nomeFantasia, endereco, onConfirmCheckIn, null);
+    }
+
+    public static void showCheckInClienteDialog(
+            Context context,
+            String razaoSocial,
+            String nomeFantasia,
+            String endereco,
+            OnCheckInConfirmedListener onConfirmCheckIn,
+            Runnable onCancelCheckIn) {
 
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_checkin_cliente, null);
 
@@ -1027,7 +1040,12 @@ public class DialogHelper {
 
         Button btnCancelarCheckIn = dialogView.findViewById(R.id.btnCancelarCheckIn);
         if (btnCancelarCheckIn != null) {
-            btnCancelarCheckIn.setOnClickListener(v -> dialog.dismiss());
+            btnCancelarCheckIn.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (onCancelCheckIn != null) {
+                    onCancelCheckIn.run();
+                }
+            });
         }
 
         dialog.show();
@@ -1168,6 +1186,169 @@ public class DialogHelper {
         Button btnCancelar = dialogView.findViewById(R.id.btnCancelarNaoVenda);
         if (btnCancelar != null) {
             btnCancelar.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
+    }
+
+    public interface OnFichaClienteAcaoListener {
+        void onIniciarNovoPedido();
+        void onRepetirUltimoPedido();
+    }
+
+    public static void showFichaClienteInteligenteDialog(
+            Context context,
+            com.example.rcksuporte05.rcksistemas.model.Cliente cliente,
+            OnFichaClienteAcaoListener listener) {
+        showFichaClienteInteligenteDialog(context, null, cliente, listener);
+    }
+
+    public static void showFichaClienteInteligenteDialog(
+            Context context,
+            com.example.rcksuporte05.rcksistemas.DAO.DBHelper db,
+            com.example.rcksuporte05.rcksistemas.model.Cliente cliente,
+            OnFichaClienteAcaoListener listener) {
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_ficha_cliente_inteligente, null);
+
+        TextView tvNome = dialogView.findViewById(R.id.tvFichaNomeCliente);
+        TextView tvDocCidade = dialogView.findViewById(R.id.tvFichaDocCidadeCliente);
+
+        TextView tvLimiteCredito = dialogView.findViewById(R.id.tvFichaLimiteCredito);
+        TextView tvLimiteUtilizado = dialogView.findViewById(R.id.tvFichaLimiteUtilizado);
+        TextView tvSaldoDisponivel = dialogView.findViewById(R.id.tvFichaSaldoDisponivel);
+        TextView tvSaldoDevedor = dialogView.findViewById(R.id.tvFichaSaldoDevedor);
+        TextView tvTicket = dialogView.findViewById(R.id.tvFichaTicketMedio);
+        TextView tvUltimaCompra = dialogView.findViewById(R.id.tvFichaUltimaCompra);
+        TextView tvAlerta = dialogView.findViewById(R.id.tvFichaAlertaReposicao);
+
+        if (tvNome != null && cliente != null && cliente.getNome_cadastro() != null) {
+            tvNome.setText(cliente.getNome_cadastro());
+        }
+        if (tvDocCidade != null && cliente != null) {
+            String doc = cliente.getCpf_cnpj() != null ? cliente.getCpf_cnpj() : "";
+            if (cliente.getPessoa_f_j() != null && cliente.getPessoa_f_j().equalsIgnoreCase("F")) {
+                doc = MascaraUtil.mascaraCPF(doc);
+            } else {
+                doc = MascaraUtil.mascaraCNPJ(doc);
+            }
+            String cidade = cliente.getNome_municipio() != null ? cliente.getNome_municipio() : "";
+            String uf = cliente.getEndereco_uf() != null ? cliente.getEndereco_uf() : "";
+            tvDocCidade.setText(doc + " • " + cidade + " / " + uf);
+        }
+
+        double limiteCred = FichaClienteHelper.getLimiteCredito(cliente);
+        double limiteUtil = FichaClienteHelper.getLimiteUtilizado(cliente);
+        double saldoDisp = FichaClienteHelper.getSaldoDisponivel(cliente);
+        double saldoDev = FichaClienteHelper.getSaldoDevedor(cliente);
+        double ticketMedio = FichaClienteHelper.getTicketMedio(db, cliente);
+        String dataUltimaCompra = FichaClienteHelper.getDataUltimaCompra(db, cliente);
+
+        if (tvLimiteCredito != null) tvLimiteCredito.setText(MascaraUtil.mascaraRealSimboloD(limiteCred));
+        if (tvLimiteUtilizado != null) tvLimiteUtilizado.setText(MascaraUtil.mascaraRealSimboloD(limiteUtil));
+
+        if (tvSaldoDisponivel != null) {
+            tvSaldoDisponivel.setText(MascaraUtil.mascaraRealSimboloD(saldoDisp));
+            if (saldoDisp < 0) {
+                tvSaldoDisponivel.setTextColor(context.getColor(R.color.vermelho));
+            } else {
+                tvSaldoDisponivel.setTextColor(Color.parseColor("#16A34A"));
+            }
+        }
+
+        if (tvSaldoDevedor != null) {
+            tvSaldoDevedor.setText(MascaraUtil.mascaraRealSimboloD(saldoDev));
+            if (saldoDev > 0) {
+                tvSaldoDevedor.setTextColor(context.getColor(R.color.vermelho));
+            } else {
+                tvSaldoDevedor.setTextColor(context.getColor(R.color.preto));
+            }
+        }
+
+        if (tvTicket != null) tvTicket.setText(MascaraUtil.mascaraRealSimboloD(ticketMedio));
+        if (tvUltimaCompra != null) tvUltimaCompra.setText(dataUltimaCompra);
+        if (tvAlerta != null) tvAlerta.setText(FichaClienteHelper.getMensagemAlertaReposicao(cliente));
+
+        // EXIBE O DIÁLOGO DE DEVEDOR CASO O CLIENTE POSSUA SALDO VENCIDO/PENDÊNCIAS
+        if (saldoDev > 0) {
+            showDebtorAlertaDialog(context, (float) saldoDev, (float) (limiteUtil - saldoDev),
+                    "O cliente possui pendências financeiras registradas no valor de " + MascaraUtil.mascaraRealSimboloD(saldoDev) + ".", null);
+        }
+
+        RecyclerView rvProdutos = dialogView.findViewById(R.id.rvProdutosFichaInteligente);
+        if (rvProdutos != null) {
+            rvProdutos.setLayoutManager(new LinearLayoutManager(context));
+            com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente adapter =
+                    new com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente(
+                            context,
+                            FichaClienteHelper.getMockProdutosPorAba("MAIS_COMPRADOS"),
+                            item -> Toast.makeText(context, "Produto selecionado (+1): " + item.getNomeProduto(), Toast.LENGTH_SHORT).show()
+                    );
+            rvProdutos.setAdapter(adapter);
+        }
+
+        Button btnAba1 = dialogView.findViewById(R.id.btnAbaMaisComprados);
+        Button btnAba2 = dialogView.findViewById(R.id.btnAbaOportunidades);
+        Button btnAba3 = dialogView.findViewById(R.id.btnAbaSugeridos);
+
+        View.OnClickListener listenerAbas = v -> {
+            String aba = "MAIS_COMPRADOS";
+            int colorPrimary = context.getColor(R.color.colorPrimary);
+            int colorGray = context.getColor(R.color.colorText);
+
+            if (btnAba1 != null) btnAba1.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
+            if (btnAba2 != null) btnAba2.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
+            if (btnAba3 != null) btnAba3.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
+
+            if (v.getId() == R.id.btnAbaOportunidades) {
+                aba = "OPORTUNIDADES";
+                if (btnAba2 != null) btnAba2.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
+            } else if (v.getId() == R.id.btnAbaSugeridos) {
+                aba = "SUGERIDOS";
+                if (btnAba3 != null) btnAba3.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
+            } else {
+                if (btnAba1 != null) btnAba1.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
+            }
+
+            if (rvProdutos != null) {
+                com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente newAdapter =
+                        new com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente(
+                                context,
+                                FichaClienteHelper.getMockProdutosPorAba(aba),
+                                item -> Toast.makeText(context, "Produto selecionado (+1): " + item.getNomeProduto(), Toast.LENGTH_SHORT).show()
+                        );
+                rvProdutos.setAdapter(newAdapter);
+            }
+        };
+
+        if (btnAba1 != null) btnAba1.setOnClickListener(listenerAbas);
+        if (btnAba2 != null) btnAba2.setOnClickListener(listenerAbas);
+        if (btnAba3 != null) btnAba3.setOnClickListener(listenerAbas);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        Button btnRepetir = dialogView.findViewById(R.id.btnRepetirUltimoPedido);
+        if (btnRepetir != null) {
+            btnRepetir.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (listener != null) listener.onRepetirUltimoPedido();
+            });
+        }
+
+        Button btnIniciar = dialogView.findViewById(R.id.btnIniciarNovoPedidoFicha);
+        if (btnIniciar != null) {
+            btnIniciar.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (listener != null) listener.onIniciarNovoPedido();
+            });
+        }
+
+        Button btnFechar = dialogView.findViewById(R.id.btnFecharFichaInteligente);
+        if (btnFechar != null) {
+            btnFechar.setOnClickListener(v -> dialog.dismiss());
         }
 
         dialog.show();

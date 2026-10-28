@@ -15,17 +15,17 @@ import java.lang.Override;
 public class ActivityTecnico_ViewBinding implements Unbinder {
   private ActivityTecnico target;
 
-  private View view7f0a012e;
+  private View view7f0a0136;
 
-  private View view7f0a012d;
+  private View view7f0a0135;
 
-  private View view7f0a012c;
+  private View view7f0a0134;
 
-  private View view7f0a012a;
+  private View view7f0a0132;
 
-  private View view7f0a012b;
+  private View view7f0a0133;
 
-  private View view7f0a0129;
+  private View view7f0a0131;
 
   @UiThread
   public ActivityTecnico_ViewBinding(ActivityTecnico target) {
@@ -39,7 +39,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_tabela_rck, "field 'btn_tecnico_update_tabela_rck' and method 'updateTabelasRck'");
     target.btn_tecnico_update_tabela_rck = Utils.castView(view, R.id.btn_tecnico_update_tabela_rck, "field 'btn_tecnico_update_tabela_rck'", Button.class);
-    view7f0a012e = view;
+    view7f0a0136 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -48,7 +48,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_tabela_app, "field 'btn_tecnico_update_tabela_app' and method 'updateTabelasApp'");
     target.btn_tecnico_update_tabela_app = Utils.castView(view, R.id.btn_tecnico_update_tabela_app, "field 'btn_tecnico_update_tabela_app'", Button.class);
-    view7f0a012d = view;
+    view7f0a0135 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_update_indice_app, "field 'btn_tecnico_update_indice_app' and method 'updateIndiceApp'");
     target.btn_tecnico_update_indice_app = Utils.castView(view, R.id.btn_tecnico_update_indice_app, "field 'btn_tecnico_update_indice_app'", Button.class);
-    view7f0a012c = view;
+    view7f0a0134 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,7 +65,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_tabela_app, "method 'listaTabelasApp'");
-    view7f0a012a = view;
+    view7f0a0132 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -73,7 +73,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_usuario_app, "method 'listaUsuarioApp'");
-    view7f0a012b = view;
+    view7f0a0133 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_tecnico_lista_pedido_app, "method 'listaPedidoApp'");
-    view7f0a0129 = view;
+    view7f0a0131 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -101,17 +101,17 @@ public class ActivityTecnico_ViewBinding implements Unbinder {
     target.btn_tecnico_update_tabela_app = null;
     target.btn_tecnico_update_indice_app = null;
 
-    view7f0a012e.setOnClickListener(null);
-    view7f0a012e = null;
-    view7f0a012d.setOnClickListener(null);
-    view7f0a012d = null;
-    view7f0a012c.setOnClickListener(null);
-    view7f0a012c = null;
-    view7f0a012a.setOnClickListener(null);
-    view7f0a012a = null;
-    view7f0a012b.setOnClickListener(null);
-    view7f0a012b = null;
-    view7f0a0129.setOnClickListener(null);
-    view7f0a0129 = null;
+    view7f0a0136.setOnClickListener(null);
+    view7f0a0136 = null;
+    view7f0a0135.setOnClickListener(null);
+    view7f0a0135 = null;
+    view7f0a0134.setOnClickListener(null);
+    view7f0a0134 = null;
+    view7f0a0132.setOnClickListener(null);
+    view7f0a0132 = null;
+    view7f0a0133.setOnClickListener(null);
+    view7f0a0133 = null;
+    view7f0a0131.setOnClickListener(null);
+    view7f0a0131 = null;
   }
 }

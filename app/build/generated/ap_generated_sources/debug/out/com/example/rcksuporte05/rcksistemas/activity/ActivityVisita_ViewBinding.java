@@ -20,13 +20,13 @@ import java.lang.Override;
 public class ActivityVisita_ViewBinding implements Unbinder {
   private ActivityVisita target;
 
-  private View view7f0a00be;
+  private View view7f0a00c3;
 
-  private View view7f0a010c;
+  private View view7f0a0114;
 
-  private View view7f0a0325;
+  private View view7f0a032f;
 
-  private View view7f0a0326;
+  private View view7f0a0330;
 
   @UiThread
   public ActivityVisita_ViewBinding(ActivityVisita target) {
@@ -48,7 +48,7 @@ public class ActivityVisita_ViewBinding implements Unbinder {
     target.tb_visita = Utils.findRequiredViewAsType(source, R.id.tb_visita, "field 'tb_visita'", Toolbar.class);
     view = Utils.findRequiredView(source, R.id.btnCheckinVisita, "field 'btnCheckinVisita' and method 'checkin'");
     target.btnCheckinVisita = Utils.castView(view, R.id.btnCheckinVisita, "field 'btnCheckinVisita'", Button.class);
-    view7f0a00be = view;
+    view7f0a00c3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class ActivityVisita_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnSalvarVisita, "field 'btnSalvarVisita' and method 'salvar'");
     target.btnSalvarVisita = Utils.castView(view, R.id.btnSalvarVisita, "field 'btnSalvarVisita'", Button.class);
-    view7f0a010c = view;
+    view7f0a0114 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -66,7 +66,7 @@ public class ActivityVisita_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.imagem1, "field 'imagem1' and method 'chamarGaleria'");
     target.imagem1 = Utils.castView(view, R.id.imagem1, "field 'imagem1'", ImageButton.class);
-    view7f0a0325 = view;
+    view7f0a032f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -75,7 +75,7 @@ public class ActivityVisita_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.imagem2, "field 'imagem2' and method 'chamarGaleria2'");
     target.imagem2 = Utils.castView(view, R.id.imagem2, "field 'imagem2'", ImageButton.class);
-    view7f0a0326 = view;
+    view7f0a0330 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -104,13 +104,13 @@ public class ActivityVisita_ViewBinding implements Unbinder {
     target.imagem1 = null;
     target.imagem2 = null;
 
-    view7f0a00be.setOnClickListener(null);
-    view7f0a00be = null;
-    view7f0a010c.setOnClickListener(null);
-    view7f0a010c = null;
-    view7f0a0325.setOnClickListener(null);
-    view7f0a0325 = null;
-    view7f0a0326.setOnClickListener(null);
-    view7f0a0326 = null;
+    view7f0a00c3.setOnClickListener(null);
+    view7f0a00c3 = null;
+    view7f0a0114.setOnClickListener(null);
+    view7f0a0114 = null;
+    view7f0a032f.setOnClickListener(null);
+    view7f0a032f = null;
+    view7f0a0330.setOnClickListener(null);
+    view7f0a0330 = null;
   }
 }

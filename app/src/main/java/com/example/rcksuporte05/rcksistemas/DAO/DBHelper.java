@@ -881,7 +881,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " CNPJ_EMPRESA CHAR(14), MARCA_PRODUTO_JA_COMPRADO CHAR(1), PEDIDO_ENVIADO_ON_LINE_APP CHAR(1), " +
                     " VISUALIZA_GRAFICO_ON_LINE_APP CHAR(1), VISUALIZA_ULTIMO_PRECO_VENDA_APP CHAR(1), " +
                     " VISUALIZA_LEGENDA_CLIENTE CHAR(1), VISUALIZA_LEGENDA_PRODUTO CHAR(1), VISUALIZA_LEGENDA_PEDIDO CHAR(1)," +
-                        " CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1), TRABALHA_COM_CHECKIN_APP VARCHAR(1));");
+                        " CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO CHAR(1), TRABALHA_COM_CHECKIN_APP VARCHAR(1), TRABALHA_COM_CHECKOUT_APP VARCHAR(1));");
                     ///O ULTIMO CAMPO DEFINE UMA FORMA DE LISTAR TODOS OS PEDIDOS EXISTENTES, INCLUSIVE OS Q NAO FORAM FEITOS PELO VENDEDOR EM QSTAO
         } catch (SQLException e) {
             e.printStackTrace();
@@ -921,6 +921,7 @@ public class DBHelper extends SQLiteOpenHelper {
         alerta.setAlerta_emissao_doc("N");
         inserirTBL_ALERTA(alerta);
         */
+
         try {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_VISITA (" +
                     "ID_VISITA INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -980,7 +981,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     "TIPO_TABELA_PRECO VARCHAR(1), UTILIZA_TABELA_PRECO VARCHAR(1), TEMPO_AUTO_SINCRONIA VARCHAR(4)," +
                     "ESTOQUE_AUTO_SINCRONIA VARCHAR(1), UTILIZA_LIMITE_CREDITO VARCHAR(1), ENDERECO_UF VARCHAR(1)," +
                     "PROD_DESCRICAO_PRECO_UM VARCHAR(20), UTILIZA_COBRANCA_OFFLINE VARCHAR(1), " +
-                    "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), ID_CIDADE INTEGER );");
+                    "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), " +
+                    "CONFIRMA_SINCRONIA_CHECKOUT_APP VARCHAR(1), ID_CIDADE INTEGER );");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -1147,6 +1149,44 @@ public class DBHelper extends SQLiteOpenHelper {
                     "VALOR_NOVO TEXT, " +
                     "ERRO_DETALHE TEXT, " +
                     "ST_ENVIADO TEXT DEFAULT 'N');");
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_ANALISE (" +
+                    "ID_ANALISE INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
+                    "ID_ANALISE_SERVIDOR INTEGER, " +
+                    "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VISITA_SERVIDOR INTEGER, " +
+                    "ID_PEDIDO_APP VARCHAR(38), " +
+                    "ID_PEDIDO_SERVIDOR INTEGER, " +
+                    "ID_VENDEDOR INTEGER NOT NULL, " +
+                    "ID_CLIENTE_SERVIDOR INTEGER NOT NULL, " +
+                    "DATA_HORA_ANALISE DATETIME DEFAULT (datetime('now', 'localtime')), " +
+                    "STATUS_CREDITO VARCHAR(30), " +
+                    "LIMITE_CREDITO DECIMAL(12, 2), " +
+                    "LIMITE_DISPONIVEL DECIMAL(12, 2), " +
+                    "FATURAMENTO_ANUAL DECIMAL(12, 2), " +
+                    "TICKET_MEDIO DECIMAL(12, 2), " +
+                    "DIAS_FREQUENCIA_HABITUAL INTEGER, " +
+                    "DIAS_DESDE_ULTIMA_COMPRA INTEGER, " +
+                    "STATUS_REPOSICAO VARCHAR(30), " +
+                    "MENSAGEM_ALERTA VARCHAR(300), " +
+                    "VERSAO_APP VARCHAR(10), " +
+                    "ST_ENVIADO VARCHAR(1) DEFAULT 'N', " +
+                    "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_ANALISE_ITENS (" +
+                    "ID_ANALISE_ITEM INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
+                    "ID_ANALISE_SERVIDOR INTEGER, " +
+                    "ID_PRODUTO VARCHAR(20) NOT NULL, " +
+                    "NOME_PRODUTO VARCHAR(120), " +
+                    "TIPO_ABA VARCHAR(30) NOT NULL, " +
+                    "TAG_DESTAQUE VARCHAR(100), " +
+                    "VALOR_ULTIMO_PRECO DECIMAL(12, 4), " +
+                    "ESTOQUE_ATUAL DECIMAL(12, 4), " +
+                    "FOI_ADICIONADO VARCHAR(1) DEFAULT 'N', " +
+                    "QUANTIDADE_ADICIONADA DECIMAL(12, 4) DEFAULT 0, " +
+                    "ORDEM_EXIBICAO INTEGER);");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -1157,6 +1197,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //db.execSQL("DELETE FROM TBL_LOGIN");
@@ -1281,7 +1322,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     "TIPO_TABELA_PRECO VARCHAR(1), UTILIZA_TABELA_PRECO VARCHAR(1), TEMPO_AUTO_SINCRONIA VARCHAR(4)," +
                     "ESTOQUE_AUTO_SINCRONIA VARCHAR(1), UTILIZA_LIMITE_CREDITO VARCHAR(1), ENDERECO_UF VARCHAR(1)," +
                     "PROD_DESCRICAO_PRECO_UM VARCHAR(20), UTILIZA_COBRANCA_OFFLINE VARCHAR(1), " +
-                    "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), ID_CIDADE INTEGER);");
+                    "UTILIZA_ICMS_ST VARCHAR(1), QTDE_MAIOR_SALDO_PED_APP VARCHAR(1), CONFIRMA_SINCRONIA_CHECKIN_APP VARCHAR(1), " +
+                    "CONFIRMA_SINCRONIA_CHECKOUT_APP VARCHAR(1), ID_CIDADE INTEGER);");
 
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_CADASTRO_CONDICOES_PAG (ID_CONDICAO INTEGER , ID_CADASTRO INTEGER);");
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_CADASTRO_SETOR ( ID INTEGER NOT NULL, ATIVO VARCHAR(1), NOME_SETOR VARCHAR(60))");
@@ -1553,6 +1595,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         //CALCULA_DSCTO_AUTOMATICO_MUDA_PRAZO   12-08-2026 Usado qdo altera o prazo de pagamento
         //VISUALIZA_ULTIMO_PRECO_VENDA_APP
+        try {
+            if (!isExiste(db, "TBL_CONFIGURACAO", "TRABALHA_COM_CHECKOUT_APP")) {
+                db.execSQL("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN TRABALHA_COM_CHECKOUT_APP VARCHAR(1);");
+                db.execSQL("UPDATE TBL_CONFIGURACAO SET TRABALHA_COM_CHECKOUT_APP = 'N'");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
         try {
             if (!isExiste(db, "TBL_CONFIGURACAO", "TRABALHA_COM_CHECKIN_APP")) {
                 db.execSQL("ALTER TABLE TBL_CONFIGURACAO ADD COLUMN TRABALHA_COM_CHECKIN_APP VARCHAR(1);");
@@ -2064,7 +2116,14 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
         }
 
-
+        try {
+            if (!isExiste(db, "TBL_EMPRESA_PARAMETRO", "CONFIRMA_SINCRONIA_CHECKOUT_APP")) {
+                db.execSQL("ALTER TABLE TBL_EMPRESA_PARAMETRO ADD COLUMN CONFIRMA_SINCRONIA_CHECKOUT_APP VARCHAR(1);");
+                db.execSQL("UPDATE TBL_EMPRESA_PARAMETRO SET CONFIRMA_SINCRONIA_CHECKOUT_APP = 'N'");
+            }
+        } catch (SQLException e) {
+        } catch (Exception e) {
+        }
 
         try {
             if (!isExiste(db, "TBL_EMPRESA_PARAMETRO", "CONFIRMA_SINCRONIA_CHECKIN_APP")) {
@@ -2074,6 +2133,14 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (SQLException e) {
         } catch (Exception e) {
         }
+        try {
+            if (!isExiste(db, "TBL_EMPRESA_PARAMETRO", "ID_CIDADE")) {
+                db.execSQL("ALTER TABLE TBL_EMPRESA_PARAMETRO ADD COLUMN ID_CIDADE INTEGER;");
+            }
+        } catch (SQLException e) {
+        } catch (Exception e) {
+        }
+
         try {
             if (!isExiste(db, "TBL_EMPRESA_PARAMETRO", "TIPO_TABELA_PRECO"))
                 db.execSQL("ALTER TABLE TBL_EMPRESA_PARAMETRO ADD COLUMN TIPO_TABELA_PRECO VARCHAR(1);");
@@ -2360,6 +2427,42 @@ public class DBHelper extends SQLiteOpenHelper {
             if (!isExiste(db, "TBL_LOG_SISTEMA", "ID_VENDEDOR"))
                 db.execSQL("ALTER TABLE TBL_LOG_SISTEMA ADD COLUMN ID_VENDEDOR TEXT;");
 
+            // GARANTE QUE AS TABELAS DE ANÁLISE / RAIO-X DO CLIENTE EXISTAM
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_ANALISE (" +
+                    "ID_ANALISE INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
+                    "ID_ANALISE_SERVIDOR INTEGER, " +
+                    "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_PEDIDO_APP VARCHAR(38), " +
+                    "ID_VENDEDOR INTEGER NOT NULL, " +
+                    "ID_CLIENTE_SERVIDOR INTEGER NOT NULL, " +
+                    "DATA_HORA_ANALISE DATETIME DEFAULT (datetime('now', 'localtime')), " +
+                    "STATUS_CREDITO VARCHAR(30), " +
+                    "LIMITE_CREDITO DECIMAL(12, 2), " +
+                    "LIMITE_DISPONIVEL DECIMAL(12, 2), " +
+                    "FATURAMENTO_ANUAL DECIMAL(12, 2), " +
+                    "TICKET_MEDIO DECIMAL(12, 2), " +
+                    "DIAS_FREQUENCIA_HABITUAL INTEGER, " +
+                    "DIAS_DESDE_ULTIMA_COMPRA INTEGER, " +
+                    "STATUS_REPOSICAO VARCHAR(30), " +
+                    "MENSAGEM_ALERTA VARCHAR(300), " +
+                    "VERSAO_APP VARCHAR(10), " +
+                    "ST_ENVIADO VARCHAR(1) DEFAULT 'N', " +
+                    "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_ANALISE_ITENS (" +
+                    "ID_ANALISE_ITEM INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
+                    "ID_PRODUTO VARCHAR(20) NOT NULL, " +
+                    "NOME_PRODUTO VARCHAR(120), " +
+                    "TIPO_ABA VARCHAR(30) NOT NULL, " +
+                    "TAG_DESTAQUE VARCHAR(100), " +
+                    "VALOR_ULTIMO_PRECO DECIMAL(12, 4), " +
+                    "ESTOQUE_ATUAL DECIMAL(12, 4), " +
+                    "FOI_ADICIONADO VARCHAR(1) DEFAULT 'N', " +
+                    "QUANTIDADE_ADICIONADA DECIMAL(12, 4) DEFAULT 0, " +
+                    "ORDEM_EXIBICAO INTEGER);");
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -2554,6 +2657,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_VENDEDOR ON TBL_WEB_VISITA(ID_VENDEDOR)");
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_PEDIDO ON TBL_WEB_VISITA(ID_PEDIDO)");
             db.execSQL("CREATE INDEX IF NOT EXISTS IDX_VISITA_STATUS ON TBL_WEB_VISITA(STATUS_VISITA)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_ANALISE_ID_APP ON TBL_WEB_ANALISE(ID_ANALISE_APP)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_ANALISE_VISITA ON TBL_WEB_ANALISE(ID_VISITA_APP)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_ANALISE_CLIENTE ON TBL_WEB_ANALISE(ID_CLIENTE_SERVIDOR)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_ANALISE_ITEM_ID ON TBL_WEB_ANALISE_ITENS(ID_ANALISE_APP)");
+            db.execSQL("CREATE INDEX IF NOT EXISTS IDX_ANALISE_ITEM_PROD ON TBL_WEB_ANALISE_ITENS(ID_PRODUTO)");
         } catch ( SQLException e) {
             e.printStackTrace();
         }
