@@ -1193,7 +1193,6 @@ public class DialogHelper {
 
     public interface OnFichaClienteAcaoListener {
         void onIniciarNovoPedido();
-        void onRepetirUltimoPedido();
     }
 
     public static void showFichaClienteInteligenteDialog(
@@ -1241,6 +1240,7 @@ public class DialogHelper {
         double limiteUtil = FichaClienteHelper.getLimiteUtilizado(cliente);
         double saldoDisp = FichaClienteHelper.getSaldoDisponivel(cliente);
         double saldoDev = FichaClienteHelper.getSaldoDevedor(cliente);
+        double saldoVencendo = FichaClienteHelper.getSaldoVencendo(cliente);
         double ticketMedio = FichaClienteHelper.getTicketMedio(db, cliente);
         String dataUltimaCompra = FichaClienteHelper.getDataUltimaCompra(db, cliente);
 
@@ -1267,12 +1267,37 @@ public class DialogHelper {
 
         if (tvTicket != null) tvTicket.setText(MascaraUtil.mascaraRealSimboloD(ticketMedio));
         if (tvUltimaCompra != null) tvUltimaCompra.setText(dataUltimaCompra);
-        if (tvAlerta != null) tvAlerta.setText(FichaClienteHelper.getMensagemAlertaReposicao(cliente));
 
-        // EXIBE O DIÁLOGO DE DEVEDOR CASO O CLIENTE POSSUA SALDO VENCIDO/PENDÊNCIAS
-        if (saldoDev > 0) {
-            showDebtorAlertaDialog(context, (float) saldoDev, (float) (limiteUtil - saldoDev),
-                    "O cliente possui pendências financeiras registradas no valor de " + MascaraUtil.mascaraRealSimboloD(saldoDev) + ".", null);
+        // CARD 2: ALERTA FINANCEIRO PENDENTE / DEVEDOR (EXIBIDO APENAS SE HOUVER PENDÊNCIAS)
+        androidx.cardview.widget.CardView cardAlerta = dialogView.findViewById(R.id.cardAlertaReposicao);
+
+        if (saldoDev > 0 || saldoVencendo > 0) {
+            if (cardAlerta != null) cardAlerta.setVisibility(View.VISIBLE);
+
+            if (saldoDev > 0) {
+                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#FEF2F2"));
+                if (tvAlerta != null) {
+                    tvAlerta.setTextColor(Color.parseColor("#991B1B"));
+                    String msg = "ALERTA DE INADIMPLÊNCIA: O cliente possui títulos vencidos no valor de " + MascaraUtil.mascaraRealSimboloD(saldoDev) + ".";
+                    if (saldoVencendo > 0) {
+                        msg += " E possui títulos a vencer no valor de " + MascaraUtil.mascaraRealSimboloD(saldoVencendo) + ".";
+                    }
+                    tvAlerta.setText(msg);
+                }
+            } else {
+                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#FEF3C7"));
+                if (tvAlerta != null) {
+                    tvAlerta.setTextColor(Color.parseColor("#B45309"));
+                    tvAlerta.setText("INFORMATIVO FINANCEIRO: O cliente possui títulos a vencer no valor de " + MascaraUtil.mascaraRealSimboloD(saldoVencendo) + ".");
+                }
+            }
+
+            // POP-UP ALERTA DE DEVEDOR
+            showDebtorAlertaDialog(context, (float) saldoDev, (float) saldoVencendo,
+                    "O cliente possui pendências financeiras registradas.", null);
+
+        } else {
+            if (cardAlerta != null) cardAlerta.setVisibility(View.GONE);
         }
 
         RecyclerView rvProdutos = dialogView.findViewById(R.id.rvProdutosFichaInteligente);
@@ -1287,7 +1312,9 @@ public class DialogHelper {
             rvProdutos.setAdapter(adapter);
         }
 
-        Button btnAba1 = dialogView.findViewById(R.id.btnAbaMaisComprados);
+//        Button btnAba1 = dialogView.findViewById(R.id.btnAbaMaisComprados);
+
+        /* === NAVEGAÇÃO DE ABAS SECUNDÁRIAS TEMPORARIAMENTE COMENTADA ===
         Button btnAba2 = dialogView.findViewById(R.id.btnAbaOportunidades);
         Button btnAba3 = dialogView.findViewById(R.id.btnAbaSugeridos);
 
@@ -1324,19 +1351,19 @@ public class DialogHelper {
         if (btnAba1 != null) btnAba1.setOnClickListener(listenerAbas);
         if (btnAba2 != null) btnAba2.setOnClickListener(listenerAbas);
         if (btnAba3 != null) btnAba3.setOnClickListener(listenerAbas);
+        ================================================================ */
 
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setCancelable(true)
                 .create();
 
-        Button btnRepetir = dialogView.findViewById(R.id.btnRepetirUltimoPedido);
-        if (btnRepetir != null) {
-            btnRepetir.setOnClickListener(v -> {
-                dialog.dismiss();
-                if (listener != null) listener.onRepetirUltimoPedido();
-            });
+        /* === BOTÃO DE HISTÓRICO COMPLETO TEMPORARIAMENTE COMENTADO ===
+        Button btnHistorico = dialogView.findViewById(R.id.btnVerHistoricoCompleto);
+        if (btnHistorico != null) {
+            btnHistorico.setOnClickListener(v -> Toast.makeText(context, "Abrindo histórico completo de compras do cliente...", Toast.LENGTH_SHORT).show());
         }
+        ================================================================ */
 
         Button btnIniciar = dialogView.findViewById(R.id.btnIniciarNovoPedidoFicha);
         if (btnIniciar != null) {

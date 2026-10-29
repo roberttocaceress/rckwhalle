@@ -18,7 +18,7 @@ import java.lang.Override;
 public class ActivityHistoricoVisitaProspect_ViewBinding implements Unbinder {
   private ActivityHistoricoVisitaProspect target;
 
-  private View view7f0a00aa;
+  private View view7f0a00a8;
 
   @UiThread
   public ActivityHistoricoVisitaProspect_ViewBinding(ActivityHistoricoVisitaProspect target) {
@@ -37,7 +37,7 @@ public class ActivityHistoricoVisitaProspect_ViewBinding implements Unbinder {
     target.imFisicaJuridica = Utils.findRequiredViewAsType(source, R.id.imFisicaJuridica, "field 'imFisicaJuridica'", ImageView.class);
     target.txtNomeProspectVisita = Utils.findRequiredViewAsType(source, R.id.txtDescricaoAcao, "field 'txtNomeProspectVisita'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnAddVisita, "method 'abrirTela'");
-    view7f0a00aa = view;
+    view7f0a00a8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -59,7 +59,7 @@ public class ActivityHistoricoVisitaProspect_ViewBinding implements Unbinder {
     target.imFisicaJuridica = null;
     target.txtNomeProspectVisita = null;
 
-    view7f0a00aa.setOnClickListener(null);
-    view7f0a00aa = null;
+    view7f0a00a8.setOnClickListener(null);
+    view7f0a00a8 = null;
   }
 }

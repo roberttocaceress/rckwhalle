@@ -19,7 +19,7 @@ import java.lang.Override;
 public class ActivityAlerta_ViewBinding implements Unbinder {
   private ActivityAlerta target;
 
-  private View view7f0a00c8;
+  private View view7f0a00c6;
 
   @UiThread
   public ActivityAlerta_ViewBinding(ActivityAlerta target) {
@@ -37,7 +37,7 @@ public class ActivityAlerta_ViewBinding implements Unbinder {
     target.btnCancelar = Utils.findRequiredViewAsType(source, R.id.btnCancelar, "field 'btnCancelar'", Button.class);
     view = Utils.findRequiredView(source, R.id.btnConfirmar, "field 'btnConfirmar' and method 'addAlerta'");
     target.btnConfirmar = Utils.castView(view, R.id.btnConfirmar, "field 'btnConfirmar'", Button.class);
-    view7f0a00c8 = view;
+    view7f0a00c6 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -67,7 +67,7 @@ public class ActivityAlerta_ViewBinding implements Unbinder {
     target.progress_bar = null;
     target.progress_title = null;
 
-    view7f0a00c8.setOnClickListener(null);
-    view7f0a00c8 = null;
+    view7f0a00c6.setOnClickListener(null);
+    view7f0a00c6 = null;
   }
 }

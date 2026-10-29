@@ -593,8 +593,6 @@ id barChart2
 id barChart3
 id botoes
 id btnAbaMaisComprados
-id btnAbaOportunidades
-id btnAbaSugeridos
 id btnAbrirCalendario
 id btnAddAnexCam
 id btnAddAnexos
@@ -704,7 +702,6 @@ id btnRefreshRanking
 id btnRefreshReceber
 id btnRefreshSemanal
 id btnRepetir
-id btnRepetirUltimoPedido
 id btnSalvar
 id btnSalvarAnexo
 id btnSalvarPedido
@@ -780,6 +777,7 @@ id cardOpcaoNaoVenda
 id cardOpcaoPedido
 id cardPerformance
 id cardProduto
+id cardProdutoFicha
 id cardRankingEquipe
 id cardStatusAnexo
 id cardView
@@ -1219,7 +1217,6 @@ id ivIconeAlerta
 id ivIconeClienteFicha
 id ivIconeEmpresa
 id ivIconeEmpresaNaoVenda
-id ivIconeFichaProduto
 id ivIconeVisita
 id ivInternet
 id ivMenuClienteIcon
@@ -1762,6 +1759,7 @@ id tvCoordenadasVisita
 id tvDataHoraVisita
 id tvDataPesquisa
 id tvDetalheProdutoExclusao
+id tvDiagnosticoProduto
 id tvFaltaMes
 id tvFichaAlertaReposicao
 id tvFichaDocCidadeCliente
@@ -1821,6 +1819,7 @@ id tvMesAnoReferencia
 id tvMesAnoReferenciaRelatorio
 id tvMetaTotal
 id tvMetaTotalMensal
+id tvMetricasGiroProduto
 id tvMotivosVisita
 id tvNaoVendaEndereco
 id tvNaoVendaNomeFantasia
@@ -1881,7 +1880,6 @@ id tvScrollMensal
 id tvScrollRanking
 id tvScrollSemanal
 id tvSharePorcentagem
-id tvTagDestaqueProduto
 id tvTextoPlaceholderMapa
 id tvTicketMedio
 id tvTituloAlerta
@@ -1902,7 +1900,6 @@ id tvValorAtualMensal
 id tvValorMesHub
 id tvValorPedidoVisita
 id tvValorTotalCliente
-id tvValoresFichaProduto
 id tvValoresMes
 id tvValoresSemana
 id tvVariacaoPercentual

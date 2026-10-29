@@ -17,7 +17,7 @@ import java.lang.Override;
 public class ActivityPedidoEnviado_ViewBinding implements Unbinder {
   private ActivityPedidoEnviado target;
 
-  private View view7f0a00fb;
+  private View view7f0a00f9;
 
   @UiThread
   public ActivityPedidoEnviado_ViewBinding(ActivityPedidoEnviado target) {
@@ -33,7 +33,7 @@ public class ActivityPedidoEnviado_ViewBinding implements Unbinder {
     target.buscapedido = Utils.findRequiredViewAsType(source, R.id.buscaPedido, "field 'buscapedido'", SearchView.class);
     target.helpPedido = Utils.findRequiredViewAsType(source, R.id.helpPedido, "field 'helpPedido'", ImageView.class);
     view = Utils.findRequiredView(source, R.id.btnNovoPedido, "method 'btnNovoPedido'");
-    view7f0a00fb = view;
+    view7f0a00f9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +53,7 @@ public class ActivityPedidoEnviado_ViewBinding implements Unbinder {
     target.buscapedido = null;
     target.helpPedido = null;
 
-    view7f0a00fb.setOnClickListener(null);
-    view7f0a00fb = null;
+    view7f0a00f9.setOnClickListener(null);
+    view7f0a00f9 = null;
   }
 }

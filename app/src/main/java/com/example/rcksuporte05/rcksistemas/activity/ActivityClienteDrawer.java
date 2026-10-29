@@ -1774,17 +1774,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                     ActivityClienteDrawer.this,
                                     db,
                                     cliente,
-                                    new DialogHelper.OnFichaClienteAcaoListener() {
-                                        @Override
-                                        public void onIniciarNovoPedido() {
-                                            escolherEmpresaPedido(position);
-                                        }
-
-                                        @Override
-                                        public void onRepetirUltimoPedido() {
-                                            escolherEmpresaPedido(position);
-                                        }
-                                    }
+                                    () -> escolherEmpresaPedido(position)
                             );
                             break;
                         case 1: escolherEmpresaPedido(position); break;

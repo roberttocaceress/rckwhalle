@@ -18,7 +18,7 @@ import java.lang.Override;
 public class ActivityProspectPendente_ViewBinding implements Unbinder {
   private ActivityProspectPendente target;
 
-  private View view7f0a00a8;
+  private View view7f0a00a6;
 
   @UiThread
   public ActivityProspectPendente_ViewBinding(ActivityProspectPendente target) {
@@ -35,7 +35,7 @@ public class ActivityProspectPendente_ViewBinding implements Unbinder {
     target.edtTotalProspect = Utils.findRequiredViewAsType(source, R.id.edtTotalProspect, "field 'edtTotalProspect'", EditText.class);
     target.rgFiltaProspect = Utils.findRequiredViewAsType(source, R.id.rgFiltaProspect, "field 'rgFiltaProspect'", RadioGroup.class);
     view = Utils.findRequiredView(source, R.id.btnAddProspect, "method 'novoProspect'");
-    view7f0a00a8 = view;
+    view7f0a00a6 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class ActivityProspectPendente_ViewBinding implements Unbinder {
     target.edtTotalProspect = null;
     target.rgFiltaProspect = null;
 
-    view7f0a00a8.setOnClickListener(null);
-    view7f0a00a8 = null;
+    view7f0a00a6.setOnClickListener(null);
+    view7f0a00a6 = null;
   }
 }

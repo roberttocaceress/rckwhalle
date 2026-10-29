@@ -22,15 +22,15 @@ import java.lang.Override;
 public class ActivityPainelGraficoEquipe_ViewBinding implements Unbinder {
   private ActivityPainelGraficoEquipe target;
 
-  private View view7f0a0115;
-
-  private View view7f0a010e;
-
-  private View view7f0a010b;
+  private View view7f0a0112;
 
   private View view7f0a010c;
 
-  private View view7f0a00bc;
+  private View view7f0a0109;
+
+  private View view7f0a010a;
+
+  private View view7f0a00ba;
 
   @UiThread
   public ActivityPainelGraficoEquipe_ViewBinding(ActivityPainelGraficoEquipe target) {
@@ -86,7 +86,7 @@ public class ActivityPainelGraficoEquipe_ViewBinding implements Unbinder {
     target.tvMesAnoReferencia = Utils.findRequiredViewAsType(source, R.id.tvMesAnoReferencia, "field 'tvMesAnoReferencia'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnSelecionarMesAnoGlobal, "field 'btnSelecionarMesAnoGlobal' and method 'onSelecionarPeriodoClick'");
     target.btnSelecionarMesAnoGlobal = view;
-    view7f0a0115 = view;
+    view7f0a0112 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -94,22 +94,6 @@ public class ActivityPainelGraficoEquipe_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshSemanal, "method 'onRefreshClick'");
-    view7f0a010e = view;
-    view.setOnClickListener(new DebouncingOnClickListener() {
-      @Override
-      public void doClick(View p0) {
-        target.onRefreshClick(p0);
-      }
-    });
-    view = Utils.findRequiredView(source, R.id.btnRefreshMensal, "method 'onRefreshClick'");
-    view7f0a010b = view;
-    view.setOnClickListener(new DebouncingOnClickListener() {
-      @Override
-      public void doClick(View p0) {
-        target.onRefreshClick(p0);
-      }
-    });
-    view = Utils.findRequiredView(source, R.id.btnRefreshRanking, "method 'onRefreshClick'");
     view7f0a010c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
@@ -117,8 +101,24 @@ public class ActivityPainelGraficoEquipe_ViewBinding implements Unbinder {
         target.onRefreshClick(p0);
       }
     });
+    view = Utils.findRequiredView(source, R.id.btnRefreshMensal, "method 'onRefreshClick'");
+    view7f0a0109 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onRefreshClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.btnRefreshRanking, "method 'onRefreshClick'");
+    view7f0a010a = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onRefreshClick(p0);
+      }
+    });
     view = Utils.findRequiredView(source, R.id.btnCalendarioSemanal, "method 'onRefreshClick'");
-    view7f0a00bc = view;
+    view7f0a00ba = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -177,15 +177,15 @@ public class ActivityPainelGraficoEquipe_ViewBinding implements Unbinder {
     target.tvMesAnoReferencia = null;
     target.btnSelecionarMesAnoGlobal = null;
 
-    view7f0a0115.setOnClickListener(null);
-    view7f0a0115 = null;
-    view7f0a010e.setOnClickListener(null);
-    view7f0a010e = null;
-    view7f0a010b.setOnClickListener(null);
-    view7f0a010b = null;
+    view7f0a0112.setOnClickListener(null);
+    view7f0a0112 = null;
     view7f0a010c.setOnClickListener(null);
     view7f0a010c = null;
-    view7f0a00bc.setOnClickListener(null);
-    view7f0a00bc = null;
+    view7f0a0109.setOnClickListener(null);
+    view7f0a0109 = null;
+    view7f0a010a.setOnClickListener(null);
+    view7f0a010a = null;
+    view7f0a00ba.setOnClickListener(null);
+    view7f0a00ba = null;
   }
 }

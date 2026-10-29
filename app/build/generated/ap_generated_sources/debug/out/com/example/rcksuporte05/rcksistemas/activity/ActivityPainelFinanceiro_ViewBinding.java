@@ -21,19 +21,19 @@ import java.lang.Override;
 public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
   private ActivityPainelFinanceiro target;
 
-  private View view7f0a0117;
+  private View view7f0a0114;
+
+  private View view7f0a0106;
+
+  private View view7f0a010b;
 
   private View view7f0a0108;
 
-  private View view7f0a010d;
+  private View view7f0a00af;
 
-  private View view7f0a010a;
+  private View view7f0a00b3;
 
-  private View view7f0a00b1;
-
-  private View view7f0a00b5;
-
-  private View view7f0a00b2;
+  private View view7f0a00b0;
 
   @UiThread
   public ActivityPainelFinanceiro_ViewBinding(ActivityPainelFinanceiro target) {
@@ -54,7 +54,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     target.tvPeriodoReferencia = Utils.findRequiredViewAsType(source, R.id.tvPeriodoReferencia, "field 'tvPeriodoReferencia'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btnSelecionarPeriodoFinanceiro, "field 'btnSelecionarPeriodoFinanceiro' and method 'onSelecionarPeriodoClick'");
     target.btnSelecionarPeriodoFinanceiro = view;
-    view7f0a0117 = view;
+    view7f0a0114 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -63,7 +63,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshFluxo, "field 'btnRefreshFluxo' and method 'onIconClick'");
     target.btnRefreshFluxo = Utils.castView(view, R.id.btnRefreshFluxo, "field 'btnRefreshFluxo'", ImageView.class);
-    view7f0a0108 = view;
+    view7f0a0106 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,7 +72,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshReceber, "field 'btnRefreshReceber' and method 'onIconClick'");
     target.btnRefreshReceber = Utils.castView(view, R.id.btnRefreshReceber, "field 'btnRefreshReceber'", ImageView.class);
-    view7f0a010d = view;
+    view7f0a010b = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnRefreshInad, "field 'btnRefreshInad' and method 'onIconClick'");
     target.btnRefreshInad = Utils.castView(view, R.id.btnRefreshInad, "field 'btnRefreshInad'", ImageView.class);
-    view7f0a010a = view;
+    view7f0a0108 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -90,7 +90,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAnaliseFluxo, "field 'btnAnaliseFluxo' and method 'onIconClick'");
     target.btnAnaliseFluxo = Utils.castView(view, R.id.btnAnaliseFluxo, "field 'btnAnaliseFluxo'", ImageView.class);
-    view7f0a00b1 = view;
+    view7f0a00af = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -99,7 +99,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAnaliseReceber, "field 'btnAnaliseReceber' and method 'onIconClick'");
     target.btnAnaliseReceber = Utils.castView(view, R.id.btnAnaliseReceber, "field 'btnAnaliseReceber'", ImageView.class);
-    view7f0a00b5 = view;
+    view7f0a00b3 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -108,7 +108,7 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnAnaliseInad, "field 'btnAnaliseInad' and method 'onIconClick'");
     target.btnAnaliseInad = Utils.castView(view, R.id.btnAnaliseInad, "field 'btnAnaliseInad'", ImageView.class);
-    view7f0a00b2 = view;
+    view7f0a00b0 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -155,19 +155,19 @@ public class ActivityPainelFinanceiro_ViewBinding implements Unbinder {
     target.drawerLayout = null;
     target.navigationView = null;
 
-    view7f0a0117.setOnClickListener(null);
-    view7f0a0117 = null;
+    view7f0a0114.setOnClickListener(null);
+    view7f0a0114 = null;
+    view7f0a0106.setOnClickListener(null);
+    view7f0a0106 = null;
+    view7f0a010b.setOnClickListener(null);
+    view7f0a010b = null;
     view7f0a0108.setOnClickListener(null);
     view7f0a0108 = null;
-    view7f0a010d.setOnClickListener(null);
-    view7f0a010d = null;
-    view7f0a010a.setOnClickListener(null);
-    view7f0a010a = null;
-    view7f0a00b1.setOnClickListener(null);
-    view7f0a00b1 = null;
-    view7f0a00b5.setOnClickListener(null);
-    view7f0a00b5 = null;
-    view7f0a00b2.setOnClickListener(null);
-    view7f0a00b2 = null;
+    view7f0a00af.setOnClickListener(null);
+    view7f0a00af = null;
+    view7f0a00b3.setOnClickListener(null);
+    view7f0a00b3 = null;
+    view7f0a00b0.setOnClickListener(null);
+    view7f0a00b0 = null;
   }
 }

@@ -265,46 +265,32 @@
                 android:orientation="horizontal"
                 android:padding="10dp">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_alerta_mensagem_color_primary"
-                    app:tint="#D97706" />
-
                 <TextView
                     android:id="@+id/tvFichaAlertaReposicao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="⚠️ ATENÇÃO COMERCIAL: O cliente costuma repor seu estoque a cada 15 dias. A última compra foi há 19 dias (Reposição Atrasada em 4 dias!)."
+                    android:text="ATENÇÃO COMERCIAL: O cliente costuma repor seu estoque a cada 15 dias. A última compra foi há 19 dias (Reposição Atrasada em 4 dias!)."
                     android:textColor="#B45309"
                     android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- CARD 3: ABAS DE NAVEGAÇÃO DE PRODUTOS INTELIGENTES -->
-        <LinearLayout
+        <!-- CARD 3: TÍTULO TOP GIRO DE PRODUTOS -->
+        <TextView
+            android:id="@+id/btnAbaMaisComprados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp"
+            android:text="TOP GIRO DE PRODUTOS"
+            android:textColor="@color/preto"
+            android:textSize="10dp" />
 
-            <Button
-                android:id="@+id/btnAbaMaisComprados"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="2dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/colorPrimary"
-                android:paddingHorizontal="2dp"
-                android:text="🏆 COMPRADOS"
-                android:textColor="@color/branco"
-                android:textSize="9sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
-
+            <!-- === ABAS QUEDA REC E SUGERIDOS TEMPORARIAMENTE COMENTADAS ===
             <Button
                 android:id="@+id/btnAbaOportunidades"
                 android:layout_width="0dp"
@@ -332,7 +318,8 @@
                 android:textSize="9sp"
                 android:textStyle="bold"
                 app:cornerRadius="6dp" />
-        </LinearLayout>
+            =============================================================== -->
+
 
         <!-- RECYCLERVIEW DE PRODUTOS DA ABA SELECIONADA -->
         <androidx.recyclerview.widget.RecyclerView
@@ -342,40 +329,32 @@
             android:clipToPadding="false"
             android:paddingBottom="4dp" />
 
-        <!-- RODAPÉ FIXO: AÇÕES PRINCIPAIS DE VENDA -->
-        <LinearLayout
+        <!-- === BOTÃO HISTÓRICO COMPLETO TEMPORARIAMENTE COMENTADO ===
+        <Button
+            android:id="@+id/btnVerHistoricoCompleto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#0F172A"
+            android:text="🔍 Ver / Buscar no Histórico Completo de Compras ( +42 itens )"
+            android:textColor="@color/branco"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:cornerRadius="6dp" />
+        ============================================================ -->
+
+        <!-- RODAPÉ FIXO: AÇÃO PRINCIPAL DE VENDA -->
+        <Button
+            android:id="@+id/btnIniciarNovoPedidoFicha"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <Button
-                android:id="@+id/btnRepetirUltimoPedido"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="1"
-                android:backgroundTint="#D97706"
-                android:text="🔄 REPETIR ÚLTIMO"
-                android:textColor="@color/branco"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
-
-            <Button
-                android:id="@+id/btnIniciarNovoPedidoFicha"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="➕ INICIAR PEDIDO"
-                android:textColor="@color/branco"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
-        </LinearLayout>
+            android:backgroundTint="@color/colorPrimary"
+            android:text="CONTINUAR"
+            android:textColor="@color/branco"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:cornerRadius="6dp" />
 
         <Button
             android:id="@+id/btnFecharFichaInteligente"
