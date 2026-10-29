@@ -1762,12 +1762,14 @@ id tvDetalheProdutoExclusao
 id tvDiagnosticoProduto
 id tvFaltaMes
 id tvFichaAlertaReposicao
+id tvFichaDataHoraAnalise
 id tvFichaDocCidadeCliente
 id tvFichaLimiteCredito
 id tvFichaLimiteUtilizado
 id tvFichaNomeCliente
 id tvFichaSaldoDevedor
 id tvFichaSaldoDisponivel
+id tvFichaSemProdutos
 id tvFichaTicketMedio
 id tvFichaUltimaCompra
 id tvGlobalLoadingTitle
@@ -2423,6 +2425,7 @@ layout dialog_alerta_mensagem_2
 layout dialog_alerta_mensagem_erro_pedido
 layout dialog_checkin_cliente
 layout dialog_consulta_opcao_cliente
+layout dialog_ficha_cliente_historico
 layout dialog_ficha_cliente_inteligente
 layout dialog_header_centralizado
 layout dialog_header_centralizado_positive_button

@@ -4967,12 +4967,14 @@ int id tvDetalheProdutoExclusao 0x7f0a06af
 int id tvDiagnosticoProduto 0x7f0a06b0
 int id tvFaltaMes 0x7f0a06b1
 int id tvFichaAlertaReposicao 0x7f0a06b2
+int id tvFichaDataHoraAnalise 0x7f0a089d
 int id tvFichaDocCidadeCliente 0x7f0a06b3
 int id tvFichaLimiteCredito 0x7f0a06b4
 int id tvFichaLimiteUtilizado 0x7f0a06b5
 int id tvFichaNomeCliente 0x7f0a06b6
 int id tvFichaSaldoDevedor 0x7f0a06b7
 int id tvFichaSaldoDisponivel 0x7f0a06b8
+int id tvFichaSemProdutos 0x7f0a089c
 int id tvFichaTicketMedio 0x7f0a06b9
 int id tvFichaUltimaCompra 0x7f0a06ba
 int id tvGlobalLoadingTitle 0x7f0a06bb
@@ -5758,6 +5760,7 @@ int layout dialog_alerta_mensagem_2 0x7f0d00ea
 int layout dialog_alerta_mensagem_erro_pedido 0x7f0d00eb
 int layout dialog_checkin_cliente 0x7f0d00ec
 int layout dialog_consulta_opcao_cliente 0x7f0d00ed
+int layout dialog_ficha_cliente_historico 0x7f0d01df
 int layout dialog_ficha_cliente_inteligente 0x7f0d00ee
 int layout dialog_header_centralizado 0x7f0d00ef
 int layout dialog_header_centralizado_positive_button 0x7f0d00f0

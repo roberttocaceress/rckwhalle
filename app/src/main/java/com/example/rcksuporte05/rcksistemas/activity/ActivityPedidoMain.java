@@ -512,30 +512,40 @@ public class ActivityPedidoMain extends AppCompatActivity {
     }
 
     private void setDadosVendedor() {
-        if ( webPedido.getId_empresa() == null || webPedido.getId_empresa().isEmpty()) {
-            try {
-                webPedido.setId_empresa(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
-                if (getIntent().hasExtra("id_empresa")) {
-                    String idEmpresa = getIntent().getStringExtra("id_empresa");
-                    if (idEmpresa != null && !idEmpresa.isEmpty()) {
-                        webPedido.setId_empresa(idEmpresa);
-                    }
+        try {
+            if (getIntent().hasExtra("id_empresa")) {
+                String idEmpresa = getIntent().getStringExtra("id_empresa");
+                if (idEmpresa != null && !idEmpresa.isEmpty()) {
+                    webPedido.setId_empresa(idEmpresa);
                 }
-                if (getIntent().hasExtra("id_visita_app")) {
-                    String idVisitaApp = getIntent().getStringExtra("id_visita_app");
-                    if (idVisitaApp != null && !idVisitaApp.isEmpty()) {
+            }
+            if (getIntent().hasExtra("id_visita_app")) {
+                Object extraVisita = getIntent().getExtras() != null ? getIntent().getExtras().get("id_visita_app") : null;
+                if (extraVisita != null) {
+                    String idVisitaApp = String.valueOf(extraVisita);
+                    if (!idVisitaApp.trim().isEmpty() && !"0".equals(idVisitaApp.trim())) {
                         webPedido.setId_visita_app(idVisitaApp);
                     }
                 }
-                webPedido.setId_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
-                webPedido.setUsuario_lancamento_id(UsuarioHelper.getUsuario().getId_usuario());
-                webPedido.setUsuario_lancamento_nome(UsuarioHelper.getUsuario().getNome_usuario());
-                webPedido.setId_outro_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+            if (getIntent().hasExtra("id_analise_app")) {
+                String idAnaliseApp = getIntent().getStringExtra("id_analise_app");
+                if (idAnaliseApp != null && !idAnaliseApp.isEmpty()) {
+                    webPedido.setId_analise_app(idAnaliseApp);
+                }
+            }
+
+            if (webPedido.getId_empresa() == null || webPedido.getId_empresa().isEmpty()) {
+                webPedido.setId_empresa(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
+            }
+            webPedido.setId_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
+            webPedido.setUsuario_lancamento_id(UsuarioHelper.getUsuario().getId_usuario());
+            webPedido.setUsuario_lancamento_nome(UsuarioHelper.getUsuario().getNome_usuario());
+            webPedido.setId_outro_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

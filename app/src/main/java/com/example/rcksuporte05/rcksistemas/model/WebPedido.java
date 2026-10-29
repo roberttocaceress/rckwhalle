@@ -776,12 +776,22 @@ public class WebPedido {
         this.listaErro = listaErro;
     }
 
+    private String id_analise_app;
+
     public String getId_visita_app() {
         return id_visita_app;
     }
 
     public void setId_visita_app(String id_visita_app) {
         this.id_visita_app = id_visita_app;
+    }
+
+    public String getId_analise_app() {
+        return id_analise_app;
+    }
+
+    public void setId_analise_app(String id_analise_app) {
+        this.id_analise_app = id_analise_app;
     }
 
     public WebVisita getWebVisita() {

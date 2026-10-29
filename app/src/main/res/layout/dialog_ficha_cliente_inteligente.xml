@@ -1,354 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true"
-    android:scrollbars="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
 
+    <!-- CONTEÚDO SUPERIOR E CENTRAL COM ROLAGEM -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- CARD 1: HEADER - SAÚDE FINANCEIRA & DADOS CLIENTE -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardHeaderSaudeFinanceira"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                app:cardBackgroundColor="@color/branco"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <!-- NOME E DOCUMENTO DO CLIENTE -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivIconeClienteFicha"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/border_shadow_2025"
+                            android:padding="6dp"
+                            android:src="@drawable/img_avatar_empresa"
+                            app:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/ivIconeClienteFicha"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvFichaNomeCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="Razão Social do Cliente"
+                                android:textColor="@color/preto"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaDocCidadeCliente"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="00.000.000/0001-00 • Campo Grande / MS"
+                                android:textColor="@color/colorText"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <!-- DIVISOR SUTIL -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginVertical="8dp"
+                        android:background="#E2E8F0" />
+
+                    <!-- MENSAGEM / PAINEL FINANCEIRO DA ACTIVITY CONTATO -->
+                    <!-- LINHA 1: LIMITE CRÉDITO, UTILIZADO E DISPONÍVEL -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="LIMITE CRÉDITO"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaLimiteCredito"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 0,00"
+                                android:textColor="@color/preto"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="UTILIZADO"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaLimiteUtilizado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 0,00"
+                                android:textColor="@color/preto"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SALDO DISPONÍVEL"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaSaldoDisponivel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 0,00"
+                                android:textColor="#16A34A"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- LINHA 2: SALDO DEVEDOR, TICKET MÉDIO E ÚLTIMA COMPRA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SALDO DEVEDOR"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaSaldoDevedor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 0,00"
+                                android:textColor="@color/preto"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TICKET MÉDIO"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaTicketMedio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 0,00"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ÚLTIMA COMPRA"
+                                android:textColor="@color/colorText"
+                                android:textSize="9sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFichaUltimaCompra"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--/--/----"
+                                android:textColor="@color/preto"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CARD 2: ALERTA DE MOMENTO DE REPOSIÇÃO (INTELIGÊNCIA PREDITIVA) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardAlertaReposicao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="#FEF3C7"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tvFichaAlertaReposicao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ATENÇÃO COMERCIAL: O cliente costuma repor seu estoque a cada 15 dias. A última compra foi há 19 dias (Reposição Atrasada em 4 dias!)."
+                        android:textColor="#B45309"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CARD 3: TÍTULO TOP GIRO DE PRODUTOS -->
+            <TextView
+                android:id="@+id/btnAbaMaisComprados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:text="TOP GIRO DE PRODUTOS"
+                android:textColor="@color/preto"
+                android:textSize="8dp"
+                android:textStyle="bold"/>
+
+            <!-- RECYCLERVIEW DE PRODUTOS DA ABA SELECIONADA -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProdutosFichaInteligente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingBottom="4dp" />
+
+            <!-- INFORMATIVO DE LISTA VAZIA (EXIBIDO QUANDO NÃO HÁ PEDIDOS NO SQLITE LOCAL) -->
+            <TextView
+                android:id="@+id/tvFichaSemProdutos"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="Nenhum histórico de compras encontrado para este cliente na base local."
+                android:textColor="@color/colorText"
+                android:textSize="11sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- RODAPÉ FIXO DE AÇÕES (ANCORADO NA PARTE INFERIOR) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:layout_marginTop="6dp"
+        android:orientation="vertical">
 
-        <!-- CARD 1: HEADER - SAÚDE FINANCEIRA & DADOS CLIENTE -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardHeaderSaudeFinanceira"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            app:cardBackgroundColor="@color/branco"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <!-- NOME E DOCUMENTO DO CLIENTE -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/ivIconeClienteFicha"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/border_shadow_2025"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_id_card_2026"
-                        app:tint="@color/colorPrimary" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/ivIconeClienteFicha"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvFichaNomeCliente"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="Razão Social do Cliente"
-                            android:textColor="@color/preto"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaDocCidadeCliente"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:text="00.000.000/0001-00 • Campo Grande / MS"
-                            android:textColor="@color/colorText"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <!-- DIVISOR SUTIL -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginVertical="8dp"
-                    android:background="#E2E8F0" />
-
-                <!-- MENSAGEM / PAINEL FINANCEIRO DA ACTIVITY CONTATO -->
-                <!-- LINHA 1: LIMITE CRÉDITO, UTILIZADO E DISPONÍVEL -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="LIMITE CRÉDITO"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaLimiteCredito"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="R$ 0,00"
-                            android:textColor="@color/preto"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="UTILIZADO"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaLimiteUtilizado"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="R$ 0,00"
-                            android:textColor="@color/preto"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="SALDO DISPONÍVEL"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaSaldoDisponivel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="R$ 0,00"
-                            android:textColor="#16A34A"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- LINHA 2: SALDO DEVEDOR, TICKET MÉDIO E ÚLTIMA COMPRA -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="SALDO DEVEDOR"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaSaldoDevedor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="R$ 0,00"
-                            android:textColor="@color/preto"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TICKET MÉDIO"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaTicketMedio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="R$ 0,00"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ÚLTIMA COMPRA"
-                            android:textColor="@color/colorText"
-                            android:textSize="9sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvFichaUltimaCompra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="--/--/----"
-                            android:textColor="@color/preto"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- CARD 2: ALERTA DE MOMENTO DE REPOSIÇÃO (INTELIGÊNCIA PREDITIVA) -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardAlertaReposicao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:cardBackgroundColor="#FEF3C7"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/tvFichaAlertaReposicao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="ATENÇÃO COMERCIAL: O cliente costuma repor seu estoque a cada 15 dias. A última compra foi há 19 dias (Reposição Atrasada em 4 dias!)."
-                    android:textColor="#B45309"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- CARD 3: TÍTULO TOP GIRO DE PRODUTOS -->
-        <TextView
-            android:id="@+id/btnAbaMaisComprados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="2dp"
-            android:text="TOP GIRO DE PRODUTOS"
-            android:textColor="@color/preto"
-            android:textSize="10dp" />
-
-            <!-- === ABAS QUEDA REC E SUGERIDOS TEMPORARIAMENTE COMENTADAS ===
-            <Button
-                android:id="@+id/btnAbaOportunidades"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:backgroundTint="#94A3B8"
-                android:paddingHorizontal="2dp"
-                android:text="⚠️ QUEDA REC."
-                android:textColor="@color/branco"
-                android:textSize="9sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
-
-            <Button
-                android:id="@+id/btnAbaSugeridos"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="2dp"
-                android:layout_weight="1"
-                android:backgroundTint="#94A3B8"
-                android:paddingHorizontal="2dp"
-                android:text="📦 SUGERIDOS"
-                android:textColor="@color/branco"
-                android:textSize="9sp"
-                android:textStyle="bold"
-                app:cornerRadius="6dp" />
-            =============================================================== -->
-
-
-        <!-- RECYCLERVIEW DE PRODUTOS DA ABA SELECIONADA -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProdutosFichaInteligente"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:clipToPadding="false"
-            android:paddingBottom="4dp" />
-
-        <!-- === BOTÃO HISTÓRICO COMPLETO TEMPORARIAMENTE COMENTADO ===
-        <Button
-            android:id="@+id/btnVerHistoricoCompleto"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="#0F172A"
-            android:text="🔍 Ver / Buscar no Histórico Completo de Compras ( +42 itens )"
-            android:textColor="@color/branco"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:cornerRadius="6dp" />
-        ============================================================ -->
-
-        <!-- RODAPÉ FIXO: AÇÃO PRINCIPAL DE VENDA -->
         <Button
             android:id="@+id/btnIniciarNovoPedidoFicha"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:layout_marginTop="8dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="CONTINUAR"
             android:textColor="@color/branco"
@@ -367,6 +349,6 @@
             android:textSize="11sp"
             android:textStyle="bold"
             app:cornerRadius="6dp" />
-
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

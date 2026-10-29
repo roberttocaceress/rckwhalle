@@ -72,11 +72,20 @@ public class AdapterProdutoFichaInteligente extends RecyclerView.Adapter<Adapter
                 " | Última: " + item.getUltimaCompra();
         holder.tvMetricasGiro.setText(metricasStr);
 
-        holder.btnAdicionar.setText(item.getTextoBotao());
+        if (holder.btnAdicionar != null) {
+            holder.btnAdicionar.setText(item.getTextoBotao());
+            holder.btnAdicionar.setBackgroundTintList(ColorStateList.valueOf(context.getColor(R.color.colorPrimary)));
+            holder.btnAdicionar.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onAdicionarProduto(item);
+                } else {
+                    Toast.makeText(context, "Item adicionado: " + item.getNomeProduto(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-        // MANTÉM O CARD E O BOTÃO COM O LAYOUT PADRÃO UNIFORME
+        // MANTÉM O CARD COM O LAYOUT PADRÃO UNIFORME
         holder.cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
-        holder.btnAdicionar.setBackgroundTintList(ColorStateList.valueOf(context.getColor(R.color.colorPrimary)));
 
         // EXIBE APENAS OS ÍCONES E O CAMPO DO DIAGNÓSTICO COMO DESTAQUE VISUAL
         if (item.getDiagnostico() != null && !item.getDiagnostico().trim().isEmpty()) {
@@ -92,14 +101,6 @@ public class AdapterProdutoFichaInteligente extends RecyclerView.Adapter<Adapter
         } else {
             holder.tvDiagnostico.setVisibility(View.GONE);
         }
-
-        holder.btnAdicionar.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onAdicionarProduto(item);
-            } else {
-                Toast.makeText(context, "Item adicionado: " + item.getNomeProduto(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

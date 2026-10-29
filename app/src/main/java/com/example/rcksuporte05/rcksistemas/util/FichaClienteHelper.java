@@ -123,6 +123,144 @@ public class FichaClienteHelper {
         return "⚠️ ATENÇÃO COMERCIAL: O cliente costuma repor seu estoque a cada 15 dias. A última compra foi há 19 dias (Reposição Atrasada em 4 dias!).";
     }
 
+    public static List<FichaProdutoItem> getProdutosTopGiroLocal(DBHelper db, Cliente cliente) {
+        List<FichaProdutoItem> lista = new ArrayList<>();
+        if (db == null || cliente == null) return getMockProdutosPorAba("MAIS_COMPRADOS");
+
+        int idCadSrv = cliente.getId_cadastro_servidor();
+        int idCadLoc = cliente.getId_cadastro();
+
+        StringBuilder whereCliente = new StringBuilder("(P.ID_CADASTRO = ").append(idCadLoc);
+        if (idCadSrv > 0) {
+            whereCliente.append(" OR P.ID_CADASTRO = ").append(idCadSrv);
+        }
+        whereCliente.append(") AND P.EXCLUIDO = 'N'");
+
+        // 1. Obtém o ID do último pedido do cliente no banco local
+        String sqlUltimoPedido = "SELECT P.ID_WEB_PEDIDO FROM TBL_WEB_PEDIDO P WHERE " + whereCliente.toString() +
+                " ORDER BY P.DATA_EMISSAO DESC, P.ID_WEB_PEDIDO DESC LIMIT 1";
+        String idUltimoPedidoStr = db.consultaDados(sqlUltimoPedido, "ID_WEB_PEDIDO");
+        int idUltimoPedido = 0;
+        try {
+            if (idUltimoPedidoStr != null && !idUltimoPedidoStr.trim().isEmpty()) {
+                idUltimoPedido = Integer.parseInt(idUltimoPedidoStr.trim());
+            }
+        } catch (Exception ignored) {}
+
+        // 2. Consulta os Top 10 Produtos por Giro Financeiro Ponderado (Score = Faturamento * Recorrência)
+        String sqlTop = "SELECT I.ID_PRODUTO, PR.NOME_PRODUTO, " +
+                "COUNT(DISTINCT P.ID_WEB_PEDIDO) AS QTD_PEDIDOS, " +
+                "SUM(I.QUANTIDADE) AS TOTAL_QTD, " +
+                "AVG(I.QUANTIDADE) AS MEDIA_QTD, " +
+                "SUM(I.VALOR_TOTAL) AS TOTAL_VALOR, " +
+                "(SUM(I.VALOR_TOTAL) * COUNT(DISTINCT P.ID_WEB_PEDIDO)) AS SCORE_COMERCIAL " +
+                "FROM TBL_WEB_PEDIDO_ITENS I " +
+                "INNER JOIN TBL_WEB_PEDIDO P ON P.ID_WEB_PEDIDO = I.ID_PEDIDO " +
+                "LEFT JOIN TBL_PRODUTO PR ON PR.ID_PRODUTO = I.ID_PRODUTO " +
+                "WHERE " + whereCliente.toString() + " " +
+                "GROUP BY I.ID_PRODUTO, PR.NOME_PRODUTO " +
+                "ORDER BY SCORE_COMERCIAL DESC, TOTAL_VALOR DESC LIMIT 10";
+
+        android.database.Cursor cursor = db.listaDados(sqlTop);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int idxProd = cursor.getColumnIndex("ID_PRODUTO");
+                int idxNome = cursor.getColumnIndex("NOME_PRODUTO");
+                int idxMediaQtd = cursor.getColumnIndex("MEDIA_QTD");
+
+                String idProduto = idxProd != -1 ? cursor.getString(idxProd) : "";
+                String nomeProduto = idxNome != -1 && cursor.getString(idxNome) != null ? cursor.getString(idxNome) : "PRODUTO #" + idProduto;
+                double mediaQtd = idxMediaQtd != -1 ? cursor.getDouble(idxMediaQtd) : 0.0;
+
+                // 3. Consulta as 2 últimas compras deste item específico
+                String sqlComprasItem = "SELECT I.QUANTIDADE, I.VALOR_UNITARIO, P.ID_WEB_PEDIDO " +
+                        "FROM TBL_WEB_PEDIDO_ITENS I " +
+                        "INNER JOIN TBL_WEB_PEDIDO P ON P.ID_WEB_PEDIDO = I.ID_PEDIDO " +
+                        "WHERE " + whereCliente.toString() + " AND I.ID_PRODUTO = '" + idProduto + "' " +
+                        "ORDER BY P.DATA_EMISSAO DESC, P.ID_WEB_PEDIDO DESC LIMIT 2";
+
+                double ultimaQtd = 0.0;
+                double penultimaQtd = 0.0;
+                double valorUltimoPreco = 0.0;
+                boolean noUltimoPedidoGeral = false;
+
+                android.database.Cursor cursorItem = db.listaDados(sqlComprasItem);
+                if (cursorItem != null && cursorItem.moveToFirst()) {
+                    int iCount = 0;
+                    do {
+                        int idxQtd = cursorItem.getColumnIndex("QUANTIDADE");
+                        int idxVal = cursorItem.getColumnIndex("VALOR_UNITARIO");
+                        int idxPedId = cursorItem.getColumnIndex("ID_WEB_PEDIDO");
+
+                        double q = idxQtd != -1 ? cursorItem.getDouble(idxQtd) : 0.0;
+                        double v = idxVal != -1 ? cursorItem.getDouble(idxVal) : 0.0;
+                        int pId = idxPedId != -1 ? cursorItem.getInt(idxPedId) : 0;
+
+                        if (iCount == 0) {
+                            valorUltimoPreco = v;
+                            if (pId == idUltimoPedido) {
+                                ultimaQtd = q;
+                                noUltimoPedidoGeral = true;
+                            } else {
+                                penultimaQtd = q;
+                                ultimaQtd = 0.0;
+                            }
+                        } else if (iCount == 1) {
+                            if (noUltimoPedidoGeral) {
+                                penultimaQtd = q;
+                            }
+                        }
+                        iCount++;
+                    } while (cursorItem.moveToNext());
+                    cursorItem.close();
+                }
+
+                // 4. Monta Strings e Diagnóstico
+                String mediaStr = String.format(java.util.Locale.US, "%.0f un/mês", mediaQtd);
+                String penultimaStr = String.format(java.util.Locale.US, "%.0f un", penultimaQtd);
+                String ultimaStr = String.format(java.util.Locale.US, "%.0f un", ultimaQtd);
+
+                String statusGiro = "ESTAVEL";
+                String diagnostico = "";
+                double qtdSugerida = mediaQtd > 0 ? mediaQtd : 1.0;
+
+                if (ultimaQtd <= 0) {
+                    statusGiro = "ALERTA_MAXIMO";
+                    ultimaStr = "0 un 🚨";
+                    diagnostico = "Diagnóstico: Produto não comprado no último pedido!";
+                } else if (ultimaQtd < (mediaQtd * 0.7)) {
+                    statusGiro = "QUEDA_VOLUME";
+                    ultimaStr = String.format(java.util.Locale.US, "%.0f un 🔻", ultimaQtd);
+                    double percQueda = Math.round((1.0 - (ultimaQtd / mediaQtd)) * 100.0);
+                    diagnostico = "Diagnóstico: Compra " + (int) percQueda + "% abaixo da média habitual.";
+                    qtdSugerida = Math.max(1.0, mediaQtd - ultimaQtd);
+                } else {
+                    ultimaStr = String.format(java.util.Locale.US, "%.0f un 🟢", ultimaQtd);
+                }
+
+                String textoBotao = "Adicionar " + String.format(java.util.Locale.US, "%.0f", qtdSugerida) + " un ao Pedido";
+
+                lista.add(new FichaProdutoItem(
+                        idProduto,
+                        nomeProduto,
+                        mediaStr,
+                        penultimaStr,
+                        ultimaStr,
+                        diagnostico,
+                        textoBotao,
+                        statusGiro,
+                        valorUltimoPreco,
+                        "MAIS_COMPRADOS"
+                ));
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        // Retorna a lista real encontrada no banco local (vazia se não houver compras)
+        return lista;
+    }
+
     public static List<FichaProdutoItem> getMockProdutosPorAba(String tipoAba) {
         List<FichaProdutoItem> lista = new ArrayList<>();
 

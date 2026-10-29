@@ -35,6 +35,7 @@ import com.example.rcksuporte05.rcksistemas.api.Api;
 import com.example.rcksuporte05.rcksistemas.api.Rotas;
 import com.example.rcksuporte05.rcksistemas.model.Usuario;
 import com.example.rcksuporte05.rcksistemas.model.WebVisita;
+import com.example.rcksuporte05.rcksistemas.util.DialogHelper;
 import com.example.rcksuporte05.rcksistemas.util.MascaraUtil;
 import com.google.android.material.navigation.NavigationView;
 
@@ -334,7 +335,7 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
         this.listaVisitasAtual = lista;
 
         adapter = new RelatorioVisitaAdapter(this, lista, visita -> {
-            // Ação ao clicar no item de visita
+            exibirHistoricoAnaliseVisita(visita);
         });
 
         if (rvVisitas != null) {
@@ -387,7 +388,7 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
                     if (tvResumoNaoVenda != null) tvResumoNaoVenda.setText(String.valueOf(naoVenda));
 
                     adapter = new RelatorioVisitaAdapter(ActivityRelatorioVisitas.this, listaFiltrada, visita -> {
-                        // Ação ao clicar no item de visita
+                        exibirHistoricoAnaliseVisita(visita);
                     });
 
                     if (rvVisitas != null) {
@@ -404,6 +405,23 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
                 tratarFalhaAPI();
             }
         });
+    }
+
+    private void exibirHistoricoAnaliseVisita(WebVisita visita) {
+        if (visita == null) return;
+
+        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+        com.example.rcksuporte05.rcksistemas.model.WebAnalise analise = analiseDAO.getWebAnalisePorVisitaOuCliente(visita.getIdVisitaApp(), visita.getIdClienteServidor());
+
+        com.example.rcksuporte05.rcksistemas.DAO.ClienteDAO clienteDAO = new com.example.rcksuporte05.rcksistemas.DAO.ClienteDAO(db);
+        List<com.example.rcksuporte05.rcksistemas.model.Cliente> listaCli = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + visita.getIdClienteServidor() + " OR ID_CADASTRO = " + visita.getIdClienteServidor());
+        com.example.rcksuporte05.rcksistemas.model.Cliente cliente = (listaCli != null && !listaCli.isEmpty()) ? listaCli.get(0) : null;
+
+        if (analise != null) {
+            DialogHelper.showFichaClienteHistoricoDialog(this, analise, cliente);
+        } else {
+            Toast.makeText(this, "Nenhuma análise histórica registrada para este atendimento.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void tratarFalhaAPI() {

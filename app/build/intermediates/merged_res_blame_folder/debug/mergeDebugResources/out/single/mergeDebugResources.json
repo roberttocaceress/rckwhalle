@@ -116,10 +116,6 @@
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-xxxhdpi\\ic_observacao_produto.png"
     },
     {
-        "merged": "com.example.rcksuporte05.rcksistemas.app-debug-5:/layout_dialog_ficha_cliente_inteligente.xml.flat",
-        "source": "com.example.rcksuporte05.rcksistemas.app-main-7:/layout/dialog_ficha_cliente_inteligente.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\layout_item_expansao_cliente.xml.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\item_expansao_cliente.xml"
     },
@@ -148,12 +144,12 @@
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\spinner.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-mdpi_ic_ajuda_update_usuario.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-mdpi\\ic_ajuda_update_usuario.png"
-    },
-    {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-xxhdpi_ic_rck_logo_dialog_progressbar_2025.png.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-xxhdpi\\ic_rck_logo_dialog_progressbar_2025.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\mipmap-mdpi_ic_ajuda_update_usuario.png.flat",
+        "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\mipmap-mdpi\\ic_ajuda_update_usuario.png"
     },
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\menu_menu_toobar_image_produto.xml.flat",
@@ -1646,6 +1642,10 @@
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\layout_content_view_produto_image.xml.flat",
         "source": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-main-7:\\layout\\content_view_produto_image.xml"
+    },
+    {
+        "merged": "com.example.rcksuporte05.rcksistemas.app-debug-5:/layout_dialog_ficha_cliente_historico.xml.flat",
+        "source": "com.example.rcksuporte05.rcksistemas.app-main-7:/layout/dialog_ficha_cliente_historico.xml"
     },
     {
         "merged": "C:\\Users\\User\\.gradle\\daemon\\8.13\\com.example.rcksuporte05.rcksistemas.app-debug-5:\\layout-land_nav_toolbar.xml.flat",

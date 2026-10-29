@@ -97,7 +97,7 @@ public class RelatorioVisitaAdapter extends RecyclerView.Adapter<RelatorioVisita
 
             holder.tvCoordenadas.setOnClickListener(v -> abrirGoogleMaps(visita));
         } else {
-            holder.tvCoordenadas.setText("GPS: Não registrado");
+            holder.tvCoordenadas.setText("Check-in não executado (Parâmetro desativado)");
             holder.tvCoordenadas.setOnClickListener(null);
         }
 

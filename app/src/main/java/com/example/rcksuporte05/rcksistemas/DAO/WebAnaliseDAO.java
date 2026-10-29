@@ -85,8 +85,12 @@ public class WebAnaliseDAO {
             content.put("DIAS_FREQUENCIA_HABITUAL", analise.getDiasFrequenciaHabitual());
             content.put("DIAS_DESDE_ULTIMA_COMPRA", analise.getDiasDesdeUltimaCompra());
             content.put("STATUS_REPOSICAO", analise.getStatusReposicao() == null ? "" : analise.getStatusReposicao());
-            content.put("OBSERVACAO", analise.getMensagemAlerta() == null ? "" : analise.getMensagemAlerta());
-            content.put("VERSAO_APP", analise.getVersaoApp().substring(0,7));
+            content.put("MENSAGEM_ALERTA", analise.getMensagemAlerta() == null ? "" : analise.getMensagemAlerta());
+            String versao = analise.getVersaoApp() != null ? analise.getVersaoApp() : "";
+            if (versao.length() > 10) {
+                versao = versao.substring(0, 10);
+            }
+            content.put("VERSAO_APP", versao);
             content.put("ST_ENVIADO", "N");
             content.put("EXCLUIDO", "N");
             return db.addDados("TBL_WEB_ANALISE", content);
@@ -113,6 +117,18 @@ public class WebAnaliseDAO {
         content.put("ID_VISITA_APP", idVisitaApp == null ? "" : idVisitaApp);
         try {
             return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int vincularPedidoPorVisita(String idVisitaApp, String idPedidoApp) {
+        if (idVisitaApp == null || idVisitaApp.trim().isEmpty()) return 0;
+        ContentValues content = new ContentValues();
+        content.put("ID_PEDIDO_APP", idPedidoApp == null ? "" : idPedidoApp);
+        try {
+            return db.updateDados("TBL_WEB_ANALISE", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -219,6 +235,26 @@ public class WebAnaliseDAO {
             cursor.close();
         }
         return lista;
+    }
+
+    public WebAnalise getWebAnalisePorVisitaOuCliente(String idVisitaApp, int idClienteServidor) {
+        String sql = "";
+        if (idVisitaApp != null && !idVisitaApp.trim().isEmpty()) {
+            sql = "SELECT A.* FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' AND A.ID_VISITA_APP = '" + idVisitaApp.trim() + "' ORDER BY A.ID_ANALISE DESC LIMIT 1";
+        } else if (idClienteServidor > 0) {
+            sql = "SELECT A.* FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' AND A.ID_CLIENTE_SERVIDOR = " + idClienteServidor + " ORDER BY A.ID_ANALISE DESC LIMIT 1";
+        } else {
+            return null;
+        }
+
+        Cursor cursor = db.listaDados(sql);
+        if (cursor != null && cursor.moveToFirst()) {
+            WebAnalise analise = setAnalise(cursor);
+            cursor.close();
+            return analise;
+        }
+        if (cursor != null) cursor.close();
+        return null;
     }
 
     public WebAnalise getWebAnalise(String idPedido, int idCliente) {

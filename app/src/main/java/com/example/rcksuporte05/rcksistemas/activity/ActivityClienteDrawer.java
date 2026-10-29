@@ -164,6 +164,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
     String bairroSelecionado;
 
     String statusSelecionado;
+    private String mUltimoIdAnaliseApp = "";
 
     private ArrayAdapter ufAdapter;
     private ArrayAdapter ativoInativoAdapter;
@@ -1774,7 +1775,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                     ActivityClienteDrawer.this,
                                     db,
                                     cliente,
-                                    () -> escolherEmpresaPedido(position)
+                                    (idAnaliseApp) -> escolherEmpresaPedidoDireto(position, idAnaliseApp)
                             );
                             break;
                         case 1: escolherEmpresaPedido(position); break;
@@ -2017,6 +2018,35 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         }
     }
 
+    private void escolherEmpresaPedidoDireto(final int position) {
+        escolherEmpresaPedidoDireto(position, "");
+    }
+
+    private void escolherEmpresaPedidoDireto(final int position, final String idAnaliseApp) {
+        mUltimoIdAnaliseApp = idAnaliseApp;
+        Cliente cliente = adapter.getItem(position);
+        if (cliente != null) {
+            ClienteHelper.setCliente(cliente);
+        }
+        List<EmpresaParametro> listaEmpresas = new EmpresaParametroDAO(db).getLista("SELECT * FROM TBL_EMPRESA_PARAMETRO");
+        if (listaEmpresas != null && listaEmpresas.size() > 1) {
+            String[] nomesEmpresas = new String[listaEmpresas.size()];
+            for (int i = 0; i < listaEmpresas.size(); i++) {
+                nomesEmpresas[i] = listaEmpresas.get(i).getRazao_social() != null ? listaEmpresas.get(i).getRazao_social() : listaEmpresas.get(i).getRazao_social();
+            }
+
+            new androidx.appcompat.app.AlertDialog.Builder(context)
+                    .setTitle("Selecione a Empresa")
+                    .setItems(nomesEmpresas, (dialog, which) -> {
+                        continuarParaPedido(String.valueOf(listaEmpresas.get(which).getId_empresa()));
+                    })
+                    .setNegativeButton("CANCELAR", (dialog, which) -> dialog.dismiss())
+                    .show();
+        } else {
+            continuarParaPedido("");
+        }
+    }
+
     private void showActivityPedido(int position, String idEmpresa) {
         Cliente cliente = adapter.getItem(position);
         ClienteHelper.setCliente(cliente);
@@ -2179,14 +2209,20 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
 
                     String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
                     int idVendedorNum = 0;
+                    int idEmpresaNum = 0;
                     try {
-                        if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
-                            idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                        if (UsuarioHelper.getUsuario() != null) {
+                            if (UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                            }
+                            if (UsuarioHelper.getUsuario().getIdEmpresaMultiDevice() != null) {
+                                idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice().trim());
+                            }
                         }
                     } catch (Exception ignored) {}
 
                     int idClienteNum = novoCliente.getId_cadastro_servidor() > 0 ? novoCliente.getId_cadastro_servidor() : novoCliente.getId_cadastro();
-                    String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
+                    String idVisitaApp = String.format("%03d", idVendedorNum) + "V0000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
 
                     DialogHelper.showCheckInClienteDialog(
                             this,
@@ -2221,12 +2257,20 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
 
                                     com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                     visitaDAO.salvarVisita(visita);
+
+                                    if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.trim().isEmpty()) {
+                                        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                        analiseDAO.vincularVisitaAnalise(mUltimoIdAnaliseApp, idVisitaApp);
+                                    }
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
 
                                 if (webPedido != null) {
                                     webPedido.setId_visita_app(idVisitaApp);
+                                    if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.isEmpty()) {
+                                        webPedido.setId_analise_app(mUltimoIdAnaliseApp);
+                                    }
                                 }
 
                                 ActivityPedidoMain activityPedidoMain = new ActivityPedidoMain();
@@ -2271,13 +2315,60 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         String fantasia = cliente != null ? cliente.getNome_fantasia() : "";
         String end = cliente != null ? (cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf()) : "";
         if ( configuracao.getTrab_com_checkin_app().equalsIgnoreCase("N")) {
+            String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+            int idVendedorNum = 0;
+            int idEmpresaNum = 0;
+            try {
+                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                    idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
+                }
+            } catch (Exception ignored) {}
+
+            int idClienteNum = 0;
+            if (cliente != null) {
+                idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+            }
+
+            String idVisitaApp = String.format("%03d", idVendedorNum) + "V0000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+            try {
+                com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+                visita.setIdVisitaApp(idVisitaApp);
+                visita.setIdVendedor(idVendedorNum);
+                visita.setIdClienteServidor(idClienteNum);
+                visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+                visita.setStatusVisita("A");
+                String versao = BuildConfig.VERSION_NAME != null ? BuildConfig.VERSION_NAME : "";
+                if (versao.length() > 10) versao = versao.substring(0, 10);
+                visita.setVersaoApp(versao);
+
+                com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                visitaDAO.salvarVisita(visita);
+
+                if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.trim().isEmpty()) {
+                    com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                    analiseDAO.vincularVisitaAnalise(mUltimoIdAnaliseApp, idVisitaApp);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             new PedidoHelper().limparDados();
             if (cliente != null) {
                 ClienteHelper.setCliente(cliente);
             }
+            WebPedido wp = PedidoHelper.getWebPedido();
+            if (wp != null) {
+                wp.setId_visita_app(idVisitaApp);
+                if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.isEmpty()) {
+                    wp.setId_analise_app(mUltimoIdAnaliseApp);
+                }
+            }
             Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
             intent.putExtra("id_empresa", idEmpresa);
-            intent.putExtra("id_visita_app", 0);
+            intent.putExtra("id_visita_app", idVisitaApp);
+            intent.putExtra("id_analise_app", mUltimoIdAnaliseApp);
             startActivity(intent);
             return;
         }
@@ -2298,7 +2389,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
             idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
         }
 
-        String idVisitaApp = String.format("%03d", idVendedorNum) + "90000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
+        String idVisitaApp = String.format("%03d", idVendedorNum) + "V0000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
 
         DialogHelper.showCheckInClienteDialog(
                 this,
@@ -2336,10 +2427,19 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                     }
 
                                     visita.setStatusVisita("A"); // 'A' = Atendimento em andamento
-                                    visita.setVersaoApp(BuildConfig.VERSION_NAME.substring(0,7).trim());
+                                    String versao = BuildConfig.VERSION_NAME != null ? BuildConfig.VERSION_NAME : "";
+                                    if (versao.length() > 10) {
+                                        versao = versao.substring(0, 10);
+                                    }
+                                    visita.setVersaoApp(versao);
 
                                     com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                     visitaDAO.salvarVisita(visita);
+
+                                    if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.trim().isEmpty()) {
+                                        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                        analiseDAO.vincularVisitaAnalise(mUltimoIdAnaliseApp, idVisitaApp);
+                                    }
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -2348,9 +2448,14 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                 if (cliente != null) {
                                     ClienteHelper.setCliente(cliente);
                                 }
+                                if (mUltimoIdAnaliseApp != null && !mUltimoIdAnaliseApp.isEmpty()) {
+                                    WebPedido wp = PedidoHelper.getWebPedido();
+                                    if (wp != null) wp.setId_analise_app(mUltimoIdAnaliseApp);
+                                }
                                 Intent intent = new Intent(ActivityClienteDrawer.this, ActivityPedidoMain.class);
                                 intent.putExtra("id_empresa", idEmpresa);
                                 intent.putExtra("id_visita_app", idVisitaApp);
+                                intent.putExtra("id_analise_app", mUltimoIdAnaliseApp);
                                 startActivity(intent);
                             },
                             () -> {

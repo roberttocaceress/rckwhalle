@@ -2433,7 +2433,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
                     "ID_ANALISE_SERVIDOR INTEGER, " +
                     "ID_VISITA_APP VARCHAR(38), " +
+                    "ID_VISITA_SERVIDOR INTEGER, " +
                     "ID_PEDIDO_APP VARCHAR(38), " +
+                    "ID_PEDIDO_SERVIDOR INTEGER, " +
                     "ID_VENDEDOR INTEGER NOT NULL, " +
                     "ID_CLIENTE_SERVIDOR INTEGER NOT NULL, " +
                     "DATA_HORA_ANALISE DATETIME DEFAULT (datetime('now', 'localtime')), " +
@@ -2453,6 +2455,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE IF NOT EXISTS TBL_WEB_ANALISE_ITENS (" +
                     "ID_ANALISE_ITEM INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "ID_ANALISE_APP VARCHAR(38) NOT NULL, " +
+                    "ID_ANALISE_SERVIDOR INTEGER, " +
                     "ID_PRODUTO VARCHAR(20) NOT NULL, " +
                     "NOME_PRODUTO VARCHAR(120), " +
                     "TIPO_ABA VARCHAR(30) NOT NULL, " +
@@ -2518,6 +2521,9 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             if (!isExiste(db, "TBL_WEB_PEDIDO", "ID_VISITA_APP")) {
                 db.execSQL("ALTER TABLE TBL_WEB_PEDIDO ADD COLUMN ID_VISITA_APP VARCHAR(38);");
+            }
+            if (!isExiste(db, "TBL_WEB_PEDIDO", "ID_ANALISE_APP")) {
+                db.execSQL("ALTER TABLE TBL_WEB_PEDIDO ADD COLUMN ID_ANALISE_APP VARCHAR(38);");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -774,6 +774,8 @@ public class PedidoHelper {
                                     try {
                                         com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                         visitaDAO.vincularPedidoAVisita(webPedido.getId_visita_app(), idPedido, webPedido.getId_pedido_app());
+                                        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                        analiseDAO.vincularPedidoPorVisita(webPedido.getId_visita_app(), webPedido.getId_pedido_app());
                                     } catch (Exception ignored) {}
                                 }
                                 PedidoHelper.setIdPedido(idPedido);
@@ -988,6 +990,8 @@ public class PedidoHelper {
                                                     try {
                                                         com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                                         visitaDAO.vincularPedidoAVisita(webPedido.getId_visita_app(), idPedido, webPedido.getId_pedido_app());
+                                                        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                                        analiseDAO.vincularPedidoPorVisita(webPedido.getId_visita_app(), webPedido.getId_pedido_app());
                                                     } catch (Exception ignored) {}
                                                 }
                                                 if (listaWebPedidoItens != null) {

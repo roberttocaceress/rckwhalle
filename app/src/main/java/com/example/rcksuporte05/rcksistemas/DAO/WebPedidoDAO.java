@@ -141,6 +141,7 @@ public class WebPedidoDAO {
             content.put("ANALISE_ESTOQ_EFETUADA", webPedido.getAnalise_estoq_efetuada() == null ? "N" : webPedido.getAnalise_estoq_efetuada());
             content.put("ANALISE_ESTOQ_DATA_HORA", webPedido.getAnalise_estoque_data_hora());
             content.put("ID_VISITA_APP", webPedido.getId_visita_app());
+            content.put("ID_ANALISE_APP", webPedido.getId_analise_app() == null ? "" : webPedido.getId_analise_app());
 
             //System.gc();
             return db.addDados("TBL_WEB_PEDIDO", content);
@@ -249,6 +250,7 @@ public class WebPedidoDAO {
             } catch ( NullPointerException e) {
                 e.printStackTrace();
             }
+            content.put("ID_ANALISE_APP", webPedido.getId_analise_app() == null ? "" : webPedido.getId_analise_app());
             return db.updateDados("TBL_WEB_PEDIDO", content, "ID_WEB_PEDIDO = " + webPedido.getId_web_pedido());
         } catch (NullPointerException | SQLException e) {
             e.printStackTrace();
@@ -339,6 +341,11 @@ public class WebPedidoDAO {
             content.put("EXCLUIDO", pedido.getExcluido());
             //System.gc();
             if (db.updateDados("TBL_WEB_PEDIDO", content, "ID_WEB_PEDIDO = '" + pedido.getId_web_pedido() + "'") >= 1) {
+                try {
+                    int idPed = Integer.parseInt(pedido.getId_web_pedido());
+                    new WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, pedido.getId_pedido_app(), "S");
+                    new WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, pedido.getId_pedido_app(), "S");
+                } catch (Exception ignored) {}
                 return true;
             }
         } catch (Exception e) {
@@ -352,6 +359,11 @@ public class WebPedidoDAO {
             content.put("EXCLUIDO", pedido.getExcluido());
             //System.gc();
             if (db.updateDados("TBL_WEB_PEDIDO", content, "ID_WEB_PEDIDO = '" + pedido.getId_web_pedido() + "'") >= 1) {
+                try {
+                    int idPed = Integer.parseInt(pedido.getId_web_pedido());
+                    new WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, pedido.getId_pedido_app(), "N");
+                    new WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, pedido.getId_pedido_app(), "N");
+                } catch (Exception ignored) {}
                 return true;
             }
         } catch (Exception e) {
@@ -550,6 +562,12 @@ public class WebPedidoDAO {
                 } catch ( NullPointerException e) {
 
                 }
+                try {
+                    int idxAnalise = cursor.getColumnIndex("ID_ANALISE_APP");
+                    if (idxAnalise != -1 && cursor.getString(idxAnalise) != null) {
+                        webPedido.setId_analise_app(cursor.getString(idxAnalise));
+                    }
+                } catch (Exception ignored) {}
                 webPedido.setFaturado(cursor.getString(cursor.getColumnIndex("FATURADO")));
                 lista.add(webPedido);
             } catch (CursorIndexOutOfBoundsException | NullPointerException e) {

@@ -2140,6 +2140,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                 try {
                                     int idPed = Integer.parseInt(webPedidoL.getId_web_pedido());
                                     new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedidoL.getId_pedido_app(), "S");
+                                    new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedidoL.getId_pedido_app(), "S");
                                 } catch (Exception ignored) {}
                                 delPedidoFirebase(configuracao.getCnpj_empresa(), pedidosSelecionados.get(i));
                                 qtde++;
@@ -2591,6 +2592,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                 try {
                                     int idPed = Integer.parseInt(webPedido.getId_web_pedido());
                                     new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "N");
+                                    new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "N");
                                 } catch (Exception ignored) {}
                                 //delPedidoFirebase(configuracao.getCnpj_empresa(), webPedido);
                                 listaPedidoAdapter.remove(webPedido);
@@ -2614,6 +2616,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                 try {
                                     int idPed = Integer.parseInt(webPedido.getId_web_pedido());
                                     new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "S");
+                                    new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "S");
                                 } catch (Exception ignored) {}
                                 delPedidoFirebase(configuracao.getCnpj_empresa(), webPedido);
                                 listaPedidoAdapter.remove(webPedido);
@@ -2940,6 +2943,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                         try {
                                             int idPed = Integer.parseInt(webPedido.getId_web_pedido());
                                             new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "N");
+                                            new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "N");
                                         } catch (Exception ignored) {}
                                         listaPedidoAdapter.remove(webPedido);
                                         showFeedbackDialog("O Pedido foi restaurado da lixeira!", true, false, null);
@@ -2959,6 +2963,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                         try {
                                             int idPed = Integer.parseInt(webPedido.getId_web_pedido());
                                             new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "S");
+                                            new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedido.getId_pedido_app(), "S");
                                         } catch (Exception ignored) {}
                                         delPedidoFirebase(configuracao.getCnpj_empresa(), webPedido);
                                         listaPedidoAdapter.remove(webPedido);
@@ -3097,6 +3102,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                                         try {
                                             int idPed = Integer.parseInt(webPedidoL.getId_web_pedido());
                                             new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarExcluidoPorPedido(idPed, webPedidoL.getId_pedido_app(), "S");
+                                            new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarExcluidoPorPedido(idPed, webPedidoL.getId_pedido_app(), "S");
                                         } catch (Exception ignored) {}
                                         delPedidoFirebase(configuracao.getCnpj_empresa(), pedidosSelecionados.get(i));
                                         qtde++;

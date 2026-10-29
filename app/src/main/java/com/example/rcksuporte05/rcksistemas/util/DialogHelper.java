@@ -30,6 +30,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.example.rcksuporte05.rcksistemas.model.FichaProdutoItem;
 import com.example.rcksuporte05.rcksistemas.model.Generico;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -38,6 +39,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.example.rcksuporte05.rcksistemas.R;
 
 import java.util.List;
+import com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper;
 import com.example.rcksuporte05.rcksistemas.model.Usuario;
 import com.example.rcksuporte05.rcksistemas.DAO.UsuarioDAO;
 
@@ -1192,7 +1194,7 @@ public class DialogHelper {
     }
 
     public interface OnFichaClienteAcaoListener {
-        void onIniciarNovoPedido();
+        void onIniciarNovoPedido(String idAnaliseApp);
     }
 
     public static void showFichaClienteInteligenteDialog(
@@ -1275,9 +1277,9 @@ public class DialogHelper {
             if (cardAlerta != null) cardAlerta.setVisibility(View.VISIBLE);
 
             if (saldoDev > 0) {
-                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#FEF2F2"));
+                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#DC2626"));
                 if (tvAlerta != null) {
-                    tvAlerta.setTextColor(Color.parseColor("#991B1B"));
+                    tvAlerta.setTextColor(Color.parseColor("#FFFFFF"));
                     String msg = "ALERTA DE INADIMPLÊNCIA: O cliente possui títulos vencidos no valor de " + MascaraUtil.mascaraRealSimboloD(saldoDev) + ".";
                     if (saldoVencendo > 0) {
                         msg += " E possui títulos a vencer no valor de " + MascaraUtil.mascaraRealSimboloD(saldoVencendo) + ".";
@@ -1292,84 +1294,105 @@ public class DialogHelper {
                 }
             }
 
-            // POP-UP ALERTA DE DEVEDOR
-            showDebtorAlertaDialog(context, (float) saldoDev, (float) saldoVencendo,
-                    "O cliente possui pendências financeiras registradas.", null);
+            /* === POP-UP DUPLICADO REMOVIDO: O ALERTA JÁ É EXIBIDO EM DESTAQUE NO CARD RED DO RAIO-X ===
+            // showDebtorAlertaDialog(context, (float) saldoDev, (float) saldoVencendo, "O cliente possui pendências financeiras registradas.", null);
+            ======================================================================================== */
 
         } else {
             if (cardAlerta != null) cardAlerta.setVisibility(View.GONE);
         }
 
         RecyclerView rvProdutos = dialogView.findViewById(R.id.rvProdutosFichaInteligente);
-        if (rvProdutos != null) {
-            rvProdutos.setLayoutManager(new LinearLayoutManager(context));
-            com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente adapter =
-                    new com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente(
-                            context,
-                            FichaClienteHelper.getMockProdutosPorAba("MAIS_COMPRADOS"),
-                            item -> Toast.makeText(context, "Produto selecionado (+1): " + item.getNomeProduto(), Toast.LENGTH_SHORT).show()
-                    );
-            rvProdutos.setAdapter(adapter);
-        }
+        TextView tvSemProdutos = dialogView.findViewById(R.id.tvFichaSemProdutos);
 
-//        Button btnAba1 = dialogView.findViewById(R.id.btnAbaMaisComprados);
+        List<FichaProdutoItem> listaProdutos = FichaClienteHelper.getProdutosTopGiroLocal(db, cliente);
 
-        /* === NAVEGAÇÃO DE ABAS SECUNDÁRIAS TEMPORARIAMENTE COMENTADA ===
-        Button btnAba2 = dialogView.findViewById(R.id.btnAbaOportunidades);
-        Button btnAba3 = dialogView.findViewById(R.id.btnAbaSugeridos);
-
-        View.OnClickListener listenerAbas = v -> {
-            String aba = "MAIS_COMPRADOS";
-            int colorPrimary = context.getColor(R.color.colorPrimary);
-            int colorGray = context.getColor(R.color.colorText);
-
-            if (btnAba1 != null) btnAba1.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
-            if (btnAba2 != null) btnAba2.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
-            if (btnAba3 != null) btnAba3.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorGray));
-
-            if (v.getId() == R.id.btnAbaOportunidades) {
-                aba = "OPORTUNIDADES";
-                if (btnAba2 != null) btnAba2.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
-            } else if (v.getId() == R.id.btnAbaSugeridos) {
-                aba = "SUGERIDOS";
-                if (btnAba3 != null) btnAba3.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
-            } else {
-                if (btnAba1 != null) btnAba1.setBackgroundTintList(android.content.res.ColorStateList.valueOf(colorPrimary));
-            }
-
+        if (listaProdutos != null && !listaProdutos.isEmpty()) {
             if (rvProdutos != null) {
-                com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente newAdapter =
+                rvProdutos.setVisibility(View.VISIBLE);
+                rvProdutos.setLayoutManager(new LinearLayoutManager(context));
+                com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente adapter =
                         new com.example.rcksuporte05.rcksistemas.adapters.AdapterProdutoFichaInteligente(
                                 context,
-                                FichaClienteHelper.getMockProdutosPorAba(aba),
-                                item -> Toast.makeText(context, "Produto selecionado (+1): " + item.getNomeProduto(), Toast.LENGTH_SHORT).show()
+                                listaProdutos,
+                                item -> Toast.makeText(context, "Produto selecionado: " + item.getNomeProduto(), Toast.LENGTH_SHORT).show()
                         );
-                rvProdutos.setAdapter(newAdapter);
+                rvProdutos.setAdapter(adapter);
             }
-        };
-
-        if (btnAba1 != null) btnAba1.setOnClickListener(listenerAbas);
-        if (btnAba2 != null) btnAba2.setOnClickListener(listenerAbas);
-        if (btnAba3 != null) btnAba3.setOnClickListener(listenerAbas);
-        ================================================================ */
+            if (tvSemProdutos != null) tvSemProdutos.setVisibility(View.GONE);
+        } else {
+            if (rvProdutos != null) rvProdutos.setVisibility(View.GONE);
+            if (tvSemProdutos != null) tvSemProdutos.setVisibility(View.VISIBLE);
+        }
 
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setCancelable(true)
                 .create();
 
-        /* === BOTÃO DE HISTÓRICO COMPLETO TEMPORARIAMENTE COMENTADO ===
-        Button btnHistorico = dialogView.findViewById(R.id.btnVerHistoricoCompleto);
-        if (btnHistorico != null) {
-            btnHistorico.setOnClickListener(v -> Toast.makeText(context, "Abrindo histórico completo de compras do cliente...", Toast.LENGTH_SHORT).show());
-        }
-        ================================================================ */
-
         Button btnIniciar = dialogView.findViewById(R.id.btnIniciarNovoPedidoFicha);
         if (btnIniciar != null) {
             btnIniciar.setOnClickListener(v -> {
+                String idAnaliseApp = "";
+                // GRAVAÇÃO DA PRÉ-ANÁLISE NA TBL_WEB_ANALISE VIA WebAnaliseDAO SOMENTE AO CLICAR EM CONTINUAR
+                try {
+                    if (db != null && cliente != null) {
+                        String dataHoraAtual = db.pegaDataHoraAtual();
+                        String timeStampStr = dataHoraAtual.replaceAll("[^0-9]", "");
+
+                        int idVendedorNum = 0;
+                        int idEmpresaNum = 0;
+                        try {
+                            if (UsuarioHelper.getUsuario() != null) {
+                                if (UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                                }
+                                if (UsuarioHelper.getUsuario().getIdEmpresaMultiDevice() != null) {
+                                    idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice().trim());
+                                }
+                            }
+                        } catch (Exception ignored) {}
+
+                        int idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+                        idAnaliseApp = String.format(java.util.Locale.US, "%03d", idVendedorNum) + "A0000" + String.format(java.util.Locale.US, "%03d", idEmpresaNum) + String.format(java.util.Locale.US, "%08d", idClienteNum) + timeStampStr;
+                        com.example.rcksuporte05.rcksistemas.model.WebAnalise webAnalise = new com.example.rcksuporte05.rcksistemas.model.WebAnalise();
+                        webAnalise.setIdAnaliseApp(idAnaliseApp);
+                        webAnalise.setIdVendedor(idVendedorNum);
+                        webAnalise.setIdClienteServidor(idClienteNum);
+                        webAnalise.setDataHoraAnalise(dataHoraAtual);
+
+                        String statusCred = "LIBERADO";
+                        if (saldoDev > 0) {
+                            statusCred = "INADIMPLENTE";
+                        } else if (saldoDisp < 0) {
+                            statusCred = "EXCEDIDO";
+                        }
+                        webAnalise.setStatusCredito(statusCred);
+
+                        webAnalise.setLimiteCredito(limiteCred);
+                        webAnalise.setLimiteDisponivel(saldoDisp);
+                        webAnalise.setFaturamentoAnual(0.0);
+                        webAnalise.setTicketMedio(ticketMedio);
+                        webAnalise.setDiasFrequenciaHabitual(15);
+                        webAnalise.setDiasDesdeUltimaCompra(0);
+                        webAnalise.setStatusReposicao("NO_PRAZO");
+
+                        String msgAlerta = "";
+                        if (tvAlerta != null && tvAlerta.getText() != null) {
+                            msgAlerta = tvAlerta.getText().toString();
+                        }
+                        webAnalise.setMensagemAlerta(msgAlerta);
+                        webAnalise.setVersaoApp(com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME);
+
+                        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                        analiseDAO.salvarAnalise(webAnalise);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 dialog.dismiss();
-                if (listener != null) listener.onIniciarNovoPedido();
+                if (listener != null) listener.onIniciarNovoPedido(idAnaliseApp);
             });
         }
 
@@ -1379,5 +1402,161 @@ public class DialogHelper {
         }
 
         dialog.show();
+
+        // AJUSTE SOLICITADO: REDIMENSIONA O DIÁLOGO PARA 80% DA ALTURA DA TELA
+        if (dialog.getWindow() != null && context instanceof Activity) {
+            android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
+            ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = (int) (displayMetrics.widthPixels * 0.92);
+            int height = (int) (displayMetrics.heightPixels * 0.80);
+            dialog.getWindow().setLayout(width, height);
+        }
+
+        /* === CÓDIGO ANTERIOR (TAMANHO PADRÃO WRAP_CONTENT DO SISTEMA) COMENTADO PARA TESTE ===
+        // dialog.show();
+        ==================================================================================== */
+    }
+
+    public static void showFichaClienteHistoricoDialog(
+            Context context,
+            com.example.rcksuporte05.rcksistemas.model.WebAnalise analise,
+            com.example.rcksuporte05.rcksistemas.model.Cliente cliente) {
+
+        if (context == null || analise == null) {
+            Toast.makeText(context, "Nenhuma análise histórica registrada para este atendimento.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_ficha_cliente_historico, null);
+
+        TextView tvNome = dialogView.findViewById(R.id.tvFichaNomeCliente);
+        TextView tvDocCidade = dialogView.findViewById(R.id.tvFichaDocCidadeCliente);
+        TextView tvDataHora = dialogView.findViewById(R.id.tvFichaDataHoraAnalise);
+
+        TextView tvLimiteCredito = dialogView.findViewById(R.id.tvFichaLimiteCredito);
+        TextView tvSaldoDisponivel = dialogView.findViewById(R.id.tvFichaSaldoDisponivel);
+        TextView tvSaldoDevedor = dialogView.findViewById(R.id.tvFichaSaldoDevedor);
+        TextView tvTicket = dialogView.findViewById(R.id.tvFichaTicketMedio);
+
+        TextView tvAlerta = dialogView.findViewById(R.id.tvFichaAlertaReposicao);
+        androidx.cardview.widget.CardView cardAlerta = dialogView.findViewById(R.id.cardAlertaReposicao);
+
+        if (tvNome != null) {
+            String nomeCli = analise.getRazaoSocial() != null && !analise.getRazaoSocial().isEmpty()
+                    ? analise.getRazaoSocial()
+                    : (cliente != null && cliente.getNome_cadastro() != null ? cliente.getNome_cadastro() : "Cliente #" + analise.getIdClienteServidor());
+            tvNome.setText(nomeCli);
+        }
+
+        if (tvDocCidade != null && cliente != null) {
+            String doc = cliente.getCpf_cnpj() != null ? cliente.getCpf_cnpj() : "";
+            if (cliente.getPessoa_f_j() != null && cliente.getPessoa_f_j().equalsIgnoreCase("F")) {
+                doc = MascaraUtil.mascaraCPF(doc);
+            } else {
+                doc = MascaraUtil.mascaraCNPJ(doc);
+            }
+            String cidade = cliente.getNome_municipio() != null ? cliente.getNome_municipio() : "";
+            String uf = cliente.getEndereco_uf() != null ? cliente.getEndereco_uf() : "";
+            tvDocCidade.setText(doc + " • " + cidade + " / " + uf);
+        }
+
+        String dataHoraFormatada = "--/--/---- --:--";
+        if (analise.getDataHoraAnalise() != null && !analise.getDataHoraAnalise().trim().isEmpty()) {
+            try {
+                String raw = analise.getDataHoraAnalise().trim();
+                java.text.SimpleDateFormat sdfIn = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.US);
+                java.util.Date d = sdfIn.parse(raw);
+                if (d != null) {
+                    java.text.SimpleDateFormat sdfOut = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.US);
+                    dataHoraFormatada = sdfOut.format(d);
+                } else {
+                    dataHoraFormatada = raw;
+                }
+            } catch (Exception e1) {
+                dataHoraFormatada = analise.getDataHoraAnalise();
+            }
+        }
+
+        if (tvDataHora != null) {
+            tvDataHora.setText("📅 Análise realizada em: " + dataHoraFormatada);
+        }
+
+        double limiteCred = analise.getLimiteCredito();
+        double saldoDisp = analise.getLimiteDisponivel();
+        double ticketMedio = analise.getTicketMedio();
+
+        if (tvLimiteCredito != null) tvLimiteCredito.setText(MascaraUtil.mascaraRealSimboloD(limiteCred));
+
+        if (tvSaldoDisponivel != null) {
+            tvSaldoDisponivel.setText(MascaraUtil.mascaraRealSimboloD(saldoDisp));
+            if (saldoDisp < 0) {
+                tvSaldoDisponivel.setTextColor(context.getColor(R.color.vermelho));
+            } else {
+                tvSaldoDisponivel.setTextColor(Color.parseColor("#16A34A"));
+            }
+        }
+
+        boolean isDevedor = "INADIMPLENTE".equalsIgnoreCase(analise.getStatusCredito())
+                || (analise.getMensagemAlerta() != null && analise.getMensagemAlerta().contains("INADIMPLÊNCIA"));
+
+        if (tvSaldoDevedor != null) {
+            if (isDevedor) {
+                tvSaldoDevedor.setTextColor(context.getColor(R.color.vermelho));
+            } else {
+                tvSaldoDevedor.setTextColor(context.getColor(R.color.preto));
+            }
+            tvSaldoDevedor.setText(isDevedor ? "EM DÉBITO" : "R$ 0,00");
+        }
+
+        if (tvTicket != null) tvTicket.setText(MascaraUtil.mascaraRealSimboloD(ticketMedio));
+
+        if (analise.getMensagemAlerta() != null && !analise.getMensagemAlerta().trim().isEmpty()) {
+            if (cardAlerta != null) cardAlerta.setVisibility(View.VISIBLE);
+
+            String msgLimpa = analise.getMensagemAlerta().trim();
+            if (msgLimpa.startsWith("ALERTA DE INADIMPLÊNCIA: ")) {
+                msgLimpa = msgLimpa.substring("ALERTA DE INADIMPLÊNCIA: ".length());
+            } else if (msgLimpa.startsWith("INFORMATIVO FINANCEIRO: ")) {
+                msgLimpa = msgLimpa.substring("INFORMATIVO FINANCEIRO: ".length());
+            }
+
+            msgLimpa = msgLimpa.replace(" possui ", " possuía ");
+
+            if (isDevedor) {
+                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#DC2626"));
+                if (tvAlerta != null) {
+                    tvAlerta.setTextColor(Color.parseColor("#FFFFFF"));
+                    tvAlerta.setText("ALERTA DE INADIMPLÊNCIA NA DATA DE " + dataHoraFormatada + ": " + msgLimpa);
+                }
+            } else {
+                if (cardAlerta != null) cardAlerta.setCardBackgroundColor(Color.parseColor("#FEF3C7"));
+                if (tvAlerta != null) {
+                    tvAlerta.setTextColor(Color.parseColor("#B45309"));
+                    tvAlerta.setText("INFORMATIVO FINANCEIRO NA DATA DE " + dataHoraFormatada + ": " + msgLimpa);
+                }
+            }
+        } else {
+            if (cardAlerta != null) cardAlerta.setVisibility(View.GONE);
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        Button btnFechar = dialogView.findViewById(R.id.btnFecharFichaInteligente);
+        if (btnFechar != null) {
+            btnFechar.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
+
+        if (dialog.getWindow() != null && context instanceof Activity) {
+            android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
+            ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = (int) (displayMetrics.widthPixels * 0.92);
+            int height = (int) (displayMetrics.heightPixels * 0.65);
+            dialog.getWindow().setLayout(width, height);
+        }
     }
 }
