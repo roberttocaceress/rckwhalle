@@ -754,14 +754,16 @@ public class PedidoHelper {
                         webPedido.setFinalizado("N");
                         webPedido.setUsuario_lancamento_data(db.pegaDataHoraAtual());
                         webPedido.setData_emissao(db.pegaDataAtual());
+
+                        int maxId = db.ultimoId("SELECT MAX(ID_WEB_PEDIDO) FROM TBL_WEB_PEDIDO") + 1;
                         try {
                             if (webPedido.getCadastro().getId_cadastro_servidor() <= 0) {
                                 if ( webPedido.getId_pedido_app() == null || webPedido.getId_pedido_app().isEmpty()) {
-                                    webPedido.setId_pedido_app(String.format("%03d", Integer.parseInt(webPedido.getId_vendedor().trim())) + "90000009" + String.format("%08d", webPedido.getCadastro().getId_cadastro()) + dataHoraAtual);
+                                    webPedido.setId_pedido_app(String.format("%03d", Integer.parseInt(webPedido.getId_vendedor().trim())) + String.format("%08d", maxId) + String.format("%08d", webPedido.getCadastro().getId_cadastro()) + dataHoraAtual);
                                 }
                             }else {
                                 if ( webPedido.getId_pedido_app() == null || webPedido.getId_pedido_app().isEmpty()) {
-                                    webPedido.setId_pedido_app(String.format("%03d", Integer.parseInt(webPedido.getId_vendedor().trim())) + "90000009" + String.format("%08d", webPedido.getCadastro().getId_cadastro_servidor()) + dataHoraAtual);
+                                    webPedido.setId_pedido_app(String.format("%03d", Integer.parseInt(webPedido.getId_vendedor().trim())) + String.format("%08d", maxId)  + String.format("%08d", webPedido.getCadastro().getId_cadastro_servidor()) + dataHoraAtual);
                                 }
                             }
                         } catch (NullPointerException | NumberFormatException e) {
@@ -963,6 +965,14 @@ public class PedidoHelper {
                                             webPedido.setId_web_pedido(String.valueOf(PedidoHelper.getIdPedido()));
                                             webPedido.setFinalizado("S");
                                             webPedidoDAO.update(webPedido);
+                                            if (webPedido.getId_visita_app() != null && !webPedido.getId_visita_app().isEmpty()) {
+                                                try {
+                                                    com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+                                                    visitaDAO.vincularPedidoAVisita(webPedido.getId_visita_app(), PedidoHelper.getIdPedido(), webPedido.getId_pedido_app());
+                                                    com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                                    analiseDAO.vincularPedidoPorVisita(webPedido.getId_visita_app(), webPedido.getId_pedido_app());
+                                                } catch (Exception ignored) {}
+                                            }
                                             if (listaWebPedidoItens != null) {
                                                 for (int i = 0; listaWebPedidoItens.size() > i; i++) {
                                                     listaWebPedidoItens.get(i).setId_pedido(webPedido.getId_web_pedido());

@@ -174,11 +174,11 @@ public class WebPedidoDAO {
             content.put("ID_EMPRESA", webPedido.getId_empresa());
             if (webPedido.getCadastro().getId_cadastro_servidor() <= 0) {
                 content.put("ID_CADASTRO", webPedido.getCadastro().getId_cadastro());
-                content.put("ID_PEDIDO_APP", webPedido.getId_pedido_app().substring(0, 3) + String.format("%08d", Integer.parseInt(webPedido.getId_web_pedido())) + String.format("%08d", webPedido.getCadastro().getId_cadastro()) + webPedido.getId_pedido_app().substring(19));
+                content.put("ID_PEDIDO_APP", webPedido.getId_pedido_app());//.substring(0, 3) + String.format("%08d", Integer.parseInt(webPedido.getId_web_pedido())) + String.format("%08d", webPedido.getCadastro().getId_cadastro()) + webPedido.getId_pedido_app().substring(19));
                 content.put("CLIENTE_NOVO", "S");
             } else {
                 content.put("ID_CADASTRO", webPedido.getCadastro().getId_cadastro_servidor());
-                content.put("ID_PEDIDO_APP", webPedido.getId_pedido_app().substring(0, 3) + String.format("%08d", Integer.parseInt(webPedido.getId_web_pedido())) + String.format("%08d", webPedido.getCadastro().getId_cadastro_servidor()) + webPedido.getId_pedido_app().substring(19));
+                content.put("ID_PEDIDO_APP", webPedido.getId_pedido_app());//.substring(0, 3) + String.format("%08d", Integer.parseInt(webPedido.getId_web_pedido())) + String.format("%08d", webPedido.getCadastro().getId_cadastro_servidor()) + webPedido.getId_pedido_app().substring(19));
                 content.put("CLIENTE_NOVO", "N");
             }
             content.put("ID_VENDEDOR", webPedido.getId_vendedor());
@@ -562,6 +562,12 @@ public class WebPedidoDAO {
                 } catch ( NullPointerException e) {
 
                 }
+                try {
+                    int idxVisita = cursor.getColumnIndex("ID_VISITA_APP");
+                    if (idxVisita != -1 && cursor.getString(idxVisita) != null) {
+                        webPedido.setId_visita_app(cursor.getString(idxVisita));
+                    }
+                } catch (Exception ignored) {}
                 try {
                     int idxAnalise = cursor.getColumnIndex("ID_ANALISE_APP");
                     if (idxAnalise != -1 && cursor.getString(idxAnalise) != null) {

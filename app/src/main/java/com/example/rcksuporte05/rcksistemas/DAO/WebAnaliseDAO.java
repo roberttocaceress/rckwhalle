@@ -257,22 +257,22 @@ public class WebAnaliseDAO {
         return null;
     }
 
-    public WebAnalise getWebAnalise(String idPedido, int idCliente) {
-        WebAnalise webAnalise = new WebAnalise();
+    public WebAnalise getWebAnalise(String idPedidoApp, int idCliente) {
+        //WebAnalise webAnalise = new WebAnalise();
         if ( UsuarioHelper.getUsuario() ==null) {
             UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
         }
         String sql = "";
         if ( idCliente > 0)
-        sql = "SELECT A.* " +
+           sql = "SELECT A.* " +
                 "FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' " +
                 "AND A.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
-                "AND A.ID_PEDIDO = '" + idPedido + "' AND A.ID_CLIENTE_SERVIDOR = " + idCliente;
+                "AND A.ID_PEDIDO_APP = '" + idPedidoApp + "' AND A.ID_CLIENTE_SERVIDOR = " + idCliente;
         else
-            sql = "SELECT V.* " +
-                    "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'V' AND V.EXCLUIDO = 'N' " +
-                    "AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
-                    "AND V.ID_PEDIDO = '" + idPedido + "'";
+            sql = "SELECT A.* " +
+                    "FROM TBL_WEB_ANALISE  AS A WHERE A.EXCLUIDO = 'N' " +
+                    "AND A.ID_ANALISE_SERVIDOR IS NULL AND A.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
+                    "AND A.ID_PEDIDO_APP = '" + idPedidoApp + "'";
 
         Cursor cursor = db.listaDados(sql);
         if (cursor == null || cursor.getCount() <= 0) {

@@ -1378,8 +1378,8 @@ public class DialogHelper {
                         webAnalise.setStatusReposicao("NO_PRAZO");
 
                         String msgAlerta = "";
-                        if (tvAlerta != null && tvAlerta.getText() != null) {
-                            msgAlerta = tvAlerta.getText().toString();
+                        if ((saldoDev > 0 || saldoVencendo > 0) && tvAlerta != null && tvAlerta.getText() != null) {
+                            msgAlerta = tvAlerta.getText().toString().trim();
                         }
                         webAnalise.setMensagemAlerta(msgAlerta);
                         webAnalise.setVersaoApp(com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME);

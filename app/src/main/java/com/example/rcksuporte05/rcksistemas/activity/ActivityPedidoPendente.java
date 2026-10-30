@@ -78,6 +78,7 @@ import com.example.rcksuporte05.rcksistemas.DAO.PreferenciaDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.ProdutoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.UsuarioDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.VendedorBonusResumoDAO;
+import com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoItensDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO;
@@ -163,6 +164,7 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
     private WebPedidoItensDAO webPedidoItensDAO = new WebPedidoItensDAO(db);
 
     private WebVisitaDAO webVisitaDAO = new WebVisitaDAO(db);
+    private WebAnaliseDAO webAnaliseDAO = new WebAnaliseDAO(db);
     private PreferenciaDAO preferenciaDAO = new PreferenciaDAO(db);
     private EmpresaParametroDAO empresaParametroDAO = new EmpresaParametroDAO(db);
     private Configuracao configuracao = new Configuracao();
@@ -1184,7 +1186,8 @@ public class ActivityPedidoPendente extends AppCompatActivity implements  ListaP
                 i.printStackTrace();
             }
             pedido.setWebPedidoItens(webPedidoItensDAO.getLista("SELECT * FROM TBL_WEB_PEDIDO_ITENS WHERE ID_PEDIDO = " + pedido.getId_web_pedido() + " ORDER BY ID_WEB_ITEM"));
-            pedido.setWebVisita(webVisitaDAO.getWebVisita(pedido.getId_web_pedido(), pedido.getCadastro().getId_cadastro_servidor()));
+            pedido.setWebVisita(webVisitaDAO.getWebVisita(pedido.getId_pedido_app(), pedido.getCadastro().getId_cadastro_servidor()));
+            pedido.setWebAnalise(webAnaliseDAO.getWebAnalise(pedido.getId_pedido_app(), pedido.getCadastro().getId_cadastro_servidor()));
             try {
                 if ( (Integer.parseInt(pedido.getQtde_itens()) != pedido.getWebPedidoItens().size()) || Integer.parseInt(pedido.getQtde_itens()) == 0) {
                     return false;

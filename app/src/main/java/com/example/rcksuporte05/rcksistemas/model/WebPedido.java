@@ -47,6 +47,7 @@ public class WebPedido {
     private String data_prev_entrega;
     private List<WebPedidoItens> webPedidoItens;
     private WebVisita webVisita;
+    private WebAnalise webAnalise;
     private String pedido_enviado;
     private String finalizado;
     private String id_visita_app;
@@ -800,5 +801,13 @@ public class WebPedido {
 
     public void setWebVisita(WebVisita webVisita) {
         this.webVisita = webVisita;
+    }
+
+    public WebAnalise getWebAnalise() {
+        return webAnalise;
+    }
+
+    public void setWebAnalise(WebAnalise webAnalise) {
+        this.webAnalise = webAnalise;
     }
 }
