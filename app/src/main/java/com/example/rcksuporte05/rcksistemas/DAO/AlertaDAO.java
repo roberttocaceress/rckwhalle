@@ -28,32 +28,48 @@ public class AlertaDAO {
             UsuarioHelper.getUsuario().setAparelho_notifica_status_ped(alerta.getAlerta_emissao_doc());
             UsuarioHelper.getUsuario().setAparelho_notifica_vencto_fin(alerta.getAlerta_vencimento_doc());
             UsuarioHelper.getUsuario().setAparelho_notifica_update_app(alerta.getAlerta_novo_app());
-            //MyFirebaseInstanceIdService myFirebaseInstanceIdService = new MyFirebaseInstanceIdService();
-            //myFirebaseInstanceIdService.novoToken(UsuarioHelper.getUsuario());
             return true;
-        } catch (NullPointerException | SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        } catch (NullPointerException | SQLException ignored) {
+        } 
         return false;
     }
 
     public Alerta getAlerta(String SQL) {
         Alerta alerta = new Alerta("");
         Cursor cursor = db.listaDados(SQL);
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return alerta;
-        if (cursor.moveToFirst())
-            try {
-                alerta.setId(cursor.getString(cursor.getColumnIndex("ID")));
-                alerta.setAlerta_emissao_doc(cursor.getString(cursor.getColumnIndex("ALERTA_EMISSAO_DOC")));
-                alerta.setAlerta_vencimento_doc(cursor.getString(cursor.getColumnIndex("ALERTA_VENCIMENTO_DOC")));
-                alerta.setAlerta_novo_app(cursor.getString(cursor.getColumnIndex("ALERTA_NOVO_APP")));
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+        }
+        try {
+            if (cursor.moveToFirst())
+                alerta = setAlerta(cursor);
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed()) {
+                cursor.close();
             }
+        }
         return alerta;
+    }
+
+    private Alerta setAlerta(Cursor cursor) {
+        Alerta alerta = new Alerta("");
+        try {
+            alerta.setId(getString(cursor, "ID"));
+            alerta.setAlerta_emissao_doc(getString(cursor, "ALERTA_EMISSAO_DOC"));
+            alerta.setAlerta_vencimento_doc(getString(cursor, "ALERTA_VENCIMENTO_DOC"));
+            alerta.setAlerta_novo_app(getString(cursor, "ALERTA_NOVO_APP"));
+        } catch (Exception ignored) {
+        }
+        return alerta;
+    }
+
+    // =========================================================================
+    // AUXILIARES OBRIGATÓRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
     }
 }

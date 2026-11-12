@@ -112,6 +112,12 @@ public interface Rotas {
                                             @Path("id_cadastro") String id_cadastro,
                                             @HeaderMap Map<String, String> chaveDeAcesso);
 
+     @GET("webpedido/listaenviados/{id_usuario}/{id_cadastro}/{id_pedido}")  //ID DO PEDIDO NO SERVIDOR
+    Call<List<WebPedido>> listaEnviadoCliente(@Path("id_usuario") String id_usuario,
+                                            @Path("id_cadastro") String id_cadastro,
+                                            @Path("id_pedido") String id_pedido,
+                                            @HeaderMap Map<String, String> chaveDeAcesso);
+
     //visualizar/{data_inicial}/{data_final}/{id_vendedor}
 
     @POST("webpedido/sincronizar/{id}")

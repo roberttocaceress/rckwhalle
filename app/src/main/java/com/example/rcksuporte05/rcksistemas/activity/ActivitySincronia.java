@@ -80,6 +80,7 @@ import com.example.rcksuporte05.rcksistemas.DAO.TabelaPrecoItemDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.UsuarioDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.VendedorBonusResumoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.VisitaProspectDAO;
+import com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebPedidoItensDAO;
 import com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO;
@@ -486,7 +487,7 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
                           id_opcao_visitas_pendentes.isChecked(),
                           id_opcao_imagem_produto.isChecked(),
                           id_opcao_cobrancas.isChecked());
-                  sincronia.setListaVisita(webVisitaDAO.getListaVisitas());
+                  sincronia.setListaVisita(webVisitaDAO.getListaVisitasSincronia());
                   sincronizaApi(sincronia, versaoApp, "-", "-");
               }
           });
@@ -772,6 +773,7 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
             if (sincronia.isCliente()) {
                 updateProgressMessage("Analisando arquivos recebidos da base de dados!\nCadastro de clientes em analise..." );
                 addClientes(sincronia);
+
             }
             //System.gc();
             if (sincronia.isProduto()) {
@@ -803,8 +805,12 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
             }
             if (sincronia.getListaVisita() != null || !sincronia.getListaVisita().isEmpty()) {
                 updateProgressMessage("Analisando arquivos recebidos da base de dados!\nVisitas em analise...");
-                for (WebVisita webVisita : sincronia.getListaVisita())
+                for (WebVisita webVisita : sincronia.getListaVisita()) {
                     webVisitaDAO.atualiarVisitaAPI(webVisita.getIdVisitaApp(), webVisita.getIdVisitaServidor(), webVisita.getIdPedidoServidor());
+                    if ( webVisita.getWebAnalise() != null) {
+                       new WebAnaliseDAO(db).atualiaranaliseAPI(webVisita.getWebAnalise().getIdAnaliseApp(), webVisita.getWebAnalise().getIdAnaliseServidor(),webVisita.getIdVisitaServidor(), webVisita.getIdPedidoServidor());
+                    }
+                }
                 System.gc();
             }
             updateProgressMessage("Analisando arquivos recebidos da base de dados!\nCadastro(s) de configurações em analise...");
@@ -1256,8 +1262,10 @@ public class ActivitySincronia extends AppCompatActivity implements CompoundButt
 
     private void addClientes(Sincronia sincronia) {
         db.deleteDados("TBL_CADASTRO","ID_CADASTRO_SERVIDOR > ?", new String[]{"0"});
-            clienteDAO.addLista(sincronia.getListaCliente(), db);
-            clienteDAO.addListaClienteResumo(sincronia.getListaClienteResumo(), db);
+        db.deleteDados("TBL_CADASTRO_ANEXOS","ID_CADASTRO_SERVIDOR > ?", new String[]{"0"});
+        clienteDAO.addLista(sincronia.getListaCliente(), db);
+        clienteDAO.addListaClienteResumo(sincronia.getListaClienteResumo(), db);
+        clienteDAO.addListaClienteAnexo(sincronia.getListaCadastroAnexo(), db);
             /*
             for (Cliente cliente : sincronia.getListaCliente()) {
                 clienteDAO.add(cliente);

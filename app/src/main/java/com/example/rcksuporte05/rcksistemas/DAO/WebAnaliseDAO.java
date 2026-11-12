@@ -95,9 +95,9 @@ public class WebAnaliseDAO {
             content.put("EXCLUIDO", "N");
             return db.addDados("TBL_WEB_ANALISE", content);
         } catch (SQLException e) {
-            e.printStackTrace();
+            android.util.Log.e("ANALISE_DEBUG", "Erro SQLException ao salvar analise: " + e.getMessage(), e);
         } catch (Exception e) {
-            e.printStackTrace();
+            android.util.Log.e("ANALISE_DEBUG", "Erro Exception ao salvar analise: " + e.getMessage(), e);
         }
         return 0;
     }
@@ -107,8 +107,7 @@ public class WebAnaliseDAO {
         content.put("ID_PEDIDO_APP", idPedidoApp == null ? "" : idPedidoApp);
         try {
             return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -117,8 +116,20 @@ public class WebAnaliseDAO {
         content.put("ID_VISITA_APP", idVisitaApp == null ? "" : idVisitaApp);
         try {
             return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
+        }
+        return 0;
+    }
+
+    public int atualizarClienteAnalise(String idAnaliseApp, int idNovoClienteServidor, String razaoSocial, String nomeFantasia) {
+        if (idAnaliseApp == null || idAnaliseApp.trim().isEmpty()) return 0;
+        ContentValues content = new ContentValues();
+        content.put("ID_CLIENTE_SERVIDOR", idNovoClienteServidor);
+        content.put("RAZAO_SOCIAL", razaoSocial == null ? "" : razaoSocial);
+        content.put("NOME_FANTASIA", nomeFantasia == null ? "" : nomeFantasia);
+        try {
+            return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp.trim() + "'");
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -129,20 +140,20 @@ public class WebAnaliseDAO {
         content.put("ID_PEDIDO_APP", idPedidoApp == null ? "" : idPedidoApp);
         try {
             return db.updateDados("TBL_WEB_ANALISE", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
 
-    public int atualiaranaliseAPI(String idAnaliseApp, String idVisitaServidor, int idPedidoServidor ) {
+    public int atualiaranaliseAPI(String idAnaliseApp, int idAnaliseServidor, String idVisitaServidor, int idPedidoServidor ) {
         ContentValues content = new ContentValues();
         content.put("ID_VISITA_SERVIDOR", idVisitaServidor);
         content.put("ID_PEDIDO_SERVIDOR", idPedidoServidor);
+        content.put("ID_ANALISE_SERVIDOR", idAnaliseServidor);
+        content.put("ST_ENVIADO", "S");
         try {
             return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -151,92 +162,40 @@ public class WebAnaliseDAO {
         content.put("EXCLUIDO", statusExcluido == null ? "N" : statusExcluido);
         try {
             String where = "ID_PEDIDO = " + idPedido;
-            if (idPedidoApp != null && !idPedidoApp.trim().isEmpty()) {
+            if (idPedidoApp != null && !idPedidoApp.trim().isEmpty())
                 where += " OR ID_PEDIDO_APP = '" + idPedidoApp + "'";
-            }
             return db.updateDados("TBL_WEB_ANALISE", content, where);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
 
-    public int atualizarClienteAnalise(String idAnaliseApp, int idNovoClienteServidor) {
-        if (idAnaliseApp == null || idAnaliseApp.trim().isEmpty()) return 0;
-        ContentValues content = new ContentValues();
-        content.put("ID_CLIENTE_SERVIDOR", idNovoClienteServidor);
-        try {
-            return db.updateDados("TBL_WEB_ANALISE", content, "ID_ANALISE_APP = '" + idAnaliseApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public List<WebAnalise> getListaAnalise(String filtroStatus, int idVendedor, int ano, int mes) {
-        List<WebAnalise> lista = new ArrayList<>();
-        String sql = "SELECT A.*, C.NOME_CADASTRO, C.NOME_FANTASIA, P.VALOR_TOTAL AS VALOR_PEDIDO_FAT " +
-                "FROM TBL_WEB_ANALISE AS A " +
-                "LEFT JOIN TBL_CADASTRO AS C ON (C.ID_CADASTRO_SERVIDOR = A.ID_CLIENTE_SERVIDOR OR C.ID_CADASTRO = A.ID_CLIENTE_SERVIDOR) " +
-                "LEFT JOIN TBL_WEB_PEDIDO AS P ON (P.ID_WEB_PEDIDO = A.ID_PEDIDO OR (P.ID_PEDIDO_APP = A.ID_PEDIDO_APP AND P.ID_PEDIDO_APP <> '')) " +
-                "WHERE A.EXCLUIDO = 'N'";
-
-        if (idVendedor > 0) {
-            sql += " AND A.ID_VENDEDOR = " + idVendedor;
-        }
-       /*
-        if (ano > 0 && mes > 0) {
-            String mesAnoStr = String.format(java.util.Locale.US, "%04d-%02d", ano, mes);
-            sql += " AND (A.DATA_HORA_CHECKIN LIKE '" + mesAnoStr + "%' OR A.DATA_HORA_CHECKIN LIKE '%/" + String.format(java.util.Locale.US, "%02d/%04d", mes, ano) + "%')";
-        }
-
-        if ("V".equalsIgnoreCase(filtroStatus)) {
-            sql += " AND V.STATUS_VISITA = 'V'";
-        } else if ("N".equalsIgnoreCase(filtroStatus)) {
-            sql += " AND V.STATUS_VISITA = 'N'";
-        }
-        */
-        sql += " ORDER BY A.ID_ANALISE DESC";
-
+    public WebAnalise getWebAnalisePorVisita(String idVisitaApp) {
+        String sql = "";
+            sql = "SELECT A.* FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' AND A.ID_VISITA_APP = '" + idVisitaApp.trim() + "' ORDER BY A.ID_ANALISE DESC LIMIT 1";
 
         Cursor cursor = db.listaDados(sql);
-        if (cursor == null || cursor.getCount() <= 0) {
-            if (cursor != null) cursor.close();
-            return lista;
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-               lista.add(setAnalise(cursor));
-            } while (cursor.moveToNext());
+        if (cursor != null && cursor.moveToFirst()) {
+            WebAnalise analise = setAnalise(cursor);
             cursor.close();
+            return analise;
         }
-        return lista;
+        if (cursor != null) cursor.close();
+        return null;
     }
-    public List<WebAnalise> getListaAnalises() {
-        List<WebAnalise> lista = new ArrayList<>();
-        if ( UsuarioHelper.getUsuario() ==null) {
-            UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
-        }
-        String sql = "SELECT A.* " +
-                "FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' AND A.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor();
-        sql += " ORDER BY A.ID_ANALISE DESC";
+    public WebAnalise getWebAnalisePorPedido(String idPedidoApp) {
+        String sql = "";
+        sql = "SELECT A.* FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' AND A.ID_PEDIDO_APP = '" + idPedidoApp.trim() + "' ORDER BY A.ID_ANALISE DESC LIMIT 1";
 
         Cursor cursor = db.listaDados(sql);
-        if (cursor == null || cursor.getCount() <= 0) {
-            if (cursor != null) cursor.close();
-            return lista;
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-               lista.add(setAnalise(cursor));
-            } while (cursor.moveToNext());
+        if (cursor != null && cursor.moveToFirst()) {
+            WebAnalise analise = setAnalise(cursor);
             cursor.close();
+            return analise;
         }
-        return lista;
+        if (cursor != null) cursor.close();
+        return null;
     }
-
     public WebAnalise getWebAnalisePorVisitaOuCliente(String idVisitaApp, int idClienteServidor) {
         String sql = "";
         if (idVisitaApp != null && !idVisitaApp.trim().isEmpty()) {
@@ -257,152 +216,83 @@ public class WebAnaliseDAO {
         return null;
     }
 
-    public WebAnalise getWebAnalise(String idPedidoApp, int idCliente) {
-        //WebAnalise webAnalise = new WebAnalise();
-        if ( UsuarioHelper.getUsuario() ==null) {
-            UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
-        }
-        String sql = "";
-        if ( idCliente > 0)
-           sql = "SELECT A.* " +
-                "FROM TBL_WEB_ANALISE AS A WHERE A.EXCLUIDO = 'N' " +
-                "AND A.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
-                "AND A.ID_PEDIDO_APP = '" + idPedidoApp + "' AND A.ID_CLIENTE_SERVIDOR = " + idCliente;
-        else
-            sql = "SELECT A.* " +
-                    "FROM TBL_WEB_ANALISE  AS A WHERE A.EXCLUIDO = 'N' " +
-                    "AND A.ID_ANALISE_SERVIDOR IS NULL AND A.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
-                    "AND A.ID_PEDIDO_APP = '" + idPedidoApp + "'";
-
-        Cursor cursor = db.listaDados(sql);
-        if (cursor == null || cursor.getCount() <= 0) {
-            if (cursor != null) cursor.close();
-        }
-
-        if (cursor.moveToFirst()) {
-            do {
-                return setAnalise(cursor);
-            } while (cursor.moveToNext());
-        }
-        return null;
-    }
-
+    // =========================================================================
+    // MAPEAMENTO DE CURSOR (PADRÃO NULL-SAFE / GERADOR-DAO)
+    // =========================================================================
     private WebAnalise setAnalise(Cursor cursor) {
         WebAnalise webAnalise = new WebAnalise();
         try {
-            int idxIdAnalise = cursor.getColumnIndex("ID_ANALISE");
-            if (idxIdAnalise != -1) webAnalise.setIdAnalise(cursor.getInt(idxIdAnalise));
-
-            int idxAnaliseApp = cursor.getColumnIndex("ID_ANALISE_APP");
-            if (idxAnaliseApp != -1) webAnalise.setIdAnaliseApp(cursor.getString(idxAnaliseApp));
-
-            int idxAnaliseSrv = cursor.getColumnIndex("ID_ANALISE_SERVIDOR");
-            if (idxAnaliseSrv != -1) webAnalise.setIdAnaliseServidor(cursor.getInt(idxAnaliseSrv));
-
-            int idxVend = cursor.getColumnIndex("ID_VENDEDOR");
-            if (idxVend != -1) webAnalise.setIdVendedor(cursor.getInt(idxVend));
-
-            int idxPedApp = cursor.getColumnIndex("ID_PEDIDO_APP");
-            if (idxPedApp != -1) webAnalise.setIdPedidoApp(cursor.getString(idxPedApp));
-
-            int idxPedSrv = cursor.getColumnIndex("ID_PEDIDO_SERVIDOR");
-            try {
-                if (idxPedSrv != -1)
-                    webAnalise.setIdPedidoServidor(Integer.parseInt(cursor.getString(idxPedSrv)));
-            } catch (NumberFormatException | NullPointerException e) {
-                webAnalise.setIdPedidoServidor(0);
-            }
-
-            int idxCli = cursor.getColumnIndex("ID_CLIENTE_SERVIDOR");
-            if (idxCli != -1) webAnalise.setIdClienteServidor(cursor.getInt(idxCli));
-
-            int dataHoraAnalise = cursor.getColumnIndex("DATA_HORA_ANALISE");
-            if (dataHoraAnalise != -1 && cursor.getString(dataHoraAnalise) != null) {
-                webAnalise.setDataHoraAnalise(cursor.getString(dataHoraAnalise));
-            }
-            int idxStatusCredito = cursor.getColumnIndex("STATUS_CREDITO");
-            if (idxStatusCredito != -1 && cursor.getString(idxStatusCredito) != null) {
-                webAnalise.setStatusCredito(cursor.getString(idxStatusCredito));
-            }
-
-            int idxLimiteCredito = cursor.getColumnIndex("LIMITE_CREDITO");
-            if (idxLimiteCredito != -1 && cursor.getString(idxLimiteCredito) != null) {
-                webAnalise.setLimiteCredito(cursor.getDouble(idxLimiteCredito));
-            }
-
-            int idxLimiteDisponivel = cursor.getColumnIndex("LIMITE_DISPONIVEL");
-            if (idxLimiteDisponivel != -1 && cursor.getString(idxLimiteDisponivel) != null) {
-                webAnalise.setLimiteDisponivel(cursor.getDouble(idxLimiteDisponivel));
-            }
-            int idxFaturamentoAnual = cursor.getColumnIndex("FATURAMENTO_ANUAL");
-            if (idxFaturamentoAnual != -1 && cursor.getString(idxFaturamentoAnual) != null) {
-                webAnalise.setFaturamentoAnual(cursor.getDouble(idxFaturamentoAnual));
-            }
-            int idxTicketMedio = cursor.getColumnIndex("TICKET_MEDIO");
-            if (idxTicketMedio != -1 && cursor.getString(idxTicketMedio) != null) {
-                webAnalise.setTicketMedio(cursor.getDouble(idxTicketMedio));
-            }
-            int idxDiasFrequencia = cursor.getColumnIndex("DIAS_FREQUENCIA_HABITUAL");
-            if (idxDiasFrequencia != -1 && cursor.getString(idxDiasFrequencia) != null) {
-                webAnalise.setDiasFrequenciaHabitual(cursor.getInt(idxDiasFrequencia));
-            }
-            int idxDiasUltimaCompra = cursor.getColumnIndex("DIAS_DESDE_ULTIMA_COMPRA");
-            if (idxDiasUltimaCompra != -1 && cursor.getString(idxDiasUltimaCompra) != null) {
-                webAnalise.setDiasDesdeUltimaCompra(cursor.getInt(idxDiasUltimaCompra));
-            }
-            int idxStatusReposicao = cursor.getColumnIndex("STATUS_REPOSICAO");
-            if (idxStatusReposicao != -1 && cursor.getString(idxStatusReposicao) != null) {
-                webAnalise.setStatusReposicao(cursor.getString(idxStatusReposicao));
-            }
-            int idxMensagemAlerta = cursor.getColumnIndex("MENSAGEM_ALERTA");
-            if (idxMensagemAlerta != -1 && cursor.getString(idxMensagemAlerta) != null) {
-                webAnalise.setMensagemAlerta(cursor.getString(idxMensagemAlerta));
-            }
-            int idxVersaoApp = cursor.getColumnIndex("VERSAO_APP");
-            if (idxVersaoApp != -1 && cursor.getString(idxVersaoApp) != null) {
-                try {
-                    webAnalise.setVersaoApp(cursor.getString(idxVersaoApp));
-                } catch (Exception ignored) {
-                }
-            }
-
-            int idxStEnviado = cursor.getColumnIndex("ST_ENVIADO");
-            if (idxStEnviado != -1 && cursor.getString(idxStEnviado) != null) {
-                webAnalise.setStEnviado(cursor.getString(idxStEnviado));
-            }
-            int idxExcluido = cursor.getColumnIndex("EXCLUIDO");
-            if (idxExcluido != -1 && cursor.getString(idxExcluido) != null) {
-                webAnalise.setExcluido(cursor.getString(idxExcluido));
-            }
-
-            int idxRazao = cursor.getColumnIndex("NOME_CADASTRO");
-            if (idxRazao != -1 && cursor.getString(idxRazao) != null) {
-                webAnalise.setRazaoSocial(cursor.getString(idxRazao));
-            }
-
-            int idxFantasia = cursor.getColumnIndex("NOME_FANTASIA");
-            if (idxFantasia != -1 && cursor.getString(idxFantasia) != null) {
-                webAnalise.setNomeFantasia(cursor.getString(idxFantasia));
-            }
-
-            int idxValPed = cursor.getColumnIndex("VALOR_PEDIDO_FAT");
-            if (idxValPed != -1 && cursor.getString(idxValPed) != null) {
-                try {
-                    webAnalise.setValorPedido(Double.parseDouble(cursor.getString(idxValPed)));
-                } catch (Exception ignored) {
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            webAnalise.setIdAnalise(getInt(cursor, "ID_ANALISE"));
+            webAnalise.setIdAnaliseApp(getString(cursor, "ID_ANALISE_APP"));
+            webAnalise.setIdAnaliseServidor(getInt(cursor, "ID_ANALISE_SERVIDOR"));
+            webAnalise.setIdVendedor(getInt(cursor, "ID_VENDEDOR"));
+            webAnalise.setIdPedidoApp(getString(cursor, "ID_PEDIDO_APP"));
+            webAnalise.setIdVisitaApp(getString(cursor, "ID_VISITA_APP"));
+            webAnalise.setIdPedidoServidor(getInt(cursor, "ID_PEDIDO_SERVIDOR"));
+            webAnalise.setIdClienteServidor(getInt(cursor, "ID_CLIENTE_SERVIDOR"));
+            webAnalise.setDataHoraAnalise(getString(cursor, "DATA_HORA_ANALISE"));
+            webAnalise.setStatusCredito(getString(cursor, "STATUS_CREDITO"));
+            webAnalise.setLimiteCredito(getDouble(cursor, "LIMITE_CREDITO"));
+            webAnalise.setLimiteDisponivel(getDouble(cursor, "LIMITE_DISPONIVEL"));
+            webAnalise.setFaturamentoAnual(getDouble(cursor, "FATURAMENTO_ANUAL"));
+            webAnalise.setTicketMedio(getDouble(cursor, "TICKET_MEDIO"));
+            webAnalise.setDiasFrequenciaHabitual(getInt(cursor, "DIAS_FREQUENCIA_HABITUAL"));
+            webAnalise.setDiasDesdeUltimaCompra(getInt(cursor, "DIAS_DESDE_ULTIMA_COMPRA"));
+            webAnalise.setStatusReposicao(getString(cursor, "STATUS_REPOSICAO"));
+            webAnalise.setMensagemAlerta(getString(cursor, "MENSAGEM_ALERTA"));
+            webAnalise.setVersaoApp(getString(cursor, "VERSAO_APP"));
+            webAnalise.setStEnviado(getString(cursor, "ST_ENVIADO"));
+            webAnalise.setExcluido(getString(cursor, "EXCLUIDO"));
+            webAnalise.setRazaoSocial(getString(cursor, "NOME_CADASTRO"));
+            webAnalise.setNomeFantasia(getString(cursor, "NOME_FANTASIA"));
+            webAnalise.setValorPedido(getDouble(cursor, "VALOR_PEDIDO_FAT"));
+        } catch (Exception ignored) {
         }
         return webAnalise;
     }
 
+    // =========================================================================
+    // AUXILIARES OBRIGATÓRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private long getLong(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0L;
+        try {
+            return Long.parseLong(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0L;
+        }
+    }
+
+    private double getDouble(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0.0;
+        try {
+            return Double.parseDouble(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
     public int getCountAnalises(String statusFilter, int idVendedor, int ano, int mes) {
         String sql = "SELECT COUNT(*) FROM TBL_WEB_ANALISE WHERE EXCLUIDO = 'N'";
-        if (idVendedor > 0) {
+        if (idVendedor > 0)
             sql += " AND ID_VENDEDOR = " + idVendedor;
-        }
         return db.contagem(sql);
     }
 

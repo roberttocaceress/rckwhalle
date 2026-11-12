@@ -1,8 +1,8 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 
 import com.example.rcksuporte05.rcksistemas.model.CampanhaComercialCab;
 import com.example.rcksuporte05.rcksistemas.model.CampanhaComercialItens;
@@ -40,13 +40,15 @@ public class CampanhaComercialItensDAO {
     }
 
     public CampanhaComercialItens getCampanhaComercialItens(CampanhaComercialCab campanhaComercialCab, String idProduto) {
-        Cursor cursor = db.listaDados("SELECT * FROM TBL_CAMPANHA_COMERCIAL_ITENS WHERE ID_CAMPANHA = " + campanhaComercialCab.getIdCampanha() + " AND ID_PRODUTO_VENDA = " + idProduto + ";");
-        return getLista(cursor).get(0);
+        Cursor cursor = db.listaDados("SELECT * FROM TBL_CAMPANHA_COMERCIAL_ITENS WHERE ID_CAMPANHA = " + campanhaComercialCab.getIdCampanha() + " AND ID_PRODUTO_VENDA = '" + idProduto + "';");
+        List<CampanhaComercialItens> lista = getLista(cursor);
+        return !lista.isEmpty() ? lista.get(0) : null;
     }
 
     public CampanhaComercialItens getCampanhaComercialItens(CampanhaComercialCab campanhaComercialCab, int idLinha) {
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CAMPANHA_COMERCIAL_ITENS WHERE ID_CAMPANHA = " + campanhaComercialCab.getIdCampanha() + " AND ID_LINHA_PRODUTO = " + idLinha + ";");
-        return getLista(cursor).get(0);
+        List<CampanhaComercialItens> lista = getLista(cursor);
+        return !lista.isEmpty() ? lista.get(0) : null;
     }
 
     public List<CampanhaComercialItens> getLista(CampanhaComercialCab campanhaComercialCab) {
@@ -54,43 +56,91 @@ public class CampanhaComercialItensDAO {
         return getLista(cursor);
     }
 
+    @SuppressLint("Range")
     public int getTotalReg(String SQL) {
         Cursor cursor = db.listaDados(SQL);
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return 0;
-        cursor.moveToFirst();
-        return cursor.getInt(cursor.getColumnIndex("TOTALREG"));
+        }
+        try {
+            if (cursor.moveToFirst())
+                return getInt(cursor, "TOTALREG");
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
+        return 0;
     }
-
 
     private List<CampanhaComercialItens> getLista(Cursor cursor) {
         List<CampanhaComercialItens> lista = new ArrayList<>();
-        if( cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return lista;
-        cursor.moveToFirst();
-        do {
-            CampanhaComercialItens campanhaComercialItens = new CampanhaComercialItens();
-            try {
-                campanhaComercialItens.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                campanhaComercialItens.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-                campanhaComercialItens.setIdTipoCampanha(cursor.getInt(cursor.getColumnIndex("ID_TIPO_CAMPANHA")));
-                campanhaComercialItens.setIdBaseCampanha(cursor.getInt(cursor.getColumnIndex("ID_BASE_CAMPANHA")));
-                campanhaComercialItens.setIdCampanha(cursor.getInt(cursor.getColumnIndex("ID_CAMPANHA")));
-                campanhaComercialItens.setIdLinhaProduto(cursor.getInt(cursor.getColumnIndex("ID_LINHA_PRODUTO")));
-                campanhaComercialItens.setIdProdutoVenda(cursor.getString(cursor.getColumnIndex("ID_PRODUTO_VENDA")));
-                campanhaComercialItens.setNomeProdutoLinha(cursor.getString(cursor.getColumnIndex("NOME_PRODUTO_LINHA")));
-                campanhaComercialItens.setQuantidadeVenda(cursor.getFloat(cursor.getColumnIndex("QUANTIDADE_VENDA")));
-                campanhaComercialItens.setIdProdutoBonus(cursor.getString(cursor.getColumnIndex("ID_PRODUTO_BONUS")));
-                campanhaComercialItens.setQuantidadeBonus(cursor.getFloat(cursor.getColumnIndex("QUANTIDADE_BONUS")));
-                campanhaComercialItens.setNomeProdutoBonus(cursor.getString(cursor.getColumnIndex("NOME_PRODUTO_BONUS")));
-                campanhaComercialItens.setUsuarioId(cursor.getInt(cursor.getColumnIndex("USUARIO_ID")));
-                campanhaComercialItens.setUsuarioNome(cursor.getString(cursor.getColumnIndex("USUARIO_NOME")));
-                campanhaComercialItens.setUsuarioData(cursor.getString(cursor.getColumnIndex("USUARIO_DATA")));
-                lista.add(campanhaComercialItens);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    lista.add(setCampanhaComercialItens(cursor));
+                } while (cursor.moveToNext());
             }
-        } while (cursor.moveToNext());
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
+    }
+
+    private CampanhaComercialItens setCampanhaComercialItens(Cursor cursor) {
+        CampanhaComercialItens item = new CampanhaComercialItens();
+        try {
+            item.setAtivo(getString(cursor, "ATIVO"));
+            item.setIdEmpresa(getInt(cursor, "ID_EMPRESA"));
+            item.setIdTipoCampanha(getInt(cursor, "ID_TIPO_CAMPANHA"));
+            item.setIdBaseCampanha(getInt(cursor, "ID_BASE_CAMPANHA"));
+            item.setIdCampanha(getInt(cursor, "ID_CAMPANHA"));
+            item.setIdLinhaProduto(getInt(cursor, "ID_LINHA_PRODUTO"));
+            item.setIdProdutoVenda(getString(cursor, "ID_PRODUTO_VENDA"));
+            item.setNomeProdutoLinha(getString(cursor, "NOME_PRODUTO_LINHA"));
+            item.setQuantidadeVenda(getFloat(cursor, "QUANTIDADE_VENDA"));
+            item.setIdProdutoBonus(getString(cursor, "ID_PRODUTO_BONUS"));
+            item.setQuantidadeBonus(getFloat(cursor, "QUANTIDADE_BONUS"));
+            item.setNomeProdutoBonus(getString(cursor, "NOME_PRODUTO_BONUS"));
+            item.setUsuarioId(getInt(cursor, "USUARIO_ID"));
+            item.setUsuarioNome(getString(cursor, "USUARIO_NOME"));
+            item.setUsuarioData(getString(cursor, "USUARIO_DATA"));
+        } catch (Exception ignored) {
+        }
+        return item;
+    }
+
+    // =========================================================================
+    // AUXILIARES NECESSÁRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private float getFloat(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0.0f;
+        try {
+            return Float.parseFloat(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0.0f;
+        }
     }
 }

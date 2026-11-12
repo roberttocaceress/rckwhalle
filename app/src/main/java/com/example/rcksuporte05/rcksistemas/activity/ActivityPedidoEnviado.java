@@ -1578,14 +1578,14 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
         webPedidoDuplicado.setAnalise_usuario_data(null);
         webPedidoDuplicado.setValor_faturado(null);
         try {
-            webPedidoDuplicado.setId_empresa(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
+            if (webPedidoDuplicado.getId_empresa() == null || webPedidoDuplicado.getId_empresa().trim().isEmpty() || "0".equals(webPedidoDuplicado.getId_empresa())) {
+                webPedidoDuplicado.setId_empresa(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice());
+            }
             webPedidoDuplicado.setId_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
             webPedidoDuplicado.setId_outro_vendedor(UsuarioHelper.getUsuario().getId_quando_vendedor());
             webPedidoDuplicado.setUsuario_lancamento_id(UsuarioHelper.getUsuario().getId_usuario());
             webPedidoDuplicado.setUsuario_lancamento_nome(UsuarioHelper.getUsuario().getNome_usuario());
-        } catch (NullPointerException e) {
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         try {
             ClienteHelper.setCliente(webPedidoDuplicado.getCadastro());
         } catch (NullPointerException e) {
@@ -1601,26 +1601,46 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
         PedidoHelper.setWebPedido(webPedidoDuplicado);
         PedidoHelper.setListaWebPedidoItens(webPedidoDuplicado.getWebPedidoItens());
 
+        dismissProgressDialogCustom();
+        cliqueAtivo = true;
+
+        Cliente cliente = webPedidoDuplicado.getCadastro();
+
+        DialogHelper.showFichaClienteInteligenteDialog(
+                this,
+                db,
+                cliente,
+                (idAnaliseApp) -> prosseguirCheckinEPedidoDuplicacao(webPedidoDuplicado, idAnaliseApp)
+        );
+    }
+
+    private void prosseguirCheckinEPedidoDuplicacao(WebPedido webPedidoDuplicado, String idAnaliseApp) {
         getConfiguracao();
         Cliente cliente = webPedidoDuplicado.getCadastro();
-        if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S") && cliente != null) {
-            dismissProgressDialogCustom();
-            cliqueAtivo = true;
 
+        String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+        int idVendedorNum = 0;
+        int idEmpresaNum = 0;
+        try {
+            if (UsuarioHelper.getUsuario() != null) {
+                if (UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                }
+                idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice().trim());
+            }
+        } catch (Exception ignored) {}
+
+        int idClienteNum = (cliente != null && cliente.getId_cadastro_servidor() > 0) ? cliente.getId_cadastro_servidor() : (cliente != null ? cliente.getId_cadastro() : 0);
+        String idVisitaApp = String.format("%03d", idVendedorNum) + "V0000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+        final int idVendedorFinal = idVendedorNum;
+        final int idClienteFinal = idClienteNum;
+
+        // Se trabalha com Check-in ativado ("S")
+        if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S") && cliente != null) {
             String razao = cliente.getNome_cadastro() != null ? cliente.getNome_cadastro() : "";
             String fantasia = cliente.getNome_fantasia() != null ? cliente.getNome_fantasia() : "";
             String end = cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf();
-
-            String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
-            int idVendedorNum = 0;
-            try {
-                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
-                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
-                }
-            } catch (Exception ignored) {}
-
-            int idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
-            String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
 
             DialogHelper.showCheckInClienteDialog(
                     this,
@@ -1631,12 +1651,8 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
                         try {
                             com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
                             visita.setIdVisitaApp(idVisitaApp);
-                            if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
-                                try {
-                                    visita.setIdVendedor(Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor()));
-                                } catch (Exception ignored) {}
-                            }
-                            visita.setIdClienteServidor(idClienteNum);
+                            visita.setIdVendedor(idVendedorFinal);
+                            visita.setIdClienteServidor(idClienteFinal);
                             visita.setDataHoraCheckin(db.pegaDataHoraAtual());
 
                             if (locationData != null && locationData.hasLocation) {
@@ -1655,22 +1671,29 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
 
                             com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                             visitaDAO.salvarVisita(visita);
+
+                            // Vincula visita com a análise criada
+                            if (idAnaliseApp != null && !idAnaliseApp.isEmpty()) {
+                                com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                analiseDAO.vincularVisitaAnalise(idAnaliseApp, idVisitaApp);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
 
                         webPedidoDuplicado.setId_visita_app(idVisitaApp);
+                        webPedidoDuplicado.setId_analise_app(idAnaliseApp);
                         PedidoHelper.setWebPedido(webPedidoDuplicado);
                         PedidoHelper.setListaWebPedidoItens(webPedidoDuplicado.getWebPedidoItens());
 
                         finish();
                         Intent intent = new Intent(ActivityPedidoEnviado.this, ActivityPedidoMain.class);
                         intent.putExtra("id_visita_app", idVisitaApp);
+                        intent.putExtra("id_analise_app", idAnaliseApp);
                         startActivity(intent);
                         cliqueAtivo = true;
                     },
                     () -> {
-                        // Se cancelar o checkin, fecha o progresso e libera cliques
                         dismissProgressDialogCustom();
                         cliqueAtivo = true;
                     }
@@ -1678,13 +1701,41 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
             return;
         }
 
-        dismissProgressDialogCustom();
-        cliqueAtivo = true;
+        // Se NÃO trabalha com Check-in ativado ("N"), auto-cria a visita em background
+        try {
+            com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+            visita.setIdVisitaApp(idVisitaApp);
+            visita.setIdVendedor(idVendedorFinal);
+            visita.setIdClienteServidor(idClienteFinal);
+            visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+            visita.setStatusVisita("A");
+            visita.setObservacao("Check-in não executado (Parâmetro desativado)");
+            visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+            com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+            visitaDAO.salvarVisita(visita);
+
+            // Vincula visita com a análise criada
+            if (idAnaliseApp != null && !idAnaliseApp.isEmpty()) {
+                com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                analiseDAO.vincularVisitaAnalise(idAnaliseApp, idVisitaApp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        webPedidoDuplicado.setId_visita_app(idVisitaApp);
+        webPedidoDuplicado.setId_analise_app(idAnaliseApp);
+        PedidoHelper.setWebPedido(webPedidoDuplicado);
+        PedidoHelper.setListaWebPedidoItens(webPedidoDuplicado.getWebPedidoItens());
+
         finish();
-        startActivity(new Intent(ActivityPedidoEnviado.this, ActivityPedidoMain.class));
+        Intent intent = new Intent(ActivityPedidoEnviado.this, ActivityPedidoMain.class);
+        intent.putExtra("id_visita_app", idVisitaApp);
+        intent.putExtra("id_analise_app", idAnaliseApp);
+        startActivity(intent);
         cliqueAtivo = true;
     }
-
 
     private boolean usuarioIsLogado() {
         UsuarioBO usuarioBO = new UsuarioBO();
@@ -2263,20 +2314,70 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
      * NOVO: Métodos auxiliares para isolar a lógica de duplicação com progress dialog.
      */
     private void executarDuplicacao(WebPedido webPedido) {
-        showProgressDialogCustom("Duplicando pedido, aguarde...");
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            duplicaPedido(webPedido);
-            cliqueAtivo = true;
-        }, 200);
+        List<EmpresaParametro> listaEmpresas = new EmpresaParametroDAO(db).getLista("SELECT * FROM TBL_EMPRESA_PARAMETRO");
+        if (listaEmpresas != null && listaEmpresas.size() > 1) {
+            String[] nomesEmpresas = new String[listaEmpresas.size()];
+            for (int i = 0; i < listaEmpresas.size(); i++) {
+                nomesEmpresas[i] = listaEmpresas.get(i).getRazao_social() != null ? listaEmpresas.get(i).getRazao_social() : "Empresa #" + listaEmpresas.get(i).getId_empresa();
+            }
+
+            new androidx.appcompat.app.AlertDialog.Builder(context)
+                    .setTitle("Selecione a Empresa")
+                    .setItems(nomesEmpresas, (dialog, which) -> {
+                        webPedido.setId_empresa(String.valueOf(listaEmpresas.get(which).getId_empresa()));
+                        showProgressDialogCustom("Duplicando pedido, aguarde...");
+                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                            duplicaPedido(webPedido);
+                            cliqueAtivo = true;
+                        }, 200);
+                    })
+                    .setNegativeButton("CANCELAR", (dialog, which) -> {
+                        cliqueAtivo = true;
+                        dialog.dismiss();
+                    })
+                    .show();
+        } else {
+            showProgressDialogCustom("Duplicando pedido, aguarde...");
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                duplicaPedido(webPedido);
+                cliqueAtivo = true;
+            }, 200);
+        }
     }
 
     private void executarDuplicacao(ActionMode mode, WebPedido webPedido) {
-        showProgressDialogCustom("Duplicando pedido, aguarde...");
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            try { if (mode != null) mode.finish(); } catch (NullPointerException e) { e.printStackTrace(); }
-            duplicaPedido(webPedido);
-            cliqueAtivo = true;
-        }, 200);
+        List<EmpresaParametro> listaEmpresas = new EmpresaParametroDAO(db).getLista("SELECT * FROM TBL_EMPRESA_PARAMETRO");
+        if (listaEmpresas != null && listaEmpresas.size() > 1) {
+            String[] nomesEmpresas = new String[listaEmpresas.size()];
+            for (int i = 0; i < listaEmpresas.size(); i++) {
+                nomesEmpresas[i] = listaEmpresas.get(i).getRazao_social() != null ? listaEmpresas.get(i).getRazao_social() : "Empresa #" + listaEmpresas.get(i).getId_empresa();
+            }
+
+            new androidx.appcompat.app.AlertDialog.Builder(context)
+                    .setTitle("Selecione a Empresa")
+                    .setItems(nomesEmpresas, (dialog, which) -> {
+                        try { if (mode != null) mode.finish(); } catch (Exception ignored) {}
+                        webPedido.setId_empresa(String.valueOf(listaEmpresas.get(which).getId_empresa()));
+                        showProgressDialogCustom("Duplicando pedido, aguarde...");
+                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                            duplicaPedido(webPedido);
+                            cliqueAtivo = true;
+                        }, 200);
+                    })
+                    .setNegativeButton("CANCELAR", (dialog, which) -> {
+                        try { if (mode != null) mode.finish(); } catch (Exception ignored) {}
+                        cliqueAtivo = true;
+                        dialog.dismiss();
+                    })
+                    .show();
+        } else {
+            showProgressDialogCustom("Duplicando pedido, aguarde...");
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                try { if (mode != null) mode.finish(); } catch (NullPointerException e) { e.printStackTrace(); }
+                duplicaPedido(webPedido);
+                cliqueAtivo = true;
+            }, 200);
+        }
     }
 
     private View getPopulatedSummaryView(WebPedido pedido, boolean mostrarTotal) {
@@ -2345,22 +2446,7 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
                     @Override public void onPositive() { cliqueAtivo = true; }
                     @Override public void onNegative() {
                         if (id == R.id.btnDuplic || id == -400) {
-                            // QUESTÃO: VERIFICAÇÃO DE DÉBITO NA DUPLICAÇÃO (ENVIADOS)
-                            float vencido = 0.00f;
-                            float vencendo = 0.00f;
-                            try {
-                                vencido = Float.parseFloat(webPedido.getCadastro().getFinanceiro_vencido() == null ? "0.00" : webPedido.getCadastro().getFinanceiro_vencido());
-                                vencendo = Float.parseFloat(webPedido.getCadastro().getFinanceiro_vencendo() == null ? "0.00" : webPedido.getCadastro().getFinanceiro_vencendo());
-                            } catch (Exception ignored) {}
-
-                            if (vencido > 0 || vencendo > 0) {
-                                DialogHelper.showDebtorAlertaDialog(ActivityPedidoEnviado.this, vencido, vencendo, 
-                                        "O cliente possui pendências financeiras registradas. Deseja prosseguir com a DUPLICAÇÃO do pedido mesmo assim?", () -> {
-                                    executarDuplicacao(webPedido);
-                                });
-                            } else {
-                                executarDuplicacao(webPedido);
-                            }
+                            executarDuplicacao(webPedido);
                         } else if (id == R.id.btnCompartilhar || id == -500) {
                             showProgressDialogCustom("Preparando compartilhamento...");
                             new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -2425,23 +2511,8 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
                                 cliqueAtivo = true;
                             }, 200);
                         } else if (id == R.id.action_duplica_pedido) {
-                            // QUESTÃO: VERIFICAÇÃO DE DÉBITO NA DUPLICAÇÃO (ENVIADOS - ACTION MODE)
                             WebPedido pedidoParaDuplicar = pedidosSelecionados.get(0);
-                            float vencido = 0.00f;
-                            float vencendo = 0.00f;
-                            try {
-                                vencido = Float.parseFloat(pedidoParaDuplicar.getCadastro().getFinanceiro_vencido() == null ? "0.00" : pedidoParaDuplicar.getCadastro().getFinanceiro_vencido());
-                                vencendo = Float.parseFloat(pedidoParaDuplicar.getCadastro().getFinanceiro_vencendo() == null ? "0.00" : pedidoParaDuplicar.getCadastro().getFinanceiro_vencendo());
-                            } catch (Exception ignored) {}
-
-                            if (vencido > 0 || vencendo > 0) {
-                                DialogHelper.showDebtorAlertaDialog(ActivityPedidoEnviado.this, vencido, vencendo, 
-                                        "O cliente possui pendências financeiras registradas. Deseja prosseguir com a DUPLICAÇÃO do pedido mesmo assim?", () -> {
-                                    executarDuplicacao(mode, pedidoParaDuplicar);
-                                });
-                            } else {
-                                executarDuplicacao(mode, pedidoParaDuplicar);
-                            }
+                            executarDuplicacao(mode, pedidoParaDuplicar);
                         }
                     }
                     @Override public void onNeutral() {}
@@ -2453,12 +2524,12 @@ public class ActivityPedidoEnviado extends AppCompatActivity implements ListaPed
     public void showFeedbackDialog(String mensagem, boolean sucesso, boolean fimActivity, Integer iconId) {
         if (isFinishing() || isDestroyed()) return;
         DialogHelper.showFeedbackDialog(
-                this,
-                sucesso ? "Sucesso" : "Atenção", // Título dinâmico
+                ActivityPedidoEnviado.this,
+                sucesso ? "Sucesso" : "Atenção",
                 mensagem,
                 sucesso,
                 iconId,
-                null, // Passando a cor personalizada
+                null,
                 () -> {
                     System.gc();
                 }

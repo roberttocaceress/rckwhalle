@@ -48,6 +48,8 @@ public class WebPedido {
     private List<WebPedidoItens> webPedidoItens;
     private WebVisita webVisita;
     private WebAnalise webAnalise;
+
+    private CadastroAnexo webAnexo;
     private String pedido_enviado;
     private String finalizado;
     private String id_visita_app;
@@ -809,5 +811,13 @@ public class WebPedido {
 
     public void setWebAnalise(WebAnalise webAnalise) {
         this.webAnalise = webAnalise;
+    }
+
+    public CadastroAnexo getWebAnexo() {
+        return webAnexo;
+    }
+
+    public void setWebAnexo(CadastroAnexo webAnexo) {
+        this.webAnexo = webAnexo;
     }
 }

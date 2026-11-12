@@ -2,22 +2,21 @@ package com.example.rcksuporte05.rcksistemas.DAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.rcksuporte05.rcksistemas.model.CadastroCondicoesPagamento;
 import com.example.rcksuporte05.rcksistemas.model.CondicoesPagamento;
-import com.example.rcksuporte05.rcksistemas.model.TabelaPrecoItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CondicoesPagamentoDAO {
     private DBHelper db;
+
     public CondicoesPagamentoDAO(DBHelper db) {
         this.db = db;
     }
+
     public long add(CondicoesPagamento condicoesPagamento) {
         ContentValues content = new ContentValues();
         try {
@@ -35,11 +34,8 @@ public class CondicoesPagamentoDAO {
             content.put("PUBLICAR_NA_WEB", condicoesPagamento.getPublicar_na_web());
             content.put("ACEITA_DESCONTO", condicoesPagamento.getAceita_desconto());
             content.put("DESCONTO_PERC", condicoesPagamento.getDesconto_perc());
-            //System.gc();
             return db.addDados("TBL_CONDICOES_PAG_CAB", content);
-        } catch (NullPointerException | SQLException e) {
-        } catch (Exception e) {
-
+        } catch (NullPointerException | SQLException ignored) {
         }
         return 0;
     }
@@ -47,63 +43,39 @@ public class CondicoesPagamentoDAO {
     public List<CondicoesPagamento> getLista(String SQL) {
         List<CondicoesPagamento> lista = new ArrayList<>();
         Cursor cursor = db.listaDados(SQL);
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return lista;
-        cursor.moveToFirst();
-        do {
-            CondicoesPagamento condicoesPagamento = new CondicoesPagamento();
-            try {
-                condicoesPagamento.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                condicoesPagamento.setId_condicao(cursor.getString(cursor.getColumnIndex("ID_CONDICAO")));
-                condicoesPagamento.setNome_condicao(cursor.getString(cursor.getColumnIndex("NOME_CONDICAO")));
-                condicoesPagamento.setNumero_parcelas(cursor.getString(cursor.getColumnIndex("NUMERO_PARCELAS")));
-                condicoesPagamento.setIntervalo_dias(cursor.getString(cursor.getColumnIndex("INTERVALO_DIAS")));
-                condicoesPagamento.setTipo_condicao(cursor.getString(cursor.getColumnIndex("TIPO_CONDICAO")));
-                condicoesPagamento.setNfe_tipo_financeiro(cursor.getString(cursor.getColumnIndex("NFE_TIPO_FINANCEIRO")));
-                condicoesPagamento.setNfe_mostrar_parcelas(cursor.getString(cursor.getColumnIndex("NFE_MOSTRAR_PARCELAS")));
-                condicoesPagamento.setUsuario_id(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-                condicoesPagamento.setUsuario_nome(cursor.getString(cursor.getColumnIndex("USUARIO_NOME")));
-                condicoesPagamento.setUsuario_data(cursor.getString(cursor.getColumnIndex("USUARIO_DATA")));
-                condicoesPagamento.setPublicar_na_web(cursor.getString(cursor.getColumnIndex("PUBLICAR_NA_WEB")));
-                condicoesPagamento.setAceita_desconto(cursor.getString(cursor.getColumnIndex("ACEITA_DESCONTO")));
-                condicoesPagamento.setDesconto_perc(cursor.getString(cursor.getColumnIndex("DESCONTO_PERC")));
-                lista.add(condicoesPagamento);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    lista.add(setCondicoesPagamento(cursor));
+                } while (cursor.moveToNext());
             }
-        } while (cursor.moveToNext());
-        cursor.close();
-        //System.gc();
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
     }
 
-
     public CondicoesPagamento getCondicao(String SQL) {
         Cursor cursor = db.listaDados(SQL);
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return null;
-        cursor.moveToFirst();
-            CondicoesPagamento condicoesPagamento = new CondicoesPagamento();
-            try {
-                condicoesPagamento.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                condicoesPagamento.setId_condicao(cursor.getString(cursor.getColumnIndex("ID_CONDICAO")));
-                condicoesPagamento.setNome_condicao(cursor.getString(cursor.getColumnIndex("NOME_CONDICAO")));
-                condicoesPagamento.setNumero_parcelas(cursor.getString(cursor.getColumnIndex("NUMERO_PARCELAS")));
-                condicoesPagamento.setIntervalo_dias(cursor.getString(cursor.getColumnIndex("INTERVALO_DIAS")));
-                condicoesPagamento.setTipo_condicao(cursor.getString(cursor.getColumnIndex("TIPO_CONDICAO")));
-                condicoesPagamento.setNfe_tipo_financeiro(cursor.getString(cursor.getColumnIndex("NFE_TIPO_FINANCEIRO")));
-                condicoesPagamento.setNfe_mostrar_parcelas(cursor.getString(cursor.getColumnIndex("NFE_MOSTRAR_PARCELAS")));
-                condicoesPagamento.setUsuario_id(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-                condicoesPagamento.setUsuario_nome(cursor.getString(cursor.getColumnIndex("USUARIO_NOME")));
-                condicoesPagamento.setUsuario_data(cursor.getString(cursor.getColumnIndex("USUARIO_DATA")));
-                condicoesPagamento.setPublicar_na_web(cursor.getString(cursor.getColumnIndex("PUBLICAR_NA_WEB")));
-                condicoesPagamento.setAceita_desconto(cursor.getString(cursor.getColumnIndex("ACEITA_DESCONTO")));
-                condicoesPagamento.setDesconto_perc(cursor.getString(cursor.getColumnIndex("DESCONTO_PERC")));
-                return condicoesPagamento;
-            } catch (CursorIndexOutOfBoundsException e) {
-                return null;
-            }
-
+        }
+        try {
+            if (cursor.moveToFirst())
+                return setCondicoesPagamento(cursor);
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
+        return null;
     }
 
     public long add(CadastroCondicoesPagamento cadastroCondicoesPagamento) {
@@ -112,11 +84,38 @@ public class CondicoesPagamentoDAO {
             content.put("ID_CONDICAO", cadastroCondicoesPagamento.getId_condicao());
             content.put("ID_CADASTRO", cadastroCondicoesPagamento.getId_cadastro());
             return db.addDados("TBL_CADASTRO_CONDICOES_PAG", content);
-        } catch (NullPointerException | SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException | SQLException ignored) {
         }
         return 0;
+    }
+
+    private CondicoesPagamento setCondicoesPagamento(Cursor cursor) {
+        CondicoesPagamento condicoesPagamento = new CondicoesPagamento();
+        try {
+            condicoesPagamento.setAtivo(getString(cursor, "ATIVO"));
+            condicoesPagamento.setId_condicao(getString(cursor, "ID_CONDICAO"));
+            condicoesPagamento.setNome_condicao(getString(cursor, "NOME_CONDICAO"));
+            condicoesPagamento.setNumero_parcelas(getString(cursor, "NUMERO_PARCELAS"));
+            condicoesPagamento.setIntervalo_dias(getString(cursor, "INTERVALO_DIAS"));
+            condicoesPagamento.setTipo_condicao(getString(cursor, "TIPO_CONDICAO"));
+            condicoesPagamento.setNfe_tipo_financeiro(getString(cursor, "NFE_TIPO_FINANCEIRO"));
+            condicoesPagamento.setNfe_mostrar_parcelas(getString(cursor, "NFE_MOSTRAR_PARCELAS"));
+            condicoesPagamento.setUsuario_id(getString(cursor, "USUARIO_ID"));
+            condicoesPagamento.setUsuario_nome(getString(cursor, "USUARIO_NOME"));
+            condicoesPagamento.setUsuario_data(getString(cursor, "USUARIO_DATA"));
+            condicoesPagamento.setPublicar_na_web(getString(cursor, "PUBLICAR_NA_WEB"));
+            condicoesPagamento.setAceita_desconto(getString(cursor, "ACEITA_DESCONTO"));
+            condicoesPagamento.setDesconto_perc(getString(cursor, "DESCONTO_PERC"));
+        } catch (Exception ignored) {
+        }
+        return condicoesPagamento;
+    }
+
+    // =========================================================================
+    // AUXILIAR NECESSÁRIO (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
     }
 }

@@ -30,6 +30,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.example.rcksuporte05.rcksistemas.model.Cliente;
+import android.database.Cursor;
 import com.example.rcksuporte05.rcksistemas.model.FichaProdutoItem;
 import com.example.rcksuporte05.rcksistemas.model.Generico;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -918,11 +920,22 @@ public class DialogHelper {
             String nomeFantasia,
             String endereco,
             OnCheckInConfirmedListener onConfirmCheckIn) {
-        showCheckInClienteDialog(context, razaoSocial, nomeFantasia, endereco, onConfirmCheckIn, null);
+        showCheckInClienteDialog(context, null, razaoSocial, nomeFantasia, endereco, onConfirmCheckIn, null);
     }
 
     public static void showCheckInClienteDialog(
             Context context,
+            String razaoSocial,
+            String nomeFantasia,
+            String endereco,
+            OnCheckInConfirmedListener onConfirmCheckIn,
+            Runnable onCancelCheckIn) {
+        showCheckInClienteDialog(context, null, razaoSocial, nomeFantasia, endereco, onConfirmCheckIn, onCancelCheckIn);
+    }
+
+    public static void showCheckInClienteDialog(
+            Context context,
+            Cliente cliente,
             String razaoSocial,
             String nomeFantasia,
             String endereco,
@@ -939,6 +952,50 @@ public class DialogHelper {
         TextView tvLng = dialogView.findViewById(R.id.tvCheckInLongitude);
         TextView tvAltPrec = dialogView.findViewById(R.id.tvCheckInAltitudePrecisao);
         ImageView ivMap = dialogView.findViewById(R.id.ivPlaceholderMapa);
+
+        // CARREGA A FOTO DA FACHADA DO CLIENTE SE EXISTIR EM TBL_CADASTRO_ANEXOS
+        ImageView ivFotoEstabelecimento = dialogView.findViewById(R.id.ivFotoEstabelecimento);
+        if (ivFotoEstabelecimento != null) {
+            Cliente cliAlvo = cliente != null ? cliente : com.example.rcksuporte05.rcksistemas.Helper.ClienteHelper.getCliente();
+            if (cliAlvo != null) {
+                try {
+                    com.example.rcksuporte05.rcksistemas.DAO.DBHelper dbLocal = new com.example.rcksuporte05.rcksistemas.DAO.DBHelper(context);
+                    int idCliLoc = cliAlvo.getId_cadastro();
+                    int idCliSrv = cliAlvo.getId_cadastro_servidor();
+
+                    String sqlAnexo = "SELECT ANEXO FROM TBL_CADASTRO_ANEXOS WHERE EXCLUIDO = 'N' AND ("
+                            + (idCliLoc > 0 ? "ID_CADASTRO = " + idCliLoc : "1=0")
+                            + (idCliSrv > 0 ? " OR ID_CADASTRO_SERVIDOR = " + idCliSrv : "")
+                            + ") ORDER BY PRINCIPAL DESC, ID_ANEXO DESC LIMIT 1";
+
+                    Cursor cursorAnexo = dbLocal.listaDados(sqlAnexo);
+                    if (cursorAnexo != null && cursorAnexo.moveToFirst()) {
+                        int idxAnexo = cursorAnexo.getColumnIndex("ANEXO");
+                        if (idxAnexo != -1) {
+                            String base64Anexo = cursorAnexo.getString(idxAnexo);
+                            if (base64Anexo != null && !base64Anexo.trim().isEmpty()) {
+                                byte[] data = android.util.Base64.decode(base64Anexo.trim(), android.util.Base64.DEFAULT);
+                                android.graphics.Bitmap bitmap = android.graphics.BitmapFactory.decodeByteArray(data, 0, data.length);
+                                if (bitmap != null) {
+                                    ivFotoEstabelecimento.setImageBitmap(bitmap);
+                                    ivFotoEstabelecimento.setPadding(0, 0, 0, 0);
+                                    ivFotoEstabelecimento.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                    ivFotoEstabelecimento.clearColorFilter();
+                                    ivFotoEstabelecimento.setColorFilter(null);
+                                    ivFotoEstabelecimento.setImageTintList(null);
+                                    ivFotoEstabelecimento.setBackgroundResource(0);
+                                }
+                            }
+                        }
+                        cursorAnexo.close();
+                    } else if (cursorAnexo != null) {
+                        cursorAnexo.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         if (tvRazao != null && razaoSocial != null && !razaoSocial.isEmpty()) {
             tvRazao.setText(razaoSocial);
@@ -1033,8 +1090,11 @@ public class DialogHelper {
         if (btnConfirmarCheckIn != null) {
             btnConfirmarCheckIn.setOnClickListener(v -> {
                 dialog.dismiss();
+                byte[] fotoBytes = CameraPhotoHelper.getPhotoBytes(75);
+                if (fotoBytes != null && fotoBytes.length > 0) {
+                    salvarFotoFachadaAnexo(context, cliente, fotoBytes);
+                }
                 if (onConfirmCheckIn != null) {
-                    byte[] fotoBytes = CameraPhotoHelper.getPhotoBytes(75);
                     onConfirmCheckIn.onCheckInConfirmed(currentLoc[0], fotoBytes);
                 }
             });
@@ -1051,6 +1111,49 @@ public class DialogHelper {
         }
 
         dialog.show();
+    }
+
+    public static void salvarFotoFachadaAnexo(Context context, Cliente cliente, byte[] fotoBytes) {
+        if (context == null || fotoBytes == null || fotoBytes.length == 0) return;
+        Cliente cliAlvo = cliente != null ? cliente : com.example.rcksuporte05.rcksistemas.Helper.ClienteHelper.getCliente();
+        if (cliAlvo == null) return;
+
+        try {
+            com.example.rcksuporte05.rcksistemas.DAO.DBHelper dbLocal = new com.example.rcksuporte05.rcksistemas.DAO.DBHelper(context);
+            int idCliLoc = cliAlvo.getId_cadastro();
+            int idCliSrv = cliAlvo.getId_cadastro_servidor();
+
+            // 1. Apaga APENAS a foto/anexo local criada no app (ID_ANEXO_SERVIDOR = 0 ou NULL), preservando anexos do servidor
+            String whereDelete = "ID_ENTIDADE = 1 AND (ID_ANEXO_SERVIDOR = 0 OR ID_ANEXO_SERVIDOR IS NULL) AND ("
+                    + (idCliLoc > 0 ? "ID_CADASTRO = " + idCliLoc : "1=0")
+                    + (idCliSrv > 0 ? " OR ID_CADASTRO_SERVIDOR = " + idCliSrv : "")
+                    + ")";
+            dbLocal.deleteDados("TBL_CADASTRO_ANEXOS", whereDelete, null);
+
+            // 2. Cria o novo anexo
+            com.example.rcksuporte05.rcksistemas.model.CadastroAnexo anexo = new com.example.rcksuporte05.rcksistemas.model.CadastroAnexo();
+            anexo.setIdEntidade(1); // Sempre 1 (Entidade Cliente)
+            anexo.setIdCadastro(idCliLoc);
+            anexo.setIdCadastroServidor(idCliSrv);
+            anexo.setIdAnexoServidor(0);
+
+            String nomeAleatorio = "FACHADA_" + java.util.UUID.randomUUID().toString().substring(0, 8) + ".jpg";
+            anexo.setNomeAnexo(nomeAleatorio);
+
+            String base64Foto = android.util.Base64.encodeToString(fotoBytes, android.util.Base64.NO_WRAP);
+            anexo.setAnexo(base64Foto);
+            anexo.setExcluido("N"); // Sempre N
+            anexo.setPrincipal("N");
+
+            // 3. Grava na TBL_CADASTRO_ANEXOS
+            com.example.rcksuporte05.rcksistemas.DAO.CadastroAnexoDAO anexoDAO = new com.example.rcksuporte05.rcksistemas.DAO.CadastroAnexoDAO(dbLocal);
+            anexoDAO.addUpdate(anexo);
+
+            android.util.Log.d("ANEXO_DEBUG", "Nova foto de fachada gravada na TBL_CADASTRO_ANEXOS! Nome: " + nomeAleatorio + " | Cliente ID: " + idCliLoc);
+        } catch (Exception e) {
+            android.util.Log.e("ANEXO_DEBUG", "Erro ao gravar foto na TBL_CADASTRO_ANEXOS: " + e.getMessage(), e);
+            e.printStackTrace();
+        }
     }
 
     public interface OnMotivoSelectedListener {
@@ -1385,7 +1488,9 @@ public class DialogHelper {
                         webAnalise.setVersaoApp(com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME);
 
                         com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
-                        analiseDAO.salvarAnalise(webAnalise);
+                        long rowId = analiseDAO.salvarAnalise(webAnalise);
+                        int totalAnalises = db.contagem("SELECT COUNT(*) FROM TBL_WEB_ANALISE");
+                        android.util.Log.d("ANALISE_DEBUG", "Ficha Inteligente -> Análise Salva com sucesso! ROW_ID: " + rowId + " | Total Gravado na TBL_WEB_ANALISE: " + totalAnalises);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1419,6 +1524,14 @@ public class DialogHelper {
 
     public static void showFichaClienteHistoricoDialog(
             Context context,
+            com.example.rcksuporte05.rcksistemas.model.WebAnalise analise,
+            com.example.rcksuporte05.rcksistemas.model.Cliente cliente) {
+        showFichaClienteHistoricoDialog(context, null, analise, cliente);
+    }
+
+    public static void showFichaClienteHistoricoDialog(
+            Context context,
+            com.example.rcksuporte05.rcksistemas.DAO.DBHelper db,
             com.example.rcksuporte05.rcksistemas.model.WebAnalise analise,
             com.example.rcksuporte05.rcksistemas.model.Cliente cliente) {
 
@@ -1481,9 +1594,9 @@ public class DialogHelper {
             tvDataHora.setText("📅 Análise realizada em: " + dataHoraFormatada);
         }
 
-        double limiteCred = analise.getLimiteCredito();
-        double saldoDisp = analise.getLimiteDisponivel();
-        double ticketMedio = analise.getTicketMedio();
+        double limiteCred = analise.getLimiteCredito() != null ? analise.getLimiteCredito() : 0.0;
+        double saldoDisp = analise.getLimiteDisponivel() != null ? analise.getLimiteDisponivel() : 0.0;
+        double ticketMedio = analise.getTicketMedio() != null ? analise.getTicketMedio() : 0.0;
 
         if (tvLimiteCredito != null) tvLimiteCredito.setText(MascaraUtil.mascaraRealSimboloD(limiteCred));
 
@@ -1544,9 +1657,106 @@ public class DialogHelper {
                 .setCancelable(true)
                 .create();
 
+        Button btnConsultarPedido = dialogView.findViewById(R.id.btnConsultarPedidoFicha);
         Button btnFechar = dialogView.findViewById(R.id.btnFecharFichaInteligente);
+
         if (btnFechar != null) {
             btnFechar.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        // BUSCA PEDIDO VINCULADO À ANÁLISE OU VISITA NO SQLITE LOCAL
+        com.example.rcksuporte05.rcksistemas.DAO.DBHelper dbLocal = (db != null) ? db : new com.example.rcksuporte05.rcksistemas.DAO.DBHelper(context);
+        com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO pedidoDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO(dbLocal);
+
+        int idPedSrv = (analise != null && analise.getIdPedidoServidor() != null) ? analise.getIdPedidoServidor() : 0;
+        int idCliSrv = (analise != null && analise.getIdClienteServidor() != null) ? analise.getIdClienteServidor() : 0;
+
+        String sqlPedido = "";
+        if (analise != null && analise.getIdPedidoApp() != null && !analise.getIdPedidoApp().trim().isEmpty()) {
+            sqlPedido = "SELECT * FROM TBL_WEB_PEDIDO WHERE EXCLUIDO = 'N' AND ID_PEDIDO_APP = '" + analise.getIdPedidoApp().trim() + "' LIMIT 1";
+        } else if (idPedSrv > 0) {
+            sqlPedido = "SELECT * FROM TBL_WEB_PEDIDO WHERE EXCLUIDO = 'N' AND (ID_WEB_PEDIDO = " + idPedSrv + " OR ID_PEDIDO = " + idPedSrv + ") LIMIT 1";
+        } else if (analise != null && analise.getIdVisitaApp() != null && !analise.getIdVisitaApp().trim().isEmpty()) {
+            sqlPedido = "SELECT * FROM TBL_WEB_PEDIDO WHERE EXCLUIDO = 'N' AND ID_VISITA_APP = '" + analise.getIdVisitaApp().trim() + "' LIMIT 1";
+        }
+
+        com.example.rcksuporte05.rcksistemas.model.WebPedido pedidoEncontrado = null;
+        if (!sqlPedido.isEmpty()) {
+            List<com.example.rcksuporte05.rcksistemas.model.WebPedido> listaP = pedidoDAO.getLista(sqlPedido);
+            if (listaP != null && !listaP.isEmpty()) {
+                pedidoEncontrado = listaP.get(0);
+            }
+        }
+
+        boolean temIdPedidoValido = analise != null && (idPedSrv > 0 || (analise.getIdPedidoApp() != null && !analise.getIdPedidoApp().trim().isEmpty()));
+
+        if (pedidoEncontrado != null && btnConsultarPedido != null) {
+            btnConsultarPedido.setText("CONSULTAR PEDIDO");
+            btnConsultarPedido.setVisibility(View.VISIBLE);
+            final com.example.rcksuporte05.rcksistemas.model.WebPedido pedFinal = pedidoEncontrado;
+            btnConsultarPedido.setOnClickListener(v -> {
+                dialog.dismiss();
+                try {
+                    int idPed = Integer.parseInt(pedFinal.getId_web_pedido());
+                    com.example.rcksuporte05.rcksistemas.Helper.PedidoHelper.setIdPedido(idPed);
+                } catch (Exception ignored) {}
+                com.example.rcksuporte05.rcksistemas.Helper.PedidoHelper.setWebPedido(pedFinal);
+                if (pedFinal.getCadastro() != null) {
+                    com.example.rcksuporte05.rcksistemas.Helper.ClienteHelper.setCliente(pedFinal.getCadastro());
+                } else if (cliente != null) {
+                    com.example.rcksuporte05.rcksistemas.Helper.ClienteHelper.setCliente(cliente);
+                }
+
+                if (com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.getUsuario() == null) {
+                    try {
+                        com.example.rcksuporte05.rcksistemas.BO.UsuarioBO usuarioBO = new com.example.rcksuporte05.rcksistemas.BO.UsuarioBO();
+                        com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper.setUsuario(usuarioBO.getUsuarioLogin(dbLocal));
+                    } catch (Exception ignored) {}
+                }
+
+                android.content.Intent intent = new android.content.Intent(context, com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain.class);
+                intent.putExtra("vizualizacao", 1);
+                context.startActivity(intent);
+            });
+        } else if (temIdPedidoValido
+                && context instanceof com.example.rcksuporte05.rcksistemas.activity.ActivityRelatorioVisitas
+                && UsuarioHelper.getUsuario() != null
+                && !"V".equalsIgnoreCase(UsuarioHelper.getUsuario().getUsuario_tipo())
+                && btnConsultarPedido != null) {
+
+            btnConsultarPedido.setText("BUSCAR PEDIDO NO SERVIDOR");
+            btnConsultarPedido.setVisibility(View.VISIBLE);
+            btnConsultarPedido.setOnClickListener(v -> {
+                ((com.example.rcksuporte05.rcksistemas.activity.ActivityRelatorioVisitas) context)
+                        .buscarPedidoServidorEmBackground(
+                                String.valueOf(idCliSrv),
+                                String.valueOf(idPedSrv),
+                                () -> {
+                                    String sqlP = "SELECT * FROM TBL_WEB_PEDIDO WHERE EXCLUIDO = 'N' AND (ID_WEB_PEDIDO_SERVIDOR = " + idPedSrv + " OR ID_CADASTRO = " + idCliSrv + ") ORDER BY ID_WEB_PEDIDO DESC LIMIT 1";
+                                    List<com.example.rcksuporte05.rcksistemas.model.WebPedido> lP = pedidoDAO.getLista(sqlP);
+                                    if (lP != null && !lP.isEmpty()) {
+                                        final com.example.rcksuporte05.rcksistemas.model.WebPedido pedNovo = lP.get(0);
+                                        btnConsultarPedido.setText("CONSULTAR PEDIDO");
+                                        btnConsultarPedido.setOnClickListener(v2 -> {
+                                            dialog.dismiss();
+                                            try {
+                                                int idPed = Integer.parseInt(pedNovo.getId_web_pedido());
+                                                com.example.rcksuporte05.rcksistemas.Helper.PedidoHelper.setIdPedido(idPed);
+                                            } catch (Exception ignored) {}
+                                            com.example.rcksuporte05.rcksistemas.Helper.PedidoHelper.setWebPedido(pedNovo);
+                                            if (pedNovo.getCadastro() != null) {
+                                                com.example.rcksuporte05.rcksistemas.Helper.ClienteHelper.setCliente(pedNovo.getCadastro());
+                                            }
+                                            android.content.Intent intent = new android.content.Intent(context, com.example.rcksuporte05.rcksistemas.activity.ActivityPedidoMain.class);
+                                            intent.putExtra("vizualizacao", 1);
+                                            context.startActivity(intent);
+                                        });
+                                    }
+                                }
+                        );
+            });
+        } else if (btnConsultarPedido != null) {
+            btnConsultarPedido.setVisibility(View.GONE);
         }
 
         dialog.show();
@@ -1555,7 +1765,7 @@ public class DialogHelper {
             android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
             ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = (int) (displayMetrics.widthPixels * 0.92);
-            int height = (int) (displayMetrics.heightPixels * 0.65);
+            int height = (int) (displayMetrics.heightPixels * 0.70);
             dialog.getWindow().setLayout(width, height);
         }
     }

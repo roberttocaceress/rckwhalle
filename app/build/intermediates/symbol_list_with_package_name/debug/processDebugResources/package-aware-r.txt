@@ -3456,6 +3456,7 @@ id btnConfirmarCheckIn
 id btnConfirmarNaoVenda
 id btnConsultaFinanceiro
 id btnConsultaPedidos
+id btnConsultarPedidoFicha
 id btnContinuar
 id btnCopiaSegura
 id btnDescCampanha

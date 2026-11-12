@@ -21,9 +21,9 @@ import java.lang.Override;
 public class ActivityClienteDrawer_ViewBinding implements Unbinder {
   private ActivityClienteDrawer target;
 
-  private View view7f0a00e9;
+  private View view7f0a00ea;
 
-  private View view7f0a00e1;
+  private View view7f0a00e2;
 
   @UiThread
   public ActivityClienteDrawer_ViewBinding(ActivityClienteDrawer target) {
@@ -42,7 +42,7 @@ public class ActivityClienteDrawer_ViewBinding implements Unbinder {
     target.helpCliente = Utils.findRequiredViewAsType(source, R.id.helpCliente, "field 'helpCliente'", ImageView.class);
     view = Utils.findRequiredView(source, R.id.btnInserirCliente, "field 'btnInserirCliente' and method 'inserirCliente'");
     target.btnInserirCliente = Utils.castView(view, R.id.btnInserirCliente, "field 'btnInserirCliente'", Button.class);
-    view7f0a00e9 = view;
+    view7f0a00ea = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +53,7 @@ public class ActivityClienteDrawer_ViewBinding implements Unbinder {
     target.cardFinalizarInclusao = Utils.findRequiredViewAsType(source, R.id.cardFinalizarInclusao, "field 'cardFinalizarInclusao'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao' and method 'btnFinalizarInclusao'");
     target.btnFinalizarInclusao = Utils.castView(view, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao'", Button.class);
-    view7f0a00e1 = view;
+    view7f0a00e2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,9 +79,9 @@ public class ActivityClienteDrawer_ViewBinding implements Unbinder {
     target.cardFinalizarInclusao = null;
     target.btnFinalizarInclusao = null;
 
-    view7f0a00e9.setOnClickListener(null);
-    view7f0a00e9 = null;
-    view7f0a00e1.setOnClickListener(null);
-    view7f0a00e1 = null;
+    view7f0a00ea.setOnClickListener(null);
+    view7f0a00ea = null;
+    view7f0a00e2.setOnClickListener(null);
+    view7f0a00e2 = null;
   }
 }

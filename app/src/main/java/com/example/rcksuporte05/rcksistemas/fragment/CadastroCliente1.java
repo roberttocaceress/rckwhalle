@@ -54,6 +54,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
+
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointBackward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -945,24 +950,47 @@ e.printStackTrace();
     }
 
     public void mostraDatePickerDialog(Context context, final EditText campoTexto) {
-        final Calendar calendar;
-        //Prepara data anterior caso ja tenha sido selecionada
-        calendar = campoTexto.getTag() != null ? ((Calendar) campoTexto.getTag()) : Calendar.getInstance();
-        //if (campoTexto.getTag() != null) {
-            //calendar = ((Calendar) campoTexto.getTag());
-        //} else {
-            //calendar = Calendar.getInstance();
-        //}
+        final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 
-        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                campoTexto.setText(new SimpleDateFormat("dd/MM/yyyy").format(newDate.getTime()));
-                campoTexto.setTag(newDate);
-            }
+        if (campoTexto.getTag() != null && campoTexto.getTag() instanceof Calendar) {
+            calendar.setTime(((Calendar) campoTexto.getTag()).getTime());
+        } else if (campoTexto.getText() != null && !campoTexto.getText().toString().trim().isEmpty()) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.US);
+                sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+                Date dataExistente = sdf.parse(campoTexto.getText().toString().trim());
+                if (dataExistente != null) {
+                    calendar.setTime(dataExistente);
+                }
+            } catch (Exception ignored) {}
+        }
 
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+        // Restringe para que a data NÃO possa ser maior que a data atual (Hoje)
+        CalendarConstraints constraints = new CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointBackward.now())
+                .build();
+
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Selecione ou digite a data")
+                .setSelection(calendar.getTimeInMillis())
+                .setCalendarConstraints(constraints)
+                .build();
+
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar newDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            newDate.setTimeInMillis(selection);
+
+            SimpleDateFormat sdfOut = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.US);
+            sdfOut.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            campoTexto.setText(sdfOut.format(newDate.getTime()));
+
+            Calendar tagCalendar = Calendar.getInstance();
+            tagCalendar.setTime(newDate.getTime());
+            campoTexto.setTag(tagCalendar);
+        });
+
+        datePicker.show(getChildFragmentManager(), "MATERIAL_DATE_PICKER");
     }
 
     public boolean verificaCpfCnpj(String cpfCnpj) {

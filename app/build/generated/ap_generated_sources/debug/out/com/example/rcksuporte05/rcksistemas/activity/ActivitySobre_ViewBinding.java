@@ -17,13 +17,13 @@ import java.lang.Override;
 public class ActivitySobre_ViewBinding implements Unbinder {
   private ActivitySobre target;
 
-  private View view7f0a03f0;
+  private View view7f0a03f1;
 
-  private View view7f0a03f7;
+  private View view7f0a03f8;
 
-  private View view7f0a03db;
+  private View view7f0a03dc;
 
-  private View view7f0a0418;
+  private View view7f0a0419;
 
   @UiThread
   public ActivitySobre_ViewBinding(ActivitySobre target) {
@@ -37,7 +37,7 @@ public class ActivitySobre_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.lyGps, "field 'lyGps' and method 'gps'");
     target.lyGps = Utils.castView(view, R.id.lyGps, "field 'lyGps'", LinearLayout.class);
-    view7f0a03f0 = view;
+    view7f0a03f1 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class ActivitySobre_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.lyMail, "field 'lyMail' and method 'email'");
     target.lyMail = Utils.castView(view, R.id.lyMail, "field 'lyMail'", LinearLayout.class);
-    view7f0a03f7 = view;
+    view7f0a03f8 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class ActivitySobre_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.lyChamada, "field 'lyChamada' and method 'chamada'");
     target.lyChamada = Utils.castView(view, R.id.lyChamada, "field 'lyChamada'", LinearLayout.class);
-    view7f0a03db = view;
+    view7f0a03dc = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class ActivitySobre_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.lyWhats, "field 'lyWhats' and method 'whats'");
     target.lyWhats = Utils.castView(view, R.id.lyWhats, "field 'lyWhats'", LinearLayout.class);
-    view7f0a0418 = view;
+    view7f0a0419 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -89,13 +89,13 @@ public class ActivitySobre_ViewBinding implements Unbinder {
     target.versaoAPP = null;
     target.toolbar = null;
 
-    view7f0a03f0.setOnClickListener(null);
-    view7f0a03f0 = null;
-    view7f0a03f7.setOnClickListener(null);
-    view7f0a03f7 = null;
-    view7f0a03db.setOnClickListener(null);
-    view7f0a03db = null;
-    view7f0a0418.setOnClickListener(null);
-    view7f0a0418 = null;
+    view7f0a03f1.setOnClickListener(null);
+    view7f0a03f1 = null;
+    view7f0a03f8.setOnClickListener(null);
+    view7f0a03f8 = null;
+    view7f0a03dc.setOnClickListener(null);
+    view7f0a03dc = null;
+    view7f0a0419.setOnClickListener(null);
+    view7f0a0419 = null;
   }
 }

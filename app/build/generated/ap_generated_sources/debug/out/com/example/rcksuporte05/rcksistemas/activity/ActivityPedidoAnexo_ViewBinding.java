@@ -19,15 +19,15 @@ import java.lang.Override;
 public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
   private ActivityPedidoAnexo target;
 
-  private View view7f0a010f;
+  private View view7f0a0110;
 
   private View view7f0a00a9;
 
   private View view7f0a00aa;
 
-  private View view7f0a00e1;
+  private View view7f0a00e2;
 
-  private View view7f0a031b;
+  private View view7f0a031c;
 
   @UiThread
   public ActivityPedidoAnexo_ViewBinding(ActivityPedidoAnexo target) {
@@ -43,7 +43,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.edtAnexo = Utils.findRequiredViewAsType(source, R.id.edtAnexo, "field 'edtAnexo'", EditText.class);
     view = Utils.findRequiredView(source, R.id.btnSalvarAnexo, "field 'btnSalvarAnexo' and method 'salvarAnexoGaleria'");
     target.btnSalvarAnexo = Utils.castView(view, R.id.btnSalvarAnexo, "field 'btnSalvarAnexo'", Button.class);
-    view7f0a010f = view;
+    view7f0a0110 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +70,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao' and method 'closeActivity'");
     target.btnFinalizarInclusao = Utils.castView(view, R.id.btnFinalizarInclusao, "field 'btnFinalizarInclusao'", Button.class);
-    view7f0a00e1 = view;
+    view7f0a00e2 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -80,7 +80,7 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.recyclerView = Utils.findRequiredViewAsType(source, R.id.recyclerView, "field 'recyclerView'", RecyclerView.class);
     view = Utils.findRequiredView(source, R.id.imAnexo, "field 'imgAnexo' and method 'removerAnexoFoto'");
     target.imgAnexo = Utils.castView(view, R.id.imAnexo, "field 'imgAnexo'", ImageView.class);
-    view7f0a031b = view;
+    view7f0a031c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -105,15 +105,15 @@ public class ActivityPedidoAnexo_ViewBinding implements Unbinder {
     target.recyclerView = null;
     target.imgAnexo = null;
 
-    view7f0a010f.setOnClickListener(null);
-    view7f0a010f = null;
+    view7f0a0110.setOnClickListener(null);
+    view7f0a0110 = null;
     view7f0a00a9.setOnClickListener(null);
     view7f0a00a9 = null;
     view7f0a00aa.setOnClickListener(null);
     view7f0a00aa = null;
-    view7f0a00e1.setOnClickListener(null);
-    view7f0a00e1 = null;
-    view7f0a031b.setOnClickListener(null);
-    view7f0a031b = null;
+    view7f0a00e2.setOnClickListener(null);
+    view7f0a00e2 = null;
+    view7f0a031c.setOnClickListener(null);
+    view7f0a031c = null;
   }
 }

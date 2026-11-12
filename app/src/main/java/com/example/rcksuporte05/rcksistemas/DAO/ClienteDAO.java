@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import com.example.rcksuporte05.rcksistemas.Helper.UsuarioHelper;
+import com.example.rcksuporte05.rcksistemas.model.CadastroAnexo;
 import com.example.rcksuporte05.rcksistemas.model.Cliente;
 import com.example.rcksuporte05.rcksistemas.model.ClienteResumo;
 import com.example.rcksuporte05.rcksistemas.model.WebPedido;
@@ -132,10 +133,7 @@ public class ClienteDAO {
             content.put("ROTA_SEQUENCIA", cliente.getRota_sequencia());
             System.gc();
             return db.addDados("TBL_CADASTRO", content);
-        } catch (NullPointerException | SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException | SQLException ignored) {
         }
         return 0;
     }
@@ -257,8 +255,7 @@ public class ClienteDAO {
             }
 
             database.setTransactionSuccessful();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         } finally {
             db.endTransaction();
         }
@@ -401,18 +398,14 @@ public class ClienteDAO {
             content.put("ROTA_SEQUENCIA", cliente.getRota_sequencia());
             System.gc();
             if ( cliente.getId_cadastro() == 0) {
-                if ( cliente.getCpf_cnpj() == null || cliente.getCpf_cnpj().isEmpty()) {
+                if ( cliente.getCpf_cnpj() == null || cliente.getCpf_cnpj().isEmpty())
                     return db.updateDados("TBL_CADASTRO", content, "ID_CADASTRO_SERVIDOR = '" + cliente.getId_cadastro_servidor() + "'");
-                } else {
+                else
                     return db.updateDados("TBL_CADASTRO", content, "CPF_CNPJ = '" + cliente.getCpf_cnpj() + "'");
-                }
             } else {
                 return db.updateDados("TBL_CADASTRO", content, "ID_CADASTRO = " + cliente.getId_cadastro());
             }
-        } catch (NullPointerException | SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException | SQLException ignored) {
         }
         return 0;
     }
@@ -426,33 +419,28 @@ public class ClienteDAO {
                 db.deleteDados("TBL_CADASTRO_CONTATO", "ID_CADASTRO=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro()), "1"});
             else
                 db.deleteDados("TBL_CADASTRO_CONTATO", "ID_CADASTRO_SERVIDOR=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro_servidor()), "1"});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         try {
             if (tipo.equalsIgnoreCase("0"))
                 db.deleteDados("TBL_REFERENCIA_BANCARIA", "ID_CADASTRO=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro()), "1"});
             else
                 db.deleteDados("TBL_REFERENCIA_BANCARIA", "ID_CADASTRO_SERVIDOR=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro_servidor()), "1"});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         try {
             if (tipo.equalsIgnoreCase("0"))
                 db.deleteDados("TBL_REFERENCIA_COMERCIAL", "ID_CADASTRO=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro()), "1"});
-
             else
                 db.deleteDados("TBL_REFERENCIA_COMERCIAL", "ID_CADASTRO_SERVIDOR=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro_servidor()), "1"});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         try {
             if (tipo.equalsIgnoreCase("0"))
                 db.deleteDados("TBL_CADASTRO_ANEXOS", "ID_CADASTRO=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro()), "1"});
             else
                 db.deleteDados("TBL_CADASTRO_ANEXOS", "ID_CADASTRO_SERVIDOR=? AND ID_ENTIDADE=?", new String[]{String.valueOf(cliente.getId_cadastro_servidor()), "1"});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
 
         try {
@@ -460,8 +448,7 @@ public class ClienteDAO {
                 return db.deleteDados("TBL_CADASTRO", "ID_CADASTRO=?", new String[]{String.valueOf(cliente.getId_cadastro())});
             else
                 return db.deleteDados("TBL_CADASTRO", "ID_CADASTRO_SERVIDOR=?", new String[]{String.valueOf(cliente.getId_cadastro_servidor())});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -565,11 +552,10 @@ public class ClienteDAO {
                 cliente.setId_vendedor(cursor.getInt(cursor.getColumnIndex("ID_VENDEDOR")));
                 cliente.setAlterado(cursor.getString(cursor.getColumnIndex("ALTERADO")));
                 cliente.setSituacaoPredio(cursor.getString(cursor.getColumnIndex("SITUACAO_PREDIO")));
-                if ( cursor.getString(cursor.getColumnIndex("FINALIZADO")) == null) {
+                if ( cursor.getString(cursor.getColumnIndex("FINALIZADO")) == null)
                     cliente.setFinalizado("N");
-                } else {
+                else
                     cliente.setFinalizado(cursor.getString(cursor.getColumnIndex("FINALIZADO")));
-                }
                 cliente.setId_tabela_preco(cursor.getInt(cursor.getColumnIndex("ID_TABELA_PRECO")));
                 cliente.setNome_tabela_preco(cursor.getString(cursor.getColumnIndex("NOME_TABELA_PRECO")));
                 cliente.setUtiliza_tabela_preco(cursor.getString(cursor.getColumnIndex("UTILIZA_TABELA_PRECO")));
@@ -602,8 +588,7 @@ public class ClienteDAO {
                 if (cursorPro != null)
                     cursorPro.close();
                 lista.add(cliente);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+            } catch (CursorIndexOutOfBoundsException ignored) {
             }
         } while (cursor.moveToNext());
         cursor.close();
@@ -630,12 +615,8 @@ public class ClienteDAO {
             content.put("NOME", cliente.getNome());
             System.gc();
             return db.addDados("TBL_CADASTRO_RESUMO", content);
-        } catch (NullPointerException | SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException | SQLException ignored) {
         }
-
         return 0;
     }
 
@@ -651,8 +632,7 @@ public class ClienteDAO {
             try {
                 cliente.setCpf_cnpj(cursor.getString(cursor.getColumnIndex("CPF_CNPJ")));
                 cliente.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+            } catch (CursorIndexOutOfBoundsException ignored) {
             }
         } while (cursor.moveToNext());
         cursor.close();
@@ -674,12 +654,42 @@ public class ClienteDAO {
                 stmt.executeInsert();
             }
             database.setTransactionSuccessful(); // Confirma as alterações
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         } finally {
             database.endTransaction(); // Finaliza e grava no disco
         }
     }
+
+    public void addListaClienteAnexo(List<CadastroAnexo> lista, DBHelper db) {
+        if (lista == null || lista.isEmpty()) return;
+        SQLiteDatabase database = db.getWritableDatabase();
+        SQLiteStatement stmt = database.compileStatement(SQL_INSERT_ANEXO);
+        try {
+            database.beginTransaction(); // Inicia a transação para máxima velocidade
+            for (CadastroAnexo anexo : lista) {
+                stmt.clearBindings();
+                bindLong(stmt, 1, anexo.getIdAnexoServidor());
+                bindLong(stmt, 2, anexo.getIdEntidade());
+                bindLong(stmt, 3, anexo.getIdCadastro());
+                bindLong(stmt, 4, anexo.getIdCadastroServidor());
+                bindString(stmt, 5, anexo.getNomeAnexo());
+                bindString(stmt, 6, anexo.getAnexo());
+                bindString(stmt, 7, "N");
+                bindString(stmt, 8, "");
+                stmt.executeInsert();
+            }
+            database.setTransactionSuccessful(); // Confirma as alterações
+        } catch (Exception ignored) {
+        } finally {
+            database.endTransaction(); // Finaliza e grava no disco
+        }
+    }
+
     private static final String SQL_INSERT_RESUMO = "INSERT INTO TBL_CADASTRO_RESUMO (" +
             "CPF_CNPJ, NOME" +
             ") VALUES (?, ?)";
+
+    private static final String SQL_INSERT_ANEXO = "INSERT INTO TBL_CADASTRO_ANEXOS (" +
+            "ID_ANEXO_SERVIDOR, ID_ENTIDADE, ID_CADASTRO, ID_CADASTRO_SERVIDOR, NOME_ANEXO, ANEXO, EXCLUIDO, PRINCIPAL" +
+            ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 }

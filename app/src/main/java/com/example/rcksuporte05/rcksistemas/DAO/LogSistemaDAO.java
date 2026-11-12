@@ -1,6 +1,5 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -26,10 +25,8 @@ public class LogSistemaDAO {
             values.put("ID_PEDIDO_APP", log.getIdPedidoApp());
             values.put("ID_WEB_PEDIDO_SERVIDOR", log.getIdWebPedidoServidor());
             values.put("ID_VENDEDOR", log.getIdVendedor());
-            // DATA_HORA tem default no SQL, mas podemos passar se preenchido
-            if (log.getDataHora() != null && !log.getDataHora().isEmpty()) {
+            if (log.getDataHora() != null && !log.getDataHora().isEmpty()) 
                 values.put("DATA_HORA", log.getDataHora());
-            }
             values.put("TIPO_LOG", log.getTipoLog());
             values.put("EVENTO", log.getEvento());
             values.put("CLASSE", log.getClasse());
@@ -40,17 +37,11 @@ public class LogSistemaDAO {
             values.put("ERRO_DETALHE", log.getErroDetalhe());
             values.put("ST_ENVIADO", log.getStEnviado() != null ? log.getStEnviado() : "N");
 
-            long id = banco.insert("TBL_LOG_SISTEMA", null, values);
-            if (id == -1) {
-                android.util.Log.e("LOG_SISTEMA", "FALHA AO INSERIR REGISTRO DE LOG NO SQLITE");
-            }
-            return id;
+            return banco.insert("TBL_LOG_SISTEMA", null, values);
         } catch (SQLException e) {
             android.util.Log.e("LOG_SISTEMA", "ERRO SQL: " + e.getMessage());
-            e.printStackTrace();
         } catch (Exception e) {
             android.util.Log.e("LOG_SISTEMA", "ERRO GERAL: " + e.getMessage());
-            e.printStackTrace();
         }
         return 0;
     }
@@ -69,34 +60,59 @@ public class LogSistemaDAO {
         banco.update("TBL_LOG_SISTEMA", values, "ID_LOG = ?", new String[]{String.valueOf(idLog)});
     }
 
-    @SuppressLint("Range")
     public List<LogSistema> getAllUnsentLogs() {
         List<LogSistema> logs = new ArrayList<>();
         SQLiteDatabase banco = db.getReadableDatabase();
-        Cursor cursor = banco.rawQuery("SELECT * FROM TBL_LOG_SISTEMA WHERE ST_ENVIADO = 'N'", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                LogSistema log = new LogSistema();
-                log.setIdLog(cursor.getInt(cursor.getColumnIndex("ID_LOG")));
-                log.setIdPedido(cursor.getString(cursor.getColumnIndex("ID_PEDIDO")));
-                log.setIdPedidoApp(cursor.getString(cursor.getColumnIndex("ID_PEDIDO_APP")));
-                log.setIdWebPedidoServidor(cursor.getString(cursor.getColumnIndex("ID_WEB_PEDIDO_SERVIDOR")));
-                log.setIdVendedor(cursor.getString(cursor.getColumnIndex("ID_VENDEDOR")));
-                log.setDataHora(cursor.getString(cursor.getColumnIndex("DATA_HORA")));
-                log.setTipoLog(cursor.getString(cursor.getColumnIndex("TIPO_LOG")));
-                log.setEvento(cursor.getString(cursor.getColumnIndex("EVENTO")));
-                log.setClasse(cursor.getString(cursor.getColumnIndex("CLASSE")));
-                log.setMetodo(cursor.getString(cursor.getColumnIndex("METODO")));
-                log.setIdProduto(cursor.getString(cursor.getColumnIndex("ID_PRODUTO")));
-                log.setValorAnterior(cursor.getString(cursor.getColumnIndex("VALOR_ANTERIOR")));
-                log.setValorNovo(cursor.getString(cursor.getColumnIndex("VALOR_NOVO")));
-                log.setErroDetalhe(cursor.getString(cursor.getColumnIndex("ERRO_DETALHE")));
-                log.setStEnviado(cursor.getString(cursor.getColumnIndex("ST_ENVIADO")));
-                logs.add(log);
-            } while (cursor.moveToNext());
+        Cursor cursor = null;
+        try {
+            cursor = banco.rawQuery("SELECT * FROM TBL_LOG_SISTEMA WHERE ST_ENVIADO = 'N'", null);
+            if (cursor.moveToFirst())
+                do {
+                    logs.add(setLogSistema(cursor));
+                } while (cursor.moveToNext());
+        } catch (Exception ignored) {
+        } finally {
+            if (cursor != null && !cursor.isClosed())
+                cursor.close();
         }
-        cursor.close();
         return logs;
+    }
+
+    private LogSistema setLogSistema(Cursor cursor) {
+        LogSistema log = new LogSistema();
+        try {
+            log.setIdLog(getInt(cursor, "ID_LOG"));
+            log.setIdPedido(getString(cursor, "ID_PEDIDO"));
+            log.setIdPedidoApp(getString(cursor, "ID_PEDIDO_APP"));
+            log.setIdWebPedidoServidor(getString(cursor, "ID_WEB_PEDIDO_SERVIDOR"));
+            log.setIdVendedor(getString(cursor, "ID_VENDEDOR"));
+            log.setDataHora(getString(cursor, "DATA_HORA"));
+            log.setTipoLog(getString(cursor, "TIPO_LOG"));
+            log.setEvento(getString(cursor, "EVENTO"));
+            log.setClasse(getString(cursor, "CLASSE"));
+            log.setMetodo(getString(cursor, "METODO"));
+            log.setIdProduto(getString(cursor, "ID_PRODUTO"));
+            log.setValorAnterior(getString(cursor, "VALOR_ANTERIOR"));
+            log.setValorNovo(getString(cursor, "VALOR_NOVO"));
+            log.setErroDetalhe(getString(cursor, "ERRO_DETALHE"));
+            log.setStEnviado(getString(cursor, "ST_ENVIADO"));
+        } catch (Exception ignored) {
+        }
+        return log;
+    }
+
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }

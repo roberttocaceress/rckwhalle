@@ -29,6 +29,8 @@ public class WebVisita {
     private String nomeFantasia;
     private double valorPedido;
 
+    private WebAnalise webAnalise;
+
     public WebVisita() {
         this.excluido = "N";
         this.statusVisita = "N";
@@ -248,5 +250,13 @@ public class WebVisita {
 
     public void setValorPedido(double valorPedido) {
         this.valorPedido = valorPedido;
+    }
+
+    public WebAnalise getWebAnalise() {
+        return webAnalise;
+    }
+
+    public void setWebAnalise(WebAnalise webAnalise) {
+        this.webAnalise = webAnalise;
     }
 }

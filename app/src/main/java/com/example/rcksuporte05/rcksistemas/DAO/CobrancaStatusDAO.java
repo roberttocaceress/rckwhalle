@@ -49,10 +49,7 @@ public class CobrancaStatusDAO {
                 cobrancaStatus.setNome_status(cursor.getString(cursor.getColumnIndex("NOME_STATUS")));
                 cobrancaStatus.setExcluido(cursor.getString(cursor.getColumnIndex("EXCLUIDO")));
                 lista.add(cobrancaStatus);
-            } catch (CursorIndexOutOfBoundsException |NullPointerException e) {
-                e.printStackTrace();
-            } catch ( Exception e) {
-                e.printStackTrace();
+            } catch (CursorIndexOutOfBoundsException |NullPointerException ignored) {
             }
         } while (cursor.moveToNext());
         cursor.close();

@@ -1,5 +1,6 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -34,6 +35,7 @@ public class PreferenciaDAO {
         return false;
     }
 
+    @SuppressLint("Range")
     public Preferencia getPreferencia(String SQL) {
         //Alteração no codigo tratando excessao e retorno
         //Roberto caceres
@@ -52,7 +54,7 @@ public class PreferenciaDAO {
             } else
                 preferencia.setId("");
         } catch (SQLException e) {
-            db.onUpgrade( db.getWritableDatabase(), 27, 27);
+            db.onUpgrade( db.getWritableDatabase(), 27, 28);
             cursor = db.listaDados(SQL);
             if (cursor.moveToNext()) {
                 preferencia.setId(cursor.getString(cursor.getColumnIndex("ID")));

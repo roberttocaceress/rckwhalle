@@ -994,11 +994,25 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                     if (adapter.getSelectedItensCount() > 0)
                         enableActionMode(position);
                     else {
-                        // NOVO: Chama o Hub de Ações moderno
-                        exibirDialogAcoesCliente(position);
-
-                        // ANTERIOR: Chamava a lista de texto
-                        // exibirDialogLista("Clique em uma das opções para o cliente", position);
+                        if (getIntent().getBooleanExtra("novo_pedido_direto", false)) {
+                            Cliente cliente = adapter.getItem(position);
+                            if (cliente != null) {
+                                if ("N".equalsIgnoreCase(cliente.getAtivo())) {
+                                    Toast.makeText(ActivityClienteDrawer.this, "Este cliente esta inativado/bloqueado!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                ClienteHelper.setCliente(cliente);
+                            }
+                            DialogHelper.showFichaClienteInteligenteDialog(
+                                    ActivityClienteDrawer.this,
+                                    db,
+                                    cliente,
+                                    (idAnaliseApp) -> escolherEmpresaPedidoDireto(position, idAnaliseApp)
+                            );
+                        } else {
+                            // Chama o Hub de Ações moderno
+                            exibirDialogAcoesCliente(position);
+                        }
                     }
                 }
 
@@ -1699,7 +1713,25 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
             switch (which) {
                 case 0:
                     dialog.dismiss(); //<-- change it with ur code
-                    escolherEmpresaPedido(position);/* Ação 1 */ break;
+                    boolean abrePedido = true;
+                    if (adapter.getItem(position).getIdCategoria() <= 0) {
+                        abrePedido = false;
+                        util.showFeedbackDialog("Este cliente não tem uma categoria definida", true, false, R.drawable.ic_alerta_mensagem_color_primary , ActivityClienteDrawer.this);
+                    } else if (adapter.getItem(position).getAtivo().equalsIgnoreCase("N")) {
+                        abrePedido = false;
+                        util.showFeedbackDialog("Este cliente esta inátivo/bloqueado!", true, false, R.drawable.ic_alerta_mensagem_color_primary , ActivityClienteDrawer.this);
+                    } else if (configuracao.getTrabalha_com_limite_cred().equalsIgnoreCase("S")) {
+                        float limiteCredito = Float.parseFloat(adapter.getItem(position).getLimite_credito());
+                        float limitUtilizado = Float.parseFloat(adapter.getItem(position).getFinanceiro_vencido()) + Float.parseFloat(adapter.getItem(position).getFinanceiro_vencendo());
+                        if ((limiteCredito - limitUtilizado) < 0.00f) {
+                            abrePedido = false;
+                            showActionDialog("Cliente sem limite disponivel para compra a prazo! Pedido só podera ser feito para pagamento à vista!\nDeseja continuar?", position, false, "");
+                        } else {
+                            abrePedido = true;
+                        }
+                    }
+                    if ( abrePedido)
+                       escolherEmpresaPedido(position);/* Ação 1 */ break;
                 case 1:
                     dialog.dismiss();
                     Intent intent;
@@ -1757,7 +1789,7 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
         if (tvCidade != null) tvCidade.setText((cliente.getNome_municipio() != null ? cliente.getNome_municipio().trim() : "") + " - " + (cliente.getEndereco_uf() != null ? cliente.getEndereco_uf() : ""));
 
         String[] opcoes = {
-                "• RAIO-X INTELIGENTE DO CLIENTE",
+                //"• RAIO-X INTELIGENTE DO CLIENTE",
                 "• INICIAR NOVO PEDIDO",
                 "• CONSULTAR DADOS DO CADASTRO",
                 "• CONSULTAR HISTÓRICO FINANCEIRO",
@@ -1770,7 +1802,8 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                 .setCustomTitle(headerView)
                 .setItems(opcoes, (dialog, which) -> {
                     switch (which) {
-                        case 0:
+                        /* === OPÇÃO RAIO-X TEMPORARIAMENTE COMENTADA ===
+                        case -1:
                             DialogHelper.showFichaClienteInteligenteDialog(
                                     ActivityClienteDrawer.this,
                                     db,
@@ -1778,8 +1811,38 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                                     (idAnaliseApp) -> escolherEmpresaPedidoDireto(position, idAnaliseApp)
                             );
                             break;
-                        case 1: escolherEmpresaPedido(position); break;
-                        case 2:
+                        ================================================= */
+                        case 0: /*escolherEmpresaPedido(position); break;*/
+                            boolean abrePedido = true;
+                            if (adapter.getItem(position).getIdCategoria() <= 0) {
+                                abrePedido = false;
+                                util.showFeedbackDialog("Este cliente não tem uma categoria definida", true, false, R.drawable.ic_alerta_mensagem_color_primary , ActivityClienteDrawer.this);
+                            } else if (adapter.getItem(position).getAtivo().equalsIgnoreCase("N")) {
+                                abrePedido = false;
+                                util.showFeedbackDialog("Este cliente esta inátivo/bloqueado!", true, false, R.drawable.ic_alerta_mensagem_color_primary , ActivityClienteDrawer.this);
+                            } else if (configuracao.getTrabalha_com_limite_cred().equalsIgnoreCase("S")) {
+                                float limiteCredito = Float.parseFloat(adapter.getItem(position).getLimite_credito());
+                                float limitUtilizado = Float.parseFloat(adapter.getItem(position).getFinanceiro_vencido()) + Float.parseFloat(adapter.getItem(position).getFinanceiro_vencendo());
+                                if ((limiteCredito - limitUtilizado) < 0.00f) {
+                                    abrePedido = false;
+                                    showActionDialog("Cliente sem limite disponivel para compra a prazo! Pedido só podera ser feito para pagamento à vista!\nDeseja continuar?", position, false, "");
+                                } else {
+                                    abrePedido = true;
+                                }
+                            }
+                            if( abrePedido) {
+                                DialogHelper.showFichaClienteInteligenteDialog(
+                                        ActivityClienteDrawer.this,
+                                        db,
+                                        cliente,
+                                        (idAnaliseApp) -> escolherEmpresaPedidoDireto(position, idAnaliseApp)
+
+                                );
+                            } else {
+                                dialog.dismiss();
+                            }
+                            break;
+                        case 1:
                             Intent intent;
                             if (cliente.getF_cliente().equals("S")) {
                                 intent = new Intent(ActivityClienteDrawer.this, ActivityContato.class);
@@ -1792,13 +1855,13 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                             }
                             startActivity(intent);
                             break;
-                        case 3: showActivityHistoricoFinanceiro(position); break;
-                        case 4:
+                        case 2: showActivityHistoricoFinanceiro(position); break;
+                        case 3:
                             startActivity(new Intent(context, ActivitySincronia.class).putExtra("autoSincroniza", true)
                                     .putExtra("idcliente", cliente.getId_cadastro_servidor())
                                     .putExtra("pedidosenviados", "S"));
                             break;
-                        case 5: dialog.dismiss(); break;
+                        case 4: dialog.dismiss(); break;
                     }
                 })
                 .show();
@@ -2058,25 +2121,11 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
                 util.showFeedbackDialog("Este cliente não tem uma categoria definida", true, false, R.drawable.ic_alerta_mensagem_color_primary, ActivityClienteDrawer.this);
                 return;
             }
-
-            // NOVO: Verificação de Débito com Informativo em Destaque (Ação 3 - Pelo Hub de Opções)
-            if (verificarDebitoCliente(cliente, () -> continuarParaPedido(idEmpresa))) {
-                return;
-            }
-
-            if (configuracao.getTrabalha_com_limite_cred().equalsIgnoreCase("S")) {
-                float limiteCredito = Float.parseFloat(cliente.getLimite_credito());
-                float limitUtilizado = Float.parseFloat(cliente.getFinanceiro_vencido()) + Float.parseFloat(cliente.getFinanceiro_vencendo());
-                if ((limiteCredito - limitUtilizado) < 0.00f) {
-                    showActionDialog("Cliente sem limite disponivel para compra a prazo! Pedido só podera ser feito para pagamento à vista!\nDeseja continuar?", position, false, idEmpresa);
-                    return;
-                }
-            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
         continuarParaPedido(idEmpresa);
-        //exibirDialogRaioXCliente(cliente, () -> continuarParaPedido(idEmpresa));
     }
 
     /**
@@ -2511,6 +2560,8 @@ public class ActivityClienteDrawer extends AppCompatActivity implements Navigati
 
                                                 com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                                                 visitaDAO.salvarVisita(visita);
+                                                com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                                analiseDAO.vincularVisitaAnalise(mUltimoIdAnaliseApp, idVisitaApp);
                                             } catch (Exception e) {
                                                 e.printStackTrace();
                                             }

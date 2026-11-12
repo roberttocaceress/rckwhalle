@@ -1,5 +1,6 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -33,6 +34,7 @@ public class PaisesDAO {
         return 0;
     }
 
+    @SuppressLint("Range")
     public List<Pais> getLista()  {
         List<Pais> lista = new ArrayList<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_PAISES");

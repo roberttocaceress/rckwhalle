@@ -147,6 +147,45 @@ public class FichaClienteHelper {
             }
         } catch (Exception ignored) {}
 
+        // LOGCAT DEBUG: Imprime no Logcat o resumo de todos os produtos encontrados para o cliente
+        try {
+            String sqlLog = "SELECT I.ID_PRODUTO, PR.NOME_PRODUTO, I.QUANTIDADE, I.VALOR_UNITARIO, P.ID_WEB_PEDIDO " +
+                    "FROM TBL_WEB_PEDIDO_ITENS I " +
+                    "INNER JOIN TBL_WEB_PEDIDO P ON P.ID_WEB_PEDIDO = I.ID_PEDIDO " +
+                    "LEFT JOIN TBL_PRODUTO PR ON PR.ID_PRODUTO = I.ID_PRODUTO " +
+                    "WHERE " + whereCliente.toString() + " " +
+                    "ORDER BY P.ID_WEB_PEDIDO DESC, I.ID_PRODUTO ASC";
+
+            android.database.Cursor cursorLog = db.listaDados(sqlLog);
+            if (cursorLog != null && cursorLog.moveToFirst()) {
+                android.util.Log.d("TOP_GIRO_DEBUG", "================ HISTÓRICO DE PRODUTOS DO CLIENTE ================");
+                do {
+                    int idxNome = cursorLog.getColumnIndex("NOME_PRODUTO");
+                    int idxProd = cursorLog.getColumnIndex("ID_PRODUTO");
+                    int idxQtd = cursorLog.getColumnIndex("QUANTIDADE");
+                    int idxValUnit = cursorLog.getColumnIndex("VALOR_UNITARIO");
+                    int idxPed = cursorLog.getColumnIndex("ID_WEB_PEDIDO");
+
+                    String nome = idxNome != -1 && cursorLog.getString(idxNome) != null ? cursorLog.getString(idxNome) : "PRODUTO #" + cursorLog.getString(idxProd);
+                    double qtd = idxQtd != -1 ? cursorLog.getDouble(idxQtd) : 0.0;
+                    double valUnit = idxValUnit != -1 ? cursorLog.getDouble(idxValUnit) : 0.0;
+                    int numPed = idxPed != -1 ? cursorLog.getInt(idxPed) : 0;
+
+                    String logMsg = String.format(java.util.Locale.US,
+                            "Produto: %s | Qtd: %.0f | R$ %.2f | Pedido: %d",
+                            nome, qtd, valUnit, numPed);
+
+                    android.util.Log.d("TOP_GIRO_DEBUG", logMsg);
+                } while (cursorLog.moveToNext());
+                cursorLog.close();
+                android.util.Log.d("TOP_GIRO_DEBUG", "==================================================================");
+            } else {
+                android.util.Log.d("TOP_GIRO_DEBUG", "Nenhum item de pedido encontrado no histórico local para este cliente.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // 2. Consulta os Top 10 Produtos por Giro Financeiro Ponderado (Score = Faturamento * Recorrência)
         String sqlTop = "SELECT I.ID_PRODUTO, PR.NOME_PRODUTO, " +
                 "COUNT(DISTINCT P.ID_WEB_PEDIDO) AS QTD_PEDIDOS, " +

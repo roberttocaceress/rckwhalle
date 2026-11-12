@@ -290,15 +290,11 @@ public class ActivityPedidoMain extends AppCompatActivity {
         pedidoHelper = new PedidoHelper(this);
         vizualizacao = getIntent().getIntExtra("vizualizacao", 0);
         pedidoEnviado = false;
-        try {
-            if (!UsuarioHelper.getUsuario().getId_usuario().isEmpty()) {
+        if (UsuarioHelper.getUsuario() == null) {
+            try {
                 UsuarioBO usuarioBO = new UsuarioBO();
-                UsuarioHelper.setUsuario( usuarioBO.getUsuarioLogin( ActivityPedidoMain.this));
-            }
-        } catch (NullPointerException e) {
-            UsuarioBO usuarioBO = new UsuarioBO();
-            UsuarioHelper.setUsuario( usuarioBO.getUsuarioLogin( ActivityPedidoMain.this));
-        } catch ( Exception e) {
+                UsuarioHelper.setUsuario(usuarioBO.getUsuarioLogin(ActivityPedidoMain.this));
+            } catch (Exception ignored) {}
         }
 
         tabsAdapterPedido = new TabsAdapterPedido_(getSupportFragmentManager(), ActivityPedidoMain.this, UsuarioHelper.getUsuario(), vizualizacao);
@@ -636,6 +632,19 @@ public class ActivityPedidoMain extends AppCompatActivity {
     public void pegaCliente(Cliente cliente) {
         objetoCliente = cliente;
         ClienteHelper.setCliente(cliente);
+        if (webPedido != null && cliente != null) {
+            int idCliNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
+            if (webPedido.getId_visita_app() != null && !webPedido.getId_visita_app().isEmpty()) {
+                try {
+                    new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db).atualizarClienteVisita(webPedido.getId_visita_app(), idCliNum);
+                } catch (Exception ignored) {}
+            }
+            if (webPedido.getId_analise_app() != null && !webPedido.getId_analise_app().isEmpty()) {
+                try {
+                    new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db).atualizarClienteAnalise(webPedido.getId_analise_app(), idCliNum, cliente.getNome_cadastro(), cliente.getNome_fantasia());
+                } catch (Exception ignored) {}
+            }
+        }
     }
 
     public void showProduto(boolean showLista) {

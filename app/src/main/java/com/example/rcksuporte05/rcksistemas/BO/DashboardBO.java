@@ -89,7 +89,18 @@ public class DashboardBO {
             String where = " WHERE PEDIDO_ENVIADO = 'N' AND EXCLUIDO <> 'S' AND FINALIZADO = 'S' AND USUARIO_LANCAMENTO_ID = " + idUsuario;
             data.setQtdPendentes(db.contagem("SELECT COUNT(*) FROM TBL_WEB_PEDIDO" + where));
             data.setValorPendentes(db.soma("SELECT SUM(VALOR_TOTAL) FROM TBL_WEB_PEDIDO" + where));
-            data.setQtdVisitas(db.contagem("SELECT COUNT(*) FROM TBL_WEB_VISITA WHERE STRFTIME('%Y-%m', DATA_HORA_CHECKIN) = STRFTIME('%Y-%m', 'now');"));
+
+            int idVendNum = idUsuario;
+            try {
+                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                }
+            } catch (Exception ignored) {}
+
+            String anoMesAtualStr = String.format(Locale.US, "%04d-%02d", anoAtual, mesAtual);
+            String sqlVisitas = "SELECT COUNT(*) FROM TBL_WEB_VISITA WHERE (EXCLUIDO IS NULL OR EXCLUIDO <> 'S') AND (ID_VENDEDOR = " + idUsuario + (idVendNum != idUsuario ? " OR ID_VENDEDOR = " + idVendNum : "") + ") AND STRFTIME('%Y-%m', DATA_HORA_CHECKIN) = '" + anoMesAtualStr + "'";
+            data.setQtdVisitas(db.contagem(sqlVisitas));
+
             // Qtd Clientes Ativos
             data.setQtdClientesAtivos(db.contagem("SELECT COUNT(*) FROM TBL_CADASTRO WHERE ATIVO = 'S' AND F_CLIENTE = 'S'"));
         } catch (Exception e) {
@@ -223,7 +234,16 @@ public class DashboardBO {
                     double totalRealizado = 0;
                     double totalDevolucaoMes = 0;
                     int qtdDevolucoes = 0;
+                    String mesAnoTarget = String.format(Locale.US, "%04d-%02d", anoAtual, mesAtual);
+
                     for (MesAnoMeta mam : response.body()) {
+                        if (mam.getIni_mes() != null && !mam.getIni_mes().trim().isEmpty()) {
+                            String ini = mam.getIni_mes().trim();
+                            if (ini.length() >= 7 && !ini.startsWith(mesAnoTarget)) {
+                                continue; // Pula registros de meses/anos anteriores
+                            }
+                        }
+
                         double valor = cleanMoney(mam.getVenda_liquida());
                         if (mam.getE_entrada_s_saida() != null && mam.getE_entrada_s_saida().equalsIgnoreCase("E")) {
                             totalDevolucaoMes += valor;
@@ -236,10 +256,7 @@ public class DashboardBO {
                             }
                             if ( mam.getFigura_rel_comercial() != null && mam.getFigura_rel_comercial().equalsIgnoreCase("S")) {
                                 totalRealizado -= valor;
-                                // NOVO: Pega a quantidade real de títulos devolvidos do campo qtde_pedidos
-                            } //else {
-                              //  totalRealizado += valor;
-                            //}
+                            }
                         } else {
                             totalRealizado += valor;
                         }
@@ -295,7 +312,26 @@ public class DashboardBO {
             @Override
             public void onResponse(Call<List<MesAnoMeta>> call, Response<List<MesAnoMeta>> response) {
                 if (response.code() == 200 && response.body() != null && !response.body().isEmpty()) {
-                    MesAnoMeta result = response.body().get(0);
+                    String mesAnoTarget = String.format(Locale.US, "%04d-%02d", anoAtual, mesAtual);
+                    MesAnoMeta result = null;
+
+                    for (MesAnoMeta item : response.body()) {
+                        if (item.getIni_mes() != null && !item.getIni_mes().trim().isEmpty()) {
+                            String ini = item.getIni_mes().trim();
+                            if (ini.length() >= 7 && ini.startsWith(mesAnoTarget)) {
+                                result = item;
+                                break;
+                            }
+                        } else {
+                            result = item;
+                            break;
+                        }
+                    }
+
+                    if (result == null) {
+                        result = response.body().get(0);
+                    }
+
                     int qtd = 0;
                     try { qtd = Integer.parseInt(result.getQtde_pedidos()); } catch (Exception e) {}
 
@@ -378,16 +414,25 @@ public class DashboardBO {
             context.getSharedPreferences("DASHBOARD_CACHE", Context.MODE_PRIVATE)
                     .edit()
                     .putString("last_data", json)
+                    .putInt("last_data_month", mesAtual)
+                    .putInt("last_data_year", anoAtual)
                     .apply();
         } catch (Exception e) { e.printStackTrace(); }
     }
 
     private DashboardData loadCache() {
         try {
-            String json = context.getSharedPreferences("DASHBOARD_CACHE", Context.MODE_PRIVATE)
-                    .getString("last_data", null);
-            if (json != null) {
-                return new Gson().fromJson(json, DashboardData.class);
+            int cachedMonth = context.getSharedPreferences("DASHBOARD_CACHE", Context.MODE_PRIVATE)
+                    .getInt("last_data_month", -1);
+            int cachedYear = context.getSharedPreferences("DASHBOARD_CACHE", Context.MODE_PRIVATE)
+                    .getInt("last_data_year", -1);
+
+            if (cachedMonth == mesAtual && cachedYear == anoAtual) {
+                String json = context.getSharedPreferences("DASHBOARD_CACHE", Context.MODE_PRIVATE)
+                        .getString("last_data", null);
+                if (json != null) {
+                    return new Gson().fromJson(json, DashboardData.class);
+                }
             }
         } catch (Exception e) { e.printStackTrace(); }
         return null;

@@ -40,59 +40,97 @@ public class PedidoAnexoDAO {
     }
 
     public int delete(PedidoAnexo pedidoAnexo) {
-        //Alteração no codigo tratando excessao
-        //Roberto caceres
-        //SQLiteDatabase db = getWritableDatabase();
-        PedidoAnexo x = pedidoAnexo;
         try {
              return db.deleteDados("TBL_PEDIDO_ANEXOS", "ID_ANEXO = ? AND ID_PEDIDO = ? ", new String[]{String.valueOf(pedidoAnexo.getIdAnexo()), String.valueOf(pedidoAnexo.getIdPedido())});
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
 
     public List<PedidoAnexo> getLista(int idPedido, int idPedidoServidor) {
-        String SQL = "";
-        if ( idPedidoServidor <= 0) {
-            SQL = "SELECT * FROM TBL_PEDIDO_ANEXOS WHERE ID_PEDIDO = ";
-            return getLista(db.listaDados(SQL + idPedido + " ORDER BY ID_ANEXO;"));
-        } else {
-            SQL = "SELECT * FROM TBL_PEDIDO_ANEXOS WHERE ID_PEDIDO_SERVIDOR = ";
-            return getLista(db.listaDados(SQL + idPedidoServidor + " ORDER BY ID_ANEXO;"));
-        }
-
+        if (idPedidoServidor <= 0)
+           return getLista(db.listaDados("SELECT * FROM TBL_PEDIDO_ANEXOS WHERE ID_PEDIDO = " + idPedido + " ORDER BY ID_ANEXO;"));
+        else
+           return getLista(db.listaDados("SELECT * FROM TBL_PEDIDO_ANEXOS WHERE ID_PEDIDO_SERVIDOR = " + idPedidoServidor + " ORDER BY ID_ANEXO;"));
     }
 
     private List<PedidoAnexo> getLista(Cursor cursor) {
         List<PedidoAnexo> lista = new ArrayList<>();
-        if (cursor.getCount() > 0)
-            if (cursor.moveToFirst())
-                do {
-                    PedidoAnexo pedidoAnexo = new PedidoAnexo();
-                    byte[] decodedString = Base64.decode( cursor.getString(cursor.getColumnIndex("ANEXO")).getBytes(), 0);
-                    //byte[] decodedString = decompressB64(lista.get(position).getAnexo_1()).getBytes();
-                    //holder.imageAnexo.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));//, 170, 180, false));
-                    try {
-                        pedidoAnexo.setIdAnexo(cursor.getInt(cursor.getColumnIndex("ID_ANEXO")));
-                        pedidoAnexo.setIdAnexoServidor(cursor.getInt(cursor.getColumnIndex("ID_ANEXO_SERVIDOR")));
-                        pedidoAnexo.setIdPedido(cursor.getInt(cursor.getColumnIndex("ID_PEDIDO")));
-                        pedidoAnexo.setIdPedidoServidor(cursor.getInt(cursor.getColumnIndex("ID_PEDIDO_SERVIDOR")));
-                        pedidoAnexo.setNomeAnexo(cursor.getString(cursor.getColumnIndex("NOME_ANEXO")));
-                        pedidoAnexo.setAnexo(cursor.getString(cursor.getColumnIndex("ANEXO")));
-
-                        pedidoAnexo.setMiniatura(Bitmap.createScaledBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length), 220, 230, false)
-                                /*BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length)*/);
-
-                        pedidoAnexo.setExcluido(cursor.getString(cursor.getColumnIndex("EXCLUIDO")));
-                        pedidoAnexo.setPrincipal(cursor.getString(cursor.getColumnIndex("PRINCIPAL")));
-                    } catch (Exception e) {
-                        return lista;
-                    }
-                    lista.add(pedidoAnexo);
-                } while (cursor.moveToNext());
-
-
+        if (cursor == null) return lista;
+        try {
+            if (cursor.moveToFirst()) {
+                do
+                    lista.add(setPedidoAnexo(cursor));
+                while (cursor.moveToNext());
+            }
+        } catch (Exception ignored) {
+            //e.printStackTrace();
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
+    }
+
+    private PedidoAnexo setPedidoAnexo(Cursor cursor) {
+        PedidoAnexo pedidoAnexo = new PedidoAnexo();
+        try {
+            pedidoAnexo.setIdAnexo(getInt(cursor, "ID_ANEXO"));
+            pedidoAnexo.setIdAnexoServidor(getInt(cursor, "ID_ANEXO_SERVIDOR"));
+            pedidoAnexo.setIdPedido(getInt(cursor, "ID_PEDIDO"));
+            pedidoAnexo.setIdPedidoServidor(getInt(cursor, "ID_PEDIDO_SERVIDOR"));
+            pedidoAnexo.setNomeAnexo(getString(cursor, "NOME_ANEXO"));
+            pedidoAnexo.setAnexo(getString(cursor, "ANEXO"));
+            if (pedidoAnexo.getAnexo() != null && !pedidoAnexo.getAnexo().trim().isEmpty())
+                try {
+                    byte[] decodedString = Base64.decode(pedidoAnexo.getAnexo().trim(), Base64.DEFAULT);
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    if (bitmap != null) {
+                        pedidoAnexo.setMiniatura(Bitmap.createScaledBitmap(bitmap, 220, 230, false));
+                    }
+                } catch (Exception ignored) {}
+            pedidoAnexo.setExcluido(getString(cursor, "EXCLUIDO"));
+            pedidoAnexo.setPrincipal(getString(cursor, "PRINCIPAL"));
+        } catch (Exception ignored) {
+        }
+        return pedidoAnexo;
+    }
+
+    // =========================================================================
+    // AUXILIARES OBRIGATÓRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private long getLong(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0L;
+        try {
+            return Long.parseLong(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0L;
+        }
+    }
+
+    private double getDouble(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0.0;
+        try {
+            return Double.parseDouble(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 }

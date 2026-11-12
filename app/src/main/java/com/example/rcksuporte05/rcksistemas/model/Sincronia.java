@@ -85,6 +85,9 @@ public class Sincronia {
 
     private List<WebVisita> listaVisita = new ArrayList<>();
 
+    private List<CadastroAnexo> listaCadastroAnexo;
+
+
     public Sincronia(boolean cliente,
                      boolean produto,
                      boolean pedidosFinalizados,
@@ -620,5 +623,13 @@ public class Sincronia {
 
     public void setListaVisita(List<WebVisita> listaVisita) {
         this.listaVisita = listaVisita;
+    }
+
+    public List<CadastroAnexo> getListaCadastroAnexo() {
+        return listaCadastroAnexo;
+    }
+
+    public void setListaCadastroAnexo(List<CadastroAnexo> listaCadastroAnexo) {
+        this.listaCadastroAnexo = listaCadastroAnexo;
     }
 }

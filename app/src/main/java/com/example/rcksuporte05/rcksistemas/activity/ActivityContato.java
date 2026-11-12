@@ -182,9 +182,7 @@ public class ActivityContato extends AppCompatActivity {
     }
     private void showActivityPedido(int position, String idEmpresa) {
         Cliente cliente = ClienteHelper.getCliente();
-        //ClienteHelper.setCliente(cliente);
         try {
-
             if (cliente.getAtivo().equalsIgnoreCase("N")) {
                 Toast.makeText(this, "Este cliente esta inativado/bloqueado!", Toast.LENGTH_SHORT).show();
                 return;
@@ -193,14 +191,6 @@ public class ActivityContato extends AppCompatActivity {
                 util.showFeedbackDialog("Este cliente não tem uma categoria definida", true, false, R.drawable.ic_alerta_mensagem_color_primary, ActivityContato.this);
                 return;
             }
-
-            // NOVO: Verificação de Débito com Informativo em Destaque (Ação 3 - Pelo Hub de Opções)
-            if (verificarDebitoCliente(cliente, () -> continuarParaPedido(idEmpresa))) {
-                return;
-            }
-
-
-
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -215,22 +205,41 @@ public class ActivityContato extends AppCompatActivity {
             ClienteHelper.setCliente(cliente);
         }
 
+        DialogHelper.showFichaClienteInteligenteDialog(
+                this,
+                db,
+                cliente,
+                (idAnaliseApp) -> prosseguirCheckinEPedido(idEmpresa, idAnaliseApp)
+        );
+    }
+
+    private void prosseguirCheckinEPedido(String idEmpresa, String idAnaliseApp) {
+        Cliente cliente = ClienteHelper.getCliente();
         getConfiguracao();
+
+        String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
+        int idVendedorNum = 0;
+        int idEmpresaNum = 0;
+        try {
+            if (UsuarioHelper.getUsuario() != null) {
+                if (UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
+                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
+                }
+                idEmpresaNum = Integer.parseInt(UsuarioHelper.getUsuario().getIdEmpresaMultiDevice().trim());
+            }
+        } catch (Exception ignored) {}
+
+        int idClienteNum = (cliente != null && cliente.getId_cadastro_servidor() > 0) ? cliente.getId_cadastro_servidor() : (cliente != null ? cliente.getId_cadastro() : 0);
+        String idVisitaApp = String.format("%03d", idVendedorNum) + "V0000" + String.format("%03d", idEmpresaNum) + String.format("%08d", idClienteNum) + dataHoraAtual;
+
+        final int idVendedorFinal = idVendedorNum;
+        final int idClienteFinal = idClienteNum;
+
+        // Se trabalha com Check-in ativado ("S")
         if (configuracao != null && configuracao.getTrab_com_checkin_app() != null && configuracao.getTrab_com_checkin_app().equalsIgnoreCase("S") && cliente != null) {
             String razao = cliente.getNome_cadastro() != null ? cliente.getNome_cadastro() : "";
             String fantasia = cliente.getNome_fantasia() != null ? cliente.getNome_fantasia() : "";
             String end = cliente.getEndereco() + ", " + cliente.getEndereco_numero() + " - " + cliente.getEndereco_bairro() + " - " + cliente.getNome_municipio() + "/" + cliente.getEndereco_uf();
-
-            String dataHoraAtual = db.pegaDataHoraAtual().replaceAll("[^0-9]", "");
-            int idVendedorNum = 0;
-            try {
-                if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
-                    idVendedorNum = Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor().trim());
-                }
-            } catch (Exception ignored) {}
-
-            int idClienteNum = cliente.getId_cadastro_servidor() > 0 ? cliente.getId_cadastro_servidor() : cliente.getId_cadastro();
-            String idVisitaApp = String.format("%03d", idVendedorNum) + "90000008" + String.format("%08d", idClienteNum) + dataHoraAtual;
 
             DialogHelper.showCheckInClienteDialog(
                     this,
@@ -241,12 +250,8 @@ public class ActivityContato extends AppCompatActivity {
                         try {
                             com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
                             visita.setIdVisitaApp(idVisitaApp);
-                            if (UsuarioHelper.getUsuario() != null && UsuarioHelper.getUsuario().getId_quando_vendedor() != null) {
-                                try {
-                                    visita.setIdVendedor(Integer.parseInt(UsuarioHelper.getUsuario().getId_quando_vendedor()));
-                                } catch (Exception ignored) {}
-                            }
-                            visita.setIdClienteServidor(idClienteNum);
+                            visita.setIdVendedor(idVendedorFinal);
+                            visita.setIdClienteServidor(idClienteFinal);
                             visita.setDataHoraCheckin(db.pegaDataHoraAtual());
 
                             if (locationData != null && locationData.hasLocation) {
@@ -265,6 +270,12 @@ public class ActivityContato extends AppCompatActivity {
 
                             com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
                             visitaDAO.salvarVisita(visita);
+
+                            // Vincula visita com a análise criada
+                            if (idAnaliseApp != null && !idAnaliseApp.isEmpty()) {
+                                com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                                analiseDAO.vincularVisitaAnalise(idAnaliseApp, idVisitaApp);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -272,15 +283,40 @@ public class ActivityContato extends AppCompatActivity {
                         Intent intent = new Intent(ActivityContato.this, ActivityPedidoMain.class);
                         intent.putExtra("id_empresa", idEmpresa);
                         intent.putExtra("id_visita_app", idVisitaApp);
+                        intent.putExtra("id_analise_app", idAnaliseApp);
                         startActivity(intent);
                     }
             );
             return;
         }
 
-        // 3. Abre a tela principal do pedido limpa
+        // Se NÃO trabalha com Check-in ativado ("N"), auto-cria a visita em background e abre a ActivityPedidoMain
+        try {
+            com.example.rcksuporte05.rcksistemas.model.WebVisita visita = new com.example.rcksuporte05.rcksistemas.model.WebVisita();
+            visita.setIdVisitaApp(idVisitaApp);
+            visita.setIdVendedor(idVendedorNum);
+            visita.setIdClienteServidor(idClienteNum);
+            visita.setDataHoraCheckin(db.pegaDataHoraAtual());
+            visita.setStatusVisita("A");
+            visita.setObservacao("Check-in não executado (Parâmetro desativado)");
+            visita.setVersaoApp(BuildConfig.VERSION_NAME);
+
+            com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO visitaDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebVisitaDAO(db);
+            visitaDAO.salvarVisita(visita);
+
+            // Vincula visita com a análise criada
+            if (idAnaliseApp != null && !idAnaliseApp.isEmpty()) {
+                com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+                analiseDAO.vincularVisitaAnalise(idAnaliseApp, idVisitaApp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Intent intent = new Intent(ActivityContato.this, ActivityPedidoMain.class);
         intent.putExtra("id_empresa", idEmpresa);
+        intent.putExtra("id_visita_app", idVisitaApp);
+        intent.putExtra("id_analise_app", idAnaliseApp);
         startActivity(intent);
     }
 

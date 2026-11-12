@@ -1540,7 +1540,10 @@ public class ActivityPrincipal extends AppCompatActivity implements NavigationVi
         runnable = () -> {
             new PedidoHelper().limparDados();
             ClienteHelper.setCliente(null);
-            startActivity(new Intent(ActivityPrincipal.this, ActivityPedidoMain.class).putExtra("id_empresa", idEmpresa));
+            Intent intent = new Intent(ActivityPrincipal.this, ActivityClienteDrawer.class);
+            intent.putExtra("novo_pedido_direto", true);
+            intent.putExtra("id_empresa", idEmpresa);
+            startActivity(intent);
             shimmerLayout.stopShimmer();
             shimmerLayout.hideShimmer();
         };

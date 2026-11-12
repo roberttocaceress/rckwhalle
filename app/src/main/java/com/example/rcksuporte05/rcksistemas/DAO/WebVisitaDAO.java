@@ -46,7 +46,6 @@ public class WebVisitaDAO {
                         "OBSERVACAO TEXT, " +
                         "EXCLUIDO VARCHAR(1) DEFAULT 'N');");
 
-                // Verificação individual para tabelas que foram criadas em versões anteriores sem os novos campos
                 try {
                     db.getWritableDatabase().execSQL("ALTER TABLE TBL_WEB_VISITA ADD COLUMN ALTITUDE_CHECKIN VARCHAR(60);");
                 } catch (Exception ignored) {}
@@ -54,8 +53,7 @@ public class WebVisitaDAO {
                     db.getWritableDatabase().execSQL("ALTER TABLE TBL_WEB_VISITA ADD COLUMN PRECISAO_CHECKIN VARCHAR(60);");
                 } catch (Exception ignored) {}
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
     }
 
@@ -86,10 +84,7 @@ public class WebVisitaDAO {
             content.put("EXCLUIDO", visita.getExcluido() == null ? "N" : visita.getExcluido());
 
             return db.addDados("TBL_WEB_VISITA", content);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ignored) {
         }
         return 0;
     }
@@ -102,8 +97,7 @@ public class WebVisitaDAO {
         content.put("STATUS_VISITA", "V"); // 'V' = Venda Efetuada
         try {
             return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -114,8 +108,7 @@ public class WebVisitaDAO {
         content.put("ID_PEDIDO_SERVIDOR", idPedidoServidor);
         try {
             return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -124,12 +117,10 @@ public class WebVisitaDAO {
         content.put("EXCLUIDO", statusExcluido == null ? "N" : statusExcluido);
         try {
             String where = "ID_PEDIDO = " + idPedido;
-            if (idPedidoApp != null && !idPedidoApp.trim().isEmpty()) {
+            if (idPedidoApp != null && !idPedidoApp.trim().isEmpty())
                 where += " OR ID_PEDIDO_APP = '" + idPedidoApp + "'";
-            }
             return db.updateDados("TBL_WEB_VISITA", content, where);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -140,8 +131,7 @@ public class WebVisitaDAO {
         content.put("ID_CLIENTE_SERVIDOR", idNovoClienteServidor);
         try {
             return db.updateDados("TBL_WEB_VISITA", content, "ID_VISITA_APP = '" + idVisitaApp + "'");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
         return 0;
     }
@@ -151,12 +141,11 @@ public class WebVisitaDAO {
         String sql = "SELECT V.*, C.NOME_CADASTRO, C.NOME_FANTASIA, P.VALOR_TOTAL AS VALOR_PEDIDO_FAT " +
                 "FROM TBL_WEB_VISITA AS V " +
                 "LEFT JOIN TBL_CADASTRO AS C ON (C.ID_CADASTRO_SERVIDOR = V.ID_CLIENTE_SERVIDOR OR C.ID_CADASTRO = V.ID_CLIENTE_SERVIDOR) " +
-                "LEFT JOIN TBL_WEB_PEDIDO AS P ON (P.ID_WEB_PEDIDO = V.ID_PEDIDO OR (P.ID_PEDIDO_APP = V.ID_PEDIDO_APP AND P.ID_PEDIDO_APP <> '')) " +
+                "LEFT JOIN TBL_WEB_PEDIDO AS P ON (P.ID_PEDIDO_APP = V.ID_PEDIDO_APP AND P.ID_PEDIDO_APP <> '') " +
                 "WHERE V.EXCLUIDO = 'N'";
 
-        if (idVendedor > 0) {
+        if (idVendedor > 0)
             sql += " AND V.ID_VENDEDOR = " + idVendedor;
-        }
 
         if (ano > 0 && mes > 0) {
             String mesAnoStr = String.format(java.util.Locale.US, "%04d-%02d", ano, mes);
@@ -184,11 +173,10 @@ public class WebVisitaDAO {
         }
         return lista;
     }
-    public List<WebVisita> getListaVisitas() {
+    public List<WebVisita> getListaVisitasSincronia() {
         List<WebVisita> lista = new java.util.ArrayList<>();
-        if ( UsuarioHelper.getUsuario() ==null) {
+        if ( UsuarioHelper.getUsuario() == null)
             UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
-        }
         String sql = "SELECT V.* " +
                 "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'N' AND V.EXCLUIDO = 'N' AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor();
         sql += " ORDER BY V.ID_VISITA DESC";
@@ -201,21 +189,44 @@ public class WebVisitaDAO {
 
         if (cursor.moveToFirst()) {
             do {
-               lista.add(setVisita(cursor));
+                WebVisita webVisita = setVisita(cursor);
+                webVisita.setWebAnalise(new WebAnaliseDAO(db).getWebAnalisePorVisita(webVisita.getIdVisitaApp()));
+                lista.add(webVisita);
             } while (cursor.moveToNext());
             cursor.close();
         }
         return lista;
     }
 
+    public WebVisita getWebVisita(String idPedidoApp) {
+        if ( UsuarioHelper.getUsuario() ==null)
+            UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
+        String sql = "";
+        sql = "SELECT V.* " +
+                    "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'V' AND V.EXCLUIDO = 'N' " +
+                    "AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
+                    "AND V.ID_PEDIDO_APP = '" + idPedidoApp + "'";
+
+        android.database.Cursor cursor = db.listaDados(sql);
+        if (cursor == null || cursor.getCount() <= 0)
+            if (cursor != null) cursor.close();
+
+        assert cursor != null;
+        if (cursor.moveToFirst()) {
+           WebVisita webVisita = setVisita(cursor);
+           webVisita.setWebAnalise(new WebAnaliseDAO(db).getWebAnalisePorPedido(webVisita.getIdPedidoApp()));
+           return webVisita;
+        }
+        return null;
+    }
+
     public WebVisita getWebVisita(String idPedidoApp, int idCliente) {
         //WebVisita webVisita = new WebVisita();
-        if ( UsuarioHelper.getUsuario() ==null) {
+        if ( UsuarioHelper.getUsuario() ==null)
             UsuarioHelper.setUsuario(new UsuarioBO().getUsuarioLogin(db));
-        }
         String sql = "";
         if ( idCliente > 0)
-        sql = "SELECT V.* " +
+           sql = "SELECT V.* " +
                 "FROM TBL_WEB_VISITA AS V WHERE V.STATUS_VISITA = 'V' AND V.EXCLUIDO = 'N' " +
                 "AND V.ID_VISITA_SERVIDOR IS NULL AND V.ID_VENDEDOR =  " + UsuarioHelper.getUsuario().getId_quando_vendedor() + " " +
                 "AND V.ID_PEDIDO_APP = '" + idPedidoApp + "' AND ID_CLIENTE_SERVIDOR = " + idCliente;
@@ -226,107 +237,101 @@ public class WebVisitaDAO {
                     "AND V.ID_PEDIDO_APP = '" + idPedidoApp + "'";
 
         android.database.Cursor cursor = db.listaDados(sql);
-        if (cursor == null || cursor.getCount() <= 0) {
+        if (cursor == null || cursor.getCount() <= 0)
             if (cursor != null) cursor.close();
-        }
 
-        if (cursor.moveToFirst()) {
-            do {
-                return setVisita(cursor);
-            } while (cursor.moveToNext());
-        }
+        assert cursor != null;
+        if (cursor.moveToFirst())
+           return setVisita(cursor);
         return null;
     }
 
     private WebVisita setVisita(Cursor cursor) {
         WebVisita webVisita = new WebVisita();
         try {
-            int idxIdVisita = cursor.getColumnIndex("ID_VISITA");
-            if (idxIdVisita != -1) webVisita.setIdVisita(cursor.getInt(idxIdVisita));
+            webVisita.setIdVisita(getInt(cursor, "ID_VISITA"));
+            webVisita.setIdVisitaApp(getString(cursor, "ID_VISITA_APP"));
+            webVisita.setIdVendedor(getInt(cursor, "ID_VENDEDOR"));
+            webVisita.setIdPedido(getInt(cursor, "ID_PEDIDO"));
+            webVisita.setIdPedidoApp(getString(cursor, "ID_PEDIDO_APP"));
+            webVisita.setIdPedidoServidor(getInt(cursor, "ID_PEDIDO_SERVIDOR"));
+            webVisita.setIdClienteServidor(getInt(cursor, "ID_CLIENTE_SERVIDOR"));
+            webVisita.setDataHoraCheckin(getString(cursor, "DATA_HORA_CHECKIN"));
+            webVisita.setLatitudeCheckin(getString(cursor, "LATITUDE_CHECKIN"));
+            webVisita.setLongitudeCheckin(getString(cursor, "LONGITUDE_CHECKIN"));
+            webVisita.setAltitudeCheckin(getString(cursor, "ALTITUDE_CHECKIN"));
+            webVisita.setPrecisaoCheckin(getString(cursor, "PRECISAO_CHECKIN"));
+            webVisita.setStatusVisita(getString(cursor, "STATUS_VISITA"));
+            webVisita.setMotivoNaoVenda(getString(cursor, "MOTIVO_NAO_VENDA"));
+            webVisita.setObservacao(getString(cursor, "OBSERVACAO"));
 
-            int idxVisitaApp = cursor.getColumnIndex("ID_VISITA_APP");
-            if (idxVisitaApp != -1) webVisita.setIdVisitaApp(cursor.getString(idxVisitaApp));
+            String razao = getString(cursor, "NOME_CADASTRO");
+            if (razao != null) webVisita.setRazaoSocial(razao);
 
-            int idxVend = cursor.getColumnIndex("ID_VENDEDOR");
-            if (idxVend != -1) webVisita.setIdVendedor(cursor.getInt(idxVend));
+            String fantasia = getString(cursor, "NOME_FANTASIA");
+            if (fantasia != null) webVisita.setNomeFantasia(fantasia);
 
-            int idxPed = cursor.getColumnIndex("ID_PEDIDO");
-            if (idxPed != -1) webVisita.setIdPedido(cursor.getInt(idxPed));
-
-            int idxPedApp = cursor.getColumnIndex("ID_PEDIDO_APP");
-            if (idxPedApp != -1) webVisita.setIdPedidoApp(cursor.getString(idxPedApp));
-
-            int idxPedSrv = cursor.getColumnIndex("ID_PEDIDO_SERVIDOR");
-            try {
-                if (idxPedSrv != -1)
-                    webVisita.setIdPedidoServidor(Integer.parseInt(cursor.getString(idxPedSrv)));
-            } catch (NumberFormatException | NullPointerException e) {
-                webVisita.setIdPedidoServidor(0);
-            }
-
-            int idxCli = cursor.getColumnIndex("ID_CLIENTE_SERVIDOR");
-            if (idxCli != -1) webVisita.setIdClienteServidor(cursor.getInt(idxCli));
-
-            int idxData = cursor.getColumnIndex("DATA_HORA_CHECKIN");
-            if (idxData != -1) webVisita.setDataHoraCheckin(cursor.getString(idxData));
-
-            int idxLat = cursor.getColumnIndex("LATITUDE_CHECKIN");
-            if (idxLat != -1) webVisita.setLatitudeCheckin(cursor.getString(idxLat));
-
-            int idxLng = cursor.getColumnIndex("LONGITUDE_CHECKIN");
-            if (idxLng != -1) webVisita.setLongitudeCheckin(cursor.getString(idxLng));
-
-            int idxAlt = cursor.getColumnIndex("ALTITUDE_CHECKIN");
-            if (idxAlt != -1) webVisita.setAltitudeCheckin(cursor.getString(idxAlt));
-
-            int idxPrec = cursor.getColumnIndex("PRECISAO_CHECKIN");
-            if (idxPrec != -1) webVisita.setPrecisaoCheckin(cursor.getString(idxPrec));
-
-            int idxStatus = cursor.getColumnIndex("STATUS_VISITA");
-            if (idxStatus != -1) webVisita.setStatusVisita(cursor.getString(idxStatus));
-
-            int idxMotivo = cursor.getColumnIndex("MOTIVO_NAO_VENDA");
-            if (idxMotivo != -1) webVisita.setMotivoNaoVenda(cursor.getString(idxMotivo));
-
-            int idxObs = cursor.getColumnIndex("OBSERVACAO");
-            if (idxObs != -1) webVisita.setObservacao(cursor.getString(idxObs));
-
-            int idxRazao = cursor.getColumnIndex("NOME_CADASTRO");
-            if (idxRazao != -1 && cursor.getString(idxRazao) != null) {
-                webVisita.setRazaoSocial(cursor.getString(idxRazao));
-            }
-
-            int idxFantasia = cursor.getColumnIndex("NOME_FANTASIA");
-            if (idxFantasia != -1 && cursor.getString(idxFantasia) != null) {
-                webVisita.setNomeFantasia(cursor.getString(idxFantasia));
-            }
-
-            int idxValPed = cursor.getColumnIndex("VALOR_PEDIDO_FAT");
-            if (idxValPed != -1 && cursor.getString(idxValPed) != null) {
+            String valPedStr = getString(cursor, "VALOR_PEDIDO_FAT");
+            if (valPedStr != null) {
                 try {
-                    webVisita.setValorPedido(Double.parseDouble(cursor.getString(idxValPed)));
-                } catch (Exception ignored) {
-                }
+                    String vStr = valPedStr.replaceAll("[^0-9,.-]", "").trim();
+                    if (vStr.contains(",") && vStr.contains(".")) {
+                        vStr = vStr.replace(".", "").replace(",", ".");
+                    } else if (vStr.contains(",")) {
+                        vStr = vStr.replace(",", ".");
+                    }
+                    webVisita.setValorPedido(Double.parseDouble(vStr));
+                } catch (Exception ignored) {}
             }
-            int idxValIdVisitaServidor = cursor.getColumnIndex("ID_VISITA_SERVIDOR");
-            if (idxValIdVisitaServidor != -1 && cursor.getString(idxValIdVisitaServidor) != null) {
-                try {
-                    webVisita.setValorPedido(Double.parseDouble(cursor.getString(idxValIdVisitaServidor)));
-                } catch (Exception ignored) {
-                }
-            }
-            int idxVersaoApp = cursor.getColumnIndex("VERSAO_APP");
-            if (idxVersaoApp != -1 && cursor.getString(idxVersaoApp) != null) {
-                try {
-                    webVisita.setVersaoApp(cursor.getString(idxVersaoApp));
-                } catch (Exception ignored) {
-                }
-            }
+
+            String visSrv = getString(cursor, "ID_VISITA_SERVIDOR");
+            if (visSrv != null) webVisita.setIdVisitaServidor(visSrv);
+
+            String versao = getString(cursor, "VERSAO_APP");
+            if (versao != null) webVisita.setVersaoApp(versao);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return webVisita;
+    }
+
+    // =========================================================================
+    // AUXILIARES OBRIGATÓRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private long getLong(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0L;
+        try {
+            return Long.parseLong(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0L;
+        }
+    }
+
+    private double getDouble(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0.0;
+        try {
+            return Double.parseDouble(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 
     public int getCountVisitas(String statusFilter, int idVendedor, int ano, int mes) {

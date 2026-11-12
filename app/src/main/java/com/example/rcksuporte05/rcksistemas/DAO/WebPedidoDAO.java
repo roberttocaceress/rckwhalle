@@ -372,6 +372,7 @@ public class WebPedidoDAO {
         return false;
     }
 
+    @android.annotation.SuppressLint("Range")
     public List<WebPedido> getLista(String SQL) {
         //Alteração no codigo tratando excessao e retorno
         //Roberto caceres
@@ -385,29 +386,34 @@ public class WebPedidoDAO {
         do {
             WebPedido webPedido = new WebPedido();
             try {
-                webPedido.setId_web_pedido(cursor.getString(cursor.getColumnIndex("ID_WEB_PEDIDO")));
-                webPedido.setId_empresa(cursor.getString(cursor.getColumnIndex("ID_EMPRESA")));
-                webPedido.setCliente_novo(cursor.getString(cursor.getColumnIndex("CLIENTE_NOVO")));
+                int idxIdWeb = cursor.getColumnIndex("ID_WEB_PEDIDO");
+                if (idxIdWeb != -1) webPedido.setId_web_pedido(cursor.getString(idxIdWeb));
+                int idxEmp = cursor.getColumnIndex("ID_EMPRESA");
+                if (idxEmp != -1) webPedido.setId_empresa(cursor.getString(idxEmp));
+                int idxCliNovo = cursor.getColumnIndex("CLIENTE_NOVO");
+                if (idxCliNovo != -1) webPedido.setCliente_novo(cursor.getString(idxCliNovo));
+                int idxCad = cursor.getColumnIndex("ID_CADASTRO");
+                String idCadVal = idxCad != -1 ? cursor.getString(idxCad) : "0";
                 try {
-                    if (webPedido.getCliente_novo().equalsIgnoreCase("S")) {
-                        listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO = " + cursor.getString(cursor.getColumnIndex("ID_CADASTRO"))
+                    if (webPedido.getCliente_novo() != null && webPedido.getCliente_novo().equalsIgnoreCase("S")) {
+                        listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO = " + idCadVal
                                 + " AND (ID_CADASTRO_SERVIDOR <= 0 OR ID_CADASTRO_SERVIDOR IS NULL) ");
                     } else {
-                        listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + cursor.getString(cursor.getColumnIndex("ID_CADASTRO")));
+                        listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + idCadVal);
                     }
                 } catch (NullPointerException e) {
                     listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE (ID_CADASTRO_SERVIDOR = "
-                            + cursor.getString(cursor.getColumnIndex("ID_CADASTRO")) + " AND FINALIZADO <> 'N' AND F_CLIENTE <> 'S' " /* AND ATIVO = 'S'*/ + "AND F_VENDEDOR = 'N') OR (ID_CADASTRO = "
-                            + cursor.getString(cursor.getColumnIndex("ID_CADASTRO")) + " AND (ID_CADASTRO_SERVIDOR <= 0 OR ID_CADASTRO_SERVIDOR IS NULL) )");
+                            + idCadVal + " AND FINALIZADO <> 'N' AND F_CLIENTE <> 'S' " /* AND ATIVO = 'S'*/ + "AND F_VENDEDOR = 'N') OR (ID_CADASTRO = "
+                            + idCadVal + " AND (ID_CADASTRO_SERVIDOR <= 0 OR ID_CADASTRO_SERVIDOR IS NULL) )");
                 }
                 if (listaCliente.size() > 0) {
                     webPedido.setCadastro(listaCliente.get(0));
                 } else {
-                    listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + cursor.getString(cursor.getColumnIndex("ID_CADASTRO")));
+                    listaCliente = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + idCadVal);
                     if (listaCliente.size() > 0) {
                         webPedido.setCadastro(listaCliente.get(0));
                     } else {
-                        if (cursor.getString(cursor.getColumnIndex("ID_CADASTRO")).equalsIgnoreCase("0")) {
+                        if ("0".equalsIgnoreCase(idCadVal)) {
                             Cliente cliente = new Cliente();
                             cliente.setIdCategoria(1);
                             cliente.setId_cadastro_servidor(0);
@@ -438,7 +444,8 @@ public class WebPedidoDAO {
                         }
                     }
                 }
-                webPedido.setId_vendedor(cursor.getString(cursor.getColumnIndex("ID_VENDEDOR")));
+                int idxVend = cursor.getColumnIndex("ID_VENDEDOR");
+                if (idxVend != -1) webPedido.setId_vendedor(cursor.getString(idxVend));
                 webPedido.setId_condicao_pagamento(cursor.getString(cursor.getColumnIndex("ID_CONDICAO_PAGAMENTO")));
                 webPedido.setId_operacao(cursor.getString(cursor.getColumnIndex("ID_OPERACAO")));
                 webPedido.setId_tabela(cursor.getString(cursor.getColumnIndex("ID_TABELA")));
@@ -587,6 +594,7 @@ public class WebPedidoDAO {
         return lista;
     }
 
+    @android.annotation.SuppressLint("Range")
     public int getTotalReg(String SQL) {
         Cursor cursor = db.listaDados(SQL);
         if (cursor.getCount() <= 0)
@@ -712,6 +720,20 @@ public class WebPedidoDAO {
             try {
                 database.beginTransaction();
                 for (WebPedido webPedido : lista) {
+                    // PREVENÇÃO DE DUPLICIDADE NO BANCO LOCAL:
+                    if (webPedido.getId_pedido_app() != null && !webPedido.getId_pedido_app().trim().isEmpty()) {
+                        String checkApp = db.consultaDados("SELECT ID_WEB_PEDIDO FROM TBL_WEB_PEDIDO WHERE ID_PEDIDO_APP = '" + webPedido.getId_pedido_app().trim() + "' LIMIT 1", "ID_WEB_PEDIDO");
+                        if (checkApp != null && !checkApp.trim().isEmpty()) {
+                            continue; // Ignora inclusão se o ID_PEDIDO_APP já existir
+                        }
+                    }
+                    if (webPedido.getId_web_pedido_servidor() != null && !webPedido.getId_web_pedido_servidor().trim().isEmpty() && !"0".equals(webPedido.getId_web_pedido_servidor().trim())) {
+                        String checkSrv = db.consultaDados("SELECT ID_WEB_PEDIDO FROM TBL_WEB_PEDIDO WHERE ID_WEB_PEDIDO_SERVIDOR = '" + webPedido.getId_web_pedido_servidor().trim() + "' LIMIT 1", "ID_WEB_PEDIDO");
+                        if (checkSrv != null && !checkSrv.trim().isEmpty()) {
+                            continue; // Ignora inclusão se o ID_WEB_PEDIDO_SERVIDOR já existir
+                        }
+                    }
+
                     stmt.clearBindings();
 
                     // 1 a 5

@@ -2,7 +2,6 @@ package com.example.rcksuporte05.rcksistemas.DAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 
 import com.example.rcksuporte05.rcksistemas.model.Categoria;
 
@@ -37,135 +36,151 @@ public class CategoriaDAO {
     public List<Categoria> getLista(boolean showSpinner) {
         List<Categoria> lista = new ArrayList<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_CATEGORIA ORDER BY ID_CATEGORIA;");
-        if ( cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return lista;
-        cursor.moveToFirst();
-        Categoria categoria = new Categoria();
-        if ( showSpinner) {
-            categoria.setIdCategoria(0);
-            categoria.setIdEmpresa(1);
-            categoria.setAtivo("S");
-            categoria.setNomeCategoria("Selecione");
-            categoria.setUsuarioId("0");
-            categoria.setMdvAceitaNovo("S");
-            lista.add(categoria);
         }
-        do {
-            categoria = new Categoria();
-            try {
-                categoria.setIdCategoria(cursor.getInt(cursor.getColumnIndex("ID_CATEGORIA")));
-                categoria.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-                categoria.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                categoria.setNomeCategoria(cursor.getString(cursor.getColumnIndex("NOME_MULTI_DISPOSITIVO")));
-                categoria.setUsuarioId(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-                categoria.setMdvAceitaNovo(cursor.getString(cursor.getColumnIndex("MULTI_DEVICE_ACEITA_NOVO")));
+        try {
+            if (showSpinner) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(0);
+                categoria.setIdEmpresa(1);
+                categoria.setAtivo("S");
+                categoria.setNomeCategoria("Selecione");
+                categoria.setUsuarioId("0");
+                categoria.setMdvAceitaNovo("S");
                 lista.add(categoria);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
             }
-        } while (cursor.moveToNext());
+            if (cursor.moveToFirst()) {
+                do {
+                    lista.add(setCategoria(cursor));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
     }
 
     public List<Categoria> getListaNovo(boolean showSpinner) {
         List<Categoria> lista = new ArrayList<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_CATEGORIA WHERE MULTI_DEVICE_ACEITA_NOVO = 'S' ORDER BY ID_CATEGORIA;");
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return lista;
-        cursor.moveToFirst();
-        Categoria categoria = new Categoria();
-        if ( showSpinner) {
-            categoria.setIdCategoria(0);
-            categoria.setIdEmpresa(1);
-            categoria.setAtivo("S");
-            categoria.setNomeCategoria("Selecione");
-            categoria.setUsuarioId("0");
-            categoria.setMdvAceitaNovo("S");
-            lista.add(categoria);
         }
-        do {
-           categoria = new Categoria();
-            try {
-                categoria.setIdCategoria(cursor.getInt(cursor.getColumnIndex("ID_CATEGORIA")));
-                categoria.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-                categoria.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                categoria.setNomeCategoria(cursor.getString(cursor.getColumnIndex("NOME_MULTI_DISPOSITIVO")));
-                categoria.setUsuarioId(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-                categoria.setMdvAceitaNovo(cursor.getString(cursor.getColumnIndex("MULTI_DEVICE_ACEITA_NOVO")));
+        try {
+            if (showSpinner) {
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(0);
+                categoria.setIdEmpresa(1);
+                categoria.setAtivo("S");
+                categoria.setNomeCategoria("Selecione");
+                categoria.setUsuarioId("0");
+                categoria.setMdvAceitaNovo("S");
                 lista.add(categoria);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
             }
-        } while (cursor.moveToNext());
+            if (cursor.moveToFirst()) {
+                do {
+                    lista.add(setCategoria(cursor));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
     }
 
     public HashMap<Integer, Categoria> listaHashCategoria() {
         HashMap<Integer, Categoria> lista = new HashMap<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_CATEGORIA ORDER BY ID_CATEGORIA;");
-        if ( cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return lista;
-        cursor.moveToFirst();
-        do {
-            Categoria categoria = new Categoria();
-            try {
-                categoria.setIdCategoria(cursor.getInt(cursor.getColumnIndex("ID_CATEGORIA")));
-                categoria.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-                categoria.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-                categoria.setNomeCategoria(cursor.getString(cursor.getColumnIndex("NOME_MULTI_DISPOSITIVO")));
-                categoria.setUsuarioId(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-                categoria.setMdvAceitaNovo(cursor.getString(cursor.getColumnIndex("MULTI_DEVICE_ACEITA_NOVO")));
-                lista.put(categoria.getIdCategoria(), categoria);
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Categoria categoria = setCategoria(cursor);
+                    lista.put(categoria.getIdCategoria(), categoria);
+                } while (cursor.moveToNext());
             }
-        } while (cursor.moveToNext());
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
         return lista;
     }
 
     public Categoria getCategoria(int idCategoria) {
         Categoria categoria = new Categoria();
-        //List<Categoria> listaCategoria = new ArrayList<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_CATEGORIA WHERE ID_CATEGORIA = " + idCategoria + ";");
-        if (cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return categoria;
-        cursor.moveToFirst();
-        //do {
-        try {
-            categoria.setIdCategoria(cursor.getInt(cursor.getColumnIndex("ID_CATEGORIA")));
-            categoria.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-            categoria.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-            categoria.setNomeCategoria(cursor.getString(cursor.getColumnIndex("NOME_MULTI_DISPOSITIVO")));
-            categoria.setUsuarioId(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-            categoria.setMdvAceitaNovo(cursor.getString(cursor.getColumnIndex("MULTI_DEVICE_ACEITA_NOVO")));
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
         }
-        //listaCategoria.add(categoria);
-        //} while (cursor.moveToNext());
-        return categoria;//listaCategoria.get(0);
+        try {
+            if (cursor.moveToFirst())
+                categoria = setCategoria(cursor);
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
+        return categoria;
     }
+
     public Categoria getCategoriaPDF(int idCategoria) {
-        Categoria categoria = new Categoria();
-        //List<Categoria> listaCategoria = new ArrayList<>();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_CATEGORIA WHERE ID_CATEGORIA = " + idCategoria + ";");
-        if (cursor.getCount() <= 0)
-            return null;
-        cursor.moveToFirst();
-        //do {
-        try {
-            categoria.setIdCategoria(cursor.getInt(cursor.getColumnIndex("ID_CATEGORIA")));
-            categoria.setIdEmpresa(cursor.getInt(cursor.getColumnIndex("ID_EMPRESA")));
-            categoria.setAtivo(cursor.getString(cursor.getColumnIndex("ATIVO")));
-            categoria.setNomeCategoria(cursor.getString(cursor.getColumnIndex("NOME_MULTI_DISPOSITIVO")));
-            categoria.setUsuarioId(cursor.getString(cursor.getColumnIndex("USUARIO_ID")));
-            categoria.setMdvAceitaNovo(cursor.getString(cursor.getColumnIndex("MULTI_DEVICE_ACEITA_NOVO")));
-        } catch (CursorIndexOutOfBoundsException e) {
-            e.printStackTrace();
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return null;
         }
-        //listaCategoria.add(categoria);
-        //} while (cursor.moveToNext());
-        return categoria;//listaCategoria.get(0);
+        try {
+            if (cursor.moveToFirst())
+                return setCategoria(cursor);
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed())
+                cursor.close();
+        }
+        return null;
+    }
+
+    private Categoria setCategoria(Cursor cursor) {
+        Categoria categoria = new Categoria();
+        try {
+            categoria.setIdCategoria(getInt(cursor, "ID_CATEGORIA"));
+            categoria.setIdEmpresa(getInt(cursor, "ID_EMPRESA"));
+            categoria.setAtivo(getString(cursor, "ATIVO"));
+            categoria.setNomeCategoria(getString(cursor, "NOME_MULTI_DISPOSITIVO"));
+            categoria.setUsuarioId(getString(cursor, "USUARIO_ID"));
+            categoria.setMdvAceitaNovo(getString(cursor, "MULTI_DEVICE_ACEITA_NOVO"));
+        } catch (Exception ignored) {
+        }
+        return categoria;
+    }
+
+    // =========================================================================
+    // AUXILIARES NECESSÁRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }

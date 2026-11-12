@@ -1,5 +1,6 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -36,6 +37,7 @@ public class MunicipioDAO {
         return 0;
     }
 
+    @SuppressLint("Range")
     public List<Municipio> getLista(String SQL)  {
         List<Municipio> lista = new ArrayList<>();
         Cursor cursor = db.listaDados(SQL);

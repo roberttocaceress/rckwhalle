@@ -20,7 +20,7 @@ import java.lang.Override;
 public class ActivityCliente_ViewBinding implements Unbinder {
   private ActivityCliente target;
 
-  private View view7f0a00e9;
+  private View view7f0a00ea;
 
   @UiThread
   public ActivityCliente_ViewBinding(ActivityCliente target) {
@@ -41,7 +41,7 @@ public class ActivityCliente_ViewBinding implements Unbinder {
     target.filtraClientesNaoEfetivados = Utils.findRequiredViewAsType(source, R.id.filtraClientesNaoEfetivados, "field 'filtraClientesNaoEfetivados'", RadioButton.class);
     view = Utils.findRequiredView(source, R.id.btnInserirCliente, "field 'btnInserirCliente' and method 'inserirCliente'");
     target.btnInserirCliente = Utils.castView(view, R.id.btnInserirCliente, "field 'btnInserirCliente'", Button.class);
-    view7f0a00e9 = view;
+    view7f0a00ea = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -66,7 +66,7 @@ public class ActivityCliente_ViewBinding implements Unbinder {
     target.filtraClientesNaoEfetivados = null;
     target.btnInserirCliente = null;
 
-    view7f0a00e9.setOnClickListener(null);
-    view7f0a00e9 = null;
+    view7f0a00ea.setOnClickListener(null);
+    view7f0a00ea = null;
   }
 }

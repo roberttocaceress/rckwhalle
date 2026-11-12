@@ -68,6 +68,7 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
     private Button btnFiltroTodas, btnFiltroPositivadas, btnFiltroNaoVenda;
     private RecyclerView rvVisitas;
     private RelatorioVisitaAdapter adapter;
+    private Rotas apiRotas;
 
     private List<WebVisita> listaVisitasAtual = new ArrayList<>();
     private String statusFiltroAtual = null; // null = Todas, 'V' = Positivadas, 'N' = Não Venda
@@ -303,11 +304,11 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
         // REGRA SOLICITADA:
         // Ao abrir a activity, os dados filtrados devem ser SEMPRE do banco LOCAL (SQLite) e não da API.
         // A consulta na API só deve ser executada quando o usuário selecionar explicitamente um representante no Drawer (e se for diferente de 'V').
-        //if (buscouViaDrawer && !"V".equalsIgnoreCase(usuarioTipoSelecionado)) {
+        if (/*buscouViaDrawer &&*/ !"V".equalsIgnoreCase(UsuarioHelper.getUsuario().getUsuario_tipo())) {
             carregarVisitasAPI(idUsuarioSelecionado, statusFilter);
-        //} else {
-        //    carregarVisitasLocal(statusFilter);
-        //}
+        } else {
+            carregarVisitasLocal(statusFilter);
+        }
     }
 
     /* === CÓDIGO ANTERIOR DE BUSCA EXCLUSIVAMENTE LOCAL COMENTADO CONFORME SOLICITADO ===
@@ -410,18 +411,181 @@ public class ActivityRelatorioVisitas extends AppCompatActivity {
     private void exibirHistoricoAnaliseVisita(WebVisita visita) {
         if (visita == null) return;
 
-        com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
-        com.example.rcksuporte05.rcksistemas.model.WebAnalise analise = analiseDAO.getWebAnalisePorVisitaOuCliente(visita.getIdVisitaApp(), visita.getIdClienteServidor());
+        com.example.rcksuporte05.rcksistemas.model.WebAnalise analise = null;
 
+        // 1º PRIORIDADE: Se a visita veio da API com o objeto webAnalise preenchido pelo servidor
+        if (visita.getWebAnalise() != null) {
+            analise = visita.getWebAnalise();
+            if ((analise.getIdPedidoServidor() == null || analise.getIdPedidoServidor() <= 0) && visita.getIdPedidoServidor() > 0) {
+                analise.setIdPedidoServidor(visita.getIdPedidoServidor());
+            }
+            if ((analise.getIdPedidoApp() == null || analise.getIdPedidoApp().trim().isEmpty()) && visita.getIdPedidoApp() != null) {
+                analise.setIdPedidoApp(visita.getIdPedidoApp());
+            }
+            if ((analise.getIdVisitaApp() == null || analise.getIdVisitaApp().trim().isEmpty()) && visita.getIdVisitaApp() != null) {
+                analise.setIdVisitaApp(visita.getIdVisitaApp());
+            }
+            if ((analise.getIdClienteServidor() == null || analise.getIdClienteServidor() <= 0) && visita.getIdClienteServidor() > 0) {
+                analise.setIdClienteServidor(visita.getIdClienteServidor());
+            }
+        } else {
+            // 2º PRIORIDADE: Se a visita foi gerada localmente no aparelho, busca no SQLite local
+            com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO analiseDAO = new com.example.rcksuporte05.rcksistemas.DAO.WebAnaliseDAO(db);
+            analise = analiseDAO.getWebAnalisePorVisitaOuCliente(visita.getIdVisitaApp(), visita.getIdClienteServidor());
+        }
+
+        // Busca o objeto do cliente no SQLite local (ou cria em memória se não existir)
         com.example.rcksuporte05.rcksistemas.DAO.ClienteDAO clienteDAO = new com.example.rcksuporte05.rcksistemas.DAO.ClienteDAO(db);
         List<com.example.rcksuporte05.rcksistemas.model.Cliente> listaCli = clienteDAO.getLista("SELECT * FROM TBL_CADASTRO WHERE ID_CADASTRO_SERVIDOR = " + visita.getIdClienteServidor() + " OR ID_CADASTRO = " + visita.getIdClienteServidor());
         com.example.rcksuporte05.rcksistemas.model.Cliente cliente = (listaCli != null && !listaCli.isEmpty()) ? listaCli.get(0) : null;
 
-        if (analise != null) {
-            DialogHelper.showFichaClienteHistoricoDialog(this, analise, cliente);
-        } else {
-            Toast.makeText(this, "Nenhuma análise histórica registrada para este atendimento.", Toast.LENGTH_SHORT).show();
+        if (cliente == null) {
+            cliente = new com.example.rcksuporte05.rcksistemas.model.Cliente();
+            cliente.setId_cadastro_servidor(visita.getIdClienteServidor());
+            cliente.setNome_cadastro(visita.getRazaoSocial() != null && !visita.getRazaoSocial().trim().isEmpty() ? visita.getRazaoSocial() : "Cliente #" + visita.getIdClienteServidor());
+            cliente.setNome_fantasia(visita.getNomeFantasia() != null ? visita.getNomeFantasia() : "");
         }
+
+        // 3º PRIORIDADE (Fallback de Segurança): Se não existir em nenhum dos dois, cria em memória com os dados da visita
+        if (analise == null) {
+            analise = new com.example.rcksuporte05.rcksistemas.model.WebAnalise();
+            analise.setIdVisitaApp(visita.getIdVisitaApp());
+            try {
+                if (visita.getIdVisitaServidor() != null && !visita.getIdVisitaServidor().trim().isEmpty()) {
+                    analise.setIdVisitaServidor(Integer.parseInt(visita.getIdVisitaServidor().trim()));
+                }
+            } catch (Exception ignored) {}
+            analise.setIdPedidoApp(visita.getIdPedidoApp());
+            analise.setIdPedidoServidor(visita.getIdPedidoServidor());
+            analise.setIdClienteServidor(visita.getIdClienteServidor());
+            analise.setRazaoSocial(visita.getRazaoSocial());
+            analise.setNomeFantasia(visita.getNomeFantasia());
+            analise.setDataHoraAnalise(visita.getDataHoraCheckin());
+            analise.setValorPedido(visita.getValorPedido());
+            analise.setLimiteCredito(0.0);
+            analise.setLimiteDisponivel(0.0);
+            analise.setTicketMedio(0.0);
+
+            boolean isVenda = "V".equalsIgnoreCase(visita.getStatusVisita());
+            if (isVenda) {
+                analise.setStatusCredito("LIBERADO");
+                analise.setMensagemAlerta("Venda positivada realizada com sucesso.");
+            } else {
+                analise.setStatusCredito("LIBERADO");
+                String motivo = visita.getMotivoNaoVenda() != null && !visita.getMotivoNaoVenda().trim().isEmpty()
+                        ? visita.getMotivoNaoVenda().trim() : "Motivo não informado";
+                if (visita.getObservacao() != null && !visita.getObservacao().trim().isEmpty()) {
+                    motivo += " - Obs: " + visita.getObservacao().trim();
+                }
+                analise.setMensagemAlerta("Registro de Não Venda. " + motivo);
+            }
+        }
+
+        DialogHelper.showFichaClienteHistoricoDialog(this, db, analise, cliente);
+    }
+
+    private android.app.ProgressDialog mProgressDialog;
+
+    private void showProgressDialogCustom(String msg) {
+        try {
+            if (mProgressDialog == null) {
+                mProgressDialog = new android.app.ProgressDialog(this);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.setCancelable(false);
+            }
+            mProgressDialog.setMessage(msg);
+            mProgressDialog.show();
+        } catch (Exception ignored) {}
+    }
+
+    private void dismissProgressDialogCustom() {
+        try {
+            if (mProgressDialog != null && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+        } catch (Exception ignored) {}
+    }
+
+    public void buscarPedidoServidorEmBackground(String idCadastro, String idPedidoServidor) {
+        buscarPedidoServidorEmBackground(idCadastro, idPedidoServidor, null);
+    }
+
+    public void buscarPedidoServidorEmBackground(String idCadastro, String idPedidoServidor, Runnable onSucessoDownload) {
+        if (UsuarioHelper.getUsuario() == null) {
+            try {
+                com.example.rcksuporte05.rcksistemas.BO.UsuarioBO usuarioBO = new com.example.rcksuporte05.rcksistemas.BO.UsuarioBO();
+                UsuarioHelper.setUsuario(usuarioBO.getUsuarioLogin(db));
+            } catch (Exception ignored) {}
+        }
+
+        if (UsuarioHelper.getUsuario() == null) {
+            Toast.makeText(this, "Usuário não identificado.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String tipoUser = UsuarioHelper.getUsuario().getUsuario_tipo();
+        if ("V".equalsIgnoreCase(tipoUser)) {
+            Toast.makeText(this, "Consulta no servidor indisponível para perfil Vendedor.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        showProgressDialogCustom("Buscando pedido no servidor...");
+
+        final com.example.rcksuporte05.rcksistemas.model.Configuracao configuracao = new com.example.rcksuporte05.rcksistemas.DAO.ConfiguracaoDAO(db).getConfiguracao("SELECT * FROM TBL_CONFIGURACAO");
+        if (configuracao != null && configuracao.getId() != null && !configuracao.getId().isEmpty()) {
+            String versaoApp = com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME != null ? (com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME.length() >= 5 ? com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME.substring(0, 5) : com.example.rcksuporte05.rcksistemas.BuildConfig.VERSION_NAME) : "1.0";
+            String url = configuracao.getUrl_ip_1().trim() + ":" + Integer.toString(configuracao.getPorta_1()).trim() + "/rckwhalleAPI" + versaoApp + "/ws/";
+            Api.url = (configuracao.getConexao_segura().isEmpty() || configuracao.getConexao_segura().equalsIgnoreCase("N")) ?
+                    "http://" + url :
+                    "https://" + url;
+            Api.context = this;
+            apiRotas = Api.buildRetrofit(true);
+        }
+
+        new Thread(() -> {
+            Map<String, String> cabecalho = new HashMap<>();
+            if (UsuarioHelper.getUsuario().getToken() != null) {
+                cabecalho.put("AUTHORIZATION", UsuarioHelper.getUsuario().getToken());
+            }
+
+            // Nota: Chamada de API ajustada com idCadastro e cabecalho. Ajuste manualmente na interface Rotas se desejar passar o idPedidoServidor adicional.
+            Call<List<com.example.rcksuporte05.rcksistemas.model.WebPedido>> call = apiRotas.listaEnviadoCliente(
+                    UsuarioHelper.getUsuario().getId_usuario(),
+                    idCadastro, idPedidoServidor,
+                    cabecalho
+            );
+
+            call.enqueue(new Callback<List<com.example.rcksuporte05.rcksistemas.model.WebPedido>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<com.example.rcksuporte05.rcksistemas.model.WebPedido>> call, @NonNull Response<List<com.example.rcksuporte05.rcksistemas.model.WebPedido>> response) {
+                    runOnUiThread(() -> dismissProgressDialogCustom());
+                    if (response.isSuccessful() && response.body() != null) {
+                        List<com.example.rcksuporte05.rcksistemas.model.WebPedido> lista = response.body();
+                        if (!lista.isEmpty()) {
+                            new com.example.rcksuporte05.rcksistemas.DAO.WebPedidoDAO(db).addListaWebPedidos(lista, db);
+                            runOnUiThread(() -> {
+                                Toast.makeText(ActivityRelatorioVisitas.this, "Pedido baixado do servidor com sucesso!", Toast.LENGTH_SHORT).show();
+                                if (onSucessoDownload != null) {
+                                    onSucessoDownload.run();
+                                }
+                            });
+                        } else {
+                            runOnUiThread(() -> Toast.makeText(ActivityRelatorioVisitas.this, "Nenhum pedido encontrado no servidor.", Toast.LENGTH_SHORT).show());
+                        }
+                    } else {
+                        runOnUiThread(() -> Toast.makeText(ActivityRelatorioVisitas.this, "Falha ao obter o pedido do servidor.", Toast.LENGTH_SHORT).show());
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<List<com.example.rcksuporte05.rcksistemas.model.WebPedido>> call, @NonNull Throwable t) {
+                    runOnUiThread(() -> {
+                        dismissProgressDialogCustom();
+                        Toast.makeText(ActivityRelatorioVisitas.this, "Erro de conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+        }).start();
     }
 
     private void tratarFalhaAPI() {

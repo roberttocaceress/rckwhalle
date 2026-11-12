@@ -2,7 +2,6 @@ package com.example.rcksuporte05.rcksistemas.DAO;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 
 import com.example.rcksuporte05.rcksistemas.model.CadastroFinanceiroResumo;
 
@@ -36,27 +35,68 @@ public class CadastroFinanceiroResumoDAO {
     public CadastroFinanceiroResumo getCadastro(int idCadastro) {
         CadastroFinanceiroResumo cadastro = new CadastroFinanceiroResumo();
         Cursor cursor = db.listaDados("SELECT * FROM TBL_CADASTRO_FINANCEIRO_RESUMO WHERE ID_CADASTRO = " + idCadastro);
-        if ( cursor.getCount() <= 0)
+        if (cursor == null || cursor.getCount() <= 0) {
+            if (cursor != null) cursor.close();
             return cadastro;
-        cursor.moveToFirst();
-        do {
-            try {
-                cadastro.setIdCadastro(cursor.getInt(cursor.getColumnIndex("ID_CADASTRO")));
-                cadastro.setLimiteCredito(cursor.getFloat(cursor.getColumnIndex("LIMITE_CREDITO")));
-                cadastro.setFinanceiroVencido(cursor.getFloat(cursor.getColumnIndex("FINANCEIRO_VENCIDO")));
-                cadastro.setFinanceiroVencer(cursor.getFloat(cursor.getColumnIndex("FINANCEIRO_VENCER")));
-                cadastro.setFinanceiroQuitado(cursor.getFloat(cursor.getColumnIndex("FINANCEIRO_QUITADO")));
-                cadastro.setPedidosLiberados(cursor.getFloat(cursor.getColumnIndex("PEDIDOS_LIBERADOS")));
-                cadastro.setLimiteUtilizado(cursor.getFloat(cursor.getColumnIndex("LIMITE_UTILIZADO")));
-                cadastro.setLimiteDisponivel(cursor.getFloat(cursor.getColumnIndex("LIMITE_DISPONIVEL")));
-                cadastro.setUsuarioId(cursor.getInt(cursor.getColumnIndex("USUARIO_ID")));
-                cadastro.setUsuarioNome(cursor.getString(cursor.getColumnIndex("USUARIO_NOME")));
-                cadastro.setUsuarioData(cursor.getString(cursor.getColumnIndex("USUARIO_DATA")));
-                cadastro.setDataUltimaAtualizacao(cursor.getString(cursor.getColumnIndex("DATA_ULTIMA_ATUALIZACAO")));
-            } catch (CursorIndexOutOfBoundsException e) {
-                e.printStackTrace();
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                cadastro = setCadastroFinanceiroResumo(cursor);
             }
-        } while (cursor.moveToNext());
+        } catch (Exception ignored) {
+        } finally {
+            if (!cursor.isClosed()) {
+                cursor.close();
+            }
+        }
         return cadastro;
+    }
+
+    private CadastroFinanceiroResumo setCadastroFinanceiroResumo(Cursor cursor) {
+        CadastroFinanceiroResumo cadastro = new CadastroFinanceiroResumo();
+        try {
+            cadastro.setIdCadastro(getInt(cursor, "ID_CADASTRO"));
+            cadastro.setLimiteCredito(getFloat(cursor, "LIMITE_CREDITO"));
+            cadastro.setFinanceiroVencido(getFloat(cursor, "FINANCEIRO_VENCIDO"));
+            cadastro.setFinanceiroVencer(getFloat(cursor, "FINANCEIRO_VENCER"));
+            cadastro.setFinanceiroQuitado(getFloat(cursor, "FINANCEIRO_QUITADO"));
+            cadastro.setPedidosLiberados(getFloat(cursor, "PEDIDOS_LIBERADOS"));
+            cadastro.setLimiteUtilizado(getFloat(cursor, "LIMITE_UTILIZADO"));
+            cadastro.setLimiteDisponivel(getFloat(cursor, "LIMITE_DISPONIVEL"));
+            cadastro.setUsuarioId(getInt(cursor, "USUARIO_ID"));
+            cadastro.setUsuarioNome(getString(cursor, "USUARIO_NOME"));
+            cadastro.setUsuarioData(getString(cursor, "USUARIO_DATA"));
+            cadastro.setDataUltimaAtualizacao(getString(cursor, "DATA_ULTIMA_ATUALIZACAO"));
+        } catch (Exception ignored) {
+        }
+        return cadastro;
+    }
+
+    // =========================================================================
+    // AUXILIARES NECESSÁRIOS (CURSOR NULL-SAFE)
+    // =========================================================================
+    private String getString(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        return (idx != -1 && !c.isNull(idx)) ? c.getString(idx) : null;
+    }
+
+    private int getInt(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0;
+        try {
+            return Integer.parseInt(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private float getFloat(Cursor c, String col) {
+        int idx = c.getColumnIndex(col);
+        if (idx == -1 || c.isNull(idx)) return 0.0f;
+        try {
+            return Float.parseFloat(c.getString(idx));
+        } catch (NumberFormatException e) {
+            return 0.0f;
+        }
     }
 }

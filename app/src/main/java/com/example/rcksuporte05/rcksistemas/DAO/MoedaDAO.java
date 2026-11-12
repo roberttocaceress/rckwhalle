@@ -1,5 +1,6 @@
 package com.example.rcksuporte05.rcksistemas.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -24,13 +25,12 @@ public class MoedaDAO {
         try {
             content.put("ID", moeda.getId_moeda());
             content.put("NOME_MOEDA", moeda.getNome_moeda());
-            System.gc();
             return db.addDados("TBL_MOEDA", content);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ignored) {
         }
         return 0;
     }
+    @SuppressLint("Range")
     public List<Moeda> getLista(String SQL) {
         List<Moeda> lista = new ArrayList<>();
         Cursor cursor = db.listaDados(SQL);
@@ -43,11 +43,10 @@ public class MoedaDAO {
                 moeda.setId_moeda(cursor.getString(cursor.getColumnIndex("ID")));
                 moeda.setNome_moeda(cursor.getString(cursor.getColumnIndex("NOME_MOEDA")));
                 lista.add(moeda);
-            } catch (CursorIndexOutOfBoundsException e) {
+            } catch (CursorIndexOutOfBoundsException ignored) {
             }
         } while (cursor.moveToNext());
         cursor.close();
-        System.gc();
         return lista;
     }
 }

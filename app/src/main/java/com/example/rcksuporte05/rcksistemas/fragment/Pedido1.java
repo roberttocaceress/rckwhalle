@@ -371,8 +371,13 @@ public class Pedido1 extends Fragment implements ListaAdapterProdutoPedido.Produ
         super.onResume();
     }
 
+    private boolean isVizualizacaoMode() {
+        return bundle != null && bundle.getInt("vizualizacao", 0) == 1;
+    }
+
     @Override
     public void onRowClicked(int position) {
+        if (isVizualizacaoMode()) return;
         if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
             return;
         }
@@ -389,6 +394,7 @@ public class Pedido1 extends Fragment implements ListaAdapterProdutoPedido.Produ
 
     @Override
     public void onLongRowClicked(int position) {
+        if (isVizualizacaoMode()) return;
         if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
             return;
         }
@@ -397,6 +403,7 @@ public class Pedido1 extends Fragment implements ListaAdapterProdutoPedido.Produ
 
     @Override
     public void onButtonExcClicked(final int position) {
+        if (isVizualizacaoMode()) return;
         if (position < 0 || listaProdutoPedido == null || position >= listaProdutoPedido.size()) {
             return;
         }
