@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- CARD 1: INFORMAÇÕES DA EMPRESA / CLIENTE (IDÊNTICO AO CHECK-IN) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardInfoEmpresaNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <!-- ÍCONE À ESQUERDA -->
+                <ImageView
+                    android:id="@+id/ivIconeEmpresaNaoVenda"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/border_shadow_2025"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_id_card_2026"
+                    app:tint="@color/colorPrimary" />
+
+                <!-- DADOS À DIREITA -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNaoVendaRazaoSocial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Razão Social da Empresa / Cliente"
+                        android:textColor="@color/preto"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNaoVendaNomeFantasia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="Nome Fantasia"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvNaoVendaEndereco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Rua / Avenida, Nº 000 - Bairro - Cidade/UF"
+                        android:textColor="@color/colorText"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- CARD 2: LISTA DE MOTIVOS COM CHECKBOX -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardMotivosNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="MOTIVO(S) DA NÃO VENDA"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- CONTAINER DINÂMICO PARA OS CHECKBOXES DOS MOTIVOS -->
+                <LinearLayout
+                    android:id="@+id/containerCheckboxesMotivos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- CARD 3: CAMPO DE OBSERVAÇÃO DO ATENDIMENTO -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardObservacaoNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="OBSERVAÇÕES ADICIONAIS"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtObservacaoNaoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/border_shadow_2025"
+                    android:gravity="top|start"
+                    android:hint="Digite aqui observações adicionais sobre o atendimento..."
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:textColor="@color/preto"
+                    android:textColorHint="@color/colorText"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- BOTÕES DE AÇÃO ALINHADOS VERTICALMENTE -->
+        <Button
+            android:id="@+id/btnConfirmarNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="CONFIRMAR NÃO VENDA"
+            android:textColor="@color/branco"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="6dp" />
+
+        <Button
+            android:id="@+id/btnCancelarNaoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="#94A3B8"
+            android:text="CANCELAR"
+            android:textColor="@color/branco"
+            android:textSize="12sp"
+            app:cornerRadius="6dp" />
+
+    </LinearLayout>
+</ScrollView>
